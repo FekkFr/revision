@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flashcards — Politique & Gouvernance du Système de Santé</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --noir:#0e0e12; --fond:#f5f2ec; --carte:#fff; --or:#c8940a; --or2:#e8b820;
+  --doux:#6b6560; --bord:#ddd5bc;
+  --T1:#1a5c38; --T2:#1a3a6a; --T3:#982020;
+  --T4:#c8900a; --T5:#5a2e80; --T6:#1a5a6a; --T7:#003399;
+  --T8:#8b1a4a; --T9:#1a6b4a; --T10:#5a4a10;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--fond);min-height:100vh;overflow-x:hidden;}
+
+/* ─── ÉCRAN DE SÉLECTION ─── */
+#screen-select{min-height:100vh;display:flex;flex-direction:column;}
+#screen-play{display:none;min-height:100vh;flex-direction:column;}
+
+/* HEADER */
+.hdr{background:var(--noir);padding:2rem 2rem 1.6rem;text-align:center;position:relative;}
+.hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--or),var(--or2),var(--or),transparent);}
+.hdr-eye{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--or);margin-bottom:.6rem;}
+.hdr h1{font-family:'Playfair Display',serif;font-size:1.85rem;font-weight:900;color:#fff;line-height:1.1;margin-bottom:.3rem;}
+.hdr-sub{font-size:.83rem;color:rgba(255,255,255,.4);font-style:italic;}
+
+/* GRILLE THÈMES */
+.sel-wrap{max-width:860px;margin:0 auto;padding:2.5rem 1.5rem;}
+.sel-title{font-family:'Playfair Display',serif;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--doux);text-align:center;margin-bottom:1.8rem;}
+.themes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:2rem;}
+.theme-card{background:var(--carte);border-radius:12px;padding:1.4rem 1.2rem;cursor:pointer;
+  border:2.5px solid var(--bord);transition:all .2s;position:relative;overflow:hidden;user-select:none;}
+.theme-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;}
+.theme-card[data-t="1"]::before{background:var(--T1);}
+.theme-card[data-t="2"]::before{background:var(--T2);}
+.theme-card[data-t="3"]::before{background:var(--T3);}
+.theme-card[data-t="4"]::before{background:var(--T4);}
+.theme-card[data-t="5"]::before{background:var(--T5);}
+.theme-card[data-t="6"]::before{background:var(--T6);}
+.theme-card[data-t="7"]::before{background:var(--T7);}
+.theme-card[data-t="8"]::before{background:var(--T8);}
+.theme-card[data-t="9"]::before{background:var(--T9);}
+.theme-card[data-t="10"]::before{background:var(--T10);}
+.theme-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.1);}
+.theme-card.selected{border-color:var(--or);box-shadow:0 0 0 3px rgba(200,148,10,.18);}
+.tc-num{font-family:'Playfair Display',serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.3rem;}
+.theme-card[data-t="1"] .tc-num{color:var(--T1);}
+.theme-card[data-t="2"] .tc-num{color:var(--T2);}
+.theme-card[data-t="3"] .tc-num{color:var(--T3);}
+.theme-card[data-t="4"] .tc-num{color:var(--T4);}
+.theme-card[data-t="5"] .tc-num{color:var(--T5);}
+.theme-card[data-t="6"] .tc-num{color:var(--T6);}
+.theme-card[data-t="7"] .tc-num{color:var(--T7);}
+.theme-card[data-t="8"] .tc-num{color:var(--T8);}
+.theme-card[data-t="9"] .tc-num{color:var(--T9);}
+.theme-card[data-t="10"] .tc-num{color:var(--T10);}
+.tc-title{font-family:'Playfair Display',serif;font-weight:700;font-size:.92rem;color:var(--noir);line-height:1.3;margin-bottom:.5rem;}
+.tc-count{font-size:.75rem;color:var(--doux);}
+.tc-check{position:absolute;top:.8rem;right:.8rem;width:22px;height:22px;border-radius:50%;
+  border:2px solid var(--bord);display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;transition:all .2s;}
+.theme-card.selected .tc-check{background:var(--or);border-color:var(--or);color:#fff;}
+
+/* SELECT ALL + CTA */
+.sel-actions{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.btn-all{font-family:'Source Serif 4',serif;font-size:.8rem;font-weight:600;
+  padding:.5rem 1.2rem;border-radius:8px;border:1.5px solid var(--bord);
+  background:var(--carte);color:var(--doux);cursor:pointer;transition:all .18s;}
+.btn-all:hover{border-color:var(--or);color:var(--or);}
+.btn-start{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;
+  padding:.85rem 2.5rem;border-radius:10px;border:none;
+  background:var(--noir);color:var(--or);cursor:pointer;
+  transition:all .22s;letter-spacing:.03em;}
+.btn-start:hover{background:var(--or);color:var(--noir);}
+.btn-start:disabled{opacity:.35;cursor:not-allowed;}
+.sel-info{font-size:.8rem;color:var(--doux);font-style:italic;}
+
+/* ─── ÉCRAN JEU ─── */
+.play-hdr{background:var(--noir);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;}
+.btn-back{font-family:'Source Serif 4',serif;font-size:.8rem;color:rgba(255,255,255,.5);
+  background:none;border:1px solid rgba(255,255,255,.15);border-radius:6px;
+  padding:.35rem .9rem;cursor:pointer;transition:all .18s;}
+.btn-back:hover{color:#fff;border-color:rgba(255,255,255,.4);}
+.play-title{font-family:'Playfair Display',serif;font-size:.9rem;color:rgba(255,255,255,.6);font-style:italic;}
+.play-badges{display:flex;gap:.5rem;flex-wrap:wrap;}
+.badge-t{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:.22rem .65rem;border-radius:12px;color:#fff;}
+
+/* PROGRESS */
+.prog-zone{background:var(--noir);padding:.8rem 1.5rem 1rem;border-bottom:1px solid rgba(255,255,255,.06);}
+.prog-row{display:flex;align-items:center;gap:1rem;max-width:700px;margin:0 auto;}
+.prog-track{flex:1;background:rgba(255,255,255,.1);border-radius:4px;height:5px;overflow:hidden;}
+.prog-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--or),var(--or2));transition:width .35s ease;}
+.prog-stats{display:flex;gap:1.2rem;}
+.ps{text-align:center;}
+.ps .v{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:900;}
+.ps .l{font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;opacity:.5;}
+#ps-ok .v{color:#5abe82;}
+#ps-no .v{color:#e05050;}
+#ps-rem .v{color:var(--or);}
+
+/* ARÈNE */
+.arena{max-width:680px;margin:2rem auto;padding:0 1.5rem;}
+.card-ctr{font-family:'Source Serif 4',serif;font-size:.75rem;color:var(--doux);text-align:center;margin-bottom:.8rem;}
+
+/* CARTE 3D */
+.scene{perspective:1200px;height:340px;cursor:pointer;margin-bottom:1.2rem;}
+.card-3d{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,0,.2,1);}
+.card-3d.flipped{transform:rotateY(180deg);}
+.face{position:absolute;inset:0;border-radius:14px;backface-visibility:hidden;
+  display:flex;flex-direction:column;padding:1.8rem 2rem;
+  box-shadow:0 8px 40px rgba(0,0,0,.11),0 2px 8px rgba(0,0,0,.06);}
+
+.front{background:var(--carte);}
+.front-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
+.f-badge{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  padding:.22rem .7rem;border-radius:12px;color:#fff;}
+.f-type{font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--doux);}
+.f-accent{position:absolute;top:0;left:0;right:0;height:4px;border-radius:14px 14px 0 0;}
+.f-q{flex:1;display:flex;align-items:center;justify-content:center;}
+.f-q p{font-family:'Playfair Display',serif;font-size:1.12rem;font-weight:700;
+  color:var(--noir);line-height:1.45;text-align:center;}
+.f-hint{text-align:center;font-size:.73rem;color:var(--doux);font-style:italic;margin-top:.5rem;}
+
+.back{background:var(--noir);transform:rotateY(180deg);}
+.back-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem;}
+.b-badge{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  padding:.22rem .7rem;border-radius:12px;color:#fff;}
+.b-type{font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.3);}
+.b-ans{flex:1;overflow-y:auto;}
+.b-ans p,.b-ans ul{font-size:.88rem;color:rgba(255,255,255,.85);line-height:1.65;}
+.b-ans ul{padding-left:1.1rem;}
+.b-ans ul li{margin-bottom:.28rem;}
+.b-ans strong{color:var(--or2);}
+.loi-ref{display:inline-block;background:rgba(200,148,10,.15);border:1px solid rgba(200,148,10,.3);
+  border-radius:4px;padding:.12rem .5rem;font-size:.72rem;color:var(--or2);font-weight:600;margin-top:.45rem;}
+
+/* BOUTONS RÉPONSE */
+.ans-btns{display:flex;gap:.8rem;justify-content:center;margin-bottom:1.2rem;
+  opacity:0;transition:opacity .3s;pointer-events:none;}
+.ans-btns.show{opacity:1;pointer-events:all;}
+.btn-ans{flex:1;max-width:180px;padding:.75rem 1rem;border-radius:10px;border:2px solid;
+  cursor:pointer;font-family:'Playfair Display',serif;font-weight:700;font-size:.88rem;
+  transition:all .18s;text-align:center;}
+.btn-no{border-color:#c05050;color:#c05050;background:transparent;}
+.btn-no:hover{background:#c05050;color:#fff;}
+.btn-ok{border-color:#2a8a50;color:#2a8a50;background:transparent;}
+.btn-ok:hover{background:#2a8a50;color:#fff;}
+
+/* CONTRÔLES */
+.ctrls{display:flex;gap:.6rem;justify-content:center;margin-bottom:2rem;flex-wrap:wrap;}
+.btn-c{font-family:'Source Serif 4',serif;font-size:.78rem;font-weight:600;
+  padding:.5rem 1.1rem;border-radius:8px;cursor:pointer;
+  border:1.5px solid var(--bord);background:var(--carte);color:var(--doux);
+  transition:all .18s;letter-spacing:.04em;}
+.btn-c:hover{border-color:var(--or);color:var(--or);}
+.btn-c.prim{background:var(--noir);color:var(--or);border-color:var(--or);}
+.btn-c.prim:hover{background:var(--or);color:var(--noir);}
+
+/* ÉCRAN FIN */
+.done{display:none;text-align:center;padding:2.5rem 2rem;
+  background:var(--carte);border-radius:14px;
+  box-shadow:0 8px 40px rgba(0,0,0,.1);margin-bottom:1.5rem;}
+.done.show{display:block;}
+.done-score{font-family:'Playfair Display',serif;font-size:4rem;font-weight:900;color:var(--or);}
+.done h2{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--noir);margin:.4rem 0;}
+.done p{color:var(--doux);font-size:.88rem;margin-bottom:1.3rem;}
+.done-btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;}
+
+@media(max-width:600px){
+  .themes-grid{grid-template-columns:1fr 1fr;}
+  .scene{height:280px;}
+  .hdr h1{font-size:1.4rem;}
+  .sel-actions{flex-direction:column;align-items:stretch;}
+  .btn-start{text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ ÉCRAN SÉLECTION ═══════════════ -->
+<div id="screen-select">
+  <div class="hdr">
+    <div class="hdr-eye">Master 1 · 2024/2025</div>
+    <h1>Flashcards — Politique &amp; Gouvernance<br>du Système de Santé</h1>
+    <div class="hdr-sub">Cours de Guylène NICOLAS · Sélectionnez les thèmes à réviser</div>
+  </div>
+
+  <div class="sel-wrap">
+    <div class="sel-title">Choisissez vos thèmes</div>
+
+    <div class="themes-grid">
+      <div class="theme-card" data-t="1" onclick="toggleTheme(this)">
+        <div class="tc-check" id="chk-1">✓</div>
+        <div class="tc-num">Thème 1</div>
+        <div class="tc-title">La santé publique &amp; le droit</div>
+        <div class="tc-count" id="cnt-1">0 cartes</div>
+      </div>
+      <div class="theme-card" data-t="2" onclick="toggleTheme(this)">
+        <div class="tc-check" id="chk-2">✓</div>
+        <div class="tc-num">Thème 2</div>
+        <div class="tc-title">La loi de santé publique</div>
+        <div class="tc-count" id="cnt-2">0 cartes</div>
+      </div>
+      <div class="theme-card" data-t="3" onclick="toggleTheme(this)">
+        <div class="tc-check" id="chk-3">✓</div>
+        <div class="tc-num">Thème 3</div>
+        <div class="tc-title">La sécurité sanitaire</div>
+        <div class="tc-count" id="cnt-3">0 cartes</div>
+      </div>
+      <div class="theme-card" data-t="4" onclick="toggleTheme(this)">
+        <div class="tc-check" id="chk-4">✓</div>
+        <div class="tc-num">Thème 4</div>
+        <div class="tc-title">La régionalisation</div>
+        <div class="tc-count" id="cnt-4">0 cartes</div>
+      </div>
+      <div class="theme-card" data-t="5" onclick="toggleTheme(this)">
+        <div class="tc-check" id="chk-5">✓</div>
+        <div class="tc-num">Thème 5</div>
+        <div class="tc-title">La qualité des soins &amp; GHT</div>
+        <div class="tc-count" id="cnt-5">0 cartes</div>
+      </div>
+      <div class="theme-card" data-t="6" onclick="toggleTheme(this)">
+        <div class="tc-check" id="chk-6">✓</div>
+        <div class="tc-num">Thème 6</div>
+        <div class="tc-title">Les financements hospitaliers</div>
+        <div class="tc-count" id="cnt-6">0 cartes</div>
+      </div>
+      <div class="theme-card" data-t="7" onclick="toggleTheme(this)">
+        <div class="tc-check" id="chk-7">✓</div>
+        <div class="tc-num">Thème 7</div>
+        <div class="tc-title">La dimension internationale</div>
+        <div class="tc-count" id="cnt-7">0 cartes</div>
+      </div>
+      <div class="theme-card" data-t="8" onclick="toggleTheme(this)">
+        <div class="tc-check" id="chk-8">✓</div>
+        <div class="tc-num">Thème 8</div>
+        <div class="tc-title">La santé sexuelle</div>
+        <div class="tc-count" id="cnt-8">0 cartes</div>
+      </div>
+      <div class="theme-card" data-t="9" onclick="toggleTheme(this)">
+        <div class="tc-check" id="chk-9">✓</div>
+        <div class="tc-num">Thème 9</div>
+        <div class="tc-title">La santé mentale</div>
+        <div class="tc-count" id="cnt-9">0 cartes</div>
+      </div>
+      <div class="theme-card" data-t="10" onclick="toggleTheme(this)">
+        <div class="tc-check" id="chk-10">✓</div>
+        <div class="tc-num">Thème 10</div>
+        <div class="tc-title">Personnes en situation de handicap</div>
+        <div class="tc-count" id="cnt-10">0 cartes</div>
+      </div>
+    </div>
+
+    <div class="sel-actions">
+      <div>
+        <button class="btn-all" onclick="selectAll()">Tout sélectionner</button>
+        &nbsp;
+        <button class="btn-all" onclick="deselectAll()">Tout désélectionner</button>
+        &nbsp;&nbsp;
+        <span class="sel-info" id="sel-info">0 thème sélectionné — 0 cartes</span>
+      </div>
+      <button class="btn-start" id="btn-start" onclick="startSession()" disabled>
+        Commencer la révision →
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ ÉCRAN JEU ═══════════════ -->
+<div id="screen-play">
+  <div class="play-hdr">
+    <button class="btn-back" onclick="goBack()">← Changer les thèmes</button>
+    <div class="play-title">Session de révision</div>
+    <div class="play-badges" id="play-badges"></div>
+  </div>
+
+  <div class="prog-zone">
+    <div class="prog-row">
+      <div class="prog-stats">
+        <div class="ps" id="ps-ok"><div class="v">0</div><div class="l">Sus ✓</div></div>
+        <div class="ps" id="ps-no"><div class="v">0</div><div class="l">À revoir</div></div>
+        <div class="ps" id="ps-rem"><div class="v">0</div><div class="l">Restantes</div></div>
+      </div>
+      <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <div class="arena">
+    <div class="card-ctr" id="card-ctr">Carte 1 / 0</div>
+
+    <div class="scene" id="scene" onclick="flipCard()">
+      <div class="card-3d" id="card3d">
+        <div class="face front" id="face-front">
+          <div class="f-accent" id="f-accent"></div>
+          <div class="front-bar">
+            <span class="f-badge" id="f-badge">Thème</span>
+            <span class="f-type" id="f-type">Définition</span>
+          </div>
+          <div class="f-q"><p id="q-txt">Chargement…</p></div>
+          <div class="f-hint">Cliquez pour révéler la réponse</div>
+        </div>
+        <div class="face back" id="face-back">
+          <div class="back-bar">
+            <span class="b-badge" id="b-badge">Thème</span>
+            <span class="b-type">Réponse</span>
+          </div>
+          <div class="b-ans" id="a-txt"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="done" id="done-screen">
+      <div class="done-score" id="done-pct">100%</div>
+      <h2 id="done-title">Session terminée !</h2>
+      <p id="done-msg">Bravo !</p>
+      <div class="done-btns">
+        <button class="btn-c prim" onclick="restartAll()">🔄 Recommencer</button>
+        <button class="btn-c" onclick="restartWrong()">❌ Revoir les ratées</button>
+        <button class="btn-c" onclick="goBack()">← Changer thèmes</button>
+      </div>
+    </div>
+
+    <div class="ans-btns" id="ans-btns">
+      <button class="btn-ans btn-no" onclick="answer(false)">❌ À revoir</button>
+      <button class="btn-ans btn-ok" onclick="answer(true)">✅ Je savais !</button>
+    </div>
+
+    <div class="ctrls">
+      <button class="btn-c" onclick="prevCard()">← Précédent</button>
+      <button class="btn-c prim" onclick="nextCard()">Suivant →</button>
+      <button class="btn-c" onclick="shuffle()">🔀 Mélanger</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// DONNÉES FLASHCARDS
+// ═══════════════════════════════════════════════════════
+const CARDS = [
+
+// ── THÈME 1 ─────────────────────────────────────────
+{t:1,type:'Définition',
+q:'Quelle est la définition de la santé selon l\'OMS (1948) ?',
+a:'<p>Un état de complet bien-être <strong>physique, mental et social</strong> — ne consistant pas seulement en une absence de maladie ou d\'infirmité.</p><span class="loi-ref">Constitution OMS — 7 avril 1948</span>'},
+
+{t:1,type:'Définition',
+q:'Définissez la santé publique selon le CCNE (Avis n° 137).',
+a:'<p>La mise en œuvre <strong>collective</strong> de mesures de promotion de la santé et de prévention des maladies, distincte de la médecine individuelle et curative.</p><span class="loi-ref">CCNE — Avis n° 137</span>'},
+
+{t:1,type:'Mémorisation',
+q:'Citez et définissez les 3 niveaux de prévention de l\'OMS.',
+a:'<ul><li><strong>Prévention primaire</strong> : agir <em>avant</em> l\'apparition de la maladie (ex : vaccination, éducation à la santé)</li><li><strong>Prévention secondaire</strong> : dépistage précoce pour traiter avant aggravation</li><li><strong>Prévention tertiaire</strong> : limiter les séquelles et récidives chez les personnes malades</li></ul>'},
+
+{t:1,type:'Base légale',
+q:'Quel texte constitutionnel consacre le droit à la protection de la santé en France ?',
+a:'<p>Le <strong>11e alinéa du Préambule de la Constitution de 1946</strong> : « La Nation garantit à tous la protection de la santé. »</p><p>Valeur constitutionnelle depuis la Constitution du <strong>4 octobre 1958</strong>.</p>'},
+
+{t:1,type:'Dates clés',
+q:'Quelle loi marque la naissance de la santé publique moderne en France ? Quelle loi est la première loi de santé publique ?',
+a:'<ul><li><strong>Loi du 15 février 1902</strong> : relative à la protection de la santé publique — 1ère loi de santé publique moderne</li><li>Avant elle : loi du 3 mars 1822 (protection contre les épidémies)</li><li>Dernière grande loi : <strong>Loi du 9 août 2004</strong> relative à la politique de santé publique</li></ul>'},
+
+{t:1,type:'Mémorisation',
+q:'Donnez les chiffres clés de la démographie française (INSEE 2025) en lien avec la santé.',
+a:'<ul><li>Population : <strong>68,4 millions d\'habitants</strong></li><li>Espérance de vie : <strong>85,7 ans</strong> (femmes) / <strong>80,1 ans</strong> (hommes)</li><li>Vieillissement accéléré → enjeux croissants pour le système de santé</li><li>Maladies chroniques en forte hausse</li></ul>'},
+
+// ── THÈME 2 ─────────────────────────────────────────
+{t:2,type:'Base légale',
+q:'Quel article du CSP définit la Stratégie Nationale de Santé ? Quels sont ses 4 axes ?',
+a:'<ul><li><strong>Art. L. 1411-1-1 CSP</strong> — Loi n° 2016-41 du 26 janvier 2016</li><li>Axe 1 : Politique de <strong>promotion de la santé</strong></li><li>Axe 2 : <strong>Lutter contre les inégalités</strong> sociales et territoriales</li><li>Axe 3 : <strong>Qualité de vie</strong> des personnes malades chroniques et handicapées</li><li>Axe 4 : <strong>Innover</strong> pour transformer le système de santé</li></ul>'},
+
+{t:2,type:'Dates clés',
+q:'Quelles sont les 3 générations de la Stratégie Nationale de Santé (SNS) ?',
+a:'<ul><li><strong>SNS 2013-2017</strong> : 1ère stratégie nationale de santé</li><li><strong>SNS 2018-2022</strong> : priorité prévention, inégalités de santé</li><li><strong>SNS 2023-2033</strong> : en vigueur, portée sur 10 ans</li></ul>'},
+
+{t:2,type:'Mémorisation',
+q:'Quelles 3 agences ont fusionné pour créer Santé Publique France en 2016 ?',
+a:'<ul><li><strong>InVS</strong> — Institut de Veille Sanitaire (créé en 1998)</li><li><strong>INPES</strong> — Institut National de Prévention et d\'Éducation pour la Santé (créé en 2002 par la loi du 4 mars 2002)</li><li><strong>EPRUS</strong> — Établissement de Préparation et de Réponse aux Urgences Sanitaires (créé par la loi du 5 mars 2007)</li></ul><span class="loi-ref">Art. 166, Loi n° 2016-41 · Décret n° 2016-523 du 27 avril 2016</span>'},
+
+{t:2,type:'Mémorisation',
+q:'Combien de vaccins sont obligatoires depuis la LFSS 2017 ? Citez les 8 nouveaux.',
+a:'<p><strong>11 vaccins obligatoires</strong> depuis le 1er janvier 2018 (au lieu de 3).</p><p>Les 3 historiques : diphtérie, tétanos, poliomyélite.</p><p>Les 8 nouveaux : <strong>coqueluche · Haemophilus influenzae b · hépatite B · pneumocoque · méningocoque C · rougeole · oreillons · rubéole</strong></p><span class="loi-ref">LFSS 2017 — Loi n° 2017-1836</span>'},
+
+{t:2,type:'Jurisprudence',
+q:'Que retient le CE dans sa décision de 2019 sur la vaccination obligatoire ?',
+a:'<p>Le Conseil d\'État juge en 2019 que l\'extension de l\'obligation vaccinale à <strong>11 vaccins</strong> est <strong>conforme à la Constitution</strong> et aux droits fondamentaux. Il reconnaît que la politique vaccinale répond à un impératif de santé publique justifiant des restrictions aux libertés individuelles.</p>'},
+
+{t:2,type:'Dates clés',
+q:'Quels sont les plans nationaux cités dans le cours autour de la loi de santé 2016 ?',
+a:'<ul><li><strong>PNRT</strong> — Plan National de Réduction du Tabagisme</li><li><strong>PNLT 2023-2027</strong> — Plan National de Lutte contre le Tabac</li><li>Loi n° 2016-41 fixe le cadre général des politiques de santé publique et la SNS</li></ul>'},
+
+// ── THÈME 3 ─────────────────────────────────────────
+{t:3,type:'Définition',
+q:'Définissez la sécurité sanitaire selon Didier Tabuteau (1994). Quand apparaît ce terme en droit ?',
+a:'<p>La sécurité des personnes contre les <strong>risques thérapeutiques de toute nature</strong>, qu\'ils soient liés aux choix thérapeutiques, aux actes de prévention, de diagnostic ou de soin, comme à l\'usage des <strong>biens et des produits de santé</strong>.</p><p>1ère utilisation officielle : <strong>16 décembre 1992</strong> (projet de loi → loi Kouchner du 4 janvier 1993)</p>'},
+
+{t:3,type:'Mémorisation',
+q:'Quels sont les 4 principes directeurs de la loi du 1er juillet 1998 ?',
+a:'<ul><li>1. <strong>Séparation</strong> des fonctions : production/gestion // évaluation des risques // alerte // police sanitaire</li><li>2. <strong>Clarification</strong> du rôle des experts (limiter les conflits d\'intérêts)</li><li>3. Évaluation et police sanitaire <strong>indépendantes de la tutelle économique</strong></li><li>4. Dispositif de <strong>veille et surveillance global</strong> de l\'état de santé de la population</li></ul><span class="loi-ref">Loi n° 98-535 du 1er juillet 1998</span>'},
+
+{t:3,type:'Mémorisation',
+q:'Quelles agences ont fusionné pour créer l\'ANSES en 2010 ? Décrivez son organisation.',
+a:'<ul><li><strong>AFSSA</strong> (aliments, 1998) + <strong>AFSSET</strong> (environnement et travail, ordonnance 2005)</li><li>→ Ordonnance <strong>n° 2010-18 du 7 janvier 2010</strong></li><li><strong>5 tutelles</strong> : santé · agriculture · environnement · travail · consommation</li><li>~<strong>1 350 agents</strong> + 800 experts · <strong>11 laboratoires</strong> · 16 implantations</li></ul>'},
+
+{t:3,type:'Mémorisation',
+q:'Quelles 3 agences ont fusionné pour créer Santé Publique France ? Quelle base légale ?',
+a:'<ul><li><strong>InVS + INPES + EPRUS</strong> → Santé Publique France</li><li>Base légale : <strong>Art. 166, Loi n° 2016-41</strong> · Ordonnance n° 2016-462 du 14 avril 2016 · Décret n° 2016-523</li><li>Ratifiée : Loi n° 2017-228 du 24 février 2017</li></ul>'},
+
+{t:3,type:'Mémorisation',
+q:'Quels sont les 3 stades épidémiques ? Donnez une mesure phare par stade.',
+a:'<ul><li><strong>Stade 1 — Freiner l\'introduction</strong> : détecter les cas isolés, confinement, traçage</li><li><strong>Stade 2 — Endiguer la propagation</strong> : fermeture des écoles, télétravail, limitation déplacements, annulation manifestations > 5 000 pers.</li><li><strong>Stade 3 — Stade épidémique</strong> : mobilisation collective, ambulatoire/hospitalisation selon gravité, continuité pédagogique, chômage partiel</li></ul>'},
+
+{t:3,type:'Jurisprudence',
+q:'Que retient le Tribunal correctionnel de Paris (29 mars 2021) dans l\'affaire Mediator ?',
+a:'<ul><li>Servier : coupable de <strong>tromperie aggravée + homicides et blessures involontaires</strong> → <strong>2,7 M€ d\'amende</strong></li><li>Jean-Philippe Seta : <strong>4 ans d\'emprisonnement avec sursis</strong></li><li>ANSM condamnée à <strong>303 000 €</strong> (tardivité suspension) + 225 000 € + 78 000 €</li><li>~4 000 victimes dont 2 000 décès · 6 500 parties civiles · 450 avocats</li></ul>'},
+
+{t:3,type:'Jurisprudence',
+q:'Que retient la CAA de Paris (14 janvier 2025) dans l\'affaire Dépakine ?',
+a:'<ul><li>Confirme la responsabilité de l\'État du fait du <strong>défaut de contrôle par l\'ANSM</strong> de la notice</li><li>Réparation de la <strong>perte de chance</strong> d\'éviter le dommage si une information complète avait été donnée aux mères</li><li>14 322 femmes enceintes exposées (2007-2014) · 16 000-30 000 enfants touchés</li></ul><span class="loi-ref">TA Montreuil 2 juil. 2020 + CAA Paris 14 jan. 2025</span>'},
+
+{t:3,type:'Base légale',
+q:'Quel texte a créé l\'état d\'urgence sanitaire ? Qu\'est-ce que le COVARS ?',
+a:'<ul><li><strong>Loi n° 2020-290 du 23 mars 2020</strong> (art. 2) → crée l\'état d\'urgence sanitaire (Covid-19)</li><li><strong>COVARS</strong> = Comité de Veille et d\'Anticipation des Risques Sanitaires</li><li>Créé par le <strong>Décret n° 2022-1099 du 30 juillet 2022</strong> — remplace le Conseil scientifique Covid</li><li>Mission : anticipation des crises sanitaires · veille · prédiction · modélisation · recommandations</li></ul>'},
+
+{t:3,type:'Base légale',
+q:'Quel texte a créé l\'EPRUS et la réserve sanitaire ? Décrivez les 2 types de réserve.',
+a:'<ul><li><strong>Loi du 5 mars 2007</strong> relative à la préparation du système de santé à des menaces sanitaires de grande ampleur</li><li><strong>Réserve d\'intervention</strong> : déployable rapidement</li><li><strong>Réserve de renfort</strong> : montée en puissance si nécessaire</li><li>Engagement sous <strong>contrat</strong> · activation par <strong>arrêté motivé conjoint</strong> des ministres Santé et Sécurité civile</li><li>→ EPRUS intégré à <strong>Santé Publique France en 2016</strong></li></ul>'},
+
+// ── THÈME 4 ─────────────────────────────────────────
+{t:4,type:'Distinction',
+q:'Expliquez la différence entre décentralisation et déconcentration. Où se situent ARH et ARS ?',
+a:'<ul><li><strong>Décentralisation</strong> (lois 1982) : transfert vers des personnes morales distinctes (collectivités), agissant <em>en leur propre nom</em></li><li><strong>Déconcentration</strong> (loi 1992) : transfert au sein de l\'État vers ses agents, agissant <em>au nom de l\'État</em></li><li>ARH et ARS = outils de <strong>déconcentration</strong> (le directeur agit au nom de l\'État)</li></ul>'},
+
+{t:4,type:'Base légale',
+q:'Qu\'est-ce qu\'une ARH ? Statut, composition, directeur.',
+a:'<ul><li>Agence Régionale de l\'Hospitalisation — <strong>Ordonnance n° 96-346 du 24 avril 1996</strong></li><li><strong>26 ARH</strong> (+ Corse)</li><li>Statut : <strong>GIP</strong> (État + organismes AM = au moins CRAM + URCAM) · personnalité morale · autonomie administrative et financière</li><li>Tutelle : ministres de la Santé et de la Sécurité sociale</li><li>Directeur = « <strong>préfet sanitaire</strong> » / « super préfet » · nommé par décret en Conseil des ministres</li><li>⚠️ ARH = <strong>déconcentration</strong> (PAS décentralisation) — structure très novatrice</li></ul>'},
+
+{t:4,type:'Mémorisation',
+q:'Quelles sont les 7 structures fusionnées dans l\'ARS par la loi HPST 2009 ?',
+a:'<ul><li>1. <strong>DRASS</strong> (directions régionales affaires sanitaires et sociales)</li><li>2. <strong>DDASS</strong> (directions départementales)</li><li>3. <strong>ARH</strong> (agences régionales hospitalisation)</li><li>4. <strong>GRSP</strong> (groupements régionaux santé publique)</li><li>5. <strong>URCAM</strong> (unions régionales caisses AM)</li><li>6. <strong>MRS</strong> (missions régionales de santé)</li><li>7. <strong>Volet hospitalier AM</strong> : CRAM, RSI, MSA, DRSM</li></ul><span class="loi-ref">Art. 118, Loi HPST n° 2009-879 du 21 juillet 2009</span>'},
+
+{t:4,type:'Mémorisation',
+q:'Quels sont les 3 changements apportés par la création des ARS ?',
+a:'<ul><li>① <strong>Service public unifié et simplifié</strong> → guichet unique pour professionnels et patients</li><li>② <strong>Approche globale</strong> de la santé : santé publique + offre de soins + médico-social</li><li>③ <strong>Politiques ancrées sur un territoire</strong> → lutter contre les inégalités · s\'adapter aux besoins locaux</li></ul>'},
+
+{t:4,type:'Base légale',
+q:'Décrivez la structure du PRS 2023-2028 (COS, SRS, PRAPS).',
+a:'<ul><li><strong>① COS</strong> — Cadre d\'Orientation Stratégique : <strong>10 ans</strong> · objectifs généraux · résultats attendus à long terme</li><li><strong>② SRS</strong> — Schéma Régional de Santé : <strong>5 ans</strong> · objectifs stratégiques · organisation de l\'offre de soins</li><li><strong>③ PRAPS</strong> — Programme Régional Accès Prévention et Soins des plus démunis : <strong>5 ans</strong> · lutte contre les inégalités</li></ul><span class="loi-ref">Loi n° 2016-41 — nouveau cadre du PRS</span>'},
+
+{t:4,type:'Base légale',
+q:'Que change la loi 3DS (21 février 2022) pour la gouvernance des ARS ?',
+a:'<ul><li>Transforme le <strong>conseil de surveillance en conseil d\'administration</strong></li><li>Les <strong>3 vice-présidences</strong> confiées à des représentants des <strong>collectivités territoriales</strong></li><li>Présidence du CA attribuée au <strong>préfet de région</strong></li><li>Raison : meilleure association des élus révélée par la crise Covid-19</li></ul><span class="loi-ref">Loi n° 2022-217 du 21 février 2022 — Art. 119</span>'},
+
+{t:4,type:'Mémorisation',
+q:'Décrivez la CRSA : composition, organisation interne, missions.',
+a:'<ul><li>Conférence Régionale de la Santé et de l\'Autonomie → remplace le CRS (loi HPST 2009)</li><li><strong>97 membres titulaires</strong> + 2 suppléants chacun · <strong>8 collèges</strong></li><li><strong>4 commissions spécialisées</strong> : Prévention · Médico-social · Organisation des soins · Usagers</li><li>Missions : formule des <strong>propositions et avis publics</strong> · donne son avis au DG de l\'ARS · réalise un <strong>rapport sur les droits des usagers</strong></li></ul>'},
+
+{t:4,type:'Mémorisation',
+q:'Quels sont les 4 lieux d\'expression des représentants des usagers au niveau régional ?',
+a:'<ol><li>Le <strong>Conseil d\'Administration de l\'ARS</strong> (ex-conseil de surveillance — loi 3DS 2022)</li><li>La <strong>CRSA</strong> ★ instance majeure de démocratie en santé</li><li>Les <strong>Commissions régionales de coordination</strong> de santé publique (2 commissions de 20 membres)</li><li>Les <strong>Conseils Territoriaux de Santé (CTS)</strong> — renforcés par la loi du 27 décembre 2023</li></ol>'},
+
+// ── THÈME 5 ─────────────────────────────────────────
+{t:5,type:'Définition',
+q:'Définissez la qualité à l\'hôpital selon la définition en milieu hospitalier.',
+a:'<p>L\'<strong>aptitude à satisfaire des besoins exprimés et implicites</strong>, par l\'engagement de la structure hospitalière et des professionnels dans des actions <strong>permanentes et systématiques d\'amélioration</strong> du service rendu au patient.</p><p>Selon la HAS : qualité = soins aussi <strong>efficaces, sûrs, accessibles, équitables et efficients</strong> que possible.</p>'},
+
+{t:5,type:'Mémorisation',
+q:'Citez les 7 vigilances sanitaires à l\'hôpital avec leur définition.',
+a:'<ul><li><strong>Pharmacovigilance</strong> : accidents médicamenteux</li><li><strong>Matériovigilance</strong> : dispositifs médicaux</li><li><strong>Hémovigilance</strong> : de la collecte du sang au suivi des receveurs</li><li><strong>Biovigilance</strong> : eau, air, alimentation, déchets</li><li><strong>Nosovigilance</strong> : infections nosocomiales → <strong>CLIN obligatoire</strong> dans chaque ES</li><li><strong>Sécurité anesthésique</strong></li><li><strong>Protection contre les incendies</strong></li></ul>'},
+
+{t:5,type:'Base légale',
+q:'Quel article du CSP définit la certification des ES ? Qui conduit la certification ?',
+a:'<p><strong>Article L. 6113-3 CSP</strong> (Loi du 13 août 2004) : tous les ES publics et privés doivent faire l\'objet d\'une procédure externe d\'évaluation dénommée <strong>certification</strong>.</p><ul><li>Conduite par la <strong>Haute Autorité de Santé (HAS)</strong></li><li>Historique : Accréditation ANAES (1996) → Certification HAS (2004)</li></ul>'},
+
+{t:5,type:'Mémorisation',
+q:'Le référentiel HAS est structuré en 3 chapitres et 12 objectifs. Citez les chapitres et 2 objectifs par chapitre.',
+a:'<ul><li><strong>Chap. 1 — Le patient</strong> (4 obj.) : 1.1 Droits · 1.2 Information · 1.3 Engagement · 1.4 Implication dans la vie de l\'ES</li><li><strong>Chap. 2 — Les équipes de soins</strong> (4 obj.) : 2.1 Coordination · 2.2 Maîtrise des risques · 2.3 Sécurité secteurs à risques majeurs · 2.4 Culture de pertinence</li><li><strong>Chap. 3 — L\'établissement</strong> (4 obj.) : 3.1 Management qualité · 3.2 Ressources professionnelles · 3.3 Positionnement territorial · 3.4 Éco-responsabilité et innovations</li></ul>'},
+
+{t:5,type:'Dates clés',
+q:'Résumez le bilan HAS de la certification de février 2024.',
+a:'<ul><li><strong>85 %</strong> des établissements certifiés</li><li><strong>63 %</strong> → « Qualité de soins confirmée »</li><li><strong>22 %</strong> → « Haute qualité de soins »</li><li><strong>13 %</strong> → « Qualité à améliorer » → nouvelle visite 6-12 mois</li><li><strong>3 %</strong> (33 ES) → « Qualité insuffisante » → nouvelle visite 12-24 mois</li><li>⚠️ 3 % : jamais aussi élevé</li></ul>'},
+
+{t:5,type:'Base légale',
+q:'Qu\'est-ce qu\'un GHT ? Quand est-il devenu obligatoire ? Quelle sanction en cas de non-adhésion ?',
+a:'<ul><li>Groupement Hospitalier de Territoire — <strong>Loi n° 2016-41 du 26 janvier 2016</strong></li><li>Obligation pour tous les ES publics de signer avant le <strong>1er juillet 2016</strong></li><li>Sanction : suspension du versement des dotations <strong>MIGAC</strong></li><li>Socle : le <strong>projet médical partagé</strong> (3 niveaux : proximité · recours · référence)</li><li>Loi 2023 : possibilité de <strong>personnalité morale</strong></li></ul><span class="loi-ref">Art. L. 6132-1 et L. 6132-7 CSP</span>'},
+
+{t:5,type:'Base légale',
+q:'Citez les 4 missions des hôpitaux de proximité (art. L. 6111-3-1 CSP).',
+a:'<ul><li>1. Apporter un <strong>appui aux professionnels de santé de ville</strong></li><li>2. Favoriser la prise en charge des <strong>personnes vulnérables</strong> et leur <strong>maintien dans leur lieu de vie</strong></li><li>3. Participer à la <strong>prévention et à la promotion de la santé</strong></li><li>4. Contribuer à la <strong>permanence des soins</strong> et à la continuité des prises en charge</li></ul><span class="loi-ref">Loi n° 2019-774 du 24 juillet 2019 — Art. 35</span>'},
+
+{t:5,type:'Mémorisation',
+q:'Quels sont les 3 niveaux de soins créés par la loi du 24 juillet 2019 ?',
+a:'<ul><li><strong>Niveau 1 — Soins de proximité</strong> : soins courants, près des patients (professionnels ambulatoires + hôpitaux de proximité)</li><li><strong>Niveau 2 — Soins spécialisés</strong> : médecins spécialistes libéraux + équipes hospitalières compétentes</li><li><strong>Niveau 3 — Soins ultraspécialisés</strong> : compétences et plateaux rares · CHU · CLCC · recherche et excellence</li></ul><span class="loi-ref">Loi n° 2019-774 du 24 juillet 2019</span>'},
+
+{t:5,type:'Base légale',
+q:'Que prévoit la certification périodique des professionnels (ordonnance 2021-961) ?',
+a:'<ul><li>En vigueur : <strong>1er janvier 2023</strong></li><li><strong>7 professions</strong> : médecin, chirurgien-dentiste, sage-femme, pharmacien, infirmier, masseur-kinésithérapeute, pédicure-podologue</li><li>Programme sur <strong>6 ans</strong> : actualiser connaissances · renforcer la qualité · améliorer la relation patient · prendre en compte sa propre santé</li></ul><span class="loi-ref">Ordonnance n° 2021-961 du 19 juillet 2021</span>'},
+
+// ── THÈME 6 ─────────────────────────────────────────
+{t:6,type:'Définition',
+q:'Expliquez la T2A et les acronymes GHM et GHS.',
+a:'<ul><li><strong>T2A</strong> = Tarification à l\'Activité · mode unique de financement pour les activités <strong>MCO</strong></li><li><strong>GHM</strong> — Groupe Homogène de Malades : classement du séjour par le <strong>PMSI</strong></li><li><strong>GHS</strong> — Groupe Homogène de Séjours : tarif de remboursement associé au GHM, fixé chaque année par le <strong>ministre chargé de la santé</strong></li></ul>'},
+
+{t:6,type:'Dates clés',
+q:'Décrivez le financement hospitalier avant 1999. Quelle est la différence entre public et privé ?',
+a:'<ul><li><strong>Établissements publics + PSPH</strong> : <strong>dotation globale (DG)</strong> — enveloppe annuelle limitative calculée en fonction du nombre de journées, reconduite chaque année</li><li><strong>Établissements privés lucratifs</strong> : tarification à l\'acte sur des <strong>tarifs régionaux variables</strong> négociés avec les ARH (forfaits de prestations + actes libéraux)</li></ul>'},
+
+{t:6,type:'Mémorisation',
+q:'Retracez la montée en charge progressive de la T2A (2004-2008).',
+a:'<p>Valorisation de l\'activité croissante chaque année :</p><ul><li>2004 : <strong>10 %</strong> · 2005 : <strong>25 %</strong> · 2006 : <strong>35 %</strong> · 2007 : <strong>50 %</strong> · 2008 : <strong>100 %</strong></li></ul><p>Formule : <strong>Valorisation activité + DAC</strong> (dotation annuelle complémentaire = amortisseur)</p><p>Pour le privé : <strong>tarif national × coefficient de transition</strong> → valeur 1 en 2012</p>'},
+
+{t:6,type:'Mémorisation',
+q:'Quels sont les effets pervers de la T2A ? (4 points)',
+a:'<ul><li><strong>Effet inflationniste</strong> : croissance de l\'activité plus que sa rationalisation</li><li><strong>Déséquilibre</strong> : ES privés replient vers les activités les plus lucratives</li><li>2013 : abandon convergence tarifs public/privé → principe de <strong>« neutralité » tarifaire</strong></li><li><strong>Affaiblissement</strong> de l\'effet incitatif sur la réorganisation de l\'offre de soins publics</li></ul>'},
+
+{t:6,type:'Base légale',
+q:'Qu\'est-ce que l\'IFAQ ? Quelle base légale ?',
+a:'<p><strong>IFAQ</strong> = Incitation Financière à l\'Amélioration de la Qualité</p><ul><li>En vigueur depuis <strong>2016</strong></li><li>Perçu par les ES ayant les <strong>meilleurs résultats</strong> ou ayant le plus <strong>progressé</strong></li><li>Basé sur les indicateurs qualité et sécurité des soins + certification HAS</li></ul><span class="loi-ref">Décret n° 2015-1866 du 30 décembre 2015</span>'},
+
+{t:6,type:'Dates clés',
+q:'Quel est le déficit hospitalier en 2017 ? Quels chiffres de la Cour des comptes (2014) sur l\'endettement ?',
+a:'<ul><li>Cour des comptes 2014 : en 10 ans, endettement <strong>triplé</strong> = <strong>29,3 milliards €</strong> = 1,4 % du PIB</li><li>2 causes : viabilité économique insuffisamment vérifiée + vision optimiste des hausses d\'activité</li><li>Recommandation : taux de marge de <strong>8 %</strong> pour financer par emprunt</li><li>2017 : déficit <strong>1,5 Md€ = 2 % des budgets hospitaliers</strong> (FHF : « niveau dramatique et inédit »)</li></ul>'},
+
+{t:6,type:'Base légale',
+q:'Décrivez les 3 volets du nouveau modèle de financement de la LFSS 2020 (art. 36).',
+a:'<ul><li><strong>Volet 1 — Dotation populationnelle</strong> : tient compte des besoins de la population et des caractéristiques de l\'offre de soins de la région</li><li><strong>Volet 2 — Dotation complémentaire qualité</strong> : pour les ES remplissant des critères d\'amélioration de la qualité</li><li><strong>Volet 3 — Recettes liées à l\'activité</strong> : tenant compte de l\'intensité de la prise en charge</li></ul><span class="loi-ref">LFSS n° 2019-1446 du 24 déc. 2019 — Art. 36</span>'},
+
+{t:6,type:'Mémorisation',
+q:'Quels sont les chiffres clés du Ségur de la santé (2020) ?',
+a:'<ul><li><strong>19 milliards €</strong> d\'investissement total dans le système de santé</li><li><strong>8,2 Md€/an</strong> pour revaloriser les métiers des ES et EHPAD</li><li><strong>15 000 recrutements</strong> à l\'hôpital public</li><li><strong>4 000 lits</strong> « à la demande »</li><li>Fin du mercenariat de l\'intérim → <strong>loi Rist 2023</strong> : plafond <strong>1 390 € bruts / 24h</strong></li></ul>'},
+
+{t:6,type:'Base légale',
+q:'Que prévoit la LFSS 2025 ? Que décide le Conseil constitutionnel (Décision 2025-875 DC) ?',
+a:'<ul><li>Déficit social 2025 : <strong>22,1 Md€</strong> · ONDAM +3,4 % = <strong>266 Md€</strong> · IJ plafonnées à <strong>1,4 SMIC</strong></li><li>CC saisi : objectifs insuffisants → atteinte au <strong>11e alinéa du Préambule de 1946</strong> (protection de la santé)</li><li>CC : grief <strong>écarté</strong> — objectifs ont pris en compte l\'inflation et les hausses de charges</li></ul><span class="loi-ref">LFSS n° 2025-199 du 28 fév. 2025 · Décision n° 2025-875 DC</span>'},
+
+{t:6,type:'Base légale',
+q:'Que contient la LFSS 2026 pour les hôpitaux et les déserts médicaux ?',
+a:'<ul><li>Rehausse de <strong>950 millions €</strong> le budget des hôpitaux</li><li><strong>DMP systématique</strong> (Dossier Médical Partagé de Mon espace santé)</li><li><strong>5 000 Maisons France Santé</strong> d\'ici 2027 · 150 M€ en 2026</li><li>Pacte déserts médicaux : maillage officinal · statut de <strong>praticien territorial de médecine ambulatoire</strong> · formation zones sous-dotées</li></ul><span class="loi-ref">LFSS n° 2025-1403 du 30 décembre 2025</span>'},
+
+// ── THÈME 7 ─────────────────────────────────────────
+{t:7,type:'Base légale',
+q:'Que dit l\'article 168 du TFUE ? Quelle est la limite des compétences de l\'UE en santé ?',
+a:'<ul><li>L\'UE œuvre pour <strong>améliorer la protection de la santé dans toutes ses politiques</strong> · prévenir les maladies · promouvoir la recherche</li><li><strong>Limite</strong> : L\'UE ne définit <em>pas</em> les politiques de santé ni l\'organisation des services médicaux → elle <strong>complète</strong> les politiques nationales et soutient la coopération</li></ul><span class="loi-ref">Article 168 TFUE</span>'},
+
+{t:7,type:'Mémorisation',
+q:'Quels sont les 4 axes du 3ème programme de santé UE 2014-2020 ? Quel budget ?',
+a:'<ul><li>1. <strong>Promouvoir la bonne santé</strong> et prévenir les maladies</li><li>2. <strong>Protéger</strong> contre les menaces transfrontières</li><li>3. <strong>Soutenir l\'innovation</strong> et la viabilité des systèmes de santé</li><li>4. <strong>Améliorer l\'accès</strong> à des soins sûrs et de qualité</li></ul><p>Budget : <strong>450 millions €</strong></p><span class="loi-ref">Règlement (UE) n° 282/2014 du 11 mars 2014</span>'},
+
+{t:7,type:'Dates clés',
+q:'Quel est le 4ème programme de santé UE ? Budget et contexte.',
+a:'<ul><li>Programme <strong>« L\'UE pour la santé »</strong> 2021-2027</li><li>Budget : <strong>5,1 milliards €</strong></li><li>Constitue la <strong>réponse de l\'UE à la COVID-19</strong></li><li>Plus grand programme de santé de l\'UE jamais mis en place</li><li>4 objectifs : santé · menaces transfrontières · médicaments · résilience des systèmes</li></ul><span class="loi-ref">Règlement (UE) 2021/522 du 24 mars 2021</span>'},
+
+{t:7,type:'Mémorisation',
+q:'Qu\'est-ce que l\'ECDC ? Date, lieu, contexte de création, lien avec SPF.',
+a:'<ul><li><strong>Centre Européen de Prévention et de Contrôle des Maladies</strong></li><li>Créé en <strong>2005</strong> · siège à <strong>Stockholm</strong> · créé après la crise <strong>H5N1</strong></li><li>Mission : identifier/évaluer les menaces des maladies infectieuses · émettre des avis scientifiques · animer les systèmes de surveillance et d\'alerte précoce</li><li>Santé Publique France = <strong>organisme compétent coordinateur pour la France</strong> auprès de l\'ECDC</li></ul>'},
+
+{t:7,type:'Base légale',
+q:'Qu\'est-ce que l\'EWRS ? Quelle décision européenne encadre les menaces transfrontières ?',
+a:'<ul><li><strong>EWRS</strong> = Early Warning and Response System (Système d\'alerte précoce et de réaction)</li><li>Système informatique <strong>confidentiel</strong> permettant aux États d\'envoyer des alertes, partager des informations et coordonner la réaction</li><li><strong>Décision n° 1082/2013/UE du 22 octobre 2013</strong> : règles de surveillance épidémiologique, alerte précoce, lutte contre les menaces transfrontières</li></ul>'},
+
+{t:7,type:'Base légale',
+q:'Décrivez le RSI 2005 : portée, articles clés (2, 23, 31, 32), mise en œuvre en France.',
+a:'<ul><li>RSI = Règlement Sanitaire International · texte actuel : <strong>23 mai 2005</strong> · <strong>194 pays</strong> (mais réserves possibles)</li><li><strong>Art. 2</strong> : Prévenir la propagation internationale des maladies, éviter les entraves inutiles au commerce</li><li><strong>Art. 23</strong> : Principe du <strong>consentement</strong></li><li><strong>Art. 31</strong> : Examen médical, vaccination, <strong>quarantaine</strong> possibles</li><li><strong>Art. 32</strong> : Respect de la <strong>dignité et des droits humains</strong></li><li>France : <strong>Décret n° 2017-471 du 3 avril 2017</strong></li></ul>'},
+
+{t:7,type:'Mémorisation',
+q:'Résumez la gestion d\'Ebola par l\'OMS : 4 déclarations, bilan, réforme 2015.',
+a:'<ul><li><strong>4 déclarations d\'urgence USPPI</strong> : 8 août 2014 · 22 sept. · 23 oct. · 20 janv. 2015</li><li>OMS critiquée par MDM : réponse <strong>lente, insuffisante</strong>, capacité d\'intervention limitée</li><li><strong>Réforme mai 2015 en 5 points</strong> : programme unique · indicateurs · force internationale · procédures commerciales · fonds <strong>100 M$</strong></li><li>Fin : <strong>7 novembre 2015</strong> Sierra Leone · Bilan : <strong>8 704 infectés · 3 589 morts</strong> dont 221 soignants</li></ul>'},
+
+{t:7,type:'Dates clés',
+q:'Résumez la chronologie du retrait des États-Unis de l\'OMS (2020, 2021, 2025).',
+a:'<ul><li><strong>29 mai 2020</strong> : Trump annonce la rupture (gestion Covid « trop indulgente » vis-à-vis de Pékin) · contribution US : <strong>400-500 M$/an = 20 % du budget OMS</strong></li><li><strong>6 juillet 2021</strong> : date prévue du retrait effectif · Biden maintient les USA dans l\'OMS dès sa prise de fonction</li><li><strong>23 janvier 2025</strong> : Trump signe un nouveau décret pour entamer le retrait · US finançant aussi <strong>26 % des organisations internationales de Genève</strong> (GAVI, Fonds mondial)</li></ul>'},
+
+{t:7,type:'Base légale',
+q:'Qu\'est-ce que la Décision (UE) 2024/1514 ? Et l\'incubateur HERA ?',
+a:'<ul><li><strong>Décision (UE) 2024/1514 du 31 mai 2024</strong> : établit des comités scientifiques pour la sécurité des consommateurs, la santé publique et l\'environnement → fournissent des évaluations des risques et avis scientifiques à la Commission</li><li><strong>Incubateur HERA</strong> : plan européen de biodéfense contre les variants Covid → <strong>Recommandation (UE) 2021/472 du 17 mars 2021</strong> · surveillance des eaux usées pour le SARS-CoV-2</li></ul>'},
+
+// ── THÈME 1 — cartes supplémentaires ─────────────────
+{t:1,type:'Mémorisation',
+q:'Quelle est la première grande loi sanitaire française ? Que prévoit-elle ?',
+a:'<ul><li><strong>Loi du 3 mars 1822</strong> : première loi de police sanitaire, protection contre les épidémies venues de l\'étranger</li><li><strong>Loi du 15 février 1902</strong> : première loi de santé publique moderne → impose aux communes la déclaration obligatoire des maladies contagieuses · vaccination obligatoire · salubrité des logements</li></ul>'},
+
+{t:1,type:'Distinction',
+q:'Quelle est la différence entre santé publique et médecine individuelle ?',
+a:'<ul><li><strong>Médecine individuelle</strong> : relation médecin-patient, curative, centrée sur l\'individu</li><li><strong>Santé publique</strong> : approche collective, préventive, centrée sur la population dans son ensemble</li><li>La santé publique mobilise des leviers non médicaux : éducation, environnement, politiques sociales, urbanisme…</li></ul>'},
+
+{t:1,type:'Base légale',
+q:'Que prévoit la loi du 9 août 2004 relative à la politique de santé publique ? Citez 3 apports.',
+a:'<ul><li>Définit les <strong>objectifs de santé publique</strong> à 5 ans (100 objectifs fixés)</li><li>Crée les <strong>plans nationaux de santé</strong> : plan cancer, plan psychiatrie, plan maladies rares…</li><li>Institue les <strong>groupements régionaux de santé publique (GRSP)</strong></li><li>Renforce le rôle de l\'<strong>INPES</strong> (éducation pour la santé)</li></ul><span class="loi-ref">Loi n° 2004-806 du 9 août 2004</span>'},
+
+{t:1,type:'Mémorisation',
+q:'Donnez un exemple de prévention primaire, secondaire et tertiaire dans le domaine du cancer.',
+a:'<ul><li><strong>Primaire</strong> : campagnes anti-tabac, lutte contre l\'alcool, alimentation saine → éviter l\'apparition du cancer</li><li><strong>Secondaire</strong> : dépistage organisé du cancer du sein (mammographie), cancer colorectal (test immunologique), cancer du col de l\'utérus → détecter précocement</li><li><strong>Tertiaire</strong> : rééducation, soins de suite, prévention des récidives, soins palliatifs</li></ul>'},
+
+{t:1,type:'Mémorisation',
+q:'Qu\'est-ce que le Plan National de Santé Publique (PNSP) ? Depuis quand ?',
+a:'<ul><li>Lancé en <strong>mars 2018</strong> sous le nom <strong>« Priorité Prévention »</strong></li><li>Déclinaison opérationnelle de la <strong>SNS 2018-2022</strong></li><li>25 mesures pour faire de la France un pays en bonne santé : tabac, alcool, nutrition, activité physique, santé sexuelle, vaccins, santé mentale…</li><li>S\'articule avec la <strong>SNS 2023-2033</strong> en vigueur</li></ul>'},
+
+{t:1,type:'Définition',
+q:'Qu\'est-ce que la démocratie en santé ? Quand s\'est-elle affirmée en droit français ?',
+a:'<ul><li>La <strong>démocratie en santé</strong> = participation des usagers, des patients et des citoyens à l\'élaboration et à la mise en œuvre des politiques de santé</li><li>Affirmée par la <strong>loi du 4 mars 2002</strong> (loi Kouchner) relative aux droits des malades et à la qualité du système de santé</li><li>Concrétisée par : les associations d\'usagers agréées · la CRSA · la Conférence nationale de santé · les CTS</li></ul>'},
+
+{t:1,type:'Mémorisation',
+q:'Quels sont les déterminants de la santé selon l\'OMS ?',
+a:'<ul><li><strong>Déterminants biologiques</strong> : génétique, âge, sexe</li><li><strong>Déterminants comportementaux</strong> : tabac, alcool, alimentation, activité physique</li><li><strong>Déterminants socio-économiques</strong> : revenus, éducation, emploi, conditions de travail</li><li><strong>Déterminants environnementaux</strong> : qualité de l\'air, de l\'eau, du logement</li><li>→ Agir sur ces déterminants = <strong>action en amont</strong> de la maladie (santé publique)</li></ul>'},
+
+{t:1,type:'Dates clés',
+q:'Citez les grandes dates de l\'histoire des DRASS et de leur remplacement.',
+a:'<ul><li><strong>1977</strong> : création des DRASS (Directions régionales des affaires sanitaires et sociales)</li><li>Action de l\'État menée en région via les DRASS jusqu\'en 2010</li><li><strong>2009</strong> : Loi HPST prévoit la fusion des DRASS, DDASS, ARH, GRSP, URCAM, MRS + volet AM</li><li><strong>2010</strong> : disparition des DRASS et DDASS au profit des <strong>ARS</strong></li></ul>'},
+
+{t:1,type:'Mémorisation',
+q:'Qu\'est-ce que la CMU ? La CMUC ? Quand ont-elles été créées ?',
+a:'<ul><li><strong>CMU</strong> — Couverture maladie universelle : <strong>Loi du 27 juillet 1999</strong> → accès à l\'assurance maladie pour toutes les personnes résidant en France</li><li><strong>CMU-C</strong> — Couverture maladie universelle complémentaire → prise en charge à 100 % + tickets modérateurs pour les plus modestes</li><li>Depuis le <strong>1er novembre 2019</strong> : CMU-C remplacée par la <strong>Complémentaire santé solidaire (CSS)</strong></li></ul>'},
+
+// ── THÈME 2 — cartes supplémentaires ─────────────────
+{t:2,type:'Base légale',
+q:'Quel est l\'apport de la loi du 26 janvier 2016 en matière de prévention et de démocratie sanitaire ?',
+a:'<ul><li>Inscrit la <strong>prévention au cœur du système de santé</strong></li><li>Crée le <strong>service territorial de santé au public</strong></li><li>Renforce la <strong>démocratie en santé</strong> (action des associations d\'usagers, CRSA)</li><li>Crée les <strong>Communautés Professionnelles Territoriales de Santé (CPTS)</strong></li><li>Réforme le <strong>service public hospitalier</strong> (approche mixte)</li></ul><span class="loi-ref">Loi n° 2016-41 du 26 janvier 2016</span>'},
+
+{t:2,type:'Mémorisation',
+q:'Qu\'est-ce que l\'INPES ? Quand a-t-il été créé ? Quelles sont ses missions ?',
+a:'<ul><li><strong>INPES</strong> = Institut National de Prévention et d\'Éducation pour la Santé</li><li>Créé par la <strong>Loi du 4 mars 2002</strong> (loi relative aux droits des malades)</li><li>Missions : concevoir et mettre en œuvre les programmes d\'éducation pour la santé · diffuser les informations · former les professionnels de santé à la prévention</li><li>→ Fusionné dans <strong>Santé Publique France en 2016</strong></li></ul>'},
+
+{t:2,type:'Mémorisation',
+q:'Qu\'est-ce que le PNLT 2023-2027 ?',
+a:'<ul><li><strong>PNLT</strong> = Plan National de Lutte contre le Tabac 2023-2027</li><li>Objectifs : réduire la prévalence du tabagisme · protéger les jeunes · aider les fumeurs à s\'arrêter</li><li>Mesures phares : hausse progressive des prix · généralisation du paquet neutre · renforcement de l\'aide au sevrage</li><li>S\'inscrit dans la <strong>SNS 2023-2033</strong></li></ul>'},
+
+{t:2,type:'Jurisprudence',
+q:'Que consacre la CEDH dans sa décision de 2024 sur la vaccination obligatoire ?',
+a:'<ul><li>La <strong>CEDH</strong> (Cour européenne des droits de l\'homme) juge en 2024 que la <strong>vaccination obligatoire est compatible avec la CEDH</strong></li><li>Notamment avec l\'<strong>article 8</strong> (droit à la vie privée et familiale)</li><li>Justification : objectif légitime de <strong>santé publique</strong> et protection des personnes ne pouvant être vaccinées (immunodéprimées…)</li><li>→ Confirme la jurisprudence CE 2019</li></ul>'},
+
+{t:2,type:'Mémorisation',
+q:'Quelles sont les missions de l\'InVS / Santé Publique France (4 missions) ?',
+a:'<ul><li>1. <strong>Surveillance permanente</strong> : recueil et traitement des données épidémiologiques</li><li>2. <strong>Veille et vigilance sanitaires</strong> : analyser les risques, détecter les facteurs de risque</li><li>3. <strong>Alerte sanitaire</strong> : informer sans délai le ministre en cas de menace</li><li>4. <strong>Gestion des crises sanitaires</strong> : proposer toute mesure aux pouvoirs publics</li></ul><span class="loi-ref">Loi n° 98-535 du 1er juillet 1998 · puis Santé Publique France (2016)</span>'},
+
+{t:2,type:'Dates clés',
+q:'Quelles sont les périodes de la stratégie nationale de santé (SNS) et leurs priorités ?',
+a:'<ul><li><strong>SNS 2013-2017</strong> : 1ère stratégie, mise en place du cadre</li><li><strong>SNS 2018-2022</strong> : priorité à la <strong>prévention</strong>, réduction des inégalités, pertinence des soins</li><li><strong>SNS 2023-2033</strong> (en vigueur) : 10 ans, 4 axes : promotion santé · inégalités · qualité de vie malades chroniques · innovation</li></ul>'},
+
+{t:2,type:'Mémorisation',
+q:'Qu\'est-ce que le Plan Régional de Santé ? Qui l\'élabore ? Sur quelle durée ?',
+a:'<ul><li>Le <strong>PRS</strong> est la stratégie de l\'<strong>ARS</strong> pour son territoire</li><li>Élaboré sous la direction du <strong>Directeur général de l\'ARS</strong>, en concertation avec la CRSA</li><li>3 composantes : <strong>COS</strong> (10 ans) + <strong>SRS</strong> (5 ans) + <strong>PRAPS</strong> (5 ans)</li><li>S\'inscrit dans les orientations de la <strong>SNS nationale</strong></li></ul>'},
+
+{t:2,type:'Mémorisation',
+q:'Qu\'est-ce qu\'une communauté professionnelle territoriale de santé (CPTS) ?',
+a:'<ul><li>Créées par la <strong>loi du 26 janvier 2016</strong>, développées par la loi OTSS 2019</li><li>Regroupement de professionnels de santé de <strong>premier et second recours</strong> sur un territoire pour coordonner les soins</li><li>Missions : accès aux soins non programmés · prévention · coordination · qualité et pertinence des soins</li><li>Financées par l\'<strong>assurance maladie</strong> via accord conventionnel</li></ul>'},
+
+{t:2,type:'Base légale',
+q:'Qu\'est-ce que le tiers payant généralisé ? Quelle loi le prévoit ?',
+a:'<ul><li>Le <strong>tiers payant</strong> = dispense d\'avance de frais pour le patient (directement remboursé entre AM et professionnel)</li><li>Prévu par la <strong>loi n° 2016-41 du 26 janvier 2016</strong></li><li>Tiers payant <strong>obligatoire</strong> sur la part AM pour : ALD · maternité · CMU-C · AT/MP · urgences</li><li>Tiers payant <strong>généralisé</strong> à tous : mise en œuvre progressive, très discutée</li></ul>'},
+
+// ── THÈME 3 — cartes supplémentaires ─────────────────
+{t:3,type:'Mémorisation',
+q:'Quelles sont les 3 catégories d\'agences créées par la loi du 1er juillet 1998 ?',
+a:'<ul><li>1. <strong>Police sanitaire</strong> : AFSSAPS (produits de santé) + AFSSA (médicament vétérinaire) → autorisations, contrôle, retrait</li><li>2. <strong>Expertise / Veille / Alerte</strong> : AFSSET + InVS + AFSSA (expertise alimentaire) → évaluation des risques, avis scientifiques</li><li>3. <strong>Opérateurs sanitaires</strong> : EFS (transfusion) + Agence de biomédecine → encadrer un secteur sensible</li><li>+ <strong>HAS</strong> : Autorité administrative indépendante</li></ul>'},
+
+{t:3,type:'Mémorisation',
+q:'Quelles sont les 4 missions de l\'InVS selon la loi du 1er juillet 1998 ?',
+a:'<ul><li>1. <strong>Surveillance permanente</strong> : recueil et traitement des données épidémiologiques via le réseau national de santé publique</li><li>2. <strong>Veille et vigilance sanitaires</strong> : analyser les risques, répertorier les populations fragiles</li><li>3. <strong>Alerte sanitaire</strong> : informer sans délai le ministre + recommandations</li><li>4. <strong>Gestion des crises</strong> : proposer toute mesure nécessaire aux pouvoirs publics</li></ul><span class="loi-ref">Loi n° 98-535 du 1er juillet 1998</span>'},
+
+{t:3,type:'Mémorisation',
+q:'Qu\'est-ce qu\'une CIRE ? Combien y en a-t-il ? Où sont-elles placées ?',
+a:'<ul><li><strong>CIRE</strong> = Cellule interrégionale d\'épidémiologie</li><li><strong>15 CIRE</strong> : 12 métropolitaines + 3 ultramarines (Antilles, Guyane, Océan Indien)</li><li>Placées au sein des <strong>ARS</strong></li><li>Sous responsabilité scientifique du <strong>directeur général de l\'InVS / Santé Publique France</strong></li><li>Mission : animer la veille en région · appui méthodologique à l\'ARS · expertise indépendante des signaux d\'alerte</li></ul>'},
+
+{t:3,type:'Base légale',
+q:'Qu\'est-ce que le CASA ? Qui en sont les membres ?',
+a:'<ul><li><strong>CASA</strong> = Comité d\'Animation du Système d\'Agences</li><li><strong>Ordonnance n° 2016-967 du 15 juillet 2016</strong> · Décret n° 2017-1590 du 20 novembre 2017</li><li>Membres : <strong>EFS · ANSES · Santé Publique France · INCa · Agence de biomédecine · ANSM · HAS · ASN · IRSN</strong></li><li>Objectif : harmonisation des pratiques et bon fonctionnement des interactions dans l\'intérêt de la santé publique</li></ul>'},
+
+{t:3,type:'Jurisprudence',
+q:'Que décide le TA de Montreuil (2 juillet 2020) dans l\'affaire Dépakine ?',
+a:'<ul><li>Reconnaît la <strong>responsabilité partielle de l\'État</strong> : carence fautive dans le contrôle de l\'information figurant dans la notice du médicament</li><li>Pour les grossesses <strong>2005-2008</strong> : les risques étaient <strong>suffisamment connus</strong> mais la notice ne renseignait pas suffisamment les patientes</li><li>Exonération partielle retenue eu égard au comportement du laboratoire et des médecins</li><li>→ Confirmé par la <strong>CAA Paris 14 janvier 2025</strong> : réparation de la <em>perte de chance</em></li></ul>'},
+
+{t:3,type:'Mémorisation',
+q:'Que prévoit la loi du 30 juin 2004 relative aux personnes âgées et handicapées après la canicule de 2003 ?',
+a:'<ul><li>Suite à la canicule d\'août 2003 : environ <strong>15 000 morts</strong></li><li>Modifie l\'<strong>art. L. 116-3 CASF</strong></li><li>Institue un <strong>plan d\'alerte et d\'urgence départemental</strong> pour les personnes âgées et handicapées</li><li>Plan arrêté conjointement par le <strong>préfet</strong> et le <strong>président du conseil général</strong></li><li>Les <strong>maires</strong> recueillent les données des personnes vulnérables → contact périodique lors du déclenchement</li></ul>'},
+
+// ── THÈME 4 — cartes supplémentaires ─────────────────
+{t:4,type:'Mémorisation',
+q:'Décrivez la chronologie de la planification sanitaire de 1970 à 2016.',
+a:'<ul><li><strong>1970</strong> : Carte sanitaire (loi hospitalière)</li><li><strong>1991</strong> : SROS 1ère génération (loi 31 juillet 1991)</li><li><strong>1996</strong> : Création ARH (ordonnance 24 avril 1996)</li><li><strong>1998</strong> : SROS 2ème génération (circulaire DH/EO 98-192)</li><li><strong>2003</strong> : Suppression carte sanitaire → territoire de santé (ordonnance 4 sept. 2003)</li><li><strong>2004</strong> : SROS 3ème génération (circulaire 5 mars 2004)</li><li><strong>2009</strong> : Loi HPST → ARS · SROS étendu à l\'ambulatoire</li><li><strong>2016</strong> : Territoire de démocratie sanitaire (art. L. 1434-9 CSP)</li></ul>'},
+
+{t:4,type:'Base légale',
+q:'Qu\'apporte la loi du 27 décembre 2023 au Conseil territorial de Santé (CTS) ?',
+a:'<ul><li>Territoire de démocratie sanitaire = <strong>échelon de référence</strong> de l\'organisation locale</li><li>CTS <strong>précisé, élargi, renforcé</strong> dans ses missions</li><li>Art. L. 1434-10 CSP : « L\'ensemble des acteurs de santé d\'un territoire est <strong>responsable</strong> de l\'amélioration de la santé de la population »</li><li>Composition : députés et sénateurs · élus · services PMI · acteurs de santé · membre comité de massif</li><li>Comprend une <strong>commission spécialisée en santé mentale</strong></li></ul><span class="loi-ref">Loi du 27 décembre 2023</span>'},
+
+{t:4,type:'Mémorisation',
+q:'Décrivez les pouvoirs du directeur de l\'ARH (au moins 4 pouvoirs).',
+a:'<ul><li>Arrête la <strong>carte sanitaire</strong> et le <strong>SROS</strong></li><li>Fixe les <strong>budgets</strong> et arrête les <strong>tarifs d\'hospitalisation</strong></li><li>Contrôle les <strong>délibérations des CA</strong> des établissements publics de santé</li><li>Pouvoir de <strong>substitution</strong> à l\'égard des CA (accréditation, allocation des ressources, redéploiement)</li><li>Pouvoir de <strong>retirer ou suspendre</strong> l\'autorisation de fonctionner d\'une installation</li><li>Adresse directement les instructions aux chefs de service</li></ul>'},
+
+{t:4,type:'Mémorisation',
+q:'Qu\'est-ce que le Conseil Régional de Santé (CRS) ? Par quoi a-t-il été remplacé ?',
+a:'<ul><li>Créé par la <strong>loi du 4 mars 2002</strong> — art. L. 1411-3 CSP</li><li>Analyse l\'évolution des besoins de santé en région · établit les <strong>priorités sanitaires</strong></li><li>Composition : collectivités · CESR · AM · professionnels · établissements · usagers · personnalités qualifiées</li><li>→ <strong>Remplacé par la CRSA</strong> (Conférence Régionale de la Santé et de l\'Autonomie) par la <strong>loi HPST 2009</strong></li></ul>'},
+
+{t:4,type:'Base légale',
+q:'Que prévoit l\'article L. 1434-9 CSP (loi du 26 janvier 2016) sur les territoires ?',
+a:'<ul><li>Abandon du terme « territoire de santé » → <strong>territoires de démocratie sanitaire</strong></li><li>À l\'échelle <strong>infrarégionale</strong>, couvrant l\'intégralité du territoire de la région</li><li>Le DG de l\'ARS délimite les zones après avis du <strong>préfet de région</strong> et de la <strong>commission spécialisée en organisation des soins (CSOS)</strong> de la CRSA</li></ul>'},
+
+{t:4,type:'Mémorisation',
+q:'Qu\'est-ce que l\'ORS ? Quel exemple est cité dans le cours ?',
+a:'<ul><li><strong>ORS</strong> = Observatoire Régional de la Santé</li><li>Créé par <strong>circulaire du 4 mars 1982</strong> · forme associative</li><li>Présidé par le <strong>président de la région</strong></li><li>Mission : rassembler, analyser et rendre accessibles les données épidémiologiques régionales</li><li>Exemple cours : <strong>ORS PACA → SIRSéPACA</strong> (conçu en 2006, www.sirsepaca.org) — portraits de territoire à différentes échelles géographiques</li></ul>'},
+
+{t:4,type:'Base légale',
+q:'Que prévoient les décrets n° 2025-723 et 724 du 30 juillet 2025 sur les ARS ?',
+a:'<ul><li>Réponse à la crise du système de santé et de l\'assurance maladie</li><li>Pouvoirs renforcés du <strong>préfet sur le DG de l\'ARS</strong> : retrait d\'autorisation d\'activité de soins · fixation des objectifs · avis pour leur évaluation</li><li>Le préfet peut <strong>déroger à des normes</strong> arrêtées par l\'administration de l\'État</li><li>⚠️ <strong>Aucun contre-pouvoir n\'est précisé</strong></li></ul>'},
+
+// ── THÈME 5 — cartes supplémentaires ─────────────────
+{t:5,type:'Historique',
+q:'Retracez les grandes étapes de l\'histoire des hôpitaux en France (1941-2016).',
+a:'<ul><li><strong>1941</strong> : Charte hospitalière · début étatisation · organisation en services · CME</li><li><strong>1958</strong> : Réforme hospitalo-universitaire · création des CHRU</li><li><strong>1970</strong> : Loi hospitalière · carte sanitaire · syndicats inter-hospitaliers</li><li><strong>1991</strong> : Planisme hospitalier · renforcement de la carte sanitaire par le SROS</li><li><strong>1996</strong> : Création ARH · ANAES · dotation globale · Charte des patients hospitalisés</li><li><strong>2005</strong> : Ordonnance nouvelle gouvernance · T2A · Conseil exécutif</li><li><strong>2009</strong> : Loi HPST · 14 missions SP hospitalier</li><li><strong>2016</strong> : Loi modernisation · refonte SP hospitalier · GHT</li></ul>'},
+
+{t:5,type:'Mémorisation',
+q:'Quelles sont les 3 approches du service public hospitalier (organique, fonctionnelle, mixte) ?',
+a:'<ul><li><strong>Approche organique</strong> (avant loi HPST) : seuls les CHU, CH, hôpitaux locaux et PSPH peuvent assurer des missions SP</li><li><strong>Approche fonctionnelle</strong> (loi HPST 2009) : définition par 14 missions · ouverture à tous les ES privés</li><li><strong>Approche mixte</strong> (loi 2016-41) : renforce les garanties offertes à l\'usager (accueil adapté, permanence, égal accès, pas de dépassements)</li></ul>'},
+
+{t:5,type:'Mémorisation',
+q:'Quelles garanties doivent offrir les établissements assurant le service public hospitalier (loi 2016) ?',
+a:'<ul><li>Accueil adapté dans un <strong>délai en rapport avec l\'état de santé</strong></li><li><strong>Permanence de l\'accueil</strong> et de la prise en charge</li><li><strong>Égal accès</strong> aux activités de prévention et soins de qualité</li><li><strong>Absence de dépassement de tarifs</strong> (tarif secteur 1)</li><li>Ces garanties s\'appliquent même lors d\'un <strong>transfert temporaire</strong></li></ul><span class="loi-ref">Loi n° 2016-41 du 26 janvier 2016</span>'},
+
+{t:5,type:'Base légale',
+q:'Qu\'est-ce que le PAERPA ? Quel est son bilan ?',
+a:'<ul><li><strong>PAERPA</strong> = Parcours Santé des Aînés · lancé en <strong>2014</strong> dans 9 territoires pilotes</li><li>Programme de coordination des acteurs sanitaires et médico-sociaux au niveau local</li><li>Bilan : effet <strong>modeste mais significatif</strong> sur la iatrogénie médicamenteuse et les passages aux urgences</li><li>Sans impact sur les hospitalisations · faible mobilisation des professionnels</li><li>Leçon : nécessité de <strong>passerelles formalisées</strong> entre professionnels de ville, spécialistes, soignants à domicile et acteurs hospitaliers</li></ul>'},
+
+{t:5,type:'Mémorisation',
+q:'Qu\'est-ce que le décret du 27 avril 2022 améliore pour les EHPAD ?',
+a:'<ul><li><strong>Décret n° 2022-731 du 27 avril 2022</strong></li><li>Répond à l\'insuffisance de la prise en charge médicale des personnes hébergées en EHPAD</li><li>Impose aux EHPAD de conclure des <strong>conventions avec des établissements de santé</strong> de leur territoire</li><li>Depuis <strong>2023</strong> : augmentation du temps de présence minimale des <strong>médecins coordonnateurs</strong></li></ul>'},
+
+{t:5,type:'Mémorisation',
+q:'Quelles sont les limites chirurgicales des hôpitaux de proximité ?',
+a:'<ul><li>Peuvent proposer de la chirurgie <strong>« à titre dérogatoire »</strong> seulement</li><li>Sur une liste établie par la <strong>HAS</strong> et avec <strong>autorisation expresse du DG de l\'ARS</strong></li><li><strong>Aucune activité d\'obstétrique</strong> (mais activités prénatales et postnatales)</li><li>Peuvent assurer des <strong>soins palliatifs</strong></li><li>Recentrés sur : <strong>médecine générale · gériatrie · réadaptation</strong></li></ul>'},
+
+// ── THÈME 6 — cartes supplémentaires ─────────────────
+{t:6,type:'Mémorisation',
+q:'Quelle est la répartition moyenne du budget hospitalier en % ?',
+a:'<ul><li><strong>67 %</strong> → dépenses de <strong>personnel</strong></li><li><strong>15 %</strong> → achats de <strong>médicaments et dispositifs médicaux</strong></li><li><strong>9 %</strong> → autres achats</li><li><strong>9 %</strong> → amortissements et frais financiers (bâtiments, matériel)</li></ul><p>⚠️ La notion de « budget » est remplacée par l\'<strong>état prévisionnel des recettes et des dépenses</strong></p>'},
+
+{t:6,type:'Mémorisation',
+q:'Décrivez le plan d\'urgence pour l\'hôpital du 20 novembre 2019. Trois mesures.',
+a:'<ul><li><strong>1,5 milliard €</strong> de financement supplémentaire sur 3 ans</li><li>Reprise par l\'État d\'un <strong>tiers de la dette hospitalière</strong></li><li>Hausse de l\'ONDAM à <strong>2,45 % en 2021 et 2022</strong> (prévu à 2,3 %) · taux hospitalier : 2,5 % (au lieu de 2,1 %)</li></ul>'},
+
+{t:6,type:'Mémorisation',
+q:'Qu\'est-ce que la loi Rist (19 mai 2023) ? Quelle est la mesure phare ?',
+a:'<ul><li><strong>Loi n° 2023-378 du 19 mai 2023</strong> portant amélioration de l\'accès aux soins par la confiance aux professionnels de santé</li><li>Mesure phare : encadrement du recours à l\'<strong>intérim médical</strong> → plafonnement des revenus des médecins intérimaires à <strong>1 390 € bruts pour 24h de travail</strong></li><li>S\'inscrit dans les engagements du <strong>Ségur de la santé 2020</strong> (fin du mercenariat de l\'intérim)</li></ul>'},
+
+{t:6,type:'Base légale',
+q:'Que crée la loi du 26 avril 2021 en termes de gouvernance hospitalière et d\'accès aux soins ?',
+a:'<ul><li>Concrétise les mesures non budgétaires du <strong>Ségur de la santé</strong> (juillet 2020)</li><li><strong>Gouvernance</strong> : service et chef de service au cœur · directoires élargis aux soignants, étudiants et usagers · projet de management participatif dans le projet d\'établissement</li><li><strong>SAS</strong> = Service d\'Accès aux Soins : orientation de la population (conseil médical · téléconsultation · consultations non programmées · urgences) · partenariat ville/SAMU</li></ul><span class="loi-ref">Loi du 26 avril 2021</span>'},
+
+{t:6,type:'Mémorisation',
+q:'Qu\'est-ce que le rapport Aubert (2019) propose pour le financement hospitalier ?',
+a:'<ul><li>Rapport Jean-Marc Aubert du <strong>29 janvier 2019</strong></li><li>T2A <strong>conservée mais combinée</strong> à d\'autres modes de rémunération forfaitaires</li><li>5 modalités : suivi du patient (maladies chroniques) · qualité et pertinence · restructuration · séquence de soins · part à l\'acte résiduelle</li><li>Objectif : financement assuré à <strong>50 % par la T2A</strong> + 5 modalités</li><li>Alimente le plan <strong>Ma Santé 2022</strong></li></ul>'},
+
+// ── THÈME 7 — cartes supplémentaires ─────────────────
+{t:7,type:'Mémorisation',
+q:'Qu\'est-ce que l\'OMS ? Quelles sont ses principales missions ?',
+a:'<ul><li>Organisation Mondiale de la Santé · Constitution entrée en vigueur le <strong>7 avril 1948</strong></li><li>Assistance technique aux pays · programmes d\'action · recherche médicale</li><li>Standards internationaux : pharmacopée · dénominations communes · vaccins · eaux de boisson · additifs…</li><li>Surveillance épidémiologique mondiale</li><li>⚠️ Des <strong>recommandations</strong>, pas de conventions contraignantes (sauf convention-cadre tabac, 21 mai 2003)</li></ul>'},
+
+{t:7,type:'Mémorisation',
+q:'Comment fonctionne le mécanisme d\'alerte du RSI ? Que peut déclarer le DG de l\'OMS ?',
+a:'<ul><li>L\'État notifie dans les <strong>24 heures</strong> tout événement pouvant constituer une urgence de santé publique de portée internationale (USPPI)</li><li>→ Échanges entre l\'État et l\'OMS sur le risque</li><li>→ Avis du <strong>comité d\'urgence</strong></li><li>→ Le DG peut déclarer une <strong>USPPI</strong> et émettre des recommandations temporaires ou permanentes</li><li>Réseau : <strong>GOARN</strong> (Global Outbreak Alert and Response Network)</li></ul>'},
+
+{t:7,type:'Mémorisation',
+q:'Quels sont les 2 axes de la stratégie UE en santé ? Citez un exemple de législation spécifique.',
+a:'<ul><li><strong>Axe 1</strong> — Un cadre de santé publique : programmes d\'action (2003-2008 · 2008-2013 · 2014-2020 · 2021-2027) + législation spécifique</li><li>Exemple législation : <strong>Directive 2011/24/UE</strong> du 9 mars 2011 relative à l\'application des droits des patients en matière de <strong>soins transfrontaliers</strong></li><li><strong>Axe 2</strong> — Une stratégie intégrée : protection de la santé dans <strong>toutes les politiques de l\'UE</strong> (intégration horizontale)</li></ul>'},
+
+{t:7,type:'Mémorisation',
+q:'Comment s\'est géré le Covid-19 au niveau de l\'UE ? Qu\'est-ce qu\'ARGUS ?',
+a:'<ul><li>La <strong>Commission européenne</strong> porte la responsabilité de la gestion au niveau de l\'UE</li><li>Son rôle : formuler des <strong>recommandations</strong> sur une ligne de conduite commune</li><li><strong>ARGUS</strong> = mécanisme de gestion des crises de la Commission · comité de coordination de crise réunissant tous les services concernés</li><li>Présidé par <strong>Janez Lenarčič</strong> (coordinateur d\'urgence)</li><li>Équipe de <strong>5 commissaires</strong> : crises · santé · frontières · mobilité · macroéconomie</li></ul>'},
+
+{t:7,type:'Mémorisation',
+q:'Quels sont les droits des voyageurs dans le RSI (articles 23, 31, 32) ? Quelle limite aux mesures sanitaires ?',
+a:'<ul><li><strong>Art. 23</strong> : principe du <strong>consentement</strong> à toute mesure prise en vertu du RSI</li><li><strong>Art. 31</strong> : les États peuvent imposer examen médical · vaccination · isolement · quarantaine · placement volontaire en observation</li><li><strong>Art. 32</strong> : respect de la <strong>dignité et des droits humains fondamentaux</strong></li><li>⚠️ Limite : les mesures ne doivent pas être plus <strong>restrictives</strong> pour le trafic international ni plus <strong>intrusives</strong> que les autres mesures raisonnables disponibles</li></ul>'},
+
+{t:7,type:'Mémorisation',
+q:'Qu\'est-ce que la mondialisation de la santé ? Quels sont ses 3 grands enjeux selon le cours ?',
+a:'<ul><li><strong>Enjeu 1</strong> : Émergence d\'une « <em>worldculture</em> » → mondialisation des modes de vie et des maladies (maladies émergentes, changements climatiques)</li><li><strong>Enjeu 2</strong> : Les lois du marché impactent le marché des biens en santé (médicaments) et les systèmes de santé nationaux</li><li><strong>Enjeu 3</strong> : <strong>Fuite des cerveaux</strong> → 20 à 25 % des médecins formés en Afrique au sud du Sahara exercent dans des pays riches</li></ul>'},
+
+// ── THÈME 8 — Santé sexuelle ─────────────────────────
+{t:8,type:'Définition',
+q:'Quelle est la définition de la santé sexuelle selon l\'OMS ?',
+a:'<p>« Un état de <strong>bien-être physique, mental et social</strong> dans le domaine de la sexualité, requérant une approche positive et respectueuse de la sexualité, ainsi que la possibilité d\'avoir des expériences sexuelles sources de plaisir et sans risque, <strong>libres de toute coercition, discrimination ou violence</strong>. »</p>'},
+
+{t:8,type:'Dates clés',
+q:'Retracez l\'historique des droits sexuels (1987 → 2006).',
+a:'<ul><li><strong>1987</strong> : OMS-Europe — 1ère association santé sexuelle / droits de l\'Homme</li><li><strong>1996</strong> : IPPF — 1ère déclaration complète des droits sexuels</li><li><strong>1997/1999</strong> : WAS — Déclarations de Valencia et Hong Kong — 1ère inscription dans les droits de l\'Homme</li><li><strong>À partir de 2000</strong> : hybridation santé sexuelle / droits sexuels</li><li><strong>2006</strong> : Liste des droits sexuels OMS publiée — <em>sans force contraignante</em></li></ul>'},
+
+{t:8,type:'Chiffres clés',
+q:'Quels sont les chiffres clés sur la mortalité maternelle en France (rapport 2024) ?',
+a:'<ul><li><strong>1 femme meurt tous les 4 jours</strong> → 11,8 décès pour 100 000 naissances</li><li><strong>272 décès</strong> sur 2016-2018</li><li>Causes : suicide, hémorragies obstétricales, maladies cardiovasculaires</li><li><strong>60 % de ces décès sont évitables</strong></li><li>Risque ×2,6 chez les 35-39 ans ; ×5 à partir de 40 ans</li><li><strong>33 %</strong> des femmes décédées étaient migrantes (×3,1 pour femmes nées en Afrique subsaharienne)</li></ul><span class="loi-ref">Rapport SPF/INSERM, 3 avril 2024</span>'},
+
+{t:8,type:'Définition',
+q:'Comment l\'OMS définit-elle les mutilations sexuelles féminines (MSF) ? Quelles en sont les conséquences ?',
+a:'<p>Toutes interventions incluant l\'ablation partielle/totale des organes génitaux externes ou toute autre lésion des organes génitaux féminins pour des raisons <strong>non médicales</strong>.</p><ul><li>Conséquences : hémorragies graves · problèmes urinaires · kystes · infections · stérilité · complications à l\'accouchement · risque accru de décès du nouveau-né</li></ul>'},
+
+{t:8,type:'Base légale',
+q:'Quelles sont les principales bases légales françaises et internationales contre les MSF ?',
+a:'<ul><li><strong>2008</strong> : Déclaration OMS sur l\'élimination des MSF</li><li><strong>2010</strong> : Stratégie OMS contre la médicalisation des MSF</li><li><strong>2012</strong> : Résolution Assemblée générale ONU</li><li><strong>Loi n° 2013-711 du 5 août 2013</strong> (France) : nouvelles infractions en matière de mutilations sexuelles</li><li>Art. 227-24-1 C. pénal : encadrement des pratiques attentatoires à l\'intégrité physique</li></ul>'},
+
+{t:8,type:'Jurisprudence',
+q:'Que décide la CNDA le 8 septembre 2022 concernant une jeune fille égyptienne ?',
+a:'<p><strong>CNDA, 8 sept. 2022, n° 21059269</strong></p><ul><li>1ère fois : la CNDA reconnaît l\'existence du groupe social des <strong>femmes et enfants exposés au risque d\'excision en Égypte</strong> (prévalence 87 %)</li><li>Octroie la <strong>protection conventionnelle</strong> à une jeune fille de 14 ans originaire de Tanta</li></ul>'},
+
+{t:8,type:'Base légale',
+q:'Quelle est la Stratégie nationale de santé sexuelle ? Dans quel cadre s\'inscrit-elle ?',
+a:'<ul><li><strong>Stratégie nationale de santé sexuelle 2017-2030</strong> — cadre de référence national</li><li>S\'inscrit dans la <strong>Stratégie nationale de santé (SNS)</strong> — Axe 1 : prévention et promotion de la santé</li><li>Structure SNS : <strong>4 axes → 11 domaines → 43 objectifs nationaux</strong></li></ul>'},
+
+{t:8,type:'Base légale',
+q:'Quelle loi crée l\'éducation à la sexualité à l\'école ? Quel est le contenu de l\'art. L312-16 CSE ?',
+a:'<ul><li><strong>Loi du 4 juillet 2001</strong> : crée l\'éducation à la sexualité à l\'école</li><li><strong>Art. L312-16 CSE</strong> (modifié par loi du 24 août 2021, art. 33) : au moins <strong>3 séances annuelles</strong> dans les écoles, collèges et lycées, par groupes d\'âge homogène</li><li><strong>Arrêté du 3 février 2025</strong> : programme d\'éducation à la vie affective, relationnelle et à la sexualité</li></ul>'},
+
+{t:8,type:'Base légale',
+q:'Quelles sont les mesures de la LFSS 2023 sur la contraception et les IST ?',
+a:'<ul><li>Préservatifs (<em>« Eden »</em> et <em>« Sortez couverts ! »</em>) remboursés à <strong>100 %</strong> sans ordonnance pour les <strong>&lt; 26 ans</strong></li><li>Gratuité contraception femmes jusqu\'à <strong>25 ans inclus</strong></li><li>Dépistage VIH sans ordonnance, remboursé à <strong>100 %</strong> dans tous les labos</li><li>Dépistage IST sans ordonnance + prise en charge <strong>100 %</strong> pour les &lt; 26 ans</li><li>Contraception d\'urgence prise en charge <strong>100 %</strong> sans prescription pour toutes les femmes</li></ul><span class="loi-ref">Loi n° 2022-1616 du 23 décembre 2022 (LFSS 2023)</span>'},
+
+{t:8,type:'Jurisprudence',
+q:'Que décide la CEDH dans l\'arrêt Dudgeon c/ Royaume-Uni (1981) ? Quelles en sont les conséquences pour la France ?',
+a:'<p><strong>CEDH, 22 octobre 1981, Dudgeon c/ Royaume-Uni</strong></p><ul><li>Arrêt de principe sur la <strong>liberté du comportement sexuel</strong></li><li>Pas de besoin social impérieux d\'ériger en infractions les actes homosexuels entre adultes consentants → atteinte injustifiée à l\'<strong>article 8 CEDH</strong> (vie privée)</li><li>→ <strong>Dépénalisation de l\'homosexualité en France le 4 août 1982</strong></li></ul>'},
+
+{t:8,type:'Jurisprudence',
+q:'Que décide la CEDH dans K.A. et A.D. c/ Belgique (2005) sur les pratiques sadomasochistes ?',
+a:'<p><strong>CEDH, 17 février 2005, K.A. et A.D. c/ Belgique</strong></p><ul><li>« Le droit d\'entretenir des relations sexuelles découle du droit de <strong>disposer de son corps</strong>, partie intégrante de la notion d\'<strong>autonomie personnelle</strong>. »</li><li>Les deux hommes avaient pu être sanctionnés car ils n\'avaient pas respecté le signal d\'arrêt convenu</li><li><em>A contrario</em> : si le consentement est assuré constamment et rigoureusement, la pénalisation constitue une atteinte disproportionnée à la vie privée</li></ul>'},
+
+{t:8,type:'Base légale',
+q:'Quelle loi encadre la prostitution en France en 2016 ? Quelles en sont les mesures clés ?',
+a:'<ul><li><strong>Loi n° 2016-444 du 13 avril 2016</strong> — Lutte contre le système prostitutionnel</li><li>Sanction des <strong>clients</strong> : amende de <strong>1 500 €</strong> (3 750 € en récidive)</li><li>Peine complémentaire possible : <strong>stage de sensibilisation</strong></li><li><strong>Dépénalisation du racolage passif</strong></li><li>Droit des victimes à un système de <strong>protection et d\'assistance</strong></li></ul>'},
+
+{t:8,type:'Jurisprudence',
+q:'Que décide le Conseil constitutionnel dans la QPC n° 2018-761 du 1er février 2019 sur la pénalisation des clients ?',
+a:'<p><strong>CC, n° 2018-761 QPC du 1er fév. 2019 — Association Médecins du Monde</strong></p><ul><li>Objectif législatif : sauvegarde de la <strong>dignité humaine</strong> contre l\'asservissement et de l\'<strong>ordre public</strong></li><li>Décision : <strong>conformité à la Constitution</strong> — conciliation équilibrée entre dignité/ordre public et liberté personnelle</li></ul>'},
+
+{t:8,type:'Jurisprudence',
+q:'Que décide la CEDH dans M.A. et autres c/ France (25 juillet 2024) sur la prostitution ?',
+a:'<p><strong>CEDH, 25 juillet 2024, M.A. et autres c/ France</strong> (250 travailleur·ses du sexe)</p><ul><li>La CEDH refuse d\'entrer dans le débat sur la contrainte systématique ou le caractère privé de la prostitution consentie</li><li>L\'incrimination de l\'achat d\'actes sexuels <strong>ne porte pas atteinte au droit à la vie privée</strong> des personnes prostituées</li><li>Ample <strong>marge d\'appréciation des États</strong> (absence de consensus européen)</li><li>La France est invitée à garder <strong>« sous examen constant »</strong> son approche</li></ul>'},
+
+{t:8,type:'Base légale',
+q:'Qu\'apporte la loi du 21 avril 2021 sur la protection des mineurs des crimes sexuels ?',
+a:'<ul><li><strong>Seuil de non-consentement</strong> : mineur &lt;15 ans avec &gt;5 ans d\'écart / &lt;18 ans en cas d\'inceste</li><li><strong>4 nouvelles infractions</strong> sans besoin d\'établir violence/contrainte :</li><li>Viol sur mineur &lt;15 ans → <strong>20 ans de réclusion</strong></li><li>Viol incestueux sur mineur &lt;18 ans → <strong>20 ans de réclusion</strong></li><li>Agression sexuelle sur mineur &lt;15 ans → <strong>10 ans + 150 000 €</strong></li><li>Agression sexuelle incestueuse sur mineur &lt;18 ans → <strong>10 ans + 150 000 €</strong></li><li><strong>Sextorsion</strong> : délit — 10 ans max</li></ul><span class="loi-ref">Loi n° 2021-478 du 21 avril 2021</span>'},
+
+// ── THÈME 9 — Santé mentale ─────────────────────────
+{t:9,type:'Définition',
+q:'Quelle est la définition de la santé mentale par l\'OMS ? Quelles sont les données clés (OIT/OMS 2022) ?',
+a:'<p>« Un état de bien-être qui permet à chacun de <strong>réaliser son potentiel</strong>, de faire face aux difficultés normales de la vie, de travailler avec succès et d\'être en mesure d\'apporter une contribution à la communauté. »</p><ul><li>OIT/OMS (oct. 2022) : <strong>12 milliards de journées de travail</strong> perdues chaque année pour dépression ou anxiété</li><li>Taux de suicide France : <strong>17,7 pour 100 000</strong> hab. (vs 11,09 UE)</li></ul>'},
+
+{t:9,type:'Chiffres clés',
+q:'Citez 5 chiffres clés de l\'Observatoire santé mentale en France.',
+a:'<ul><li><strong>13 millions</strong> de personnes touchées par un trouble psychique chaque année (1 sur 5)</li><li><strong>13,2</strong> décès par suicide pour 100 000 hab. (un des plus élevés d\'Europe — moy. 10,5)</li><li><strong>23,4 Mds€</strong> de dépenses remboursées AM — 1er poste de dépense</li><li><strong>64 %</strong> des Français déclarent avoir déjà ressenti un trouble psychique (75 % chez les -35 ans)</li><li><strong>30 %</strong> ont dans leur entourage une personne concernée (57 % chez -35 ans)</li></ul>'},
+
+{t:9,type:'Dates clés',
+q:'Citez les 4 lois fondatrices de l\'hospitalisation sous contrainte.',
+a:'<ul><li><strong>1838</strong> : Loi sur les aliénés (loi Esquirol) — premier cadre légal</li><li><strong>1990</strong> : Loi du 27 juin 1990 — droits et protection des personnes hospitalisées en raison de troubles mentaux</li><li><strong>2011</strong> : Loi du 5 juillet 2011 — intervention obligatoire du JLD</li><li><strong>2013</strong> : Loi du 27 septembre 2013 — corrections constitutionnelles (délai 15→12 jours, UMD, pénalement irresponsables)</li></ul>'},
+
+{t:9,type:'Jurisprudence',
+q:'Que décide le Conseil constitutionnel dans la décision n° 2010-71 QPC du 26 novembre 2010 ?',
+a:'<ul><li>Admission sans consentement : <strong>pas de violation</strong> (exigences de santé publique)</li><li>Maintien &gt;15 jours sans intervention judiciaire → <strong>inconstitutionnel</strong></li><li>Modification de la loi imposée avant le <strong>1er août 2011</strong></li><li>Le juge doit statuer dans les <strong>plus brefs délais</strong> sur les demandes de mainlevée</li></ul>'},
+
+{t:9,type:'Base légale',
+q:'Quels sont les 3 types de soins sans consentement (SSC) depuis la loi de 2011 ?',
+a:'<ul><li><strong>SDDE</strong> — Soins sur Décision du Directeur d\'Établissement :<br>· SDT/SDTU : soins à la demande d\'un tiers (urgence ou non)<br>· SPI : soins en cas de péril imminent (sans tiers)</li><li><strong>SDRE</strong> — Soins sur Décision du Représentant de l\'État (préfet)</li></ul>'},
+
+{t:9,type:'Mémorisation',
+q:'Quelles sont les conditions d\'admission à la demande d\'un tiers ? Et pour péril imminent ?',
+a:'<ul><li><strong>Tiers (conditions cumulatives) :</strong> troubles rendant impossible le consentement · soins immédiats + surveillance constante · demande au directeur : lettre manuscrite signée + <strong>2 certificats médicaux &lt;15 jours</strong> (1er par médecin extérieur)</li><li><strong>Péril imminent :</strong> danger immédiat · impossible de recueillir demande d\'un tiers · <strong>1 seul certificat</strong> d\'un médecin extérieur à l\'établissement</li></ul>'},
+
+{t:9,type:'Base légale',
+q:'Décrivez le rôle du JLD dans l\'hospitalisation sous contrainte : délais, audience, mainlevée.',
+a:'<ul><li>Saisine obligatoire par le directeur si hospitalisation complète &gt; <strong>12 jours</strong></li><li>Assistance par <strong>avocat obligatoire</strong> (Décret n° 2014-897 du 15 août 2014)</li><li>Appel possible sous <strong>10 jours</strong> devant le 1er président de la cour d\'appel</li><li>Si le juge ne statue pas dans les délais : <strong>mainlevée acquise de plein droit</strong></li></ul><span class="loi-ref">Cass. 1ère civ., 24 mai 2018 : délai de saisine impératif — mainlevée automatique si dépassé</span>'},
+
+{t:9,type:'Jurisprudence',
+q:'Que décide la Cour de cassation le 27 septembre 2017 sur le rôle du juge face au psychiatre ?',
+a:'<p><strong>Cass. 1ère civ., 27 sept. 2017</strong></p><ul><li>Le juge <strong>ne doit pas substituer son analyse à celle du psychiatre</strong></li><li>La Cour censure une mainlevée prononcée par un 1er président ayant <strong>dénaturé les éléments médicaux</strong> établis par les psychiatres</li></ul>'},
+
+{t:9,type:'Base légale',
+q:'Que prévoit la loi du 22 janvier 2022 sur l\'isolement et la contention ? Quels délais ?',
+a:'<ul><li><strong>Isolement</strong> : max. <strong>12h</strong>, renouvelable dans la limite de <strong>48h</strong> (2 évaluations par 24h)</li><li><strong>Contention</strong> : max. <strong>6h</strong>, renouvelable dans la limite de <strong>24h</strong> (2 évaluations par 12h)</li><li>Au-delà : directeur informe <strong>sans délai le JLD</strong> (qui peut se saisir d\'office)</li><li>JLD dispose de <strong>24h max</strong> pour statuer sur les demandes de mainlevée</li></ul><span class="loi-ref">Loi n° 2022-46 du 22 janvier 2022 — Art. 17, nouvel art. L. 3222-5-1 CSP</span>'},
+
+{t:9,type:'Jurisprudence',
+q:'Que censure le Conseil constitutionnel dans la décision n° 2024-1127 QPC du 5 mars 2025 ?',
+a:'<p><strong>CC, n° 2024-1127 QPC du 5 mars 2025</strong></p><ul><li>Inconstitutionnalité de l\'absence d\'information systématique de la <strong>personne chargée d\'une mesure de protection juridique</strong> en cas de renouvellement &gt;48h de l\'isolement d\'un majeur protégé</li><li>Méconnaissance du droit à un <strong>recours juridictionnel effectif</strong> (art. 16 DDHC 1789)</li><li><strong>Une nouvelle loi devra modifier l\'art. L. 3222-5-1 CSP</strong></li></ul>'},
+
+{t:9,type:'Base légale',
+q:'Quels sont les 4 objectifs de la politique de santé mentale fixés par la loi du 9 août 2004 ?',
+a:'<ul><li>Réduire la marginalisation sociale et la <strong>stigmatisation</strong> des personnes atteintes de troubles psychiatriques</li><li>Réduire de <strong>10 %</strong> le nombre de psychotiques chroniques en situation de précarité</li><li>Réduire de <strong>20 %</strong> le nombre de suicides en population générale</li><li>Réduire de <strong>20 %</strong> le nombre de personnes souffrant de troubles bipolaires/dépressifs/névrotiques non reconnus</li><li>Augmenter de <strong>20 %</strong> le nombre de personnes traitées selon les recommandations de bonne pratique</li></ul><span class="loi-ref">Loi n° 2004-806 du 9 août 2004</span>'},
+
+{t:9,type:'Mémorisation',
+q:'Quels sont les 4 axes du plan de santé mentale 2011-2015 ?',
+a:'<ul><li><strong>Axe 1 :</strong> Prévenir et réduire les ruptures au cours de la <strong>vie de la personne</strong></li><li><strong>Axe 2 :</strong> Prévenir et réduire les ruptures selon les <strong>publics et les territoires</strong></li><li><strong>Axe 3 :</strong> Prévenir et réduire les ruptures entre la <strong>psychiatrie et son environnement sociétal</strong></li><li><strong>Axe 4 :</strong> Prévenir et réduire les ruptures entre <strong>les savoirs</strong></li></ul>'},
+
+{t:9,type:'Base légale',
+q:'Qu\'est-ce que le dispositif « Mon Psy » ? Depuis quand ? Pour qui ?',
+a:'<ul><li>Mis en place en <strong>avril 2022</strong> (LFSS pour 2022)</li><li>Remboursement par l\'Assurance maladie de consultations chez les <strong>psychologues libéraux</strong> en centre/maison de santé</li><li>S\'adresse aux enfants &gt;3 ans et adultes présentant des troubles selon les critères fixés</li><li><strong>8 séances par an</strong> : 40 € pour la 1ère séance, 30 € pour les suivantes</li></ul>'},
+
+{t:9,type:'Mémorisation',
+q:'Quels sont les 4 objectifs de la Grande cause nationale 2025 — Santé mentale ?',
+a:'<ul><li><strong>1. Déstigmatisation</strong> — changer le regard des Français sur les troubles psychiques</li><li><strong>2. Prévention et repérage précoce</strong></li><li><strong>3. Améliorer l\'accès aux soins</strong> partout sur le territoire (gradation des parcours, nouveaux métiers)</li><li><strong>4. Accompagnement</strong> dans toutes les dimensions de la vie quotidienne : formation, emploi, logement, loisirs</li></ul><span class="loi-ref">Grande cause nationale 2025, annoncée le 11 octobre 2024</span>'},
+
+{t:9,type:'Base légale',
+q:'Qu\'est-ce que le PTSM (loi du 26 janvier 2016) ? Quel est son objet et ses 3 missions ?',
+a:'<ul><li><strong>Projet Territorial de Santé Mentale (PTSM)</strong> — Art. L. 3221-1 CSP (Décret n° 2017-1200 du 27 juillet 2017)</li><li><strong>Objet :</strong> amélioration continue de l\'accès à des parcours de santé et de vie de qualité, <strong>sécurisés et sans rupture</strong></li><li><strong>Mission 1 :</strong> Accès à la prévention, repérage, diagnostic et intervention précoce</li><li><strong>Mission 2 :</strong> Accès à l\'ensemble des modalités de soins et prises en charge spécifiques</li><li><strong>Mission 3 :</strong> Accès aux modalités d\'accompagnement et d\'insertion sociale — programme logement/hébergement accompagné</li></ul>'},
+
+// ── THÈME 10 — Personnes en situation de handicap ──
+{t:10,type:'Définition',
+q:'Quelle est la définition légale du handicap selon l\'article L. 114 CASF (loi du 11 février 2005) ?',
+a:'<p>« Constitue un handicap toute <strong>limitation d\'activité ou restriction de participation à la vie en société</strong> subie dans son environnement par une personne en raison d\'une altération substantielle, durable ou définitive d\'une ou plusieurs fonctions physiques, sensorielles, mentales, cognitives ou psychiques, d\'un polyhandicap ou d\'un trouble de santé invalidant. »</p><span class="loi-ref">Art. L. 114 CASF — Loi n° 2005-102 du 11 février 2005</span>'},
+
+{t:10,type:'Base légale',
+q:'Que dit le Conseil de l\'Europe dans son avis du 17 avril 2023 sur la France et le handicap ?',
+a:'<ul><li>Dénonce une <strong>violation des droits</strong> des personnes en situation de handicap et de leurs familles</li><li>Constate l\'absence de « politique <strong>cohérente et coordonnée</strong> en matière de handicap »</li><li>Conclut à l\'<strong>unanimité</strong> que la France a enfreint <strong>3 articles de la Charte des droits sociaux</strong></li><li>Difficultés : accès aux services d\'accompagnement, aux services publics, au logement, à la santé</li><li>Le handicap invoqué dans <strong>20 %</strong> des réclamations pour discrimination adressées au défenseur des droits</li></ul>'},
+
+{t:10,type:'Chiffres clés',
+q:'Quels sont les chiffres clés du handicap en France ?',
+a:'<ul><li><strong>2,7 M</strong> de personnes avec reconnaissance administrative du handicap (6,6 % des 15-64 ans)</li><li><strong>9,6 M</strong> de personnes de 15-64 ans considérées comme handicapées (INSEE 2007)</li><li><strong>24 %</strong> de la population active touchée · <strong>54 %</strong> sont des femmes</li><li>Chômage TH : +98 % entre 2010-2018 (vs +38 % pour tous les demandeurs d\'emploi)</li><li>AAH : <strong>1 041,59 €/mois</strong> au 1er avril 2026</li></ul>'},
+
+{t:10,type:'Mémorisation',
+q:'Qu\'est-ce que la COTOREP ? Quelles sont ses 2 sections ?',
+a:'<ul><li>Commission technique d\'orientation et de reclassement professionnel — créée par la <strong>loi du 30 juin 1975</strong></li><li>Placée sous l\'autorité du préfet · compétente pour les adultes à partir de 20 ans</li><li><strong>Section 1 — Insertion professionnelle :</strong> apprécie l\'attitude au travail · reconnaît la qualité de TH · oriente vers emploi ordinaire / milieu protégé / formation</li><li><strong>Section 2 — Médico-sociale :</strong> apprécie le taux d\'invalidité · oriente vers établissement spécialisé · ouvre le bénéfice de l\'AAH</li></ul>'},
+
+{t:10,type:'Jurisprudence',
+q:'Que décide la Cour de cassation dans l\'arrêt Perruche (17 novembre 2000) ? Quelle loi y répond ?',
+a:'<p><strong>Cass., 17 nov. 2000, Perruche</strong> : l\'enfant né handicapé peut demander la réparation du préjudice résultant de son handicap si le médecin a commis une faute ayant empêché la mère d\'exercer son choix d\'interrompre sa grossesse.</p><ul><li>Réponse législative : <strong>Loi du 4 mars 2002</strong> (loi Kouchner) : « <strong>Nul ne peut se prévaloir d\'un préjudice du seul fait de sa naissance</strong> »</li></ul>'},
+
+{t:10,type:'Jurisprudence',
+q:'Que décide la CEDH le 3 février 2022 dans N.M. et autres c/ France ?',
+a:'<p><strong>CEDH, 3 fév. 2022, N.M. et autres c/ France</strong></p><ul><li>La France condamnée pour avoir <strong>refusé d\'indemniser le handicap d\'un enfant</strong> (syndrome de Vacterl) non diagnostiqué avant sa naissance</li><li>Application <strong>rétroactive</strong> de la loi Kouchner jugée contraire à la CEDH</li><li>La France avait déjà été condamnée 2 fois en 2005 (affaires <strong>Maurice et Draon</strong> — 4,9 M€ versés)</li></ul>'},
+
+{t:10,type:'Mémorisation',
+q:'Quelles sont les 3 principales missions et la composition de la CDAPH ?',
+a:'<ul><li><strong>Apprécier le taux d\'incapacité</strong></li><li><strong>Attribuer la PCH</strong> (prestation de compensation du handicap)</li><li><strong>Reconnaître la qualité de travailleur handicapé</strong> · se prononcer sur l\'insertion scolaire</li><li><strong>Composition (23 membres titulaires + 23 suppléants) :</strong> représentants du département (4), services de l\'État (4), organismes de protection sociale (2), syndicats (2), associations de parents d\'élèves (1), <strong>associations PH pour ≥ 1/3 des membres (7)</strong>, membre du CDCPH (1), établissements/services (2)</li></ul><span class="loi-ref">Décret n° 2005-1589 du 19 décembre 2005</span>'},
+
+{t:10,type:'Base légale',
+q:'Décrivez les 2 procédures de la CDAPH (simplifiée vs complète).',
+a:'<ul><li><strong>Procédure simplifiée :</strong> (carte d\'invalidité, carte de priorité, renouvellement AAH, RQTH maintien dans l\'emploi) → médecin → CDAPH réduite</li><li><strong>Procédure complète :</strong> (orientations scolaire/médico-sociale/professionnelle, AAH, AEEH, PCH) → équipe médico-sociale → équipe pluridisciplinaire → Plan Personnalisé de Compensation → CDAPH plénière</li><li>Les décisions peuvent faire l\'objet d\'un recours précédé d\'une <strong>tentative de conciliation</strong></li></ul>'},
+
+{t:10,type:'Base légale',
+q:'Qu\'est-ce que la PCH ? Quelle est la répartition des dépenses ? Que change la loi du 6 mars 2020 ?',
+a:'<ul><li><strong>PCH</strong> = Prestation de compensation du handicap — aide humaine, technique ou animalière en fonction du projet de vie</li><li><strong>Répartition dépenses (DREES 2016) :</strong> 91,5 % aide humaine · 4 % aménagement logement/véhicule · 2,3 % aide technique · 2,1 % dépenses spécifiques · 0,03 % aide animalière</li><li><strong>Loi du 6 mars 2020 :</strong> suppression de la limite d\'âge de 75 ans · PCH <strong>sans limitation de durée</strong> si le handicap n\'est pas susceptible d\'évoluer favorablement</li></ul>'},
+
+{t:10,type:'Base légale',
+q:'Qu\'est-ce que le principe d\'accessibilité dans la loi de 2005 ? Quel bilan en 2014 ?',
+a:'<ul><li>Objectif 2015 : <strong>« tout pour tous »</strong> — tous les ERP et transports accessibles</li><li>Dérogations possibles sur les <strong>moyens</strong>, jamais sur les <strong>objectifs</strong></li><li>Sanction : <strong>amende 45 000 €</strong> + récidive : <strong>6 mois d\'emprisonnement</strong></li><li><strong>Baromètre APF (fév. 2014) :</strong> à peine plus de la moitié des écoles et <strong>42 %</strong> des réseaux de bus accessibles → objectif 2015 non atteint</li><li>Ordonnance 2014 → <strong>Agendas d\'accessibilité programmée (Ad\'AP)</strong> : 660 000 ERP entrés dans le dispositif</li></ul>'},
+
+{t:10,type:'Base légale',
+q:'Que prévoit la loi ELAN (23 novembre 2018) sur l\'accessibilité des logements neufs ?',
+a:'<ul><li>Depuis la loi de 2005 : <strong>100 %</strong> des logements neufs devaient être accessibles</li><li>Art. 18 loi ELAN n° 2018-1021 : seulement <strong>10 %</strong> des logements neufs devront être accessibles</li><li>Les 90 % restants seront seulement « <strong>évolutifs</strong> » (supprimer une cloison, transformer une baignoire en douche…)</li><li>Le bailleur ne peut pas refuser cette modification</li></ul>'},
+
+{t:10,type:'Base légale',
+q:'Que prévoit la loi Blanquer (2019) pour la scolarité des enfants handicapés ? Quels sont les 3 objectifs des PIAL ?',
+a:'<ul><li><strong>Loi n° 2019-791 du 26 juillet 2019</strong> — consacre les <strong>Pôles inclusifs d\'accompagnement localisés (PIAL)</strong></li><li><strong>Objectif 1 :</strong> Accompagnement défini au plus près des besoins de chaque élève pour développer son autonomie</li><li><strong>Objectif 2 :</strong> Plus de réactivité et flexibilité dans l\'organisation de l\'accompagnement humain</li><li><strong>Objectif 3 :</strong> Professionnalisation des accompagnants et amélioration de leurs conditions de travail</li></ul>'},
+
+{t:10,type:'Base légale',
+q:'Que prévoit la Circulaire DGCS du 5 juillet 2021 sur la vie affective et sexuelle des PH ? Quelles sont ses 3 mesures ?',
+a:'<ul><li>Relative au respect de l\'intimité, des droits sexuels et reproductifs des personnes accompagnées dans les ESSMS et à la lutte contre les violences</li><li><strong>Mesure 1 :</strong> Création de <strong>centres de ressources régionaux</strong> pour accompagner les PH dans leur vie intime, sexuelle et leur parentalité</li><li><strong>Mesure 2 :</strong> Développement d\'une <strong>formation en ligne</strong> pour les professionnels</li><li><strong>Mesure 3 :</strong> Instruction aux ESMS rappelant la nécessité de respecter le droit à l\'intimité et de lutter contre les violences</li></ul><span class="loi-ref">Circulaire n° DGCS/SD3B/2021/147 du 5 juillet 2021</span>'},
+
+{t:10,type:'Mémorisation',
+q:'Quelles sont les 3 propositions du CCNE (13 juillet 2021) sur la vie affective et sexuelle des PH ?',
+a:'<ul><li><strong>Proposition 1 :</strong> Réaliser une cartographie des initiatives des Centres ressources régionaux sur la vie intime/sexuelle et de soutien à la parentalité et les faire connaître largement · ancrer et généraliser ces Centres sur le territoire</li><li><strong>Proposition 2 :</strong> Inscrire dans le projet de tout établissement et service à domicile une politique favorisant le droit d\'accès à la vie relationnelle, affective et intime</li><li><strong>Proposition 3 :</strong> Pour les PH mental/sensoriel/psychique/physique, expérimenter des initiatives permettant l\'accompagnement aux gestes du corps et de l\'intimité dans le cadre législatif actuel (professionnels volontaires formés)</li></ul>'},
+
+{t:10,type:'Mémorisation',
+q:'Que dénonce le rapport de la Cour des comptes (septembre 2023) sur le vieillissement des personnes handicapées ?',
+a:'<ul><li>Augmentation de <strong>+55 %</strong> des bénéficiaires de l\'AAH de plus de <strong>50 ans</strong> entre 2011 et 2019</li><li>Phénomène résultant du vieillissement des générations nées dans l\'après-guerre <strong>et</strong> de l\'amélioration de l\'espérance de vie des PH</li><li>Évolution démographique <strong>non anticipée</strong> par les pouvoirs publics</li><li>Conséquences sur les besoins en établissements et services spécifiques <strong>non prises en compte</strong></li><li>La Cour préconise d\'adapter l\'offre médico-sociale à ce phénomène de grande ampleur</li></ul>'},
+
+];
+
+// ═══════════════════════════════════════════════════════
+// COULEURS
+// ═══════════════════════════════════════════════════════
+const COLORS = {1:'#1a5c38',2:'#1a3a6a',3:'#982020',4:'#c8900a',5:'#5a2e80',6:'#1a5a6a',7:'#003399',8:'#8b1a4a',9:'#1a6b4a',10:'#5a4a10'};
+const LABELS = {1:'Thème 1',2:'Thème 2',3:'Thème 3',4:'Thème 4',5:'Thème 5',6:'Thème 6',7:'Thème 7',8:'Thème 8',9:'Thème 9',10:'Thème 10'};
+
+// ═══════════════════════════════════════════════════════
+// ÉTAT
+// ═══════════════════════════════════════════════════════
+let selected = new Set();
+let deck = [];
+let idx = 0;
+let isFlipped = false;
+let okCount = 0;
+let noCount = 0;
+let answered = new Set();
+let wrong = [];
+
+// ═══════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════
+function init() {
+  [1,2,3,4,5,6,7,8,9,10].forEach(t => {
+    const n = CARDS.filter(c => c.t === t).length;
+    document.getElementById('cnt-'+t).textContent = n + ' carte' + (n>1?'s':'');
+  });
+  updateSelInfo();
+}
+
+// ═══════════════════════════════════════════════════════
+// SÉLECTION
+// ═══════════════════════════════════════════════════════
+function toggleTheme(el) {
+  const t = parseInt(el.dataset.t);
+  if (selected.has(t)) {
+    selected.delete(t);
+    el.classList.remove('selected');
+  } else {
+    selected.add(t);
+    el.classList.add('selected');
+  }
+  updateSelInfo();
+}
+function selectAll() {
+  document.querySelectorAll('.theme-card').forEach(el => {
+    selected.add(parseInt(el.dataset.t));
+    el.classList.add('selected');
+  });
+  updateSelInfo();
+}
+function deselectAll() {
+  document.querySelectorAll('.theme-card').forEach(el => {
+    el.classList.remove('selected');
+  });
+  selected.clear();
+  updateSelInfo();
+}
+function updateSelInfo() {
+  const n = CARDS.filter(c => selected.has(c.t)).length;
+  document.getElementById('sel-info').textContent =
+    selected.size + ' thème' + (selected.size > 1 ? 's' : '') + ' sélectionné' + (selected.size > 1 ? 's' : '') +
+    ' — ' + n + ' carte' + (n > 1 ? 's' : '');
+  document.getElementById('btn-start').disabled = selected.size === 0;
+}
+
+// ═══════════════════════════════════════════════════════
+// DÉMARRER
+// ═══════════════════════════════════════════════════════
+function startSession(fromWrong) {
+  deck = fromWrong ? [...wrong] : CARDS.filter(c => selected.has(c.t));
+  shuffleArr(deck);
+  idx = 0; okCount = 0; noCount = 0; answered.clear(); wrong = [];
+  isFlipped = false;
+
+  // badges
+  const badges = document.getElementById('play-badges');
+  badges.innerHTML = '';
+  selected.forEach(t => {
+    const b = document.createElement('span');
+    b.className = 'badge-t';
+    b.style.background = COLORS[t];
+    b.textContent = LABELS[t];
+    badges.appendChild(b);
+  });
+
+  document.getElementById('screen-select').style.display = 'none';
+  document.getElementById('screen-play').style.display = 'flex';
+  document.getElementById('done-screen').classList.remove('show');
+
+  renderCard();
+}
+
+// ═══════════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════════
+function renderCard() {
+  if (!deck.length) return;
+  const card = deck[idx];
+  const col = COLORS[card.t];
+
+  // Recto
+  document.getElementById('f-accent').style.background = col;
+  const fb = document.getElementById('f-badge');
+  fb.textContent = LABELS[card.t]; fb.style.background = col;
+  document.getElementById('f-type').textContent = card.type;
+  document.getElementById('q-txt').textContent = card.q;
+
+  // Verso
+  const bb = document.getElementById('b-badge');
+  bb.textContent = LABELS[card.t]; bb.style.background = col;
+  document.getElementById('a-txt').innerHTML = card.a;
+
+  // Retournement
+  const c3d = document.getElementById('card3d');
+  if (isFlipped) { c3d.classList.remove('flipped'); isFlipped = false; }
+
+  // Boutons réponse
+  document.getElementById('ans-btns').classList.remove('show');
+
+  // Compteur
+  document.getElementById('card-ctr').textContent = 'Carte ' + (idx+1) + ' / ' + deck.length;
+
+  updateStats();
+}
+
+function flipCard() {
+  if (document.getElementById('done-screen').classList.contains('show')) return;
+  const c3d = document.getElementById('card3d');
+  isFlipped = !isFlipped;
+  c3d.classList.toggle('flipped', isFlipped);
+  if (isFlipped) document.getElementById('ans-btns').classList.add('show');
+}
+
+function nextCard() {
+  if (idx < deck.length - 1) { idx++; isFlipped = false; renderCard(); }
+  else { showDone(); }
+}
+function prevCard() {
+  if (idx > 0) { idx--; isFlipped = false; renderCard(); }
+}
+
+function answer(knew) {
+  const card = deck[idx];
+  if (!answered.has(idx)) {
+    answered.add(idx);
+    if (knew) okCount++;
+    else { noCount++; wrong.push(card); }
+  }
+  updateStats();
+  setTimeout(() => nextCard(), 200);
+}
+
+function updateStats() {
+  const rem = deck.length - answered.size;
+  document.querySelector('#ps-ok .v').textContent = okCount;
+  document.querySelector('#ps-no .v').textContent = noCount;
+  document.querySelector('#ps-rem .v').textContent = rem;
+  const pct = deck.length ? Math.round(answered.size / deck.length * 100) : 0;
+  document.getElementById('prog-fill').style.width = pct + '%';
+}
+
+function showDone() {
+  document.getElementById('card3d').classList.remove('flipped');
+  document.getElementById('ans-btns').classList.remove('show');
+  document.getElementById('scene').style.display = 'none';
+  const pct = deck.length ? Math.round(okCount / deck.length * 100) : 0;
+  document.getElementById('done-pct').textContent = pct + '%';
+  document.getElementById('done-title').textContent = pct >= 80 ? 'Excellent ! 🎉' : pct >= 50 ? 'Bien ! Continuez 👍' : 'À revoir ! 💪';
+  document.getElementById('done-msg').textContent =
+    okCount + ' su' + (okCount>1?'es':'') + ' sur ' + deck.length + ' cartes. ' +
+    (wrong.length ? wrong.length + ' carte' + (wrong.length>1?'s':'') + ' à revoir.' : 'Toutes réussies !');
+  document.getElementById('done-screen').classList.add('show');
+}
+
+function restartAll() {
+  document.getElementById('scene').style.display = '';
+  document.getElementById('done-screen').classList.remove('show');
+  startSession(false);
+}
+function restartWrong() {
+  if (!wrong.length) { restartAll(); return; }
+  document.getElementById('scene').style.display = '';
+  document.getElementById('done-screen').classList.remove('show');
+  const w = [...wrong]; wrong = [];
+  deck = w; shuffleArr(deck);
+  idx = 0; okCount = 0; noCount = 0; answered.clear();
+  isFlipped = false;
+  renderCard();
+}
+
+function shuffle() {
+  shuffleArr(deck); idx = 0;
+  isFlipped = false; renderCard();
+}
+function goBack() {
+  document.getElementById('screen-play').style.display = 'none';
+  document.getElementById('screen-select').style.display = 'flex';
+  document.getElementById('scene').style.display = '';
+}
+function shuffleArr(a) {
+  for (let i = a.length-1; i > 0; i--) {
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+}
+
+init();
+</script>
+</body>
+</html>
