@@ -11,7 +11,7 @@
   --doux:#6b6560; --bord:#ddd5bc;
   --T1:#1a5c38; --T2:#1a3a6a; --T3:#982020;
   --T4:#c8900a; --T5:#5a2e80; --T6:#1a5a6a; --T7:#003399;
-  --T8:#8b1a4a; --T9:#1a6b4a; --T10:#5a4a10;
+  --T8:#8b1a4a; --T9:#1a6b4a; --T11:#1a4a6a;--T12:#6a1a5a;--T10:#5a4a10;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Source Serif 4',Georgia,serif;background:var(--fond);min-height:100vh;overflow-x:hidden;}
@@ -46,6 +46,8 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--fond);min-heigh
 .theme-card[data-t="8"]::before{background:var(--T8);}
 .theme-card[data-t="9"]::before{background:var(--T9);}
 .theme-card[data-t="10"]::before{background:var(--T10);}
+.theme-card[data-t="11"]::before{background:var(--T11);}
+.theme-card[data-t="12"]::before{background:var(--T12);}
 .theme-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.1);}
 .theme-card.selected{border-color:var(--or);box-shadow:0 0 0 3px rgba(200,148,10,.18);}
 .tc-num{font-family:'Playfair Display',serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.3rem;}
@@ -59,12 +61,22 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--fond);min-heigh
 .theme-card[data-t="8"] .tc-num{color:var(--T8);}
 .theme-card[data-t="9"] .tc-num{color:var(--T9);}
 .theme-card[data-t="10"] .tc-num{color:var(--T10);}
+.theme-card[data-t="11"] .tc-num{color:var(--T11);}
+.theme-card[data-t="12"] .tc-num{color:var(--T12);}
 .tc-title{font-family:'Playfair Display',serif;font-weight:700;font-size:.92rem;color:var(--noir);line-height:1.3;margin-bottom:.5rem;}
 .tc-count{font-size:.75rem;color:var(--doux);}
 .tc-check{position:absolute;top:.8rem;right:.8rem;width:22px;height:22px;border-radius:50%;
   border:2px solid var(--bord);display:flex;align-items:center;justify-content:center;
   font-size:.7rem;transition:all .2s;}
 .theme-card.selected .tc-check{background:var(--or);border-color:var(--or);color:#fff;}
+
+/* LIEN FICHE */
+.tc-fiche{display:inline-flex;align-items:center;gap:.3rem;margin-top:.55rem;
+  font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--doux);text-decoration:none;border:1px solid var(--bord);
+  border-radius:6px;padding:.22rem .6rem;transition:all .18s;background:transparent;}
+.tc-fiche:hover{color:var(--or);border-color:var(--or);background:rgba(200,148,10,.06);}
+.tc-fiche svg{flex-shrink:0;}
 
 /* SELECT ALL + CTA */
 .sel-actions{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
@@ -200,60 +212,84 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--fond);min-heigh
         <div class="tc-num">Thème 1</div>
         <div class="tc-title">La santé publique &amp; le droit</div>
         <div class="tc-count" id="cnt-1">0 cartes</div>
+        <a class="tc-fiche" href="theme1.html" onclick="event.stopPropagation()" target="_blank"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><line x1="3" y1="4" x2="9" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="6.2" x2="9" y2="6.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="8.4" x2="6.5" y2="8.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Fiche</a>
       </div>
       <div class="theme-card" data-t="2" onclick="toggleTheme(this)">
         <div class="tc-check" id="chk-2">✓</div>
         <div class="tc-num">Thème 2</div>
         <div class="tc-title">La loi de santé publique</div>
         <div class="tc-count" id="cnt-2">0 cartes</div>
+        <a class="tc-fiche" href="theme2.html" onclick="event.stopPropagation()" target="_blank"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><line x1="3" y1="4" x2="9" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="6.2" x2="9" y2="6.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="8.4" x2="6.5" y2="8.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Fiche</a>
       </div>
       <div class="theme-card" data-t="3" onclick="toggleTheme(this)">
         <div class="tc-check" id="chk-3">✓</div>
         <div class="tc-num">Thème 3</div>
         <div class="tc-title">La sécurité sanitaire</div>
         <div class="tc-count" id="cnt-3">0 cartes</div>
+        <a class="tc-fiche" href="theme3.html" onclick="event.stopPropagation()" target="_blank"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><line x1="3" y1="4" x2="9" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="6.2" x2="9" y2="6.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="8.4" x2="6.5" y2="8.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Fiche</a>
       </div>
       <div class="theme-card" data-t="4" onclick="toggleTheme(this)">
         <div class="tc-check" id="chk-4">✓</div>
         <div class="tc-num">Thème 4</div>
         <div class="tc-title">La régionalisation</div>
         <div class="tc-count" id="cnt-4">0 cartes</div>
+        <a class="tc-fiche" href="theme4.html" onclick="event.stopPropagation()" target="_blank"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><line x1="3" y1="4" x2="9" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="6.2" x2="9" y2="6.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="8.4" x2="6.5" y2="8.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Fiche</a>
       </div>
       <div class="theme-card" data-t="5" onclick="toggleTheme(this)">
         <div class="tc-check" id="chk-5">✓</div>
         <div class="tc-num">Thème 5</div>
         <div class="tc-title">La qualité des soins &amp; GHT</div>
         <div class="tc-count" id="cnt-5">0 cartes</div>
+        <a class="tc-fiche" href="theme5.html" onclick="event.stopPropagation()" target="_blank"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><line x1="3" y1="4" x2="9" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="6.2" x2="9" y2="6.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="8.4" x2="6.5" y2="8.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Fiche</a>
       </div>
       <div class="theme-card" data-t="6" onclick="toggleTheme(this)">
         <div class="tc-check" id="chk-6">✓</div>
         <div class="tc-num">Thème 6</div>
         <div class="tc-title">Les financements hospitaliers</div>
         <div class="tc-count" id="cnt-6">0 cartes</div>
+        <a class="tc-fiche" href="theme6.html" onclick="event.stopPropagation()" target="_blank"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><line x1="3" y1="4" x2="9" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="6.2" x2="9" y2="6.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="8.4" x2="6.5" y2="8.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Fiche</a>
       </div>
       <div class="theme-card" data-t="7" onclick="toggleTheme(this)">
         <div class="tc-check" id="chk-7">✓</div>
         <div class="tc-num">Thème 7</div>
         <div class="tc-title">La dimension internationale</div>
         <div class="tc-count" id="cnt-7">0 cartes</div>
+        <a class="tc-fiche" href="theme7.html" onclick="event.stopPropagation()" target="_blank"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><line x1="3" y1="4" x2="9" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="6.2" x2="9" y2="6.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="8.4" x2="6.5" y2="8.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Fiche</a>
       </div>
       <div class="theme-card" data-t="8" onclick="toggleTheme(this)">
         <div class="tc-check" id="chk-8">✓</div>
         <div class="tc-num">Thème 8</div>
         <div class="tc-title">La santé sexuelle</div>
         <div class="tc-count" id="cnt-8">0 cartes</div>
+        <a class="tc-fiche" href="theme8.html" onclick="event.stopPropagation()" target="_blank"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><line x1="3" y1="4" x2="9" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="6.2" x2="9" y2="6.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="8.4" x2="6.5" y2="8.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Fiche</a>
       </div>
       <div class="theme-card" data-t="9" onclick="toggleTheme(this)">
         <div class="tc-check" id="chk-9">✓</div>
         <div class="tc-num">Thème 9</div>
         <div class="tc-title">La santé mentale</div>
         <div class="tc-count" id="cnt-9">0 cartes</div>
+        <a class="tc-fiche" href="theme9.html" onclick="event.stopPropagation()" target="_blank"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><line x1="3" y1="4" x2="9" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="6.2" x2="9" y2="6.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="8.4" x2="6.5" y2="8.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Fiche</a>
       </div>
       <div class="theme-card" data-t="10" onclick="toggleTheme(this)">
         <div class="tc-check" id="chk-10">✓</div>
         <div class="tc-num">Thème 10</div>
         <div class="tc-title">Personnes en situation de handicap</div>
         <div class="tc-count" id="cnt-10">0 cartes</div>
+        <a class="tc-fiche" href="theme10.html" onclick="event.stopPropagation()" target="_blank"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><line x1="3" y1="4" x2="9" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="6.2" x2="9" y2="6.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="8.4" x2="6.5" y2="8.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Fiche</a>
+      </div>
+      <div class="theme-card" data-t="11" onclick="toggleTheme(this)">
+        <div class="tc-check" id="chk-11">✓</div>
+        <div class="tc-num">Thème 11</div>
+        <div class="tc-title">Santé et environnement</div>
+        <div class="tc-count" id="cnt-11">0 cartes</div>
+        <a class="tc-fiche" href="theme11.html" onclick="event.stopPropagation()" target="_blank"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><line x1="3" y1="4" x2="9" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="6.2" x2="9" y2="6.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="8.4" x2="6.5" y2="8.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Fiche</a>
+      </div>
+      <div class="theme-card" data-t="12" onclick="toggleTheme(this)">
+        <div class="tc-check" id="chk-12">✓</div>
+        <div class="tc-num">Thème 12</div>
+        <div class="tc-title">Économie de la santé</div>
+        <div class="tc-count" id="cnt-12">0 cartes</div>
+        <a class="tc-fiche" href="theme12.html" onclick="event.stopPropagation()" target="_blank"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><line x1="3" y1="4" x2="9" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="6.2" x2="9" y2="6.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="8.4" x2="6.5" y2="8.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Fiche</a>
       </div>
     </div>
 
@@ -962,13 +998,135 @@ a:'<ul><li><strong>Proposition 1 :</strong> Réaliser une cartographie des initi
 q:'Que dénonce le rapport de la Cour des comptes (septembre 2023) sur le vieillissement des personnes handicapées ?',
 a:'<ul><li>Augmentation de <strong>+55 %</strong> des bénéficiaires de l\'AAH de plus de <strong>50 ans</strong> entre 2011 et 2019</li><li>Phénomène résultant du vieillissement des générations nées dans l\'après-guerre <strong>et</strong> de l\'amélioration de l\'espérance de vie des PH</li><li>Évolution démographique <strong>non anticipée</strong> par les pouvoirs publics</li><li>Conséquences sur les besoins en établissements et services spécifiques <strong>non prises en compte</strong></li><li>La Cour préconise d\'adapter l\'offre médico-sociale à ce phénomène de grande ampleur</li></ul>'},
 
+// ── THÈME 11 — Santé et environnement ─────────────────────
+{t:11,type:'Chiffres clés',
+q:'Quels sont les principaux chiffres clés sur l\'impact sanitaire de l\'environnement en France et dans le monde ?',
+a:'<ul><li><strong>20 %</strong> des cancers sont d\'origine environnementale (OMS)</li><li><strong>48 000</strong> décès prématurés/an en France liés à la pollution chronique de l\'air</li><li><strong>68-97 Mds€</strong> : coût annuel sanitaire de la pollution de l\'air en France</li><li><strong>&gt;150 Mds€</strong> : coût annuel des perturbateurs endocriniens en Europe</li><li><strong>9 millions</strong> de décès prématurés liés à la pollution dans le monde en 2015 (The Lancet)</li><li><strong>250 000</strong> décès supplémentaires/an attendus entre 2030-2050 liés au changement climatique (OMS)</li></ul>'},
+
+{t:11,type:'Base légale',
+q:'Quels sont les 4 Plans nationaux santé environnement (PNSE) ? Quelle est leur base légale ?',
+a:'<ul><li><strong>Base légale :</strong> Art. L. 1311 CSP — renouvellement tous les 5 ans · compétence des ministères de la santé, l\'environnement, le travail et la recherche</li><li><strong>PNSE 1</strong> (2004-2008) : améliorer la santé des Français en lien avec la qualité de leur environnement</li><li><strong>PNSE 2</strong> (2009-2013) : décline les engagements du Grenelle de l\'environnement</li><li><strong>PNSE 3</strong> (2015-2019) : 4 catégories d\'enjeux</li><li><strong>PNSE 4</strong> (2021-2025) : « Mon environnement, ma santé » · 4 axes dont l\'introduction du concept d\'<strong>exposome</strong> dans le CSP</li></ul>'},
+
+{t:11,type:'Mémorisation',
+q:'Quels sont les 4 axes du PNSE 4 (2021-2025) « Mon environnement, ma santé » ?',
+a:'<ul><li><strong>Axe 1 :</strong> Mieux connaître les expositions et les effets sur la santé (concept d\'<strong>exposome</strong> : considérer globalement toutes les expositions tout au long de la vie)</li><li><strong>Axe 2 :</strong> Informer, communiquer et former professionnels et citoyens</li><li><strong>Axe 3 :</strong> Réduire les expositions environnementales (dont qualité de l\'air intérieur)</li><li><strong>Axe 4 :</strong> Démultiplier les actions concrètes dans les territoires (rôle important des collectivités locales)</li></ul>'},
+
+{t:11,type:'Jurisprudence',
+q:'Que décide le Conseil d\'État dans les arrêts de juillet 2020 et octobre 2022 sur la pollution de l\'air ?',
+a:'<p><strong>CE, 10 juillet 2020, Association Les Amis de la Terre :</strong> condamnation historique de l\'État pour inaction face à la pollution de l\'air. Injonction d\'appliquer les principes européens sous peine d\'une amende de <strong>10 millions € par semestre</strong>. Base : Directive 2008/50/CE du 21 mai 2008.</p><p style="margin-top:6px"><strong>CE, 17 octobre 2022, n° 451129 :</strong> le droit de vivre dans un environnement équilibré est une <strong>liberté fondamentale</strong> permettant un référé liberté. Amende record de <strong>20 millions €</strong> (soit <strong>30 millions €</strong> au total avec la première condamnation d\'août 2021).</p>'},
+
+{t:11,type:'Base légale',
+q:'Quelles sont les 3 principales mesures de la loi EGAlim (30 oct. 2018) sur la qualité sanitaire des produits ?',
+a:'<ul><li><strong>Interdiction des néonicotinoïdes</strong> et de tous produits à mode d\'action identique (protection des abeilles, biodiversité)</li><li><strong>Suspension du dioxyde de titane</strong> dans les produits alimentaires (aucune valeur nutritive, usage esthétique uniquement)</li><li><strong>50 % de produits locaux ou sous signes d\'origine et de qualité (dont bio)</strong> dans la restauration collective publique à partir du 1er janvier 2022</li><li>Séparation des activités de vente et de conseil pour les produits phytosanitaires · interdiction des rabais/remises/ristournes</li><li>Réduction du plastique dans l\'alimentation : interdiction des bouteilles plastique dans les cantines scolaires en 2020</li></ul><span class="loi-ref">Loi n° 2018-938 du 30 octobre 2018</span>'},
+
+{t:11,type:'Jurisprudence',
+q:'Que décide le Conseil constitutionnel dans la QPC n° 2023-1066 du 27 octobre 2023 sur les déchets radioactifs ?',
+a:'<p><strong>CC, QPC n° 2023-1066 du 27 oct. 2023</strong> — stockage des déchets radioactifs en couche géologique profonde.</p><ul><li>Le CC juge en termes <strong>inédits</strong> : « lorsqu\'il adopte des mesures susceptibles de porter une atteinte grave et durable à l\'environnement, [le législateur] doit veiller à ce que les choix destinés à répondre aux besoins du présent <strong>ne compromettent pas la capacité des générations futures</strong> et des autres peuples à satisfaire leurs propres besoins »</li><li>→ <strong>1ère reconnaissance constitutionnelle du droit des générations futures à vivre dans un environnement équilibré et respectueux de la santé</strong></li><li>Pas de violation de l\'article 1er de la Charte en l\'espèce</li></ul>'},
+
+{t:11,type:'Mémorisation',
+q:'Que signifie l\'acronyme REACH ? Quel est son objet ?',
+a:'<ul><li><strong>R</strong>en<strong>E</strong>gistrement de toutes les substances fabriquées ou importées à plus de 1 tonne par an</li><li><strong>E</strong>valuation des propositions d\'essais, des dossiers d\'enregistrement et des substances</li><li><strong>A</strong>utorisation pour les substances extrêmement préoccupantes</li><li><strong>C</strong>HImiques : restrictions pour gérer les risques liés à d\'autres substances</li></ul><p style="margin-top:6px">Règlement (CE) n° 1907/2006, en vigueur en 2007. Objet : sécuriser la fabrication et l\'utilisation des substances chimiques dans l\'industrie européenne.</p>'},
+
+{t:11,type:'Mémorisation',
+q:'Quels ont été les constats et recommandations de l\'ANSES sur les couches pour bébé (avis janv. 2019) ?',
+a:'<ul><li>Aucune disposition réglementaire spécifique aux couches en France ou dans l\'UE</li><li>Des substances chimiques dangereuses ont été retrouvées dans les couches</li><li>L\'EQRS (évaluation quantitative des risques sanitaires) a mis en évidence des <strong>dépassements de seuils sanitaires</strong> pour plusieurs substances</li><li>→ il n\'est <strong>pas possible d\'exclure un risque sanitaire lié au port des couches à usage unique</strong></li><li><strong>Recommandations CES :</strong> encadrement réglementaire via REACh Annexe XVII · suppression des substances parfumantes · meilleure maîtrise des matières premières</li></ul><span class="loi-ref">CE, ordonnance du 12 juillet 2019 : le CE refuse les mesures d\'urgence mais appuie les recommandations ANSES</span>'},
+
+{t:11,type:'Base légale',
+q:'Quelles sont les distances de sécurité pour les traitements phytosanitaires à proximité des habitations (arrêté déc. 2019) ?',
+a:'<ul><li>Substances les plus préoccupantes : <strong>20 mètres incompressibles</strong></li><li>Arboriculture, viticulture, arbres/arbustes, forêt, petits fruits, cultures ornementales &gt;50 cm, bananiers, houblon : <strong>10 mètres</strong></li><li>Autres cultures : <strong>5 mètres</strong></li><li>Ces distances peuvent être réduites dans le cadre des <strong>chartes départementales validées par les préfets</strong></li></ul><span class="loi-ref">Arrêté du 27 décembre 2019 (s\'appuyant sur l\'avis ANSES de juin 2019). Rapport Générations futures (nov. 2021) : seule la distance de 100 m permet une baisse très nette de l\'exposition.</span>'},
+
+{t:11,type:'Base légale',
+q:'Que prévoit le Fonds d\'indemnisation des victimes de pesticides (art. 70 LFSS 2020) ?',
+a:'<ul><li>Garantit la réparation forfaitaire des dommages subis par les personnes dont la maladie est liée à une <strong>exposition professionnelle aux pesticides</strong></li><li>Financé par des contributions des régimes AT/MP + fraction de la taxe sur la vente des produits phytopharmaceutiques</li><li><strong>Décret n° 2020-1463 du 27 nov. 2020 :</strong> fonctionnement, organisation et modalités d\'indemnisation</li><li><strong>Arrêté du 7 janvier 2022 :</strong> mécanisme d\'indemnisation des <strong>enfants exposés aux pesticides durant la période prénatale</strong> du fait de l\'activité professionnelle de l\'un de leurs parents</li></ul>'},
+
+{t:11,type:'Mémorisation',
+q:'Quelles sont les 4 catégories de déchets produits par les établissements de santé ? Qu\'est-ce qu\'un DASRI ?',
+a:'<ul><li>Déchets ménagers</li><li>Déchets à risque infectieux (<strong>DASRI</strong>)</li><li>Déchets à risque radioactif</li><li>Déchets issus de médicaments</li></ul><p style="margin-top:6px"><strong>DASRI :</strong> déchets issus des activités de diagnostic, de suivi et de traitement, curatif et palliatif, dans les domaines de la santé humaine ou vétérinaire. Cycle : <strong>tri → entreposage → collecte → destruction</strong>. Traçabilité obligatoire (bordereau CERFA, durée de conservation : <strong>3 ans</strong>) — Art. R. 1335-4 CSP.</p>'},
+
+{t:11,type:'Base légale',
+q:'Que prévoient les arrêtés d\'avril 2020 et le décret du 21 avril 2020 sur les DASRI en période Covid-19 ?',
+a:'<ul><li>La surproduction de DASRI liée à la crise sanitaire a conduit à <strong>prolonger la durée d\'entreposage</strong></li><li><strong>Arrêté du 18 avril 2020 :</strong> conditions d\'entreposage des DASRI pour faire face à la crise</li><li><strong>Arrêté du 20 avril 2020 :</strong> allongement du temps de stockage pour les productions de DASRI perforants &lt;15 kgs/mois — de <strong>3 à 6 mois</strong></li><li><strong>Décret n° 2020-452 du 21 avril 2020 :</strong> entrée en vigueur immédiate des 2 arrêtés</li><li><strong>Arrêté du 25 novembre 2021 :</strong> prise en charge des DASRIe (déchets d\'équipements électriques et électroniques associés aux dispositifs médicaux perforants)</li></ul>'},
+
+{t:11,type:'Jurisprudence',
+q:'Que décide le Conseil constitutionnel dans la QPC n° 2019-823 du 21 janvier 2020 sur les pesticides dangereux ?',
+a:'<p><strong>CC, QPC n° 2019-823 du 21 janvier 2020</strong> — interdiction d\'exporter des pesticides dangereux :</p><ul><li>L\'atteinte à la liberté d\'entreprendre est bien en lien avec les <strong>objectifs de valeur constitutionnelle de protection de la santé et de l\'environnement</strong></li><li>→ Le CC <strong>consacre un objectif de valeur constitutionnelle de protection de l\'environnement, patrimoine commun des êtres humains</strong></li></ul><p style="margin-top:6px"><strong>CC, n° 2025-876 DC du 20 mars 2025 :</strong> En permettant que certaines piscicultures ne soient soumises à <strong>aucun régime de protection</strong> des atteintes à l\'environnement aquatique, le législateur prive de garanties légales les exigences constitutionnelles des art. 1er et 3 de la Charte → <strong>Inconstitutionnalité</strong>.</p>'},
+
+{t:11,type:'Mémorisation',
+q:'Quelles sont les 6 principales propositions du Rapport de la Commission d\'enquête sur les politiques publiques de santé environnementale (16 déc. 2020) ?',
+a:'<p><strong>La santé environnementale doit être reconnue comme politique majeure.</strong></p><ul><li><strong>Prop. 1 :</strong> Développer des programmes de recherche sur les effets cocktail, expositions multiples à faible dose, et l\'exposome</li><li><strong>Prop. 2 :</strong> Tenir annuellement une Conférence nationale de santé environnementale (CNSE)</li><li><strong>Prop. 3 :</strong> Transformer la feuille de route Obésité en stratégie nationale incluant ses facteurs environnementaux</li><li><strong>Prop. 4 :</strong> Placer les cancers pédiatriques au cœur de la prochaine stratégie décennale de lutte contre le cancer</li><li><strong>Prop. 5 :</strong> Cesser de considérer la santé environnementale comme une politique ciblée → l\'imposer comme dimension obligatoire de toutes les autres politiques</li><li><strong>Prop. 6 :</strong> Élaborer un document budgétaire de politique transversale (DPT) consacré à la santé environnementale</li></ul>'},
+
+// ── THÈME 12 — Économie de la santé ─────────────────────
+{t:11,type:'Base légale',
+q:'Que prévoient les 4 domaines d\'utilisation de la radioactivité en ES ? Quel est le régime juridique des déchets radioactifs liquides ?',
+a:'<ul><li><strong>4 domaines :</strong> diagnostic in vivo (scintigraphie) · thérapeutique (radiothérapie interne vectorisée) · laboratoire de biologie médicale (radio-immunologie) · recherche</li><li><strong>Art. L. 1333-4 CSP :</strong> les utilisations de radionucléides en source non scellée sont soumises à <strong>autorisation de l\'ASN</strong> (Agence de Sûreté Nucléaire). Délivrée à une <strong>personne physique</strong> responsable jusqu\'au traitement final</li><li><strong>Gestion :</strong> filière de décroissance (iode-131) → cuves de décroissance · patients ambulatoires → fosse toutes eaux</li></ul>'},
+
+{t:12,type:'Mémorisation',
+q:'Quels sont les contrats prix/volume avec les professions libérales (1991-1994) et l\'ordonnance du 24 avril 1996 ?',
+a:'<ul><li><strong>Contrats prix/volume (1991-1994) :</strong> la modération des volumes de soins dispensés ouvrait droit à une <strong>revalorisation des tarifs unitaires</strong>. Infirmiers libéraux, laboratoires, cliniques privées, kiné, ambulanciers, pharma signent des contrats souvent <strong>tripartites</strong></li><li><strong>Ordonnance du 24 avril 1996 :</strong> applique le principe d\'<strong>enveloppes de dépenses</strong> (honoraires + prescriptions) aux médecins libéraux. Les <strong>reversements</strong> prévus en cas de dépassement de l\'enveloppe nationale dessinent une <strong>responsabilité collective</strong> exercée à l\'échelle régionale</li><li>Depuis 2002 : revalorisation ciblée de certains tarifs contre modération des prescriptions médicamenteuses (recours aux génériques)</li></ul>'},
+
+{t:12,type:'Base légale',
+q:'Quelles sont les dépenses publiques en France (2018) et leur décomposition par fonction ?',
+a:'<ul><li>Dépenses publiques en France (2018) : <strong>56 % du PIB</strong> soit 1 318 Mds€ — le plus élevé parmi les pays comparables (Allemagne 43,9 %, UK 40,8 %, Japon 38,7 %, États-Unis 38,1 %)</li><li>Décomposition (2017) : Protection sociale <strong>32,3 %</strong> du PIB dont :<br>· Retraites et dépendance 14,9 %<br>· Santé et maternité <strong>10,9 %</strong><br>· Famille 2,4 % · Chômage 1,9 %</li><li>Affaires économiques 5,9 % · Enseignement 5,4 % · Services généraux 4,1 %</li><li>Intérêts dette 1,9 % · Défense 1,8 % · Sécurité/Justice 1,6 %</li></ul>'},
+
+{t:12,type:'Chiffres clés',
+q:'Quelle est la couverture complémentaire santé en France et ses inégalités ?',
+a:'<ul><li>La complémentaire santé représente <strong>12 %</strong> de la dépense nationale · <strong>20 %</strong> pour les soins de ville · <strong>30 %</strong> pour les soins dentaires</li><li>À la veille de la CMU : 85 % couverts, 11 % restait à la charge des ménages</li><li>Couverture tombait à <strong>72 %</strong> chez les ouvriers qualifiés · <strong>58 %</strong> chez les chômeurs · <strong>52 %</strong> en bas de l\'échelle des revenus</li><li>La moitié des contrats individuels de 1998 ne prévoyait pas le remboursement des dépassements d\'honoraires</li><li>Les personnes sans complémentaire consultent <strong>deux fois moins souvent</strong> les médecins de ville et sacrifient les actes de prévention</li></ul><span class="loi-ref">Loi de sécurisation de l\'emploi 14 juin 2013 : complémentaire obligatoire en entreprise au 1er janv. 2016 → 84 % des ES proposent une complémentaire (96 % des salariés)</span>'},
+
+{t:12,type:'Définition',
+q:'Quels sont les 2 agrégats des comptes nationaux de santé ? Quelles sont les données de la CSBM 2023 ?',
+a:'<ul><li><strong>CMT</strong> (Consommation médicale totale) : valeur totale des biens et services médicaux sur le territoire. En défalquant la médecine préventive → <strong>CSBM</strong>. Les activités médico-sociales en sont exclues.</li><li><strong>DCS</strong> (Dépense courante de santé) : CMT + IJ + subventions + recherche/enseignement/gestion administrative</li></ul><p style="margin-top:6px"><strong>CSBM 2023 (DREES) :</strong> 249,0 Mds€ · 3 660 €/habitant · +5,2 % · part PIB : <strong>8,8 %</strong> · part conso. ménages : 12,5 %. Niveau encore plus élevé qu\'avant la crise sanitaire de 2020.</p>'},
+
+{t:12,type:'Chiffres clés',
+q:'Quels chiffres illustrent le développement exceptionnel de la consommation médicale depuis 1970 ?',
+a:'<ul><li>La CMT a pratiquement <strong>triplé</strong> depuis 1970</li><li>+20 % de consommation médicale/habitant (termes réels) sur la décennie 1990</li><li><strong>× 2</strong> consultations remboursées entre 1970 et 2000</li><li><strong>× 5</strong> actes techniques de spécialistes et de chirurgie par personne (1970-2000)</li><li><strong>2ème poste</strong> de consommation des ménages, derrière le logement, devant transport et alimentation</li><li>+6,2 % à +6,4 %/an en moyenne depuis 1960 pour la part socialisée (vs +2,7 % pour l\'éducation)</li><li>Laboratoires pharmaceutiques : <strong>20 à 30 %</strong> de leur CA en promotion</li></ul>'},
+
+{t:12,type:'Mémorisation',
+q:'Quelles sont les étapes clés de l\'extension de l\'assurance maladie vers l\'universalité (de 1948 à 2017) ?',
+a:'<ul><li><strong>1948</strong> : étudiants · <strong>1949</strong> : invalides · <strong>1950</strong> : veuves/orphelins de guerre</li><li><strong>1975</strong> : demandeurs d\'emploi (loi du 4 juillet 1975)</li><li><strong>1978</strong> : assurance personnelle pour les exclus des catégories définies</li><li><strong>2000</strong> : <strong>CMU</strong> (1er janv.) — réalise l\'objectif d\'universalité (1,4 million de personnes). L\'AM devient un instrument de <strong>solvabilité universelle de consommation courante de soins</strong></li><li><strong>2017</strong> : <strong>PUMA</strong> (Loi n° 2016-1827 du 23 déc. 2016, art. L. 160-1 à L. 160-7 CSS) — droit à la prise en charge <strong>à titre personnel et de manière continue tout au long de la vie</strong></li></ul>'},
+
+{t:12,type:'Base légale',
+q:'Que prévoit la LFSS 2019 sur le reste à charge zéro (RAC0) ?',
+a:'<ul><li>Remboursement intégral par la SS et les complémentaires de certaines <strong>lunettes, prothèses dentaires et aides auditives</strong> grâce à la fixation de tarifs plafonds</li><li>Remboursement des médicaments sur la base du prix du médicament générique</li><li><strong>Décret n° 2019-21 du 11 janvier 2019 :</strong> application progressive — optique + dentaire au 1er janv. 2020 · aides auditives au 1er janv. 2021</li><li>Création d\'un comité de suivi de la réforme (remplace l\'Observatoire des prix et de la prise en charge en optique médicale)</li></ul><span class="loi-ref">Loi n° 2018-1203 du 22 décembre 2018 (LFSS 2019)</span>'},
+
+{t:12,type:'Mémorisation',
+q:'Quelles sont les inégalités de l\'espérance de vie à 35 ans selon la catégorie sociale ? Quel est le schéma des ISS ?',
+a:'<div class="key-box" style="margin:0"><p><strong>Espérance de vie à 35 ans (Haut Conseil pour l\'Avenir de l\'AM) :</strong></p><ul><li>Femme cadre : <strong>86,7 ans</strong></li><li>Femme ouvrière : <strong>83,7 ans</strong></li><li>Homme cadre : <strong>82,2 ans</strong></li><li>Homme ouvrier : <strong>75,9 ans</strong> — écart de <strong>10,8 ans</strong> avec la femme cadre</li></ul><p style="margin-top:6px"><strong>Schéma ISS :</strong> Inégalités sociales (revenu, formation, position) → ISS (accumulation facteurs de risque, environnement, propension aux soins) → <strong>Inégalités d\'état de santé</strong> (mortalité, morbidité, handicap) ↔ <strong>Inégalités d\'accès aux soins</strong> (barrières financières, culturelles, psychologiques)</p></div>'},
+
+{t:12,type:'Jurisprudence',
+q:'Que décide le Défenseur des droits le 22 novembre 2018 sur la discrimination à l\'accès aux soins ?',
+a:'<p><strong>Décision Défenseur des droits Jacques Toubon, 22 nov. 2018 :</strong> six mois accordés aux plateformes de rendez-vous médicaux en ligne pour mettre fin aux mentions discriminatoires émises par des médecins envers les patients bénéficiaires de la <strong>CMU-C</strong>, de l\'ACS et de l\'AME.</p><p style="margin-top:6px"><strong>Art. L. 1110-3 CSP (Loi n° 2012-954 du 6 août 2012, art. 3) :</strong> Aucune personne ne peut faire l\'objet de discriminations dans l\'accès à la prévention ou aux soins. Un professionnel de santé ne peut refuser de soigner une personne au motif qu\'elle est bénéficiaire de la protection complémentaire (CMU-C) ou de l\'AME.</p>'},
+
+{t:12,type:'Base légale',
+q:'Qu\'est-ce que l\'ONDAM ? Quelles sont ses caractéristiques et son évolution entre 2020 et 2025 ?',
+a:'<ul><li>Objectif National des Dépenses d\'Assurance Maladie — réforme Juppé 1996 (art. LO 111-3 CSS)</li><li>Englobe tous les secteurs · <strong>voté chaque année par le Parlement</strong> dans le cadre de la LFSS · portée <strong>seulement indicative</strong></li><li><strong>2020 :</strong> explosion à <strong>+9,4 %</strong> (Covid-19) · ONDAM ≈ 219 Mds€</li><li><strong>2021 :</strong> +8,6 % (Ségur + Covid) · 238,8 Mds€</li><li><strong>2022 :</strong> objectif -1,0 % à champ constant / +3,8 % hors crise · sur-exécution +2,2 %</li><li><strong>2023 :</strong> ONDAM <strong>244 Mds€</strong> (+3,5 %) · déficit −7,1 Mds€</li><li><strong>2025 :</strong> ONDAM <strong>266 Mds€</strong> (+3,4 %) · déficit <strong>22,1 Mds€</strong> (record hors crise)</li></ul>'},
+
+{t:12,type:'Base légale',
+q:'Quels sont les 3 axes de responsabilisation de la loi du 13 août 2004 sur la maîtrise médicalisée ?',
+a:'<ul><li><strong>Assuré social :</strong> désignation du <strong>médecin traitant</strong> · parcours de soins coordonné · dossier médical personnel</li><li><strong>Offreurs de soins / médecins :</strong> filière de soins via le médecin traitant · <strong>mise sous accord préalable</strong> des prescripteurs d\'arrêts de travail nombreux et volumineux · <strong>T2A</strong> pour les ES</li><li><strong>Organismes payeurs (AM) :</strong> information des assurés · accompagnement des professionnels et ES · contrôles ciblés et programmés</li></ul><p style="margin-top:6px">La maîtrise médicalisée nécessite des référentiels de bonnes pratiques élaborés par la <strong>HAS</strong>, l\'<strong>ANSM</strong> et l\'<strong>INCa</strong>, approuvés par la profession.</p>'},
+
+{t:12,type:'Chiffres clés',
+q:'Quelle est la part des médicaments génériques dans le marché pharmaceutique en France en 2018 ?',
+a:'<ul><li>Génériques : <strong>69 %</strong> en valeur · <strong>80,9 %</strong> en volume des médicaments dans le répertoire générique</li><li>Hors répertoire : 73 % en valeur · 54 % en volume</li><li>Princeps : 31 % en valeur · 19,1 % en volume</li></ul><p style="margin-top:6px"><strong>Automédication (2012) :</strong> France <strong>7,6 %</strong> du marché pharmaceutique global · Allemagne 11,2 % · Royaume-Uni 12,3 % · Belgique 14 %. Vente OTC autorisée depuis <strong>juin 2013</strong>.</p>'},
+
+{t:12,type:'Base légale',
+q:'Que prévoit la LFSS 2021 dans le contexte Covid ? Qu\'est-ce que la 5ème branche de la Sécurité sociale ?',
+a:'<ul><li>Déficit 2020 : <strong>49 milliards €</strong> (record)</li><li>ONDAM : <strong>218,9 Mds€</strong> (jamais atteint) · exonérations sociales entreprises : 8,2 Mds€ · « taxe Covid » sur les complémentaires santé</li><li><strong>Ségur de la santé</strong> (accords juillet 2020) : revalorisation <strong>183 €/net/mois</strong> pour personnels non-médicaux des hôpitaux publics et des EHPAD (depuis 1er déc. 2020)</li><li><strong>Forfait Patient Urgences (FPU) :</strong> 18 € à compter du 1er sept. 2021 pour tout passage aux urgences non suivi d\'hospitalisation · pris en charge par les complémentaires</li></ul><p style="margin-top:6px"><strong>5ème branche SS (Loi du 7 août 2020 relative à la dette sociale et à l\'autonomie) :</strong> dédiée à la <strong>perte d\'autonomie</strong> · gestion confiée à la <strong>CNSA</strong>.</p>'},
+
+{t:12,type:'Mémorisation',
+q:'Quelle est la concentration de la consommation médicale en France ? Quel paradoxe illustre le progrès médical ?',
+a:'<ul><li><strong>25 %</strong> de la population est à l\'origine de <strong>80 %</strong> de la dépense de santé</li><li><strong>5 %</strong> des personnes concentrent près de la moitié de la dépense</li><li>Les 10 % plus gros consommateurs de soins hospitaliers engendrent <strong>97 %</strong> de la dépense hospitalière (vs 43 % pour les soins de ville)</li><li>Les 65 ans et plus représentent plus d\'<strong>un tiers</strong> de la dépense (seulement 12 % de la population)</li></ul><p style="margin-top:6px"><strong>Paradoxe :</strong> le progrès scientifique et technique est générateur à la fois de bien-être et d\'inégalités. La CMU-C : proportion de personnes couverts parmi les plus bas revenus est passée de <strong>50 % à 80 %</strong> dès la 1ère année → rattrapage de soins différés.</p>'},
+
+{t:12,type:'Chiffres clés',
+q:'Quels sont les surcoûts Covid-19 pour les soins de ville et pour les établissements de santé en 2020 ?',
+a:'<p><strong>Soins de ville — 5,5 Mds€ :</strong></p><ul><li>Nouvelles IJ + suppression jour de carence : 2 Mds€</li><li>Tests PCR/sérologiques en ville : 1,5 Md€</li><li>Compensation perte d\'activité professionnels libéraux : 1,4 Md€</li><li>Exonération ticket modérateur pour téléconsultations : 0,2 Md€</li><li>Distribution masques en officine (grand public + PS) : 0,2 Md€</li></ul><p style="margin-top:6px"><strong>Établissements de santé — 3 Mds€ :</strong></p><ul><li>Primes + heures supplémentaires personnels : 1,6 Md€</li><li>Dotation supplémentaire AM lutte Covid : 1 Md€</li><li>Tests diagnostiques à l\'hôpital : 0,3 Md€</li></ul>'},
+
 ];
 
 // ═══════════════════════════════════════════════════════
 // COULEURS
 // ═══════════════════════════════════════════════════════
-const COLORS = {1:'#1a5c38',2:'#1a3a6a',3:'#982020',4:'#c8900a',5:'#5a2e80',6:'#1a5a6a',7:'#003399',8:'#8b1a4a',9:'#1a6b4a',10:'#5a4a10'};
-const LABELS = {1:'Thème 1',2:'Thème 2',3:'Thème 3',4:'Thème 4',5:'Thème 5',6:'Thème 6',7:'Thème 7',8:'Thème 8',9:'Thème 9',10:'Thème 10'};
+const COLORS = {1:'#1a5c38',2:'#1a3a6a',3:'#982020',4:'#c8900a',5:'#5a2e80',6:'#1a5a6a',7:'#003399',8:'#8b1a4a',9:'#1a6b4a',10:'#5a4a10',11:'#1a4a6a',12:'#6a1a5a'};
+const LABELS = {1:'Thème 1',2:'Thème 2',3:'Thème 3',4:'Thème 4',5:'Thème 5',6:'Thème 6',7:'Thème 7',8:'Thème 8',9:'Thème 9',10:'Thème 10',11:'Thème 11',12:'Thème 12'};
 
 // ═══════════════════════════════════════════════════════
 // ÉTAT
@@ -986,7 +1144,7 @@ let wrong = [];
 // INIT
 // ═══════════════════════════════════════════════════════
 function init() {
-  [1,2,3,4,5,6,7,8,9,10].forEach(t => {
+  [1,2,3,4,5,6,7,8,9,10,11,12].forEach(t => {
     const n = CARDS.filter(c => c.t === t).length;
     document.getElementById('cnt-'+t).textContent = n + ' carte' + (n>1?'s':'');
   });
