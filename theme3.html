@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thème 3 — La Sécurité Sanitaire (Version complète)</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --fond:#f4f2ec; --carte:#fff; --texte:#111; --doux:#484848; --bord:#ddd5bc;
+  --v:#1a5e38; --vc:#278f55; --vp:#e6f5ed;
+  --b:#1b4a78; --bc:#2a6fad; --bp:#e8f1fb;
+  --o:#9a6a00; --oc:#c8940a; --op:#fdf4dc;
+  --r:#992020; --rp:#fdf0f0;
+  --g:#444; --gp:#f0f0f0;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--fond);color:var(--texte);font-size:14.5px;line-height:1.7;}
+
+/* ─── HEADER ─── */
+header{background:linear-gradient(140deg,#0a2016 0%,#1a5030 55%,#0f2e1c 100%);color:#fff;padding:3rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden;}
+header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent,transparent 55px,rgba(255,255,255,.016) 55px,rgba(255,255,255,.016) 110px);}
+.badge{display:inline-block;background:var(--oc);color:#fff;font-family:'Playfair Display',serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;padding:.3rem 1.1rem;border-radius:2px;margin-bottom:1rem;}
+header h1{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:900;line-height:1.2;margin-bottom:.4rem;}
+header h2{font-weight:300;font-style:italic;font-size:1rem;color:rgba(255,255,255,.62);margin-bottom:1.4rem;}
+.meta{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;}
+.meta span{font-size:.77rem;color:rgba(255,255,255,.45);}
+.meta strong{color:#e8c060;font-weight:600;}
+
+/* ─── PLAN ─── */
+.plan{background:var(--carte);border:2px solid var(--vc);border-radius:8px;margin:2rem auto;max-width:960px;padding:1.3rem 1.8rem;box-shadow:0 2px 14px rgba(0,0,0,.08);}
+.plan h3{font-family:'Playfair Display',serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--v);margin-bottom:1rem;}
+.plan-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.7rem;}
+.pi{border-radius:0 6px 6px 0;padding:.8rem 1rem;border-left:4px solid;}
+.pi .num{font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:.2rem;}
+.pi .tit{font-family:'Playfair Display',serif;font-size:.87rem;font-weight:700;}
+.pi.intro{background:var(--vp);border-color:var(--vc);} .pi.intro .num,.pi.intro .tit{color:var(--v);}
+.pi.s1{background:var(--bp);border-color:var(--bc);} .pi.s1 .num,.pi.s1 .tit{color:var(--b);}
+.pi.s2{background:var(--op);border-color:var(--oc);} .pi.s2 .num,.pi.s2 .tit{color:var(--o);}
+.pi.s3{background:var(--rp);border-color:#c05050;} .pi.s3 .num,.pi.s3 .tit{color:var(--r);}
+
+main{max-width:960px;margin:0 auto;padding:0 1.5rem 5rem;}
+
+/* ─── EN-TÊTES DE SECTION ─── */
+.sh{margin:3rem 0 1.3rem;padding:1rem 1.5rem;border-radius:8px;}
+.sh.intro{background:linear-gradient(135deg,#e8f5ee,#d2eedd);border-left:5px solid var(--v);}
+.sh.s1{background:linear-gradient(135deg,#e8f1fb,#d0e4f5);border-left:5px solid var(--b);}
+.sh.s2{background:linear-gradient(135deg,#fdf4dc,#f7e8b5);border-left:5px solid var(--oc);}
+.sh.s3{background:linear-gradient(135deg,#fdf0f0,#f5d5d5);border-left:5px solid var(--r);}
+.sh .sn{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;opacity:.7;margin-bottom:.15rem;}
+.sh.intro .sn{color:var(--v);} .sh.intro h2{color:var(--v);}
+.sh.s1 .sn{color:var(--b);} .sh.s1 h2{color:var(--b);}
+.sh.s2 .sn{color:var(--o);} .sh.s2 h2{color:var(--o);}
+.sh.s3 .sn{color:var(--r);} .sh.s3 h2{color:var(--r);}
+.sh h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;}
+.sh p{font-size:.84rem;color:var(--doux);font-style:italic;margin-top:.3rem;}
+
+/* ─── SUB-TITRES ─── */
+.sub{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;margin:1.8rem 0 .8rem;padding-left:.8rem;border-left:3px solid var(--oc);color:var(--o);}
+.sub.bleu{border-color:var(--bc);color:var(--b);}
+.sub.vert{border-color:var(--vc);color:var(--v);}
+.sub.rouge{border-color:#c05050;color:var(--r);}
+
+/* ─── CARTES ─── */
+.card{background:var(--carte);border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.07);padding:1.2rem 1.5rem;margin-bottom:1rem;border-left:4px solid var(--vc);}
+.card.b{border-color:var(--bc);} .card.o{border-color:var(--oc);} .card.r{border-color:#c05050;} .card.g{border-color:var(--g);}
+.ct{font-family:'Playfair Display',serif;font-size:.96rem;font-weight:700;color:var(--v);margin-bottom:.65rem;display:flex;align-items:center;gap:.5rem;}
+.card.b .ct{color:var(--b);} .card.o .ct{color:var(--o);} .card.r .ct{color:var(--r);}
+
+/* ─── À RETENIR ─── */
+.ret{background:#fffde6;border:2px solid var(--oc);border-radius:8px;padding:1rem 1.4rem;margin:1rem 0;display:flex;gap:.9rem;align-items:flex-start;}
+.ri{font-size:1.2rem;flex-shrink:0;}
+.rb strong{color:#6a4700;display:block;margin-bottom:.3rem;font-size:.88rem;}
+.rb p,.rb ul{font-size:.86rem;color:var(--doux);}
+.rb ul{padding-left:1.1rem;} .rb ul li{margin-bottom:.18rem;}
+
+/* ─── DÉFINITION ─── */
+.def{background:var(--vp);border:1.5px solid var(--vc);border-radius:8px;padding:1rem 1.4rem;margin-bottom:.9rem;}
+.def.b{background:var(--bp);border-color:var(--bc);}
+.def.r{background:var(--rp);border-color:#c05050;}
+.dl{font-family:'Playfair Display',serif;font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;color:var(--v);margin-bottom:.35rem;display:block;}
+.def.b .dl{color:var(--b);} .def.r .dl{color:var(--r);}
+.dt{font-weight:700;color:var(--v);font-size:.98rem;}
+.def.b .dt{color:var(--b);} .def.r .dt{color:var(--r);}
+.def p{color:var(--doux);margin-top:.3rem;font-size:.88rem;}
+.def .src{font-size:.75rem;font-style:italic;margin-top:.4rem;color:var(--vc);}
+.def.b .src{color:var(--bc);}
+
+/* ─── LOI ─── */
+.loi{background:var(--op);border:1.5px solid var(--oc);border-radius:8px;padding:1rem 1.4rem;margin-bottom:.8rem;}
+.lr{font-family:'Playfair Display',serif;font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;color:var(--oc);margin-bottom:.28rem;display:block;}
+.lt{font-weight:700;color:#6a4700;font-size:.93rem;margin-bottom:.45rem;}
+.loi ul{padding-left:1.2rem;color:var(--doux);font-size:.87rem;}
+.loi ul li{margin-bottom:.23rem;}
+
+/* ─── ARTICLE ─── */
+.art{background:var(--bp);border-left:4px solid var(--bc);border-radius:0 8px 8px 0;padding:.9rem 1.3rem;margin:.8rem 0;}
+.ar{font-family:'Playfair Display',serif;font-weight:700;color:var(--b);font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;margin-bottom:.35rem;display:block;}
+.art p{color:var(--doux);font-style:italic;font-size:.87rem;}
+.an{font-style:normal!important;color:var(--b)!important;margin-top:.38rem!important;font-weight:700;font-size:.8rem;}
+
+/* ─── JURISPRUDENCE ─── */
+.juris{background:var(--rp);border:1.5px solid #c05050;border-radius:8px;padding:1rem 1.4rem;margin-bottom:.8rem;}
+.jr{font-family:'Playfair Display',serif;font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;color:var(--r);margin-bottom:.28rem;display:block;}
+.jt{font-weight:700;color:var(--r);font-size:.9rem;margin-bottom:.4rem;}
+.juris ul{padding-left:1.2rem;font-size:.86rem;color:var(--doux);}
+.juris ul li{margin-bottom:.2rem;}
+
+/* ─── ORGANIGRAMME ─── */
+.org{background:var(--carte);border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.09);padding:1.5rem 1.5rem 1.2rem;margin-bottom:1.2rem;overflow-x:auto;}
+.org h3{font-family:'Playfair Display',serif;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--g);margin-bottom:1rem;text-align:center;}
+.org svg{display:block;margin:0 auto;max-width:100%;}
+
+/* ─── GRILLES ─── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.9rem;margin-bottom:1rem;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-bottom:1rem;}
+
+/* ─── AGENCE BLOC ─── */
+.ag{background:var(--carte);border-radius:8px;padding:.9rem 1.1rem;box-shadow:0 2px 10px rgba(0,0,0,.07);}
+.ag.v{border-top:3px solid var(--v);}
+.ag.b{border-top:3px solid var(--b);}
+.ag.o{border-top:3px solid var(--oc);}
+.ag.r{border-top:3px solid var(--r);}
+.ag .an2{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;display:block;}
+.ag.v .an2{color:var(--v);} .ag.b .an2{color:var(--b);} .ag.o .an2{color:var(--o);} .ag.r .an2{color:var(--r);}
+.ag .at{font-weight:700;font-size:.88rem;margin:.2rem 0;}
+.ag .as{font-size:.76rem;color:var(--bc);font-weight:700;}
+.ag.v .as{color:var(--vc);} .ag.o .as{color:var(--oc);} .ag.r .as{color:var(--r);}
+.ag p{font-size:.8rem;color:var(--doux);margin-top:.25rem;}
+.ag ul{padding-left:1rem;font-size:.8rem;color:var(--doux);margin-top:.25rem;}
+.ag ul li{margin-bottom:.15rem;}
+
+/* ─── TABLEAU ─── */
+table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:1rem;}
+th{background:var(--v);color:#fff;padding:.55rem .9rem;text-align:left;font-family:'Playfair Display',serif;font-size:.77rem;letter-spacing:.05em;}
+td{padding:.5rem .9rem;border-bottom:1px solid var(--bord);color:var(--doux);vertical-align:top;}
+tr:nth-child(even) td{background:var(--fond);}
+tr:last-child td{border-bottom:none;}
+.th2{background:var(--b);}
+
+ul.l{padding-left:1.2rem;color:var(--doux);font-size:.89rem;}
+ul.l li{margin-bottom:.27rem;}
+
+blockquote{border-left:3px solid var(--oc);margin:1rem 0;padding:.7rem 1.2rem;background:var(--op);border-radius:0 6px 6px 0;font-style:italic;color:var(--doux);font-size:.88rem;}
+blockquote cite{display:block;font-style:normal;font-size:.73rem;color:var(--oc);margin-top:.3rem;font-weight:700;}
+
+.sep{height:1px;background:var(--bord);margin:2rem 0;}
+
+footer{text-align:center;font-size:.76rem;color:#aaa;padding:2rem 1rem;border-top:1px solid var(--bord);margin-top:2rem;font-style:italic;}
+
+@media(max-width:680px){.g2,.g3,.g4,.plan-grid{grid-template-columns:1fr;} header h1{font-size:1.5rem;}}
+@media print{.card,.loi,.def,.ret,.juris,.org{break-inside:avoid;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Fiche de Révision — Version 3 Détaillée</div>
+  <h1>Thème 3 — La Sécurité Sanitaire</h1>
+  <h2>Le nouveau défi de l'ordre public du XXIe siècle</h2>
+  <div class="meta">
+    <span>Cours <strong>Guylène NICOLAS</strong></span>
+    <span>Master 1 — <strong>2025/2026</strong></span>
+  </div>
+</header>
+
+<main>
+
+<!-- PLAN -->
+<div class="plan">
+  <h3>Plan du cours</h3>
+  <div class="plan-grid">
+    <div class="pi intro"><div class="num">Introduction</div><div class="tit">Définitions &amp; jurisprudence illustrative</div></div>
+    <div class="pi s1"><div class="num">Section 1</div><div class="tit">Le fondement de la veille sanitaire : la loi du 1er juillet 1998</div></div>
+    <div class="pi s2"><div class="num">Section 2</div><div class="tit">La rationalisation par la fusion</div></div>
+    <div class="pi s3"><div class="num">Section 3</div><div class="tit">Les plans d'alerte</div></div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     INTRODUCTION
+════════════════════════════════════════ -->
+<div class="sh intro">
+  <div class="sn">Introduction</div>
+  <h2>Définitions fondamentales &amp; illustrations jurisprudentielles</h2>
+  <p>La sécurité sanitaire comme nouvel ordre public — notion apparue officiellement en droit le 16 décembre 1992</p>
+</div>
+
+<div class="sub vert">1. Les définitions à maîtriser absolument</div>
+
+<div class="g3">
+  <div class="def">
+    <span class="dl">Définition — D. Tabuteau, 1994</span>
+    <div class="dt">La sécurité sanitaire</div>
+    <p>La sécurité des personnes contre les <strong>risques thérapeutiques de toute nature</strong>, qu'ils soient liés aux <strong>choix thérapeutiques</strong>, aux actes de <strong>prévention, de diagnostic ou de soin</strong>, comme à l'<strong>usage des biens et des produits de santé</strong>.</p>
+    <div class="src">Didier TABUTEAU, La sécurité sanitaire, Berger-Levrault, 1994</div>
+  </div>
+  <div class="def b">
+    <span class="dl">Définition — Le domaine</span>
+    <div class="dt">Le domaine de la sécurité sanitaire</div>
+    <p>L'ensemble des <strong>programmes, décisions et actions</strong> visant à protéger la population contre tous les dangers et les risques considérés comme <strong>échappant au contrôle des individus</strong> et définis à ce titre comme relevant des <strong>pouvoirs publics</strong> et de leur régulation.</p>
+  </div>
+  <div class="def r">
+    <span class="dl">Définition</span>
+    <div class="dt">Catastrophe sanitaire</div>
+    <p>Tout événement entraînant une crise majeure pendant laquelle la <strong>réponse sanitaire n'est plus suffisante</strong> pour prendre en charge l'afflux de victimes. Entraîne une <strong>désorganisation du système de soin habituel</strong>. Se distingue par le <strong>nombre de victimes</strong> ET le <strong>délai réduit de leur apparition</strong>.</p>
+  </div>
+</div>
+
+<div class="def b" style="margin-bottom:1rem;">
+  <span class="dl">Définition</span>
+  <div class="dt">Le risque sanitaire</div>
+  <p>Une <strong>menace pour l'état de santé de la population</strong> conjuguée à un risque de <strong>déstabilisation des pouvoirs publics</strong> chargés de la sécurité sanitaire.</p>
+</div>
+
+<div class="ret">
+  <div class="ri">📅</div>
+  <div class="rb">
+    <strong>Chronologie de la notion en droit — à connaître !</strong>
+    <ul>
+      <li><strong>16 déc. 1992</strong> : 1ère utilisation officielle lors du débat parlementaire sur le projet de loi (→ loi n° 93-5 du 4 janv. 1993, dite <strong>loi Kouchner</strong>, relative à la sécurité en matière de transfusion sanguine et de médicament)</li>
+      <li><strong>1997</strong> : La notion s'impose définitivement lors de la discussion devant le Parlement de la <strong>proposition de loi sur la veille sanitaire</strong></li>
+    </ul>
+  </div>
+</div>
+
+<div class="sub vert">2. Les 4 catégories de catastrophes sanitaires</div>
+
+<div class="org">
+  <h3>Catégories de catastrophes sanitaires</h3>
+  <svg viewBox="0 0 860 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px;">
+    <rect x="330" y="90" width="200" height="58" rx="10" fill="#1a5e38"/>
+    <text x="430" y="114" text-anchor="middle" font-family="Playfair Display,serif" font-size="13" font-weight="700" fill="white">Catastrophes</text>
+    <text x="430" y="133" text-anchor="middle" font-family="Playfair Display,serif" font-size="13" font-weight="700" fill="white">sanitaires</text>
+    <!-- Techno -->
+    <rect x="10" y="8" width="190" height="72" rx="8" fill="#1b4a78"/>
+    <text x="105" y="30" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" font-weight="700" fill="white">Risques technologiques</text>
+    <text x="105" y="48" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#cde3f8">AZF · Tchernobyl · Fukushima</text>
+    <text x="105" y="63" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#cde3f8">Three Mile Island · SEVESO</text>
+    <line x1="200" y1="44" x2="330" y2="108" stroke="#1b4a78" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <!-- Naturels -->
+    <rect x="10" y="155" width="190" height="72" rx="8" fill="#1b4a78"/>
+    <text x="105" y="177" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" font-weight="700" fill="white">Risques naturels</text>
+    <text x="105" y="195" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#cde3f8">Tsunami Indonésie · Katrina</text>
+    <text x="105" y="210" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#cde3f8">Séisme Pakistan · Irma</text>
+    <line x1="200" y1="191" x2="330" y2="130" stroke="#1b4a78" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <!-- Terroristes -->
+    <rect x="660" y="8" width="190" height="88" rx="8" fill="#992020"/>
+    <text x="755" y="30" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" font-weight="700" fill="white">Risques terroristes</text>
+    <text x="755" y="48" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#ffd0d0">11 sept. 2001 · 13 nov. 2015</text>
+    <text x="755" y="63" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#ffd0d0">Bactériologiques &amp; chimiques :</text>
+    <text x="755" y="78" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#ffd0d0">Gaz sarin Tokyo (1995) · Anthrax</text>
+    <text x="755" y="91" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#ffd0d0">Menace variole</text>
+    <line x1="660" y1="52" x2="530" y2="108" stroke="#992020" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <!-- Épidémiques -->
+    <rect x="660" y="143" width="190" height="88" rx="8" fill="#992020"/>
+    <text x="755" y="165" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" font-weight="700" fill="white">Risques épidémiques</text>
+    <text x="755" y="183" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#ffd0d0">Grippe · SRAS · Peste · Rage</text>
+    <text x="755" y="198" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#ffd0d0">Chikungunya · Dengue · Variole</text>
+    <text x="755" y="213" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#ffd0d0">Ebolavirus · Zika · Coronavirus</text>
+    <line x1="660" y1="187" x2="530" y2="130" stroke="#992020" stroke-width="1.5" stroke-dasharray="5,3"/>
+  </svg>
+</div>
+
+<div class="sub vert">3. Illustrations jurisprudentielles de l'introduction</div>
+
+<div class="g2">
+  <div class="juris">
+    <span class="jr">⚖️ TA Montreuil, 29 janvier 2018 — Prothèses PIP</span>
+    <div class="jt">1ère reconnaissance de responsabilité de l'État en matière de police sanitaire sur dispositifs médicaux</div>
+    <ul>
+      <li>Principe : la responsabilité de l'État peut être engagée à raison de la <strong>faute commise par les autorités</strong> agissant en son nom dans l'exercice de leurs <strong>pouvoirs de police sanitaire relative aux dispositifs médicaux</strong>, pour autant qu'il en soit résulté un <strong>préjudice direct et certain</strong></li>
+      <li>En l'espèce : l'AFSSAPS, entre <strong>avril 2009 et le 18 décembre 2009</strong>, <strong>s'est fautivement abstenue d'agir</strong> → responsabilité de l'État engagée</li>
+    </ul>
+  </div>
+  <div class="juris">
+    <span class="jr">⚖️ CE, 16 novembre 2020, n° 431159 et n° 437600 — Prothèses PIP</span>
+    <div class="jt">Carence fautive de l'ex-AFSSAPS écartée en matériovigilance</div>
+    <ul>
+      <li>S'agissant du <strong>retrait de produits du marché</strong>, la faute consiste en une <strong>abstention</strong> : plus difficile à appréhender qu'une action positive</li>
+      <li>Suppose une <strong>datation fine</strong> pour établir à partir de quand une inaction se transforme en <strong>inertie fautive</strong> et, symétriquement, à partir de quelles initiatives cette inertie prend fin</li>
+      <li>Le CE <strong>ne retient pas la carence</strong> fautive de l'AFSSAPS</li>
+    </ul>
+  </div>
+</div>
+
+<div class="juris">
+  <span class="jr">⚖️ CE, ord. référé, 3 mars 2026 — Toxines « céréulide » dans des laits infantiles (association Intox'Alim)</span>
+  <div class="jt">Recommandations sanitaires du ministère validées — demande de modification rejetée</div>
+  <ul>
+    <li>Saisi en urgence par l'association Intox'Alim qui demandait la modification des recommandations sanitaires diffusées aux professionnels suite à la détection de toxines céréulide dans des laits infantiles</li>
+    <li>Le juge des référés du Conseil d'État <strong>rejette</strong> la demande : les recommandations du ministère chargé de la santé <strong>ne portent pas atteinte au droit à la protection de la santé</strong> car elles permettent une prise en charge médicale adaptée</li>
+    <li>Elles ne font pas plus <strong>obstacle au rassemblement de preuves</strong> par les familles pour d'éventuelles actions en justice</li>
+  </ul>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     SECTION 1
+════════════════════════════════════════ -->
+<div class="sh s1">
+  <div class="sn">Section 1</div>
+  <h2>Le fondement de la veille sanitaire : la loi du 1er juillet 1998</h2>
+  <p>§1. L'InVS · §2. La sécurité des produits de santé (AFSSAPS → ANSM) · §3. L'AFSSA · §4. L'AFSSET</p>
+</div>
+
+<div class="sub bleu">Contexte historique : deux vagues législatives</div>
+
+<div class="ret">
+  <div class="ri">📜</div>
+  <div class="rb">
+    <strong>1ère vague : 1993-1994 — Le sang contaminé comme déclencheur</strong>
+    <ul>
+      <li>Un 1er projet de loi sur l'Agence du médicament avait été discuté en <strong>1991</strong> sans aboutir</li>
+      <li>C'est seulement fin 1992, dans le contexte du <strong>drame de la transfusion sanguine</strong>, qu'un 2nd projet est déposé</li>
+      <li><strong>Loi du 4 janvier 1993</strong> : crée l'Agence du médicament + l'Agence française du sang. Supprime deux services du ministère de la santé : la <strong>direction de la pharmacie et du médicament</strong> et le <strong>laboratoire national de la santé</strong></li>
+      <li>Innovation majeure : véritable <strong>délégation de pouvoir de police sanitaire</strong> au profit de l'Agence — le plus haut degré d'autonomie accordé à une agence jusqu'alors</li>
+    </ul>
+    <strong style="margin-top:.6rem;">2ème vague : 1998 — Structuration globale</strong>
+    <ul>
+      <li><strong>Loi n° 98-535 du 1er juillet 1998</strong> : renforcement de la veille sanitaire, restructuration des institutions, création d'un système complet d'agences sanitaires</li>
+    </ul>
+  </div>
+</div>
+
+<div class="loi">
+  <span class="lr">⚖️ Base légale centrale</span>
+  <div class="lt">Loi n° 98-535 du 1er juillet 1998 relative au renforcement de la veille sanitaire et du contrôle de la sécurité sanitaire des produits destinés à l'homme</div>
+  <ul>
+    <li>Restructure les institutions antérieures</li>
+    <li>Crée un réseau d'agences sanitaires autonomes dotées de la <strong>personnalité juridique</strong> (statuts variés : association, GIP, EPA)</li>
+    <li>Concept d'agence : <strong>autonomie juridique</strong> mais ne renvoie à <strong>aucune catégorie juridique précise</strong></li>
+  </ul>
+</div>
+
+<div class="org">
+  <h3>Les 4 lignes directrices de la loi du 1er juillet 1998</h3>
+  <svg viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px;">
+    <rect x="305" y="118" width="250" height="64" rx="10" fill="#1b4a78"/>
+    <text x="430" y="143" text-anchor="middle" font-family="Playfair Display,serif" font-size="12.5" font-weight="700" fill="white">Loi du 1er juillet 1998</text>
+    <text x="430" y="161" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10.5" fill="#cde3f8">→ Création des agences sanitaires</text>
+    <!-- P1 -->
+    <rect x="10" y="10" width="250" height="90" rx="8" fill="#e8f1fb" stroke="#2a6fad" stroke-width="1.5"/>
+    <rect x="10" y="10" width="250" height="28" rx="8" fill="#2a6fad"/><rect x="10" y="28" width="250" height="10" fill="#2a6fad"/>
+    <text x="135" y="28" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" font-weight="700" fill="white">Principe 1</text>
+    <text x="22" y="54" font-family="Source Serif 4,serif" font-size="10" fill="#333">Séparation des fonctions :</text>
+    <text x="22" y="68" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Production / gestion</text>
+    <text x="22" y="82" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Évaluation des risques / alerte</text>
+    <text x="22" y="96" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Police sanitaire</text>
+    <line x1="260" y1="55" x2="305" y2="138" stroke="#2a6fad" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <!-- P2 -->
+    <rect x="600" y="10" width="250" height="90" rx="8" fill="#e8f1fb" stroke="#2a6fad" stroke-width="1.5"/>
+    <rect x="600" y="10" width="250" height="28" rx="8" fill="#2a6fad"/><rect x="600" y="28" width="250" height="10" fill="#2a6fad"/>
+    <text x="725" y="28" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" font-weight="700" fill="white">Principe 2</text>
+    <text x="612" y="54" font-family="Source Serif 4,serif" font-size="10" fill="#333">Clarification du rôle des experts</text>
+    <text x="612" y="70" font-family="Source Serif 4,serif" font-size="10" fill="#333">pour limiter les conflits d'intérêts</text>
+    <text x="612" y="87" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">→ rendu encore plus impératif</text>
+    <text x="612" y="99" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">après l'affaire Mediator</text>
+    <line x1="600" y1="55" x2="555" y2="138" stroke="#2a6fad" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <!-- P3 -->
+    <rect x="10" y="200" width="250" height="90" rx="8" fill="#e8f1fb" stroke="#2a6fad" stroke-width="1.5"/>
+    <rect x="10" y="200" width="250" height="28" rx="8" fill="#2a6fad"/><rect x="10" y="218" width="250" height="10" fill="#2a6fad"/>
+    <text x="135" y="218" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" font-weight="700" fill="white">Principe 3</text>
+    <text x="22" y="244" font-family="Source Serif 4,serif" font-size="10" fill="#333">Évaluation et police sanitaire</text>
+    <text x="22" y="259" font-family="Source Serif 4,serif" font-size="10" fill="#333">exercées indépendamment</text>
+    <text x="22" y="274" font-family="Source Serif 4,serif" font-size="10" fill="#333">de la tutelle économique</text>
+    <line x1="260" y1="245" x2="305" y2="182" stroke="#2a6fad" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <!-- P4 -->
+    <rect x="600" y="200" width="250" height="90" rx="8" fill="#e8f1fb" stroke="#2a6fad" stroke-width="1.5"/>
+    <rect x="600" y="200" width="250" height="28" rx="8" fill="#2a6fad"/><rect x="600" y="218" width="250" height="10" fill="#2a6fad"/>
+    <text x="725" y="218" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" font-weight="700" fill="white">Principe 4</text>
+    <text x="612" y="244" font-family="Source Serif 4,serif" font-size="10" fill="#333">Dispositif de veille et surveillance</text>
+    <text x="612" y="259" font-family="Source Serif 4,serif" font-size="10" fill="#333">global mis en place pour surveiller</text>
+    <text x="612" y="274" font-family="Source Serif 4,serif" font-size="10" fill="#333">l'état de santé de la population</text>
+    <line x1="600" y1="245" x2="555" y2="182" stroke="#2a6fad" stroke-width="1.5" stroke-dasharray="5,3"/>
+  </svg>
+</div>
+
+<div class="sub bleu">§1. L'Institut de Veille Sanitaire (InVS)</div>
+
+<div class="g2">
+  <div class="ag b">
+    <span class="an2">InVS</span>
+    <div class="at">Institut de Veille Sanitaire</div>
+    <div class="as">Créé par la loi du 1er juillet 1998</div>
+    <ul>
+      <li>Succède au réseau national de santé publique (1992)</li>
+      <li>Renforcé par la loi du <strong>9 août 2004</strong></li>
+      <li>Effectif 2014 : <strong>432 personnes</strong></li>
+      <li>Budget 2014 : <strong>60,06 M€</strong></li>
+      <li>2014-2016 : préparation à la fusion → <strong>Santé Publique France</strong> (2016)</li>
+    </ul>
+  </div>
+  <div class="card b">
+    <div class="ct">📡 Les 4 missions de l'InVS</div>
+    <table>
+      <thead><tr><th class="th2">#</th><th class="th2">Mission</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1</strong></td><td><strong>Surveillance permanente</strong> — recueil et traitement des données épidémiologiques sur l'état de santé, via le réseau national de santé publique (correspondants publics et privés)</td></tr>
+        <tr><td><strong>2</strong></td><td><strong>Veille et vigilance sanitaires</strong> — analyser et actualiser les connaissances sur les risques ; détecter prospectivement les facteurs de risque ; répertorier les populations fragiles pour chaque type de risque</td></tr>
+        <tr><td><strong>3</strong></td><td><strong>Alerte sanitaire</strong> — informer <em>sans délai</em> le ministre en cas de menace, quelle qu'en soit l'origine, et recommander toute mesure appropriée pour prévenir ou atténuer la menace</td></tr>
+        <tr><td><strong>4</strong></td><td><strong>Gestion des crises sanitaires</strong> — proposer aux pouvoirs publics toute mesure ou action nécessaire</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card b">
+  <div class="ct">🗺️ Les CIRE — Cellules interrégionales d'épidémiologie</div>
+  <ul class="l">
+    <li>Relaient l'action de l'InVS / Santé Publique France au niveau régional et exercent une partie de ses missions</li>
+    <li>Placées sous la <strong>responsabilité scientifique du directeur général de l'InVS</strong></li>
+    <li>Localisées au sein des <strong>Agences régionales de santé (ARS)</strong>, au plus près de l'autorité sanitaire</li>
+    <li>Fournissent aux ARS un <strong>appui méthodologique</strong> et une expertise indépendante des signaux d'alerte sanitaire</li>
+    <li>Animent la <strong>veille en région</strong></li>
+    <li><strong>15 CIRE</strong> au total : 12 métropolitaines + 3 ultramarines (Antilles, Guyane, Océan Indien)</li>
+  </ul>
+</div>
+
+<div class="sub bleu">§2. La sécurité des produits de santé : AFSSAPS → ANSM</div>
+
+<div class="org">
+  <h3>Évolution de la branche médicament &amp; sang (1993 → 2012)</h3>
+  <svg viewBox="0 0 860 290" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px;">
+    <defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#555"/></marker></defs>
+
+    <!-- 1993 : Agence du médicament -->
+    <rect x="30" y="10" width="220" height="65" rx="8" fill="#e8f1fb" stroke="#2a6fad" stroke-width="1.5"/>
+    <text x="140" y="32" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" font-weight="700" fill="#1b4a78">Agence du médicament</text>
+    <text x="140" y="49" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#2a6fad">Loi n° 93-5 du 4 jan. 1993</text>
+    <text x="140" y="65" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">1ère délégation police sanitaire déléguée</text>
+
+    <!-- 1993 : Agence française du sang -->
+    <rect x="300" y="10" width="230" height="65" rx="8" fill="#e8f1fb" stroke="#2a6fad" stroke-width="1.5"/>
+    <text x="415" y="32" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" font-weight="700" fill="#1b4a78">Agence française du sang</text>
+    <text x="415" y="49" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#2a6fad">Loi n° 93-5 du 4 jan. 1993</text>
+    <text x="415" y="65" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">Politique transfusion sanguine</text>
+
+    <!-- 1998 : EFS -->
+    <rect x="580" y="10" width="265" height="65" rx="8" fill="#e6f5ed" stroke="#278f55" stroke-width="1.5"/>
+    <text x="712" y="32" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" font-weight="700" fill="#1a5e38">EFS — Établissement français du sang</text>
+    <text x="712" y="49" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#278f55">Art. L. 1222-1 à L. 1222-10 CSP — 1998</text>
+    <text x="712" y="65" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">Fonctions opérationnelles transfusion</text>
+
+    <!-- Flèches vers AFSSAPS -->
+    <line x1="140" y1="75" x2="140" y2="95" stroke="#555" stroke-width="1.5"/>
+    <line x1="415" y1="75" x2="415" y2="95" stroke="#555" stroke-width="1.5"/>
+    <line x1="140" y1="95" x2="415" y2="95" stroke="#555" stroke-width="1.5"/>
+    <line x1="277" y1="95" x2="277" y2="112" stroke="#555" stroke-width="1.5" marker-end="url(#a)"/>
+    <text x="210" y="110" font-family="Source Serif 4,serif" font-size="9.5" fill="#888" font-style="italic">Loi 1er juil. 1998 :</text>
+    <text x="210" y="122" font-family="Source Serif 4,serif" font-size="9.5" fill="#888" font-style="italic">fusion + élargissement</text>
+
+    <!-- Flèche EFS -->
+    <line x1="580" y1="42" x2="530" y2="42" stroke="#278f55" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <text x="535" y="36" font-family="Source Serif 4,serif" font-size="9" fill="#278f55" font-style="italic">sépare</text>
+    <text x="535" y="49" font-family="Source Serif 4,serif" font-size="9" fill="#278f55" font-style="italic">fonctions op.</text>
+
+    <!-- 1998 : AFSSAPS -->
+    <rect x="100" y="120" width="355" height="72" rx="8" fill="#fdf4dc" stroke="#c8940a" stroke-width="2"/>
+    <rect x="100" y="120" width="355" height="28" rx="8" fill="#c8940a"/><rect x="100" y="138" width="355" height="10" fill="#c8940a"/>
+    <text x="277" y="138" text-anchor="middle" font-family="Playfair Display,serif" font-size="12" font-weight="700" fill="white">AFSSAPS</text>
+    <text x="277" y="156" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#6a4700">Agence française de sécurité sanitaire des produits de santé</text>
+    <text x="277" y="170" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#6a4700">Loi 1er juil. 1998 — Compétences : essais · fabrication · AMM · publicité · exportation</text>
+    <text x="277" y="183" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">Contrôle des ETS exercé par l'AFSSAPS (agréments)</text>
+
+    <!-- AFSSAPS victime Mediator -->
+    <rect x="470" y="135" width="380" height="50" rx="6" fill="#fdf0f0" stroke="#c05050" stroke-width="1"/>
+    <text x="660" y="153" text-anchor="middle" font-family="Playfair Display,serif" font-size="10" font-weight="700" fill="#992020">⚠️ Affaire Mediator (Servier)</text>
+    <text x="660" y="168" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#992020">→ Met en cause le dépt. surveillance des risques médicament</text>
+    <text x="660" y="181" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#992020">→ Volonté de renforcer l'indépendance de l'agence</text>
+
+    <!-- Flèche vers ANSM -->
+    <line x1="277" y1="192" x2="277" y2="212" stroke="#555" stroke-width="1.5" marker-end="url(#a)"/>
+    <text x="283" y="207" font-family="Source Serif 4,serif" font-size="9" fill="#888" font-style="italic">Loi 29 déc. 2011</text>
+
+    <!-- ANSM -->
+    <rect x="80" y="220" width="395" height="62" rx="8" fill="#1b4a78"/>
+    <text x="277" y="243" text-anchor="middle" font-family="Playfair Display,serif" font-size="12.5" font-weight="700" fill="white">ANSM</text>
+    <text x="277" y="260" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#cde3f8">Agence nationale de sécurité du médicament et des produits de santé</text>
+    <text x="277" y="275" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#cde3f8">En fonction le 1er mai 2012 — Pouvoirs et moyens renforcés</text>
+  </svg>
+</div>
+
+<div class="g2">
+  <div class="ag o">
+    <span class="an2">AFSSAPS</span>
+    <div class="at">Agence française de sécurité sanitaire des produits de santé</div>
+    <div class="as">Loi du 1er juillet 1998</div>
+    <p>Se substitue à l'Agence du médicament. Domaine élargi à <strong>tous les produits de santé</strong>. Compétente pour : essais, fabrication, préparation, conditionnement, conservation, exploitation, <strong>AMM</strong>, publicité, mise en service, utilisation, importation, exportation.</p>
+    <p style="margin-top:.4rem;">L'EFS reste séparé : fonctions opérationnelles transfusion. Chaque établissement de transfusion sanguine est agréé par l'AFSSAPS.</p>
+  </div>
+  <div class="ag b">
+    <span class="an2">ANSM</span>
+    <div class="at">Agence nationale de sécurité du médicament et des produits de santé</div>
+    <div class="as">Loi du 29 décembre 2011 — en fonction 1er mai 2012</div>
+    <p>Se substitue à l'AFSSAPS — reprend ses missions, droits et obligations. Pouvoirs et moyens <strong>renforcés</strong> après l'affaire Mediator. Indépendance de ses membres renforcée.</p>
+    <p style="font-weight:700;margin-top:.4rem;font-size:.82rem;">2 missions centrales :</p>
+    <ul>
+      <li>Offrir un <strong>accès équitable à l'innovation</strong> pour tous les patients</li>
+      <li>Garantir la <strong>sécurité des produits de santé</strong> tout au long de leur cycle de vie (des essais initiaux jusqu'à la surveillance post-AMM)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sub rouge">🔴 Affaire du Mediator — Laboratoires Servier</div>
+
+<div class="card r">
+  <div class="ct">💊 Déroulement de l'affaire</div>
+  <ul class="l">
+    <li><strong>Médicament</strong> : benfluorex (Mediator) — anti-diabétique utilisé comme <strong>coupe-faim</strong>, commercialisé ~30 ans (1976-2009)</li>
+    <li>Les risques d'<strong>affections cardiaques mortelles</strong> étaient connus dès les <strong>années 1990</strong></li>
+    <li>Les laboratoires Servier accusés d'avoir <strong>sciemment dissimulé</strong> les propriétés anorexigènes et la dangerosité du Mediator</li>
+    <li><strong>Dr Irène Frachon</strong> : lanceuse d'alerte → a alerté le grand public sur la dangerosité</li>
+    <li>Bilan : <strong>~4 000 victimes dont 2 000 décès</strong> (initialement estimé entre 500 et 2 000)</li>
+    <li>Procès hors norme : <strong>10 ans de procédure</strong> · plus de <strong>6 500 parties civiles</strong> · <strong>450 avocats</strong> · <strong>~40 prévenus</strong></li>
+    <li>Amendes requises : plus de <strong>10 millions €</strong> contre 6 sociétés du groupe (tromperie aggravée, escroquerie, homicides et blessures involontaires) · 200 000 € contre l'ANSM</li>
+  </ul>
+</div>
+
+<div class="juris">
+  <span class="jr">⚖️ Tribunal correctionnel de Paris, 29 mars 2021</span>
+  <div class="jt">Condamnation Servier et ANSM</div>
+  <ul>
+    <li>Servier : reconnu coupable de <strong>tromperie aggravée</strong> et <strong>homicides et blessures involontaires</strong> → condamné à <strong>2,7 millions € d'amende</strong> · relaxé du délit d'escroquerie</li>
+    <li>Jean-Philippe Seta (n°2 du groupe) : <strong>4 ans d'emprisonnement avec sursis</strong> · Jacques Servier est mort en 2014</li>
+    <li>L'ANSM condamnée à : <strong>303 000 €</strong> (tardivité de suspension) + <strong>225 000 €</strong> (homicides et blessures involontaires par négligence) + <strong>78 000 €</strong> (amendes contraventionnelles)</li>
+  </ul>
+</div>
+
+<div class="sub rouge">🔴 Affaire de la Dépakine — Laboratoire Sanofi</div>
+
+<div class="card r">
+  <div class="ct">💊 Déroulement de l'affaire</div>
+  <div class="g2">
+    <ul class="l">
+      <li><strong>Valproate de sodium</strong> dans l'anti-épileptique Dépakine (Sanofi) et dans d'autres médicaments pour troubles bipolaires</li>
+      <li>Risques : <strong>malformations</strong>, retards intellectuels, autisme chez les enfants exposés <em>in utero</em></li>
+      <li>Selon l'ANSM : <strong>14 322 femmes enceintes</strong> exposées entre 2007 et 2014</li>
+      <li>Étude ANSM-CNAM (22 juin 2018) : enfants exposés ont <strong>4 à 5 fois plus de risques</strong> de troubles mentaux et du comportement</li>
+      <li><strong>16 000 à 30 000 enfants</strong> seraient touchés</li>
+    </ul>
+    <ul class="l">
+      <li><strong>1ère action de groupe en santé publique</strong> : lancée en mai 2017 par l'APESAC (Association d'aide aux parents d'enfants souffrant du syndrome de l'anticonvulsivant)</li>
+      <li>Dispositif d'indemnisation créé en <strong>2017</strong>, adossé à l'<strong>ONIAM</strong></li>
+      <li><strong>Rapport Sénat Klinger (28 sept. 2022)</strong> : soulève la complexité des responsabilités ; relève du régime de droit commun des produits défectueux (directive <strong>85/374/CEE</strong>) alors que les médicaments présentent des <strong>risques inhérents</strong> → réflexion européenne préconisée</li>
+    </ul>
+  </div>
+</div>
+
+<div class="g2">
+  <div class="juris">
+    <span class="jr">⚖️ Cour d'appel d'Orléans, 11 décembre 2017</span>
+    <div class="jt">1ère condamnation de Sanofi</div>
+    <ul>
+      <li>Sanofi condamné à verser <strong>3 millions € d'indemnités</strong></li>
+      <li>Aucune information sur les dangers du traitement n'avait été donnée à la patiente lors de sa grossesse → sa fille présente de graves malformations</li>
+    </ul>
+  </div>
+  <div class="juris">
+    <span class="jr">⚖️ TA Montreuil, 2 juillet 2020, n° 1704275, 1704392, 1704394</span>
+    <div class="jt">Responsabilité partielle de l'État reconnue</div>
+    <ul>
+      <li>Carence fautive dans le contrôle de l'<strong>information figurant dans la notice</strong> du médicament</li>
+      <li>Pour les grossesses <strong>2005-2008</strong> : les risques de malformations congénitales et de troubles neurodéveloppementaux liés à l'exposition in utero au valproate de sodium étaient <strong>suffisamment connus</strong></li>
+      <li>La notice <strong>ne renseignait pas suffisamment</strong> les patientes → faute de l'ex-AFSSAPS (devenue ANSM)</li>
+      <li>Exonération partielle retenue eu égard au <strong>comportement du laboratoire</strong> et des médecins prescripteurs</li>
+    </ul>
+  </div>
+</div>
+
+<div class="g2">
+  <div class="juris">
+    <span class="jr">⚖️ Tribunal judiciaire de Paris, 5 janvier 2022</span>
+    <div class="jt">1ère action de groupe en santé publique jugée recevable</div>
+    <ul>
+      <li>L'action de l'APESAC déclarée <strong>recevable</strong></li>
+      <li>Sanofi a <strong>commis une faute en manquant à son obligation de vigilance et à son obligation d'information</strong> concernant les risques du médicament</li>
+    </ul>
+  </div>
+  <div class="juris">
+    <span class="jr">⚖️ CAA Paris, 14 janvier 2025</span>
+    <div class="jt">Confirmation de la responsabilité de l'État</div>
+    <ul>
+      <li>Confirme la responsabilité de l'État du fait du <strong>défaut de contrôle par l'ANSM</strong> de la notice qui n'énumérait pas assez précisément les risques pour le fœtus</li>
+      <li>Réparation de la <strong>perte de chance</strong> d'éviter le dommage si une information complète avait été donnée aux mères leur permettant de renoncer à leur grossesse</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sub bleu">§3. L'Agence française de sécurité sanitaire des aliments (AFSSA)</div>
+
+<div class="ag o" style="margin-bottom:1rem;">
+  <span class="an2">AFSSA</span>
+  <div class="at">Agence française de sécurité sanitaire des aliments</div>
+  <div class="as">Créée par la loi du 1er juillet 1998 — mise en place le 1er avril 1999 — suite à l'affaire de la vache folle (1996)</div>
+  <div class="g2" style="margin-top:.5rem;">
+    <ul>
+      <li><strong>Triple tutelle</strong> : ministère de la santé + agriculture + consommation</li>
+      <li>Établissement public placé sous le contrôle de l'État</li>
+      <li>Mission : assurer la <strong>sécurité sanitaire dans le domaine de l'alimentation</strong>, depuis la production des matières premières jusqu'à la distribution au consommateur final</li>
+    </ul>
+    <ul>
+      <li>Évalue les risques sanitaires et nutritionnels des aliments destinés à l'homme ou aux animaux (y compris eaux, maladies animales, aliments pour animaux…)</li>
+      <li>Compétence également sur le <strong>médicament vétérinaire</strong> (police sanitaire)</li>
+      <li>→ Fusionnera avec l'AFSSET en 2010 pour former l'<strong>ANSES</strong></li>
+    </ul>
+  </div>
+</div>
+
+<div class="card o">
+  <div class="ct">🧪 Exemple — Avis ANSES n° 2019-SA-0036 du 12 avril 2019 : additif E171 (dioxyde de titane)</div>
+  <ul class="l">
+    <li>L'ANSES produit en 2017 un avis sur la toxicité orale du E171 : l'exposition chronique de rats à l'additif E171 par voie orale serait susceptible d'entraîner des <strong>lésions colorectales précancéreuses</strong> → principe de précaution</li>
+    <li><strong>Arrêté du 17 avril 2019</strong> (NOR ECOC1911549A) : suspension de la mise sur le marché des denrées alimentaires contenant l'additif E171 (dioxyde de titane)</li>
+    <li><strong>Règlement (UE) 2022/63 du 14 janvier 2022</strong> : depuis le <strong>7 février 2022</strong>, interdiction européenne du dioxyde de titane dans les produits alimentaires</li>
+  </ul>
+</div>
+
+<div class="sub bleu">§4. L'AFSSE → AFSSET</div>
+
+<div class="g2">
+  <div class="ag o">
+    <span class="an2">AFSSE</span>
+    <div class="at">Agence française de sécurité sanitaire environnementale</div>
+    <div class="as">Loi du 9 mai 2001</div>
+    <p>Créée suite au <strong>rapport IGAS 2004</strong> pointant les lacunes du dispositif de veille sur les risques pesant sur les travailleurs exposés aux produits chimiques. Et suite à la décision <strong>CE, 3 mars 2004</strong> : responsabilité de l'État pour carence fautive dans l'exposition des travailleurs à l'amiante (ni évaluation des risques, ni mesures protectrices).</p>
+  </div>
+  <div class="ag o">
+    <span class="an2">AFSSET</span>
+    <div class="at">Agence française de sécurité sanitaire de l'environnement et du travail</div>
+    <div class="as">Ordonnance n° 2005-1087 du 1er septembre 2005</div>
+    <p>Tutelle conjointe : <strong>environnement + santé + travail</strong>.</p>
+    <p style="margin-top:.4rem;"><strong>Missions :</strong> contribuer à la sécurité sanitaire dans les domaines de l'environnement et du travail ; évaluer les risques sanitaires ; fournir aux autorités l'expertise nécessaire à l'élaboration des dispositions législatives et réglementaires et aux mesures de gestion des risques.</p>
+    <p style="margin-top:.4rem;">→ Fusionnera avec l'AFSSA en 2010 pour former l'<strong>ANSES</strong></p>
+  </div>
+</div>
+
+<div class="ret">
+  <div class="ri">⚠️</div>
+  <div class="rb">
+    <strong>Bilan critique de la multiplication des agences</strong>
+    <ul>
+      <li>✅ La création des agences a permis de constituer une administration dotée de moyens et d'une <strong>légitimité scientifique</strong></li>
+      <li>❌ Leur multiplication a contribué à la <strong>complexification</strong> du système et à un <strong>cloisonnement</strong> entre acteurs</li>
+      <li>Rapport Girard (oct. 2006) : préconise un modèle <em>« plus simple, plus réactif, plus complet et plus efficient »</em></li>
+      <li>Sénatrice Nicole Bricq : nécessaire rationalisation pour arriver à la <strong>stabilisation</strong></li>
+      <li><strong>Conseil de modernisation des politiques publiques, 4 avril 2008</strong> : annonce le regroupement des agences sanitaires nationales</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     SECTION 2
+════════════════════════════════════════ -->
+<div class="sh s2">
+  <div class="sn">Section 2</div>
+  <h2>La rationalisation par la fusion</h2>
+  <p>§1. ANSES (fusion AFSSA + AFSSET) · §2. Santé Publique France (fusion InVS + INPES + EPRUS) · CASA</p>
+</div>
+
+<div class="org">
+  <h3>Organigramme complet des agences sanitaires — de 1993 à 2016</h3>
+  <svg viewBox="0 0 860 460" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px;">
+    <defs><marker id="b" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#555"/></marker></defs>
+
+    <!-- ── BRANCHE GAUCHE : Médicament/Sang → ANSM ── -->
+    <text x="200" y="18" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" fill="#555" font-style="italic">Branche médicament &amp; sang</text>
+    <!-- Agence médicament -->
+    <rect x="10" y="25" width="175" height="52" rx="7" fill="#e8f1fb" stroke="#2a6fad" stroke-width="1.5"/>
+    <text x="97" y="47" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#1b4a78">Agence du médicament</text>
+    <text x="97" y="64" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#2a6fad">Loi 4 jan. 1993</text>
+    <!-- AFS -->
+    <rect x="195" y="25" width="165" height="52" rx="7" fill="#e8f1fb" stroke="#2a6fad" stroke-width="1.5"/>
+    <text x="277" y="47" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#1b4a78">Agence fr. du sang</text>
+    <text x="277" y="64" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#2a6fad">Loi 4 jan. 1993</text>
+    <line x1="97" y1="77" x2="97" y2="95" stroke="#555" stroke-width="1.2"/>
+    <line x1="277" y1="77" x2="277" y2="95" stroke="#555" stroke-width="1.2"/>
+    <line x1="97" y1="95" x2="277" y2="95" stroke="#555" stroke-width="1.2"/>
+    <line x1="188" y1="95" x2="188" y2="110" stroke="#555" stroke-width="1.5" marker-end="url(#b)"/>
+    <!-- AFSSAPS -->
+    <rect x="70" y="118" width="240" height="46" rx="7" fill="#fdf4dc" stroke="#c8940a" stroke-width="2"/>
+    <text x="190" y="138" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" font-weight="700" fill="#9a6a00">AFSSAPS — 1998</text>
+    <text x="190" y="155" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">Tous produits de santé (AMM, essais, exportation…)</text>
+    <line x1="190" y1="164" x2="190" y2="180" stroke="#555" stroke-width="1.5" marker-end="url(#b)"/>
+    <text x="198" y="176" font-family="Source Serif 4,serif" font-size="9" fill="#888" font-style="italic">Loi 29 déc. 2011</text>
+    <!-- ANSM -->
+    <rect x="50" y="188" width="280" height="46" rx="7" fill="#1b4a78"/>
+    <text x="190" y="207" text-anchor="middle" font-family="Playfair Display,serif" font-size="12" font-weight="700" fill="white">ANSM — 2012</text>
+    <text x="190" y="224" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#cde3f8">Pouvoirs renforcés post-Mediator</text>
+    <!-- EFS (séparé) -->
+    <rect x="350" y="118" width="215" height="46" rx="7" fill="#e6f5ed" stroke="#278f55" stroke-width="1.5"/>
+    <text x="457" y="138" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#1a5e38">EFS — 1998</text>
+    <text x="457" y="155" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#278f55">Fonctions opérationnelles transfusion</text>
+
+    <!-- ── BRANCHE MILIEU : Alim/Env/Travail → ANSES ── -->
+    <text x="620" y="18" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" fill="#555" font-style="italic">Branche alimentation / environnement / travail</text>
+    <!-- AFSSA -->
+    <rect x="575" y="25" width="140" height="52" rx="7" fill="#e6f5ed" stroke="#278f55" stroke-width="1.5"/>
+    <text x="645" y="47" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#1a5e38">AFSSA</text>
+    <text x="645" y="64" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#278f55">Aliments — 1998</text>
+    <!-- AFSSE -->
+    <rect x="725" y="25" width="130" height="52" rx="7" fill="#fdf4dc" stroke="#c8940a" stroke-width="1.5"/>
+    <text x="790" y="47" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#9a6a00">AFSSE</text>
+    <text x="790" y="64" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#c8940a">Environnement — 2001</text>
+    <!-- AFSSET -->
+    <rect x="725" y="95" width="130" height="48" rx="7" fill="#fdf4dc" stroke="#c8940a" stroke-width="2"/>
+    <text x="790" y="115" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#9a6a00">AFSSET</text>
+    <text x="790" y="130" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">Ordonnance 2005-1087</text>
+    <text x="790" y="142" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9" fill="#888">Env.+Santé+Travail</text>
+    <line x1="790" y1="77" x2="790" y2="95" stroke="#c8940a" stroke-width="1.5" marker-end="url(#b)"/>
+    <!-- Flèches vers ANSES -->
+    <line x1="645" y1="77" x2="645" y2="175" stroke="#555" stroke-width="1.2"/>
+    <line x1="790" y1="143" x2="790" y2="175" stroke="#555" stroke-width="1.2"/>
+    <line x1="645" y1="175" x2="790" y2="175" stroke="#555" stroke-width="1.2"/>
+    <line x1="718" y1="175" x2="718" y2="190" stroke="#555" stroke-width="1.5" marker-end="url(#b)"/>
+    <text x="655" y="172" font-family="Source Serif 4,serif" font-size="9" fill="#888" font-style="italic">Ordo. 2010-18</text>
+    <!-- ANSES -->
+    <rect x="610" y="198" width="218" height="46" rx="7" fill="#1a5e38"/>
+    <text x="719" y="218" text-anchor="middle" font-family="Playfair Display,serif" font-size="12" font-weight="700" fill="white">ANSES — 2010</text>
+    <text x="719" y="234" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#c0f0d8">5 tutelles · 1350 agents · 11 labos</text>
+
+    <!-- ── BRANCHE BAS : InVS + INPES + EPRUS → SPF ── -->
+    <text x="430" y="282" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" fill="#555" font-style="italic">Fusion vers Santé Publique France (2016)</text>
+    <!-- InVS -->
+    <rect x="155" y="292" width="155" height="52" rx="7" fill="#e8f1fb" stroke="#2a6fad" stroke-width="1.5"/>
+    <text x="232" y="314" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#1b4a78">InVS</text>
+    <text x="232" y="330" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#2a6fad">Veille sanitaire — 1998</text>
+    <text x="232" y="342" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9" fill="#888">Succède au RNSP (1992)</text>
+    <!-- INPES -->
+    <rect x="330" y="292" width="155" height="52" rx="7" fill="#e8f1fb" stroke="#2a6fad" stroke-width="1.5"/>
+    <text x="407" y="314" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#1b4a78">INPES</text>
+    <text x="407" y="330" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#2a6fad">Prévention — Loi 4 mars 2002</text>
+    <text x="407" y="342" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9" fill="#888">Élargi par la loi du 9 août 2004</text>
+    <!-- EPRUS -->
+    <rect x="505" y="292" width="160" height="52" rx="7" fill="#e8f1fb" stroke="#2a6fad" stroke-width="1.5"/>
+    <text x="585" y="314" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#1b4a78">EPRUS</text>
+    <text x="585" y="330" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#2a6fad">Urgences — Loi 5 mars 2007</text>
+    <text x="585" y="342" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9" fill="#888">Réserve sanitaire</text>
+    <!-- Flèches vers SPF -->
+    <line x1="232" y1="344" x2="232" y2="364" stroke="#1a5e38" stroke-width="1.2"/>
+    <line x1="407" y1="344" x2="407" y2="364" stroke="#1a5e38" stroke-width="1.2"/>
+    <line x1="585" y1="344" x2="585" y2="364" stroke="#1a5e38" stroke-width="1.2"/>
+    <line x1="232" y1="364" x2="585" y2="364" stroke="#1a5e38" stroke-width="1.2"/>
+    <line x1="408" y1="364" x2="408" y2="380" stroke="#1a5e38" stroke-width="1.5" marker-end="url(#b)"/>
+    <text x="340" y="376" font-family="Source Serif 4,serif" font-size="9" fill="#1a5e38" font-style="italic">Art. 166, Loi 2016-41 · Décret 2016-523</text>
+    <!-- SPF -->
+    <rect x="250" y="390" width="318" height="50" rx="8" fill="#1a5e38"/>
+    <text x="409" y="412" text-anchor="middle" font-family="Playfair Display,serif" font-size="13" font-weight="700" fill="white">Santé Publique France</text>
+    <text x="409" y="431" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#c0f0d8">Agence nationale de santé publique — 2016</text>
+
+    <!-- CASA -->
+    <rect x="10" y="390" width="225" height="50" rx="7" fill="#e8f1fb" stroke="#2a6fad" stroke-width="1.5"/>
+    <text x="122" y="411" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#1b4a78">CASA — 2016</text>
+    <text x="122" y="427" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9" fill="#888">Coordination inter-agences</text>
+    <text x="122" y="440" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9" fill="#888">Ordonnance n° 2016-967</text>
+  </svg>
+</div>
+
+<div class="sub bleu">§1. L'ANSES — Agence nationale de sécurité sanitaire de l'alimentation, de l'environnement et du travail</div>
+
+<div class="ag v" style="margin-bottom:1rem;">
+  <span class="an2">ANSES</span>
+  <div class="at">Agence nationale de sécurité sanitaire de l'alimentation, de l'environnement et du travail</div>
+  <div class="as">Ordonnance n° 2010-18 du 7 janvier 2010 — Décrets d'application n° 2010-688 du 23 juin 2010 et n° 2010-719 du 29 juin 2010</div>
+  <div class="g2" style="margin-top:.5rem;">
+    <ul>
+      <li>Créée le <strong>1er juillet 2010</strong> par fusion AFSSA + AFSSET</li>
+      <li>EPA placé sous la tutelle de <strong>5 ministères</strong> : Santé · Agriculture · Environnement · Travail · Consommation</li>
+      <li>Réseau de <strong>11 laboratoires</strong> de référence sur <strong>16 implantations géographiques</strong></li>
+      <li>~<strong>1 350 agents</strong> + <strong>800 experts extérieurs</strong></li>
+    </ul>
+    <ul>
+      <li>Missions : veille · expertise · recherche · référence sur la <strong>santé humaine, animale et végétale</strong></li>
+      <li>Offre une lecture <strong>transversale</strong> des questions sanitaires</li>
+      <li>Couvre l'ensemble des expositions (particules, ondes, inhalation, ingestion…) à tous les âges et moments de la vie (travail, transports, loisirs, alimentation)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sub bleu">§2. Santé Publique France — Agence nationale de santé publique</div>
+
+<div class="ag v" style="margin-bottom:1rem;">
+  <span class="an2">Santé Publique France</span>
+  <div class="at">Agence nationale de santé publique</div>
+  <div class="as">Article 166 de la loi n° 2016-41 du 26 janvier 2016 · Ordonnance n° 2016-462 du 14 avril 2016 · Décret n° 2016-523 du 27 avril 2016 · Loi n° 2017-228 du 24 février 2017 (ratification)</div>
+  <div class="g2" style="margin-top:.5rem;">
+    <div>
+      <p style="font-weight:700;font-size:.85rem;color:var(--v);margin-bottom:.3rem;">Fusion de 3 agences :</p>
+      <ul>
+        <li><strong>InVS</strong> (Institut de veille sanitaire, 1998) : veille, surveillance, alerte, gestion de crise</li>
+        <li><strong>INPES</strong> (Institut national de prévention et d'éducation pour la santé, loi 4 mars 2002) : politiques de prévention et d'éducation à la santé — missions élargies par la loi du 9 août 2004</li>
+        <li><strong>EPRUS</strong> (Établissement de préparation et de réponse aux urgences sanitaires, loi 5 mars 2007) : réserve sanitaire, logistique de crise</li>
+      </ul>
+    </div>
+    <div>
+      <p style="font-weight:700;font-size:.85rem;color:var(--v);margin-bottom:.3rem;">Objectifs de la fusion :</p>
+      <ul>
+        <li>Améliorer la <strong>cohérence et continuité</strong> des missions de prévention, promotion, veille, surveillance et intervention</li>
+        <li>Renforcer des missions encore <strong>mal couvertes</strong> : conception et évaluation des interventions en santé ; évaluation de l'impact sur la santé des politiques publiques</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card b">
+  <div class="ct">🏛️ CASA — Comité d'Animation du Système d'Agences</div>
+  <div class="g2">
+    <div>
+      <p style="font-size:.85rem;font-weight:700;color:var(--b);margin-bottom:.3rem;">Base légale :</p>
+      <ul class="l" style="font-size:.85rem;">
+        <li>Ordonnance n° 2016-967 du 15 juillet 2016 (fondée sur art. 166, 204, 216 de la loi 2016-41)</li>
+        <li>Décret n° 2017-1590 du 20 novembre 2017 (composition et fonctionnement)</li>
+      </ul>
+    </div>
+    <div>
+      <p style="font-size:.85rem;font-weight:700;color:var(--b);margin-bottom:.3rem;">Membres :</p>
+      <ul class="l" style="font-size:.84rem;">
+        <li>EFS · ANSES · Santé Publique France · INCa · Agence de biomédecine · ANSM · HAS · ASN · IRSN</li>
+        <li>Objectif : harmonisation des pratiques et bon fonctionnement des interactions dans l'intérêt de la santé publique</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     SECTION 3
+════════════════════════════════════════ -->
+<div class="sh s3">
+  <div class="sn">Section 3</div>
+  <h2>Les plans d'alerte</h2>
+  <p>§1. Loi du 30 juin 2004 — Plan canicule · §2. Loi du 5 mars 2007 — EPRUS &amp; réserve sanitaire · §3. Covid-19 &amp; état d'urgence sanitaire</p>
+</div>
+
+<div class="sub rouge">§1. Loi du 30 juin 2004 — Plan d'alerte canicule</div>
+
+<div class="loi" style="background:var(--rp);border-color:#c05050;">
+  <span class="lr" style="color:var(--r);">⚖️ Loi du 30 juin 2004 relative à la solidarité des personnes âgées et des personnes handicapées</span>
+  <div class="lt">Plan d'alerte et d'urgence — suite à la canicule d'août 2003 (~15 000 morts)</div>
+  <ul>
+    <li>Modifie l'<strong>article L. 116-3 du Code de l'action sociale et des familles (CASF)</strong></li>
+    <li>Introduit un <strong>plan d'alerte et d'urgence dans chaque département</strong> au profit des personnes âgées et des personnes handicapées en cas de risques exceptionnels</li>
+    <li>Plan arrêté conjointement par le <strong>représentant de l'État dans le département</strong> (et à Paris : le préfet de police) ET par le <strong>président du conseil général</strong></li>
+    <li>Mis en œuvre sous l'autorité du <strong>représentant de l'État dans le département</strong></li>
+    <li>Prend en compte les personnes les plus vulnérables du fait de leur <strong>isolement</strong></li>
+    <li>Les <strong>maires</strong> recueillent les données (identité, âge, domicile) des personnes âgées et handicapées qui en ont <strong>fait la demande</strong> → services sociaux organisent un <strong>contact périodique</strong> lors du déclenchement du plan</li>
+    <li>Les maires peuvent également procéder à ce recueil à la demande d'un tiers <strong>si la personne concernée ne s'y est pas opposée</strong></li>
+  </ul>
+</div>
+
+<div class="card r">
+  <div class="ct">🌡️ Chiffres clés — Impact de la chaleur sur la mortalité (Santé Publique France)</div>
+  <div class="g2">
+    <div>
+      <p style="font-size:.85rem;font-weight:700;color:var(--r);margin-bottom:.3rem;">Étude 2018 — 18 villes de France métropolitaine :</p>
+      <ul class="l" style="font-size:.84rem;">
+        <li>2000-2010 : <strong>3,9 %</strong> de la mortalité totale attribuable au <strong>froid</strong> et <strong>1,2 %</strong> à la <strong>chaleur</strong></li>
+        <li>Impact du froid : débute <strong>2 jours</strong> après l'exposition, persiste au moins <strong>21 jours</strong></li>
+        <li>Impact de la chaleur : maximum <strong>le jour même</strong>, ne persiste que quelques jours</li>
+        <li>Températures très élevées (rares) : <strong>~30 %</strong> du poids total de la mortalité liée à la chaleur</li>
+        <li>Température optimale : <strong>13°C à Lille</strong> → <strong>22°C à Paris</strong></li>
+        <li>Au-delà de 23-28°C selon la ville : chaque degré supplémentaire → augmentation <strong>très rapide</strong> du risque de décès</li>
+      </ul>
+    </div>
+    <div>
+      <p style="font-size:.85rem;font-weight:700;color:var(--r);margin-bottom:.3rem;">Étude SPF — mai 2023 (France métropolitaine, 2014-2022) :</p>
+      <ul class="l" style="font-size:.84rem;">
+        <li><strong>32 658 décès</strong> attribuables à la chaleur (1er juin – 15 sept.) dont <strong>3 080 de +75 ans</strong></li>
+        <li><strong>28 %</strong> de ces décès observés pendant les canicules</li>
+        <li><strong>2022</strong> : 6 969 décès en excès (29 % pendant canicules) — record</li>
+        <li><strong>2019</strong> : 4 441 décès en excès (42 % pendant canicules)</li>
+        <li>Impact également supérieur à 4 000 décès en 2018 et 2020</li>
+        <li>IRDES 2025 : les politiques climatiques sont une <strong>opportunité pour la santé publique</strong> (effet sur la santé des politiques environnementales et sociales)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sub rouge">§2. Loi du 5 mars 2007 — EPRUS et réserve sanitaire</div>
+
+<div class="loi" style="background:var(--rp);border-color:#c05050;">
+  <span class="lr" style="color:var(--r);">⚖️ Loi du 5 mars 2007 relative à la préparation du système de santé à des menaces sanitaires de grande ampleur</span>
+  <div class="lt">Dispositions novatrices : EPRUS + corps de réserve sanitaire</div>
+  <ul>
+    <li>Crée un <strong>corps de réserve sanitaire</strong> : professionnels et anciens professionnels de santé + autres personnes compétentes</li>
+    <li>Crée l'<strong>EPRUS</strong> : EPA sous tutelle du ministre chargé de la Santé → intégré à <strong>Santé Publique France en 2016</strong></li>
+  </ul>
+</div>
+
+<div class="g2">
+  <div class="ag r">
+    <span class="an2">EPRUS</span>
+    <div class="at">Établissement de Préparation et de Réponse aux Urgences Sanitaires</div>
+    <div class="as">Loi du 5 mars 2007 — devenu Santé Publique France en 2016</div>
+    <p><strong>Mission</strong> : prévention et gestion des risques sanitaires exceptionnels.</p>
+    <ul>
+      <li>Diffuse des informations sur la réserve sanitaire</li>
+      <li>Met en place les <strong>formations</strong> nécessaires et l'organisation pour maintenir la capacité opérationnelle</li>
+      <li>Fournit aux pouvoirs publics l'<strong>expertise logistique</strong> nécessaire à la préparation et mise en œuvre des plans de réponse</li>
+      <li>Propose l'<strong>affectation des réservistes</strong> aux autorités compétentes</li>
+    </ul>
+  </div>
+  <div class="ag r">
+    <span class="an2">Réserve sanitaire</span>
+    <div class="at">Corps de réserve national</div>
+    <div class="as">Loi du 5 mars 2007</div>
+    <p><strong>Composition</strong> : 2 types de réserve :</p>
+    <ul>
+      <li><strong>Réserve d'intervention</strong> : déployable rapidement</li>
+      <li><strong>Réserve de renfort</strong> : montée en puissance si nécessaire</li>
+    </ul>
+    <p style="margin-top:.4rem;"><strong>Fonctionnement</strong> :</p>
+    <ul>
+      <li>Engagement sous forme de <strong>contrat</strong> (missions internationales possibles)</li>
+      <li>Activation par <strong>arrêté motivé conjoint</strong> des ministres de la Santé et de la Sécurité civile</li>
+      <li>Affectation des réservistes par le <strong>représentant de l'État dans le département</strong></li>
+    </ul>
+  </div>
+</div>
+
+<div class="sub rouge">Les 3 stades épidémiques (depuis H1N1, 2009)</div>
+
+<div class="org">
+  <h3>Les 3 stades épidémiques français et leurs mesures</h3>
+  <svg viewBox="0 0 860 310" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px;">
+    <defs><marker id="c" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#555"/></marker></defs>
+    <!-- Flèche de progression -->
+    <line x1="285" y1="155" x2="310" y2="155" stroke="#555" stroke-width="2.5" marker-end="url(#c)"/>
+    <line x1="577" y1="155" x2="602" y2="155" stroke="#555" stroke-width="2.5" marker-end="url(#c)"/>
+    <text x="297" y="148" text-anchor="middle" font-family="Source Serif 4,serif" font-size="8.5" fill="#888" font-style="italic">aggravation</text>
+    <text x="589" y="148" text-anchor="middle" font-family="Source Serif 4,serif" font-size="8.5" fill="#888" font-style="italic">aggravation</text>
+
+    <!-- STADE 1 -->
+    <rect x="10" y="8" width="273" height="290" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+    <rect x="10" y="8" width="273" height="38" rx="10" fill="#2e7d32"/><rect x="10" y="33" width="273" height="13" fill="#2e7d32"/>
+    <text x="146" y="32" text-anchor="middle" font-family="Playfair Display,serif" font-size="12.5" font-weight="700" fill="white">STADE 1</text>
+    <text x="146" y="51" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" font-weight="700" fill="white">Freiner l'introduction</text>
+    <text x="22" y="75" font-family="Playfair Display,serif" font-size="10" font-weight="700" fill="#2e7d32">Situation :</text>
+    <text x="22" y="91" font-family="Source Serif 4,serif" font-size="10" fill="#333">Virus absent du territoire · Cas isolés</text>
+    <text x="22" y="108" font-family="Playfair Display,serif" font-size="10" font-weight="700" fill="#2e7d32">Objectif :</text>
+    <text x="22" y="124" font-family="Source Serif 4,serif" font-size="10" fill="#333">Détecter les cas isolés le plus tôt possible</text>
+    <text x="22" y="141" font-family="Playfair Display,serif" font-size="10" font-weight="700" fill="#2e7d32">Mesures :</text>
+    <text x="22" y="157" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Dépister &amp; prendre en charge suspects</text>
+    <text x="22" y="172" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Confinement des cas avérés</text>
+    <text x="22" y="187" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Traçage &amp; prise en charge des contacts</text>
+    <text x="22" y="202" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Protéger les soignants</text>
+    <text x="22" y="217" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Alerter l'ARS</text>
+    <text x="22" y="232" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Constituer les stocks de produits de santé</text>
+    <text x="22" y="247" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Mettre en place les plateformes d'info</text>
+    <text x="22" y="262" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Vérifier l'état de santé des voyageurs</text>
+    <text x="22" y="277" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">  (ports, aéroports…)</text>
+
+    <!-- STADE 2 -->
+    <rect x="318" y="8" width="255" height="290" rx="10" fill="#fff8e1" stroke="#f57f17" stroke-width="2"/>
+    <rect x="318" y="8" width="255" height="38" rx="10" fill="#f57f17"/><rect x="318" y="33" width="255" height="13" fill="#f57f17"/>
+    <text x="445" y="32" text-anchor="middle" font-family="Playfair Display,serif" font-size="12.5" font-weight="700" fill="white">STADE 2</text>
+    <text x="445" y="51" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" font-weight="700" fill="white">Endiguer la propagation</text>
+    <text x="330" y="75" font-family="Playfair Display,serif" font-size="10" font-weight="700" fill="#e65100">Situation :</text>
+    <text x="330" y="91" font-family="Source Serif 4,serif" font-size="10" fill="#333">Apparition de foyers (clusters) en plusieurs</text>
+    <text x="330" y="106" font-family="Source Serif 4,serif" font-size="10" fill="#333">endroits du territoire · Regroupements</text>
+    <text x="330" y="123" font-family="Playfair Display,serif" font-size="10" font-weight="700" fill="#e65100">Mesures :</text>
+    <text x="330" y="139" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Prise en charge dans des établissements</text>
+    <text x="330" y="154" font-family="Source Serif 4,serif" font-size="10" fill="#333">  habilités pour le traitement</text>
+    <text x="330" y="169" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Fermeture d'établissements scolaires</text>
+    <text x="330" y="184" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Limitation des déplacements, télétravail</text>
+    <text x="330" y="199" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Annulation de manifestations publiques</text>
+    <text x="330" y="214" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">  de plus de 5 000 personnes</text>
+    <text x="330" y="230" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Mises en quarantaine si exposition</text>
+
+    <!-- STADE 3 -->
+    <rect x="610" y="8" width="245" height="290" rx="10" fill="#fce4ec" stroke="#c62828" stroke-width="2"/>
+    <rect x="610" y="8" width="245" height="38" rx="10" fill="#c62828"/><rect x="610" y="33" width="245" height="13" fill="#c62828"/>
+    <text x="732" y="32" text-anchor="middle" font-family="Playfair Display,serif" font-size="12.5" font-weight="700" fill="white">STADE 3</text>
+    <text x="732" y="51" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" font-weight="700" fill="white">Stade épidémique</text>
+    <text x="622" y="75" font-family="Playfair Display,serif" font-size="10" font-weight="700" fill="#c62828">Situation :</text>
+    <text x="622" y="91" font-family="Source Serif 4,serif" font-size="10" fill="#333">Virus en circulation active sur l'ensemble</text>
+    <text x="622" y="106" font-family="Source Serif 4,serif" font-size="10" fill="#333">du territoire · Contrôle de la propagation</text>
+    <text x="622" y="123" font-family="Playfair Display,serif" font-size="10" font-weight="700" fill="#c62828">Mesures :</text>
+    <text x="622" y="139" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Mobilisation collective professionnels</text>
+    <text x="622" y="154" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">  (médecins ville, ETS, ESMS)</text>
+    <text x="622" y="169" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Restrictions de circulation</text>
+    <text x="622" y="184" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">  (fermetures lignes train, transports indiv.)</text>
+    <text x="622" y="199" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Protection des populations fragiles</text>
+    <text x="622" y="214" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Ambulatoire pour les cas légers</text>
+    <text x="622" y="229" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Hospitalisation pour les cas graves</text>
+    <text x="622" y="244" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Assurer la continuité pédagogique</text>
+    <text x="622" y="259" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Chômage partiel</text>
+  </svg>
+</div>
+
+<div class="sub rouge">§3. L'apport de la Covid-19 : l'état d'urgence sanitaire</div>
+
+<div class="org">
+  <h3>Dispositif de l'état d'urgence sanitaire — apport Covid-19</h3>
+  <svg viewBox="0 0 860 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px;">
+
+    <!-- LOIS COVID -->
+    <rect x="10" y="10" width="390" height="140" rx="10" fill="#fdf0f0" stroke="#c05050" stroke-width="1.5"/>
+    <rect x="10" y="10" width="390" height="35" rx="10" fill="#992020"/><rect x="10" y="32" width="390" height="13" fill="#992020"/>
+    <text x="205" y="32" text-anchor="middle" font-family="Playfair Display,serif" font-size="12" font-weight="700" fill="white">4 textes créant l'état d'urgence sanitaire</text>
+    <text x="22" y="65" font-family="Playfair Display,serif" font-size="10" font-weight="700" fill="#992020">Loi n° 2020-290 du 23 mars 2020 (art. 2)</text>
+    <text x="22" y="81" font-family="Source Serif 4,serif" font-size="10" fill="#555">Loi n° 2020-546 du 11 mai 2020 (art. 8 et 9)</text>
+    <text x="22" y="96" font-family="Source Serif 4,serif" font-size="10" fill="#555">Loi n° 2020-856 du 9 juillet 2020 — modification</text>
+    <text x="22" y="111" font-family="Source Serif 4,serif" font-size="10" fill="#555">Loi n° 2020-1379 du 14 novembre 2020 — modification</text>
+    <text x="22" y="132" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">⚠️ Ces lois aménagent le dispositif légal de veille sanitaire</text>
+    <text x="22" y="144" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">dans le Code de la santé publique (CSP)</text>
+
+    <!-- COMITÉ SCIENTIFIQUE -->
+    <rect x="420" y="10" width="430" height="140" rx="10" fill="#e8f1fb" stroke="#2a6fad" stroke-width="1.5"/>
+    <rect x="420" y="10" width="430" height="35" rx="10" fill="#1b4a78"/><rect x="420" y="32" width="430" height="13" fill="#1b4a78"/>
+    <text x="635" y="32" text-anchor="middle" font-family="Playfair Display,serif" font-size="12" font-weight="700" fill="white">Comité de scientifiques — Art. L. 3131-19 CSP</text>
+    <text x="432" y="65" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Réuni <strong>sans délai</strong> lors de la déclaration de l'état d'urgence sanitaire</text>
+    <text x="432" y="81" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Président nommé par <strong>décret du Président de la République</strong></text>
+    <text x="432" y="96" font-family="Source Serif 4,serif" font-size="10" fill="#333">• 2 personnalités qualifiées nommées par le PAN et le PS</text>
+    <text x="432" y="111" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Personnalités qualifiées nommées par décret</text>
+    <text x="432" y="128" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">• Avis communiqués au PM, PAN, PS · Rendus publics sans délai</text>
+    <text x="432" y="143" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">• Dissous lorsque prend fin l'état d'urgence sanitaire</text>
+
+    <!-- COVARS -->
+    <rect x="10" y="168" width="840" height="90" rx="10" fill="#e6f5ed" stroke="#278f55" stroke-width="1.5"/>
+    <rect x="10" y="168" width="840" height="32" rx="10" fill="#1a5e38"/><rect x="10" y="187" width="840" height="13" fill="#1a5e38"/>
+    <text x="430" y="188" text-anchor="middle" font-family="Playfair Display,serif" font-size="12.5" font-weight="700" fill="white">COVARS — Comité de Veille et d'Anticipation des Risques Sanitaires</text>
+    <text x="22" y="218" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#1a5e38">Décret n° 2022-1099 du 30 juillet 2022 — remplace le Conseil scientifique Covid à partir du 31 juillet 2022</text>
+    <text x="22" y="236" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Travaille à l'anticipation et à la prévention des crises sanitaires et de leurs conséquences sur la population</text>
+    <text x="22" y="251" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Missions : veille scientifique · prédiction et modélisation · recommandations pour réduire les risques · prise en charge et accompagnement des citoyens</text>
+
+    <!-- JURISPRUDENCE MASQUES -->
+    <rect x="10" y="275" width="410" height="55" rx="8" fill="#fdf0f0" stroke="#c05050" stroke-width="1"/>
+    <text x="215" y="294" text-anchor="middle" font-family="Playfair Display,serif" font-size="10" font-weight="700" fill="#992020">⚖️ TA Paris, 28 juin 2022 — Faute État gestion masques</text>
+    <text x="22" y="311" font-family="Source Serif 4,serif" font-size="9.5" fill="#555">Responsabilité fautive reconnue · Demandes indemnitaires rejetées</text>
+    <text x="22" y="325" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">(absence de lien de causalité suffisamment direct)</text>
+
+    <rect x="440" y="275" width="410" height="55" rx="8" fill="#fdf0f0" stroke="#c05050" stroke-width="1"/>
+    <text x="645" y="294" text-anchor="middle" font-family="Playfair Display,serif" font-size="10" font-weight="700" fill="#992020">⚖️ CAA Paris, 6 octobre 2023 — Réparation partielle</text>
+    <text x="452" y="311" font-family="Source Serif 4,serif" font-size="9.5" fill="#555">Stock masques insuffisant · Droit à réparation partielle accordé</text>
+    <text x="452" y="325" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">Ex. : médecin généraliste décédé Covid → perte de chance</text>
+  </svg>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     RÉCAPITULATIF
+════════════════════════════════════════ -->
+<div class="sh s2" style="margin-top:3rem;background:linear-gradient(135deg,#f5f4f0,#e8e2d0);border-left-color:var(--oc);">
+  <div class="sn" style="color:var(--o);">Récapitulatif</div>
+  <h2 style="color:var(--o);">Tous les textes — tableau de synthèse</h2>
+</div>
+
+<div class="card o">
+  <div class="ct">📚 Bases légales complètes du Thème 3</div>
+  <table>
+    <thead><tr><th>Texte</th><th>Date</th><th>Apport essentiel</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Loi n° 93-5</strong> (loi Kouchner)</td><td>4 jan. 1993</td><td>1ère utilisation officielle de « sécurité sanitaire » (16 déc. 1992 en débat parlementaire) ; Agence du médicament + Agence française du sang ; délégation de police sanitaire</td></tr>
+      <tr><td><strong>Loi n° 98-535</strong></td><td>1er juil. 1998</td><td>Fondement de la veille sanitaire ; 4 principes directeurs ; InVS, AFSSAPS (tous produits de santé), AFSSA (aliments), EFS (transfusion) ; 3 catégories d'agences</td></tr>
+      <tr><td><strong>Loi du 9 mai 2001</strong></td><td>9 mai 2001</td><td>Création AFSSE (sécurité sanitaire environnementale) — suite CE 3 mars 2004 sur l'amiante</td></tr>
+      <tr><td><strong>Loi du 4 mars 2002</strong></td><td>4 mars 2002</td><td>Création INPES (prévention et éducation pour la santé)</td></tr>
+      <tr><td><strong>Loi du 30 juin 2004</strong></td><td>30 juin 2004</td><td>Plan d'alerte et d'urgence départemental (personnes âgées et handicapées) · art. L. 116-3 CASF · suite canicule 2003 (~15 000 morts)</td></tr>
+      <tr><td><strong>Ordonnance n° 2005-1087</strong></td><td>1er sept. 2005</td><td>AFSSE → AFSSET (extension au domaine du travail) ; tutelle conjointe env.+santé+travail</td></tr>
+      <tr><td><strong>Loi du 5 mars 2007</strong></td><td>5 mars 2007</td><td>EPRUS + réserve sanitaire (réserve d'intervention + réserve de renfort) ; activation par arrêté motivé conjoint</td></tr>
+      <tr><td><strong>Ordonnance n° 2010-18</strong></td><td>7 jan. 2010</td><td>ANSES = fusion AFSSA + AFSSET ; décrets d'application 23 et 29 juin 2010 ; 5 tutelles</td></tr>
+      <tr><td><strong>Loi du 29 déc. 2011</strong></td><td>29 déc. 2011</td><td>ANSM (remplace AFSSAPS le 1er mai 2012) — pouvoirs renforcés post-Mediator</td></tr>
+      <tr><td><strong>Art. 166, Loi 2016-41</strong></td><td>26 jan. 2016</td><td>Santé Publique France (InVS + INPES + EPRUS) ; décret n° 2016-523 du 27 avril 2016</td></tr>
+      <tr><td><strong>Ordo n° 2016-462</strong></td><td>14 avr. 2016</td><td>Portant création de l'Agence nationale de santé publique</td></tr>
+      <tr><td><strong>Ordonnance n° 2016-967</strong></td><td>15 juil. 2016</td><td>CASA — coordination des agences sanitaires nationales ; décret n° 2017-1590 du 20 nov. 2017</td></tr>
+      <tr><td><strong>Loi n° 2017-228</strong></td><td>24 févr. 2017</td><td>Ratification de l'ordonnance créant Santé Publique France</td></tr>
+      <tr><td><strong>Loi n° 2020-290</strong></td><td>23 mars 2020</td><td>Création de l'état d'urgence sanitaire (art. 2) — Covid-19</td></tr>
+      <tr><td><strong>Loi n° 2020-546</strong></td><td>11 mai 2020</td><td>Modification de l'état d'urgence sanitaire (art. 8 et 9)</td></tr>
+      <tr><td><strong>Loi n° 2020-856</strong></td><td>9 juil. 2020</td><td>Modification du régime de l'état d'urgence sanitaire</td></tr>
+      <tr><td><strong>Loi n° 2020-1379</strong></td><td>14 nov. 2020</td><td>Modification — abroge et modifie l'art. L. 3131-19 CSP (comité scientifique)</td></tr>
+      <tr><td><strong>Décret n° 2022-1099</strong></td><td>30 juil. 2022</td><td>COVARS — remplace le Conseil scientifique Covid (à partir du 31 juillet 2022)</td></tr>
+      <tr><td><strong>Règlement (UE) 2022/63</strong></td><td>14 jan. 2022</td><td>Interdiction européenne du dioxyde de titane (E171) dans les aliments (depuis le 7 fév. 2022)</td></tr>
+      <tr><td><strong>Directive 85/374/CEE</strong></td><td>1985</td><td>Responsabilité du fait des produits défectueux (applicable médicaments — rapport Klinger, Sénat 28 sept. 2022)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<blockquote>
+  « La notion de sécurité sanitaire est une notion apparue très récemment en droit. Elle a été officiellement utilisée pour la première fois le 16 décembre 1992 lors du débat sur le projet de loi qui devait devenir la loi n° 93-5 du 4 janvier 1993, dite loi Kouchner. La sécurité sanitaire ne s'est définitivement imposée qu'en 1997 lors de la discussion devant le parlement de la proposition de loi sur la veille sanitaire. »
+  <cite>— Cours de Guylène NICOLAS, Thème 3</cite>
+</blockquote>
+
+</main>
+<footer>Fiche de révision v3 — Thème 3 : La Sécurité Sanitaire — cours Guylène NICOLAS, Master 1, 2025/2026</footer>
+</body>
+</html>

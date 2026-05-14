@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thème 6 — Rentabilité des Soins et Financements Hospitaliers</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fond:#f3f1eb;--carte:#fff;--texte:#111;--doux:#484848;--bord:#ddd5bc;
+  --b:#1a3a6a;--bc:#2a5aad;--bp:#e4ecfa;
+  --v:#1a5c38;--vc:#278f52;--vp:#e4f4ec;
+  --o:#9a6000;--oc:#c8900a;--op:#fdf3dc;
+  --r:#982020;--rp:#fdf0f0;
+  --vi:#5a2e80;--vip:#f0ebfa;
+  --t:#1a5a6a;--tc:#2a8aad;--tp:#e2f2f8;
+  --g:#555;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--fond);color:var(--texte);font-size:14.5px;line-height:1.72;}
+
+header{background:linear-gradient(140deg,#0d1a35 0%,#1a3060 55%,#08102a 100%);color:#fff;padding:3rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden;}
+header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent,transparent 55px,rgba(255,255,255,.016) 55px,rgba(255,255,255,.016) 110px);}
+.badge{display:inline-block;background:var(--oc);color:#fff;font-family:'Playfair Display',serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;padding:.3rem 1.1rem;border-radius:2px;margin-bottom:1rem;}
+header h1{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;line-height:1.2;margin-bottom:.4rem;}
+header h2{font-weight:300;font-style:italic;font-size:1rem;color:rgba(255,255,255,.62);margin-bottom:1.4rem;}
+.meta{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;}
+.meta span{font-size:.77rem;color:rgba(255,255,255,.45);}
+.meta strong{color:#d4b040;font-weight:600;}
+
+.plan{background:var(--carte);border:2px solid var(--bc);border-radius:8px;margin:2rem auto;max-width:960px;padding:1.3rem 1.8rem;box-shadow:0 2px 14px rgba(0,0,0,.08);}
+.plan h3{font-family:'Playfair Display',serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--b);margin-bottom:1rem;}
+.plan-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.7rem;}
+.pi{border-radius:0 6px 6px 0;padding:.8rem 1rem;border-left:4px solid;}
+.pi .num{font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:.2rem;}
+.pi .tit{font-family:'Playfair Display',serif;font-size:.85rem;font-weight:700;}
+.pi.i1{background:var(--bp);border-color:var(--bc);} .pi.i1 .num,.pi.i1 .tit{color:var(--b);}
+.pi.i2{background:var(--vp);border-color:var(--vc);} .pi.i2 .num,.pi.i2 .tit{color:var(--v);}
+.pi.i3{background:var(--op);border-color:var(--oc);} .pi.i3 .num,.pi.i3 .tit{color:var(--o);}
+.pi.i4{background:var(--tp);border-color:var(--tc);} .pi.i4 .num,.pi.i4 .tit{color:var(--t);}
+
+main{max-width:960px;margin:0 auto;padding:0 1.5rem 5rem;}
+
+.sh{margin:3rem 0 1.3rem;padding:1rem 1.5rem;border-radius:8px;}
+.sh.i1{background:linear-gradient(135deg,#e4ecfa,#ccdaf5);border-left:5px solid var(--b);}
+.sh.i2{background:linear-gradient(135deg,#e4f4ec,#c8ecd8);border-left:5px solid var(--v);}
+.sh.i3{background:linear-gradient(135deg,#fdf3dc,#f5e5b0);border-left:5px solid var(--oc);}
+.sh.i4{background:linear-gradient(135deg,#e2f2f8,#c2e5f0);border-left:5px solid var(--t);}
+.sh .sn{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;opacity:.75;margin-bottom:.15rem;}
+.sh.i1 .sn,.sh.i1 h2{color:var(--b);}
+.sh.i2 .sn,.sh.i2 h2{color:var(--v);}
+.sh.i3 .sn,.sh.i3 h2{color:var(--o);}
+.sh.i4 .sn,.sh.i4 h2{color:var(--t);}
+.sh h2{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:900;}
+.sh p{font-size:.84rem;color:var(--doux);font-style:italic;margin-top:.3rem;}
+
+.sub{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:700;margin:1.8rem 0 .8rem;padding-left:.8rem;border-left:3px solid var(--oc);color:var(--o);}
+.sub.b{border-color:var(--bc);color:var(--b);}
+.sub.v{border-color:var(--vc);color:var(--v);}
+.sub.t{border-color:var(--tc);color:var(--t);}
+.sub.r{border-color:var(--r);color:var(--r);}
+
+.card{background:var(--carte);border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.07);padding:1.2rem 1.5rem;margin-bottom:1rem;border-left:4px solid var(--bc);}
+.card.v{border-color:var(--vc);} .card.o{border-color:var(--oc);} .card.t{border-color:var(--tc);}
+.card.r{border-color:var(--r);} .card.vi{border-color:var(--vi);}
+.ct{font-family:'Playfair Display',serif;font-size:.96rem;font-weight:700;color:var(--b);margin-bottom:.65rem;display:flex;align-items:center;gap:.5rem;}
+.card.v .ct{color:var(--v);} .card.o .ct{color:var(--o);}
+.card.t .ct{color:var(--t);} .card.r .ct{color:var(--r);}
+
+.ret{background:#fffde6;border:2px solid var(--oc);border-radius:8px;padding:1rem 1.4rem;margin:1rem 0;display:flex;gap:.9rem;align-items:flex-start;}
+.ri{font-size:1.2rem;flex-shrink:0;}
+.rb strong{color:#6a4700;display:block;margin-bottom:.3rem;font-size:.88rem;}
+.rb p,.rb ul{font-size:.86rem;color:var(--doux);}
+.rb ul{padding-left:1.1rem;} .rb ul li{margin-bottom:.2rem;}
+
+.def{border-radius:8px;padding:1rem 1.4rem;margin-bottom:.9rem;border:1.5px solid;}
+.def.b{background:var(--bp);border-color:var(--bc);}
+.def.v{background:var(--vp);border-color:var(--vc);}
+.def.t{background:var(--tp);border-color:var(--tc);}
+.def.o{background:var(--op);border-color:var(--oc);}
+.dl{font-family:'Playfair Display',serif;font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.35rem;display:block;}
+.def.b .dl{color:var(--b);} .def.v .dl{color:var(--v);} .def.t .dl{color:var(--t);} .def.o .dl{color:var(--o);}
+.dt{font-weight:700;font-size:.98rem;}
+.def.b .dt{color:var(--b);} .def.v .dt{color:var(--v);} .def.t .dt{color:var(--t);} .def.o .dt{color:var(--o);}
+.def p,.def ul{color:var(--doux);margin-top:.3rem;font-size:.88rem;}
+.def ul{padding-left:1.1rem;} .def ul li{margin-bottom:.18rem;}
+
+.loi{border:1.5px solid var(--oc);border-radius:8px;padding:1rem 1.4rem;margin-bottom:.8rem;background:var(--op);}
+.loi.b{background:var(--bp);border-color:var(--bc);}
+.loi.v{background:var(--vp);border-color:var(--vc);}
+.loi.t{background:var(--tp);border-color:var(--tc);}
+.loi.r{background:var(--rp);border-color:var(--r);}
+.loi.vi{background:var(--vip);border-color:var(--vi);}
+.lr{font-family:'Playfair Display',serif;font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.28rem;display:block;color:var(--oc);}
+.loi.b .lr{color:var(--bc);} .loi.v .lr{color:var(--vc);} .loi.t .lr{color:var(--tc);}
+.loi.r .lr{color:var(--r);} .loi.vi .lr{color:var(--vi);}
+.lt{font-weight:700;font-size:.93rem;margin-bottom:.45rem;color:#6a4700;}
+.loi.b .lt{color:#1a3060;} .loi.v .lt{color:#1a4028;} .loi.t .lt{color:#1a3a50;}
+.loi.r .lt{color:#6a1010;} .loi.vi .lt{color:#3a1060;}
+.loi ul{padding-left:1.2rem;color:var(--doux);font-size:.87rem;}
+.loi ul li{margin-bottom:.23rem;}
+
+.art{border-left:4px solid;border-radius:0 8px 8px 0;padding:.9rem 1.3rem;margin:.8rem 0;}
+.art.b{background:var(--bp);border-color:var(--bc);}
+.art.v{background:var(--vp);border-color:var(--vc);}
+.art.t{background:var(--tp);border-color:var(--tc);}
+.ar{font-family:'Playfair Display',serif;font-weight:700;font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;margin-bottom:.35rem;display:block;}
+.art.b .ar{color:var(--b);} .art.v .ar{color:var(--v);} .art.t .ar{color:var(--t);}
+.art p{color:var(--doux);font-style:italic;font-size:.87rem;}
+.an{font-style:normal!important;font-weight:700;font-size:.8rem;margin-top:.38rem!important;display:block;}
+.art.b .an{color:var(--b);} .art.v .an{color:var(--v);} .art.t .an{color:var(--t);}
+
+.org{background:var(--carte);border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.09);padding:1.5rem 1.5rem 1.2rem;margin-bottom:1.2rem;overflow-x:auto;}
+.org h3{font-family:'Playfair Display',serif;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:#555;margin-bottom:1rem;text-align:center;}
+.org svg{display:block;margin:0 auto;max-width:100%;}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.9rem;margin-bottom:1rem;}
+
+.chiffre{background:var(--carte);border-radius:8px;padding:.9rem 1.1rem;box-shadow:0 2px 10px rgba(0,0,0,.07);text-align:center;}
+.chiffre .val{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:900;display:block;}
+.chiffre .lbl{font-size:.78rem;color:var(--doux);margin-top:.2rem;}
+
+.tl{position:relative;padding-left:2rem;margin-bottom:1rem;}
+.tl::before{content:'';position:absolute;left:.6rem;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--b),var(--oc));}
+.tl-item{position:relative;margin-bottom:.9rem;}
+.tl-item::before{content:'';position:absolute;left:-1.4rem;top:.5rem;width:11px;height:11px;border-radius:50%;background:var(--oc);border:2px solid #fff;box-shadow:0 0 0 2px var(--oc);}
+.tl-date{font-family:'Playfair Display',serif;font-weight:700;color:var(--b);font-size:.88rem;}
+.tl-desc{font-size:.87rem;color:var(--doux);margin-top:.1rem;}
+
+table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:1rem;}
+th{background:var(--b);color:#fff;padding:.55rem .9rem;text-align:left;font-family:'Playfair Display',serif;font-size:.77rem;letter-spacing:.05em;}
+th.v{background:var(--v);} th.t{background:var(--t);}
+td{padding:.5rem .9rem;border-bottom:1px solid var(--bord);color:var(--doux);vertical-align:top;}
+tr:nth-child(even) td{background:var(--fond);}
+tr:last-child td{border-bottom:none;}
+
+ul.l{padding-left:1.2rem;color:var(--doux);font-size:.89rem;}
+ul.l li{margin-bottom:.27rem;}
+
+blockquote{border-left:3px solid var(--oc);margin:1rem 0;padding:.7rem 1.2rem;background:var(--op);border-radius:0 6px 6px 0;font-style:italic;color:var(--doux);font-size:.88rem;}
+blockquote cite{display:block;font-style:normal;font-size:.73rem;color:var(--oc);margin-top:.3rem;font-weight:700;}
+
+footer{text-align:center;font-size:.76rem;color:#aaa;padding:2rem 1rem;border-top:1px solid var(--bord);margin-top:2rem;font-style:italic;}
+@media(max-width:700px){.g2,.g3,.plan-grid{grid-template-columns:1fr;}header h1{font-size:1.5rem;}}
+@media print{.card,.loi,.def,.ret,.org{break-inside:avoid;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Fiche de Révision — Plan du cours</div>
+  <h1>Thème 6 — Rentabilité des Soins et Financements Hospitaliers</h1>
+  <h2>T2A · GHM/GHS · Modèle de paiement combiné · Ségur · LFSS</h2>
+  <div class="meta">
+    <span>Cours <strong>Guylène NICOLAS</strong></span>
+    <span>Master 1 — <strong>2025/2026</strong></span>
+  </div>
+</header>
+
+<main>
+
+<div class="plan">
+  <h3>Plan du cours (slide 2)</h3>
+  <div class="plan-grid">
+    <div class="pi i1"><div class="num">§1</div><div class="tit">Une disparité jusqu'en 1999 — Les modes de financement antérieurs</div></div>
+    <div class="pi i2"><div class="num">§2</div><div class="tit">La montée en puissance de la T2A — Modalités de calcul · Mise en place progressive</div></div>
+    <div class="pi i3"><div class="num">§3</div><div class="tit">La généralisation de la T2A — Budget des hôpitaux · Effets pervers · IFAQ · Endettement</div></div>
+    <div class="pi i4"><div class="num">§4</div><div class="tit">Réformes des modes de financement : vers un modèle de paiement combiné — Ségur · Loi 2021 · LFSS 2020, 2024, 2025, 2026</div></div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     §1 — DISPARITÉ JUSQU'EN 1999
+══════════════════════════════════════════ -->
+<div class="sh i1">
+  <div class="sn">§1</div>
+  <h2>Une disparité jusqu'en 1999 — Les modes de financement antérieurs</h2>
+  <p>Slides 3 à 5 — Deux systèmes radicalement différents selon la nature juridique des établissements</p>
+</div>
+
+<div class="ret">
+  <div class="ri">🗝️</div>
+  <div class="rb">
+    <strong>Principe général (slide 3)</strong>
+    <p>Jusqu'en 2003, les établissements de santé connaissaient des <strong>modes de financements différents selon leur nature juridique</strong>. Ce système a créé une inégalité profonde entre le secteur public et le secteur privé lucratif.</p>
+  </div>
+</div>
+
+<div class="g2">
+  <div class="def b">
+    <span class="dl">Établissements publics + PSPH (slide 4)</span>
+    <div class="dt">La dotation globale (DG)</div>
+    <ul>
+      <li><strong>Enveloppe de fonctionnement annuelle et limitative</strong> appelée dotation globale (DG)</li>
+      <li>DG calculée en fonction du <strong>nombre de journées</strong></li>
+      <li>DG reconduite <strong>chaque année sur la base de l'exercice précédent</strong> (logique de reconduction automatique)</li>
+      <li>Applicable aux établissements publics de santé et aux établissements privés participant au service public hospitalier (<strong>PSPH</strong>)</li>
+    </ul>
+  </div>
+  <div class="def o">
+    <span class="dl">Établissements privés à but lucratif (slide 5)</span>
+    <div class="dt">Tarification à l'acte (sur tarifs régionaux)</div>
+    <ul>
+      <li>Facturaient directement à l'assurance maladie :
+        <ul>
+          <li>Des <strong>forfaits de prestations</strong> (rémunération de la structure)</li>
+          <li>Et des <strong>actes</strong> (rémunérations des professionnels libéraux)</li>
+        </ul>
+      </li>
+      <li>Tarifs <strong>variables géographiquement</strong> et négociés avec les <strong>ARH</strong></li>
+      <li>→ Tarification à l'acte mais sur des <strong>tarifs régionaux variables</strong> et non un tarif unique national</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     §2 — MONTÉE EN PUISSANCE T2A
+══════════════════════════════════════════ -->
+<div class="sh i2">
+  <div class="sn">§2</div>
+  <h2>La montée en puissance de la T2A</h2>
+  <p>Slides 6 à 9 — Expérimentation CMU 1999 · Plan Hôpital 2007 · GHM/GHS · Mise en place progressive 2004-2008</p>
+</div>
+
+<div class="sub v">L'expérimentation — Le lancement (slide 6)</div>
+
+<div class="tl">
+  <div class="tl-item">
+    <div class="tl-date">Loi du 27 juillet 1999 portant création de la CMU</div>
+    <div class="tl-desc">Permit le lancement d'une expérimentation : à compter du <strong>1er janvier 2000</strong> et pour une durée de <strong>5 ans</strong>, de nouveaux modes de financement basés sur une <strong>tarification à la pathologie</strong>, pour les établissements publics et privés.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">2002 — Plan « Hôpital 2007 »</div>
+    <div class="tl-desc">Cet objectif est repris dans le plan <strong>« Hôpital 2007 »</strong>. Depuis, la T2A constitue le <strong>mode unique de financement</strong> pour les activités de médecine, chirurgie et obstétrique (<strong>MCO</strong>) des établissements publics (ex-DG) et des établissements privés (ex-objectifs quantifiés nationaux).</div>
+  </div>
+</div>
+
+<div class="sub v">Les modalités de calcul — GHM et GHS (slide 7)</div>
+
+<div class="def v">
+  <span class="dl">Mécanisme central de la T2A</span>
+  <div class="dt">GHM / GHS — Groupes Homogènes de Malades / Groupes Homogènes de Séjours</div>
+  <ul>
+    <li>Le prix de chaque activité est fixé <strong>chaque année par le ministre chargé de la santé</strong> via le mécanisme des GHS/GHM</li>
+    <li>Le <strong>PMSI</strong> (Programme de Médicalisation des Systèmes d'Information) permet de classer le séjour de chaque patient au sein d'un <strong>« groupe homogène de malades » (GHM)</strong></li>
+    <li>À chaque GHM est associé un (ou parfois plusieurs) <strong>« groupe(s) homogène(s) de séjour » (GHS)</strong></li>
+    <li>→ C'est le GHS qui détermine le <strong>tarif de remboursement</strong> de l'hospitalisation par l'assurance maladie</li>
+  </ul>
+</div>
+
+<div class="sub v">Mise en place progressive (slides 8-9)</div>
+
+<div class="card v">
+  <div class="ct">📊 Montée en charge progressive de la T2A pour les établissements publics (slide 8)</div>
+  <p style="font-size:.87rem;color:var(--doux);margin-bottom:.7rem;">Il a été choisi de maintenir la disparité public/privé. Une part de dotation annuelle a été maintenue, complétée par la valorisation des données d'activité produites par le PMSI, de façon <strong>croissante d'année en année</strong> :</p>
+
+  <div class="org" style="margin-bottom:.7rem;">
+    <h3>Montée en charge de la part T2A (établissements publics)</h3>
+    <svg viewBox="0 0 860 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px;">
+      <defs><marker id="a0" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#278f52"/></marker></defs>
+      <line x1="30" y1="90" x2="840" y2="90" stroke="#278f52" stroke-width="2" marker-end="url(#a0)"/>
+
+      <!-- 2004 -->
+      <line x1="100" y1="90" x2="100" y2="78" stroke="#278f52" stroke-width="1.5"/>
+      <rect x="50" y="48" width="100" height="28" rx="6" fill="#1a5c38"/>
+      <text x="100" y="62" text-anchor="middle" font-family="Playfair Display,serif" font-size="14" font-weight="900" fill="white">10 %</text>
+      <text x="100" y="80" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#278f52">▲</text>
+      <text x="100" y="106" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#333">2004</text>
+
+      <!-- 2005 -->
+      <line x1="230" y1="90" x2="230" y2="78" stroke="#278f52" stroke-width="1.5"/>
+      <rect x="180" y="42" width="100" height="28" rx="6" fill="#1a5c38"/>
+      <text x="230" y="56" text-anchor="middle" font-family="Playfair Display,serif" font-size="14" font-weight="900" fill="white">25 %</text>
+      <text x="230" y="80" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#278f52">▲</text>
+      <text x="230" y="106" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#333">2005</text>
+
+      <!-- 2006 -->
+      <line x1="360" y1="90" x2="360" y2="78" stroke="#278f52" stroke-width="1.5"/>
+      <rect x="310" y="36" width="100" height="28" rx="6" fill="#1a5c38"/>
+      <text x="360" y="50" text-anchor="middle" font-family="Playfair Display,serif" font-size="14" font-weight="900" fill="white">35 %</text>
+      <text x="360" y="80" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#278f52">▲</text>
+      <text x="360" y="106" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#333">2006</text>
+
+      <!-- 2007 -->
+      <line x1="490" y1="90" x2="490" y2="78" stroke="#278f52" stroke-width="1.5"/>
+      <rect x="440" y="28" width="100" height="28" rx="6" fill="#1a5c38"/>
+      <text x="490" y="42" text-anchor="middle" font-family="Playfair Display,serif" font-size="14" font-weight="900" fill="white">50 %</text>
+      <text x="490" y="80" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#278f52">▲</text>
+      <text x="490" y="106" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#333">2007</text>
+
+      <!-- 2008 -->
+      <line x1="650" y1="90" x2="650" y2="78" stroke="#278f52" stroke-width="1.5"/>
+      <rect x="600" y="10" width="100" height="36" rx="6" fill="#c8940a"/>
+      <text x="650" y="28" text-anchor="middle" font-family="Playfair Display,serif" font-size="16" font-weight="900" fill="white">100 %</text>
+      <text x="650" y="43" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9" fill="white">T2A totale</text>
+      <text x="650" y="80" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#c8940a">▲</text>
+      <text x="650" y="106" text-anchor="middle" font-family="Source Serif 4,serif" font-size="11" font-weight="700" fill="#c8940a">2008</text>
+
+      <!-- Formule -->
+      <text x="800" y="62" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9" fill="#555">Recettes =</text>
+      <text x="800" y="75" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9" fill="#555">valorisation</text>
+      <text x="800" y="88" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9" fill="#555">activité + DAC</text>
+    </svg>
+  </div>
+
+  <div class="art v" style="margin-bottom:0;">
+    <span class="ar">Formule — slide 8</span>
+    <p>Recettes × valorisation de l'activité + dotation résiduelle (DAC) = <strong>recettes de l'établissement</strong></p>
+    <div class="an">→ La dotation annuelle complémentaire (DAC) fait effet d'« amortisseur » pendant la montée en charge.</div>
+  </div>
+</div>
+
+<div class="card v">
+  <div class="ct">📊 Financement des établissements privés — le coefficient de transition (slide 9)</div>
+  <p style="font-size:.87rem;color:var(--doux);margin-bottom:.5rem;">S'agissant du secteur privé, le passage à la réforme a été géré par l'application d'un <strong>coefficient de transition</strong> qui devait atteindre la valeur 1 en <strong>2012</strong> afin qu'à cette date, l'ensemble des tarifs régionaux soit aligné sur le <strong>tarif national</strong>.</p>
+  <div class="art v" style="margin-bottom:0;">
+    <span class="ar">Formule — slide 9</span>
+    <p>Tarif national × coefficient de transition de l'établissement = <strong>tarif de l'établissement</strong></p>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     §3 — GÉNÉRALISATION T2A
+══════════════════════════════════════════ -->
+<div class="sh i3">
+  <div class="sn">§3</div>
+  <h2>La généralisation de la T2A</h2>
+  <p>Slides 10 à 18 — Budget des hôpitaux · Chirurgie ambulatoire · Effets pervers · IFAQ · Endettement</p>
+</div>
+
+<div class="sub">Principe général de la T2A généralisée (slide 10)</div>
+
+<div class="ret">
+  <div class="ri">📋</div>
+  <div class="rb">
+    <strong>La grande majorité des ressources hospitalières dépend désormais :</strong>
+    <ul>
+      <li>Du <strong>nombre</strong> et de la <strong>nature</strong> des actes et des séjours réalisés</li>
+      <li>Certaines ressources continuent de bénéficier d'un <strong>financement forfaitaire</strong> : missions d'intérêt général (MIG), activités d'urgence (SMUR : 833 M€ en 2019 ; SAMU : 249 M€), prélèvements d'organes, prise en charge des patients en situation de précarité (192 M€ en 2019)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sub">Le budget des hôpitaux (slides 11-12)</div>
+
+<div class="card">
+  <div class="ct">📊 Structure du budget hospitalier (slide 11-12)</div>
+  <div class="g2">
+    <div>
+      <p style="font-size:.87rem;font-weight:700;color:var(--b);margin-bottom:.5rem;">⚠️ La notion de « budget » est remplacée par :</p>
+      <p style="font-size:.86rem;color:var(--doux);">→ L'<strong>état prévisionnel des recettes et des dépenses</strong>, car ce sont les produits de l'activité qui déterminent les ressources de l'hôpital.</p>
+      <p style="font-size:.86rem;color:var(--doux);margin-top:.5rem;">Les établissements sont <strong>autonomes dans leur gestion</strong>, mais soumis aux contrôles des pouvoirs publics (ARS, chambre régionale des comptes…)</p>
+    </div>
+    <div>
+      <p style="font-size:.87rem;font-weight:700;color:var(--b);margin-bottom:.5rem;">Répartition moyenne du budget hospitalier :</p>
+      <ul class="l">
+        <li><strong>67 %</strong> → dépenses de <strong>personnel</strong></li>
+        <li><strong>15 %</strong> → achats de <strong>médicaments et dispositifs médicaux</strong></li>
+        <li><strong>9 %</strong> → autres achats</li>
+        <li><strong>9 %</strong> → amortissements et frais financiers (bâtiments, matériel…)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sub">La T2A, source d'efficience : la chirurgie ambulatoire (slide 13)</div>
+
+<div class="card v">
+  <div class="ct">✅ L'exemple de la chirurgie ambulatoire — effet incitatif de la T2A</div>
+  <div class="tl">
+    <div class="tl-item">
+      <div class="tl-date">À partir de 2003</div>
+      <div class="tl-desc">La T2A a été très incitative pour les établissements pour <strong>développer la chirurgie ambulatoire</strong>.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2004 — Incitation par les tarifs</div>
+      <div class="tl-desc">Tarif identique pour les gestes <strong>sans hospitalisation</strong> et les gestes <strong>avec une nuitée</strong>. Ce mécanisme a été par la suite progressivement étendu à de nouveaux groupes homogènes de malades.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2010 — La chirurgie ambulatoire définie comme pratique de référence</div>
+      <div class="tl-desc">Vecteur de recettes supplémentaires : permet de prendre en charge davantage de patients qu'un lit conventionnel → <strong>accroissement des recettes par le volume</strong>. Incitations tarifaires renforcées par une revalorisation + amélioration de la classification. L'assurance maladie et le ministère ont remis en cause le caractère alternatif de la chirurgie ambulatoire (<strong>accord préalable pour la chirurgie conventionnelle</strong>).</div>
+    </div>
+  </div>
+</div>
+
+<div class="sub r">Les effets pervers de la T2A (slide 14)</div>
+
+<div class="card r">
+  <div class="ct">⚠️ Une source d'efficience limitée — les effets pervers</div>
+  <div class="g2">
+    <ul class="l">
+      <li>La T2A a un <strong>effet inflationniste</strong> → croissance de l'activité plus que sa rationalisation</li>
+      <li>Déséquilibre dans la répartition des activités → les <strong>établissements privés replient leurs activités vers les plus lucratives</strong></li>
+    </ul>
+    <ul class="l">
+      <li><strong>2013</strong> : abandon de la logique de convergence des tarifs entre le secteur public et privé → le principe de <strong>« neutralité » tarifaire</strong> qui vise à rapprocher les tarifs des coûts</li>
+      <li>Affaiblissement de l'effet incitatif sur la <strong>réorganisation de l'offre de soins publics</strong></li>
+      <li>Multiplication des <strong>contrats de coopération</strong> entre établissements</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sub">La dotation IFAQ — introduction d'une part qualité (slide 15)</div>
+
+<div class="loi">
+  <span class="lr">⚖️ Décret n° 2015-1866 du 30 décembre 2015 — en vigueur depuis 2016</span>
+  <div class="lt">IFAQ — Incitation Financière à l'Amélioration de la Qualité</div>
+  <ul>
+    <li>Depuis <strong>2016</strong>, l'<strong>IFAQ</strong> (dotation complémentaire d'incitation à l'amélioration de la qualité) introduit une <strong>part de qualité</strong> dans le modèle de financement hospitalier en cohérence avec la stratégie nationale de santé</li>
+    <li>Perçue par les établissements ayant obtenu les <strong>meilleurs résultats</strong> ou ayant le plus fortement <strong>progressé</strong> dans ce domaine</li>
+    <li>Basé sur les <strong>indicateurs qualité et sécurité des soins</strong> + dispositif de <strong>certification piloté par la HAS</strong></li>
+  </ul>
+</div>
+
+<div class="sub r">L'endettement des hôpitaux (slides 16-18)</div>
+
+<div class="card r">
+  <div class="ct">📉 Cour des comptes — Rapport 2014 sur la dette des hôpitaux publics</div>
+  <div class="g2">
+    <div>
+      <p style="font-weight:700;font-size:.87rem;color:var(--r);margin-bottom:.4rem;">L'ampleur de la dette :</p>
+      <ul class="l">
+        <li>En dix ans, l'endettement des hôpitaux a <strong>triplé</strong></li>
+        <li>= <strong>29,3 milliards d'euros</strong>, soit <strong>1,4 % du PIB</strong></li>
+        <li>L'endettement a ralenti à partir de 2010 : de 15 % en moyenne à <strong>6 % en 2012</strong></li>
+        <li>Mais sans amélioration de la marge brute ou sans aides extra-tarifaires : les hôpitaux seront bientôt incapables de financer leurs <strong>investissements courants</strong></li>
+      </ul>
+    </div>
+    <div>
+      <p style="font-weight:700;font-size:.87rem;color:var(--r);margin-bottom:.4rem;">Les 2 causes de l'endettement (slide 17) :</p>
+      <ul class="l">
+        <li><strong>1.</strong> Les pouvoirs publics ne se sont pas montrés suffisamment vigilants sur la « <strong>viabilité économique</strong> » de certains projets</li>
+        <li><strong>2.</strong> Une vision <strong>exagérément optimiste</strong> de l'accroissement de l'activité des établissements publics</li>
+      </ul>
+      <p style="font-size:.83rem;color:var(--doux);margin-top:.5rem;font-style:italic;">→ La Cour des comptes recommande de réserver le financement des investissements par emprunt aux projets permettant d'atteindre un <strong>taux de marge de 8 %</strong>. <strong>Intérêt des GHT !</strong></p>
+    </div>
+  </div>
+</div>
+
+<div class="card r">
+  <div class="ct">📉 Une dette inédite en 2017 (slide 18)</div>
+  <ul class="l">
+    <li>Déficit à <strong>2 % des budgets hospitaliers</strong></li>
+    <li>La <strong>FHF</strong> (Fédération Hospitalière de France) évalue le déficit des hôpitaux pour 2017 à <strong>1,5 milliard d'euros</strong> — « un niveau dramatique et totalement inédit »</li>
+    <li>La FHF explique cette dégradation par « l'impact des plans annuels d'économies » : « ce choix de baisser les tarifs au début de l'exercice en anticipation de soi-disant hausses d'activités a conduit les hôpitaux à supporter un même niveau de dépenses incompressibles pour un moindre niveau de ressources »</li>
+    <li>→ Agnès Buzyn annonce le <strong>dégel de 150 millions</strong> sur les quelques 350 millions réclamés par les établissements hospitaliers publics et privés</li>
+  </ul>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     §4 — RÉFORMES VERS PAIEMENT COMBINÉ
+══════════════════════════════════════════ -->
+<div class="sh i4">
+  <div class="sn">§4</div>
+  <h2>Réformes des modes de financement et de régulation : vers un modèle de paiement combiné</h2>
+  <p>Slides 19 à 38 — Rapport Aubert 2019 · Plan urgence · LFSS 2020 · Ségur 2020 · Loi 2021 · LFSS 2024, 2025, 2026</p>
+</div>
+
+<div class="sub t">Rapport Aubert du 29 janvier 2019 (slide 19)</div>
+
+<div class="card t">
+  <div class="ct">📋 Rapport Jean-Marc Aubert — Propositions de réforme</div>
+  <ul class="l">
+    <li>La <strong>T2A ne disparaît pas</strong> mais elle est <strong>combinée</strong> à d'autres modes de rémunération forfaitaires, notamment pour la prise en charge des <strong>maladies chroniques</strong> et du <strong>grand âge</strong></li>
+    <li>Permettrait de mieux prendre en compte : le suivi des malades · la prévention · les activités de coordination des soins</li>
+    <li>Le financement devrait être modulé en fonction de :
+      <ul>
+        <li>La <strong>pertinence</strong> des soins (vérification de la pertinence d'actes médicaux)</li>
+        <li>La <strong>qualité</strong> des soins (dotation financière à partir d'indicateurs qualité)</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<div class="sub t">Le plan Ma Santé 2022 — 5 modalités de financement (slide 20)</div>
+
+<div class="card t">
+  <div class="ct">🎯 Objectif : financement assuré à 50 % par la T2A + 5 modalités combinées</div>
+  <p style="font-size:.87rem;color:var(--doux);margin-bottom:.7rem;">Les propositions de Jean-Marc Aubert alimentent la mise en œuvre du <strong>plan Ma Santé 2022</strong> qui comprend un chantier consacré à la réforme du financement. Mis en place par la <strong>LFSS du 24 décembre 2019</strong>.</p>
+
+  <div class="org" style="margin-bottom:0;">
+    <h3>Les 5 modalités de financement combiné (slide 20)</h3>
+    <svg viewBox="0 0 860 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px;">
+      <!-- Centre T2A 50% -->
+      <rect x="330" y="75" width="200" height="50" rx="10" fill="#1a5a6a"/>
+      <text x="430" y="96" text-anchor="middle" font-family="Playfair Display,serif" font-size="12" font-weight="700" fill="white">T2A — 50 %</text>
+      <text x="430" y="114" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#cce8f0">Part à l'acte et aux séjours</text>
+
+      <!-- 1 -->
+      <rect x="5" y="5" width="200" height="55" rx="7" fill="#e2f2f8" stroke="#2a8aad" stroke-width="1.5"/>
+      <text x="105" y="24" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#1a5a6a">① Suivi du patient</text>
+      <text x="105" y="40" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#555">Maladies chroniques</text>
+      <text x="105" y="54" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">(diabète, maladies rénales…)</text>
+      <line x1="205" y1="32" x2="330" y2="100" stroke="#2a8aad" stroke-width="1.2" stroke-dasharray="4,3"/>
+
+      <!-- 2 -->
+      <rect x="5" y="140" width="200" height="55" rx="7" fill="#e2f2f8" stroke="#2a8aad" stroke-width="1.5"/>
+      <text x="105" y="159" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#1a5a6a">② Qualité et pertinence</text>
+      <text x="105" y="175" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#555">Indicateurs de qualité</text>
+      <text x="105" y="189" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">des soins (IFAQ)</text>
+      <line x1="205" y1="167" x2="330" y2="100" stroke="#2a8aad" stroke-width="1.2" stroke-dasharray="4,3"/>
+
+      <!-- 3 -->
+      <rect x="225" y="5" width="200" height="55" rx="7" fill="#e2f2f8" stroke="#2a8aad" stroke-width="1.5"/>
+      <text x="325" y="24" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#1a5a6a">③ Restructuration</text>
+      <text x="325" y="40" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#555">Paiement pour la</text>
+      <text x="325" y="54" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">restructuration de service</text>
+      <line x1="325" y1="60" x2="390" y2="75" stroke="#2a8aad" stroke-width="1.2" stroke-dasharray="4,3"/>
+
+      <!-- 4 -->
+      <rect x="435" y="5" width="200" height="55" rx="7" fill="#e2f2f8" stroke="#2a8aad" stroke-width="1.5"/>
+      <text x="535" y="24" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#1a5a6a">④ Séquence de soins</text>
+      <text x="535" y="40" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#555">Paiement groupé pour</text>
+      <text x="535" y="54" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">favoriser la coopération</text>
+      <line x1="535" y1="60" x2="470" y2="75" stroke="#2a8aad" stroke-width="1.2" stroke-dasharray="4,3"/>
+
+      <!-- 5 -->
+      <rect x="655" y="75" width="200" height="55" rx="7" fill="#e2f2f8" stroke="#2a8aad" stroke-width="1.5"/>
+      <text x="755" y="94" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#1a5a6a">⑤ Part T2A résiduelle</text>
+      <text x="755" y="110" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#555">Paiement à l'acte</text>
+      <text x="755" y="124" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">et aux séjours</text>
+      <line x1="655" y1="102" x2="530" y2="100" stroke="#2a8aad" stroke-width="1.2" stroke-dasharray="4,3"/>
+    </svg>
+  </div>
+</div>
+
+<div class="sub t">Plan d'urgence pour l'hôpital — 20 novembre 2019 (slide 22)</div>
+
+<div class="loi t">
+  <span class="lr">⚖️ Plan d'urgence pour l'hôpital — présenté le 20 novembre 2019</span>
+  <div class="lt">Dans l'attente de la mise en œuvre de la réforme de financement</div>
+  <ul>
+    <li>Un financement supplémentaire de <strong>1,5 milliard d'euros sur trois ans</strong></li>
+    <li>La <strong>reprise par l'État d'un tiers de la dette hospitalière</strong></li>
+    <li>Une hausse de <strong>2,45 % en 2021 et 2022</strong> de l'ONDAM (objectif national de dépenses d'assurance maladie), qui était prévu à 2,3 %</li>
+    <li>Pour l'hôpital, le taux de progression passe à <strong>2,5 %</strong> contre les 2,1 % initialement fixés</li>
+  </ul>
+</div>
+
+<div class="sub t">LFSS 2020 — Article 36 — Nouveau modèle de financement (slide 23)</div>
+
+<div class="loi t">
+  <span class="lr">⚖️ Loi n° 2019-1446 du 24 décembre 2019 de financement de la sécurité sociale pour 2020 — Article 36</span>
+  <div class="lt">Nouveau modèle de financement reposant sur trois volets</div>
+  <ul>
+    <li><strong>Volet 1</strong> : Une <strong>dotation populationnelle</strong> qui tient compte des besoins de la population des territoires et des caractéristiques de l'offre de soins au sein de chaque région</li>
+    <li><strong>Volet 2</strong> : Une <strong>dotation complémentaire</strong> allouée aux établissements qui remplissent des critères liés à l'amélioration de la qualité</li>
+    <li><strong>Volet 3</strong> : Des <strong>recettes liées à l'activité</strong> en tenant compte de l'intensité de la prise en charge</li>
+  </ul>
+</div>
+
+<div class="sub t">Le Ségur de la santé (25 mai 2020 au 10 juillet 2020) — slide 25</div>
+
+<div class="loi t">
+  <span class="lr">⚖️ Le Ségur de la santé — Concertation nationale 25 mai au 10 juillet 2020</span>
+  <div class="lt">19 milliards d'euros d'investissement dans le système de santé</div>
+  <ul>
+    <li><strong>8,2 milliards €/an</strong> pour revaloriser les métiers des établissements de santé et des EHPAD, et reconnaître l'engagement des soignants</li>
+    <li><strong>15 000 recrutements</strong> à l'hôpital public</li>
+    <li>Accélérer la sortie du <strong>« tout T2A »</strong> et privilégier la <strong>qualité des soins</strong></li>
+    <li>Financer l'ouverture ou la réouverture de <strong>4 000 lits « à la demande »</strong></li>
+    <li>Mettre fin au <strong>mercenariat de l'intérim médical</strong> à l'hôpital public → <strong>loi Rist du 19 mai 2023</strong> portant amélioration de l'accès aux soins par la confiance aux professionnels de santé : plafonnement des revenus des médecins intérimaires à <strong>1 390 € bruts pour 24h de travail</strong></li>
+    <li>Redonner toute sa place au <strong>service hospitalier</strong> au sein des établissements de santé</li>
+    <li>Former plus de soignants dans les <strong>filières paramédicales</strong></li>
+    <li>Faciliter l'accès aux <strong>soins non programmés</strong> et à l'exercice coordonné</li>
+    <li>Développer fortement la <strong>télésanté</strong> en s'appuyant sur les acquis de la crise Covid</li>
+    <li>Donner aux <strong>territoires</strong> les principaux leviers de l'investissement en santé</li>
+    <li>Combattre les <strong>inégalités de santé</strong></li>
+  </ul>
+</div>
+
+<div class="sub t">Loi du 26 avril 2021 — Modernisation du système de santé (slides 26-28)</div>
+
+<div class="loi t">
+  <span class="lr">⚖️ Loi du 26 avril 2021 visant à améliorer le système de santé par la confiance et la simplification</span>
+  <div class="lt">Concrétise les mesures non budgétaires du Ségur de la santé (juillet 2020)</div>
+</div>
+
+<div class="g2">
+  <div class="card t">
+    <div class="ct">🏥 La gouvernance des hôpitaux (slide 27)</div>
+    <ul class="l">
+      <li>La loi rénove la gouvernance hospitalière perçue comme <strong>trop rigide et trop éloignée</strong> de la prise de décision des acteurs de terrain</li>
+      <li>Remettre le <strong>service et le chef de service</strong> au cœur de l'hôpital → les services deviennent l'<strong>échelon de référence</strong> en matière de qualité, de sécurité des soins et d'encadrement · Les chefs de service sont <strong>reconnus légalement</strong></li>
+      <li>Élargir les <strong>directoires des hôpitaux</strong> (organes collégiaux de gestion) aux soignants, aux étudiants en médecine et aux usagers</li>
+      <li>Intégrer dans le <strong>projet d'établissement</strong> des objectifs managériaux (« <strong>projet de gouvernance et de management participatif</strong> ») : prévenir les risques psycho-sociaux et les conflits, assurer l'égalité femmes-hommes</li>
+    </ul>
+  </div>
+  <div class="card t">
+    <div class="ct">📞 Le Service d'Accès aux Soins (SAS) (slide 28)</div>
+    <ul class="l">
+      <li>Nouveau <strong>service d'orientation de la population</strong> dans leur parcours de soins</li>
+      <li>Permet d'accéder à distance à un professionnel de santé pouvant :
+        <ul>
+          <li>Fournir un <strong>conseil médical</strong></li>
+          <li>Proposer une <strong>téléconsultation</strong></li>
+          <li>Orienter vers une <strong>consultation non programmée</strong> en ville</li>
+          <li>Orienter vers un <strong>service d'urgence</strong></li>
+          <li>Déclencher l'intervention d'un <strong>SMUR</strong></li>
+        </ul>
+      </li>
+      <li>Fondé sur un <strong>partenariat étroit et équilibré</strong> entre les médecins de ville et les professionnels de l'urgence hospitalière des SAMU</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sub t">LFSS 2024 — Réforme du modèle de financement (slide 29)</div>
+
+<div class="loi t">
+  <span class="lr">⚖️ Loi n° 2023-1250 du 26 décembre 2023 de financement de la sécurité sociale pour 2024</span>
+  <div class="lt">Réforme du modèle de financement des hôpitaux à partir du 1er janvier 2024</div>
+  <ul>
+    <li>En plus de la T2A, la loi <strong>diversifie les modes de financement</strong> en amplifiant la part de financements par dotations pour les activités MCO</li>
+    <li>Évolution vers un <strong>mode de financement mixte</strong> :
+      <ul>
+        <li><strong>T2A</strong> pour les activités standard</li>
+        <li><strong>Dotations spécifiques</strong> pour les activités répondant à des objectifs de santé publique</li>
+        <li><strong>Financement mixte</strong> pour les activités de soins aigus</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<div class="sub t">LFSS 2025 (slides 30-36)</div>
+
+<div class="loi t">
+  <span class="lr">⚖️ Loi n° 2025-199 du 28 février 2025 de financement de la sécurité sociale pour 2025</span>
+  <div class="lt">Un déficit social record et des mesures d'économies importantes</div>
+  <ul>
+    <li>Dépenses de la sécurité sociale 2025 : <strong>plus de 666 milliards €</strong> toutes branches confondues</li>
+    <li>Déficit social 2025 estimé à <strong>22,1 Md€</strong> — niveau jamais atteint hors période de crise (contre 16 Md€ prévus par Barnier)</li>
+    <li>Déficit projeté à <strong>24,1 Md€ en 2028</strong></li>
+    <li>En 2024, déficit déjà dégradé à <strong>18,2 Md€</strong> (au lieu des 10,5 Md€ prévus en LFSS 2024) — en grande partie dû au <strong>déficit de la branche maladie (15,3 Md€)</strong></li>
+  </ul>
+</div>
+
+<div class="g2">
+  <div class="card t">
+    <div class="ct">📊 ONDAM 2025</div>
+    <ul class="l">
+      <li>Progresse de <strong>3,4 %</strong> pour atteindre près de <strong>266 Md€</strong></li>
+      <li>Sous-ONDAM hospitalier rehaussé avec une <strong>rallonge d'un milliard €</strong> pour les hôpitaux</li>
+      <li>Art. 2 : ONDAM 2024 rectifié à <strong>256,9 Md€</strong></li>
+      <li>Art. 97 : ONDAM 2025 fixé à <strong>265,9 Md€</strong></li>
+    </ul>
+  </div>
+  <div class="card t">
+    <div class="ct">💰 Mesures d'économies de l'Assurance maladie</div>
+    <ul class="l">
+      <li>Effort supplémentaire sur les <strong>médicaments</strong> (contractualisé avec industries de santé)</li>
+      <li>Maîtrise des dépenses de <strong>radiologie, biologie et transports sanitaires</strong></li>
+      <li>Baisse du plafond des <strong>indemnités journalières</strong> : plafonnées à <strong>1,4 SMIC</strong> (au lieu de 1,8)</li>
+      <li>Lutte contre la <strong>fraude</strong> : déploiement de la <strong>carte Vitale sécurisée</strong> d'ici octobre 2025</li>
+      <li>Nouvelles recettes : alourdissement de la <strong>taxe soda</strong> et de la <strong>fiscalité sur les jeux d'argent</strong></li>
+    </ul>
+  </div>
+</div>
+
+<div class="loi r">
+  <span class="lr">⚖️ Décision n° 2025-875 DC du 28 février 2025 — Conseil constitutionnel — LFSS 2025 (slides 34-35)</span>
+  <div class="lt">Contrôle de constitutionnalité — griefs sur le 11e alinéa du Préambule de la Constitution de 1946</div>
+  <ul>
+    <li>Les parlementaires ont saisi le CC car les objectifs de dépenses seraient « fixés à un niveau insuffisant pour assurer la compensation intégrale de l'inflation et le financement des mesures de revalorisation salariale, ce qui compromettrait la capacité des établissements de santé à répondre aux besoins des assurés sociaux » → atteinte aux exigences du <strong>11e alinéa du Préambule de la Constitution de 1946</strong> relatives à la <strong>protection de la santé</strong></li>
+    <li>→ <strong>Grief écarté</strong> par le CC : les objectifs critiqués ont été déterminés en tenant compte des effets de l'inflation, de la hausse des dépenses de santé et des charges des établissements</li>
+    <li>En tout état de cause, les articles <strong>L. 114-4-1 et D. 114-4-0-17 du code de la sécurité sociale</strong> prévoient que les autorités doivent veiller à ce que les mesures de redressement (en cas de dépassement de plus de 0,5 % de l'ONDAM) ne remettent pas en cause, par leur nature et leur ampleur, ces exigences</li>
+  </ul>
+</div>
+
+<div class="sub t">LFSS 2026 (slides 37-38)</div>
+
+<div class="loi t">
+  <span class="lr">⚖️ Loi n° 2025-1403 du 30 décembre 2025 de financement de la sécurité sociale pour 2026</span>
+  <div class="lt">Rehaussement du budget hospitalier et mesures contre les déserts médicaux</div>
+  <ul>
+    <li>Rehausse de <strong>950 millions €</strong> le budget des hôpitaux (mais l'ONDAM reste inférieur aux besoins réels du terrain)</li>
+    <li>Renforce les structures de <strong>soins non programmés en ville</strong> · Harmonise la <strong>permanence des soins ambulatoires</strong> et le SAS · Simplifie leur financement et leur articulation territoriale</li>
+    <li>Rendra systématique l'usage par les professionnels de santé du <strong>Dossier Médical Partagé (DMP) de Mon espace santé</strong> (pour mettre fin aux redondances des prescriptions et améliorer la coordination)</li>
+    <li>S'inscrit dans le <strong>Pacte de lutte contre les déserts médicaux</strong> :
+      <ul>
+        <li>Soutenir le <strong>maillage officinal</strong> dans les petites communes</li>
+        <li>Favoriser l'installation de jeunes médecins grâce à un nouveau statut de <strong>praticien territorial de médecine ambulatoire</strong></li>
+        <li>Renforcer la <strong>formation en zones sous-dotées</strong></li>
+      </ul>
+    </li>
+    <li>Déploiement de <strong>5 000 Maisons France Santé</strong> d'ici 2027 — En 2026 : <strong>150 millions €</strong> alloués pour construire le réseau France Santé</li>
+  </ul>
+</div>
+
+
+<!-- RÉCAPITULATIF -->
+<div class="sh i3" style="margin-top:3rem;background:linear-gradient(135deg,#f3f1eb,#e5dfcc);border-left-color:var(--oc);">
+  <div class="sn" style="color:var(--o);">Récapitulatif</div>
+  <h2 style="color:var(--o);">Tableau de synthèse — tous les textes</h2>
+</div>
+
+<div class="card o">
+  <div class="ct">📚 Bases légales complètes du Thème 6</div>
+  <table>
+    <thead><tr><th>Texte</th><th>Date</th><th>Apport essentiel</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Loi du 27 juillet 1999</strong> portant création de la CMU</td><td>27 juil. 1999</td><td>Lancement de l'expérimentation de nouveaux modes de financement basés sur la tarification à la pathologie (à compter du 1er janv. 2000, durée 5 ans)</td></tr>
+      <tr><td><strong>Plan « Hôpital 2007 »</strong></td><td>2002</td><td>Reprend l'objectif T2A — mode unique de financement MCO des établissements publics (ex-DG) et privés</td></tr>
+      <tr><td><strong>Décret n° 2015-1866</strong></td><td>30 déc. 2015</td><td>IFAQ — Incitation financière à l'amélioration de la qualité (en vigueur depuis 2016)</td></tr>
+      <tr><td><strong>Rapport Aubert</strong></td><td>29 jan. 2019</td><td>Proposition du modèle de paiement combiné (T2A + forfaits maladies chroniques + qualité + pertinence)</td></tr>
+      <tr><td><strong>Plan d'urgence pour l'hôpital</strong></td><td>20 nov. 2019</td><td>1,5 Md€ sur 3 ans · reprise 1/3 de la dette hospitalière par l'État · hausse ONDAM à 2,45 %</td></tr>
+      <tr><td><strong>LFSS n° 2019-1446 pour 2020 — Art. 36</strong></td><td>24 déc. 2019</td><td>Nouveau modèle de financement en 3 volets : dotation populationnelle + dotation qualité + recettes activité</td></tr>
+      <tr><td><strong>Ségur de la santé</strong></td><td>25 mai – 10 juil. 2020</td><td>19 Md€ · 8,2 Md€/an revalorisation métiers · 15 000 recrutements · sortie du « tout T2A » · 4 000 lits</td></tr>
+      <tr><td><strong>Loi du 26 avril 2021</strong></td><td>26 avr. 2021</td><td>Mesures non budgétaires du Ségur · Gouvernance hospitalière rénovée (chef de service, directoire élargi) · SAS (Service d'accès aux soins)</td></tr>
+      <tr><td><strong>Loi Rist du 19 mai 2023</strong></td><td>19 mai 2023</td><td>Amélioration de l'accès aux soins · Plafonnement revenus médecins intérimaires à 1 390 € bruts / 24h</td></tr>
+      <tr><td><strong>LFSS n° 2023-1250 pour 2024</strong></td><td>26 déc. 2023</td><td>Réforme du financement hospitalier au 1er janv. 2024 : T2A + dotations spécifiques + financement mixte soins aigus</td></tr>
+      <tr><td><strong>LFSS n° 2025-199 pour 2025</strong></td><td>28 févr. 2025</td><td>Déficit 22,1 Md€ · ONDAM +3,4 % à 266 Md€ · +1 Md€ hôpitaux · IJ plafonnées à 1,4 SMIC · carte Vitale sécurisée</td></tr>
+      <tr><td><strong>Décision n° 2025-875 DC</strong> — CC</td><td>28 févr. 2025</td><td>Valide la LFSS 2025 · Écarte le grief sur le 11e alinéa du Préambule de 1946 (protection de la santé)</td></tr>
+      <tr><td><strong>LFSS n° 2025-1403 pour 2026</strong></td><td>30 déc. 2025</td><td>+950 M€ hôpitaux · DMP systématique · Pacte déserts médicaux · 5 000 Maisons France Santé · praticien territorial de médecine ambulatoire</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="org">
+  <h3>Synthèse — Évolution du financement hospitalier</h3>
+  <svg viewBox="0 0 860 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px;">
+    <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#2a5aad"/></marker></defs>
+    <line x1="10" y1="90" x2="845" y2="90" stroke="#2a5aad" stroke-width="2" marker-end="url(#arr)"/>
+
+    <!-- Avant 1999 -->
+    <rect x="5" y="30" width="140" height="52" rx="7" fill="#1a3a6a"/>
+    <text x="75" y="52" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="white">Avant 1999</text>
+    <text x="75" y="68" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#cde3f8">Public : DG · Privé : actes</text>
+    <text x="75" y="79" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9" fill="#aac0e0">tarifs régionaux variables</text>
+    <line x1="75" y1="82" x2="75" y2="90" stroke="#555" stroke-width="1.5"/>
+
+    <!-- 2004-2008 -->
+    <rect x="165" y="95" width="145" height="60" rx="7" fill="#1a5c38"/>
+    <text x="237" y="115" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="white">2004-2008</text>
+    <text x="237" y="131" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#c0f0d8">Montée en charge T2A</text>
+    <text x="237" y="145" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9" fill="#a0e0c0">10 % → 100 %</text>
+    <line x1="237" y1="95" x2="237" y2="90" stroke="#555" stroke-width="1.5"/>
+
+    <!-- 2016 IFAQ -->
+    <rect x="330" y="30" width="140" height="52" rx="7" fill="#9a6000"/>
+    <text x="400" y="52" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="white">2016</text>
+    <text x="400" y="68" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#ffe080">IFAQ (part qualité)</text>
+    <text x="400" y="79" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9" fill="#f0c060">Décret 30 déc. 2015</text>
+    <line x1="400" y1="82" x2="400" y2="90" stroke="#555" stroke-width="1.5"/>
+
+    <!-- 2020 Ségur -->
+    <rect x="490" y="95" width="140" height="60" rx="7" fill="#1a5a6a"/>
+    <text x="560" y="115" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="white">2020</text>
+    <text x="560" y="131" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#cce8f0">Ségur + LFSS 2020</text>
+    <text x="560" y="145" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9" fill="#aad8ec">3 volets · 5 modalités</text>
+    <line x1="560" y1="95" x2="560" y2="90" stroke="#555" stroke-width="1.5"/>
+
+    <!-- 2024+ -->
+    <rect x="650" y="30" width="195" height="52" rx="7" fill="#982020"/>
+    <text x="747" y="52" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="white">2024-2026</text>
+    <text x="747" y="68" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#ffd0d0">Financement mixte</text>
+    <text x="747" y="79" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9" fill="#ffb0b0">T2A + dotations spécifiques</text>
+    <line x1="747" y1="82" x2="747" y2="90" stroke="#555" stroke-width="1.5"/>
+  </svg>
+</div>
+
+<blockquote>
+  « La T2A ne disparaît pas mais elle est combinée à d'autres modes de rémunération forfaitaires, notamment pour la prise en charge des maladies chroniques et du grand âge. »
+  <cite>— Rapport Jean-Marc Aubert, 29 janvier 2019</cite>
+</blockquote>
+
+</main>
+<footer>Fiche de révision — Thème 6 : Rentabilité des Soins et Financements Hospitaliers · cours Guylène NICOLAS · Master 1 · 2025/2026</footer>
+</body>
+</html>

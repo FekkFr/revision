@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thème 2 – La loi de santé publique : version 2016 et suivantes</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#f4f7f2; --ink:#0a130a;
+    --s1:#1a6b2a; --s2:#1a3a6a;
+    --gold:#7a6a00; --muted:#4a5a40; --rule:#c0d4b0;
+    --law-bg:#f0fff4; --law-brd:#2a8a3a;
+    --jur-bg:#f0f4ff; --jur-brd:#2a4a9a;
+    --key-bg:#fffcf0; --key-brd:#8a7a00;
+    --warn-bg:#fff4f0; --warn-brd:#9a3a1a;
+    --stat-bg:#0a130a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Source Serif 4',Georgia,serif;font-size:14px;line-height:1.72;padding-bottom:60px}
+
+  .header{background:var(--ink);color:#fff;padding:34px 48px 28px;position:relative;overflow:hidden}
+  .header::before{content:'';position:absolute;top:0;right:0;width:220px;height:100%;background:linear-gradient(135deg,transparent 50%,rgba(80,160,60,.08))}
+  .header-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:7px}
+  .header h1{font-family:'Playfair Display',serif;font-size:25px;font-weight:900;line-height:1.2}
+  .header h1 span{color:#a8e060}
+  .header-sub{margin-top:8px;font-size:12px;color:rgba(255,255,255,.45);font-style:italic}
+  .plan-row{margin-top:18px;display:flex;gap:9px;flex-wrap:wrap}
+  .plan-pill{background:rgba(168,224,96,.1);border:1px solid rgba(168,224,96,.22);color:rgba(255,255,255,.85);border-radius:20px;padding:4px 13px;font-size:11px}
+
+  .content{max-width:860px;margin:0 auto;padding:0 28px}
+  .intro-box{background:var(--ink);color:#fff;border-radius:4px;padding:18px 22px;margin:26px 0 0}
+  .intro-box p{font-size:13px;line-height:1.75;color:rgba(255,255,255,.83)}
+  .intro-box strong{color:#a8e060}
+
+  .section-block{margin-top:40px}
+  .section-title{display:flex;align-items:center;gap:13px;margin-bottom:4px}
+  .section-num{font-family:'Playfair Display',serif;font-size:40px;font-weight:900;line-height:1;color:var(--rule);flex-shrink:0;user-select:none}
+  .section-heading{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;border-bottom:2.5px solid;padding-bottom:3px;flex:1}
+  .section-heading.vert{border-color:var(--s1);color:var(--s1)}
+  .section-heading.bleu{border-color:var(--s2);color:var(--s2)}
+
+  .subsection{margin-top:20px}
+  .sub-title{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.9px;border-left:3px solid var(--rule);padding-left:9px;margin-bottom:9px;color:var(--muted)}
+  .sub-title.vert{border-color:var(--s1);color:var(--s1)}
+  .sub-title.bleu{border-color:var(--s2);color:var(--s2)}
+  .sub-title.gold{border-color:var(--gold);color:var(--gold)}
+  .sub-title.warn{border-color:var(--warn-brd);color:var(--warn-brd)}
+
+  .card{background:#fff;border:1px solid var(--rule);border-radius:4px;padding:13px 17px;margin-bottom:9px}
+  .law-box{background:var(--law-bg);border-left:4px solid var(--law-brd);border-radius:0 4px 4px 0;padding:11px 15px;margin:7px 0}
+  .law-box .law-ref{font-family:'Playfair Display',serif;font-size:11.5px;font-weight:700;color:var(--law-brd);letter-spacing:.4px;margin-bottom:3px}
+  .juris-box{background:var(--jur-bg);border-left:4px solid var(--jur-brd);border-radius:0 4px 4px 0;padding:11px 15px;margin:7px 0}
+  .juris-box .juris-ref{font-family:'Playfair Display',serif;font-size:11.5px;font-weight:700;color:var(--jur-brd);letter-spacing:.4px;margin-bottom:3px}
+  .key-box{background:var(--key-bg);border:1px dashed var(--key-brd);border-radius:4px;padding:11px 15px;margin:7px 0}
+  .key-box .key-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--key-brd);font-weight:600;margin-bottom:3px}
+  .warn-box{background:var(--warn-bg);border-left:4px solid var(--warn-brd);border-radius:0 4px 4px 0;padding:11px 15px;margin:7px 0}
+  .warn-box .warn-ref{font-family:'Playfair Display',serif;font-size:11.5px;font-weight:700;color:var(--warn-brd);letter-spacing:.4px;margin-bottom:3px}
+
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:9px;margin:9px 0}
+  .stat-card{background:var(--stat-bg);color:#fff;border-radius:4px;padding:12px 13px;text-align:center}
+  .stat-card .sn{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#a8e060;line-height:1.1}
+  .stat-card .sl{font-size:11px;color:rgba(255,255,255,.68);margin-top:3px}
+
+  .timeline{margin:8px 0;padding-left:4px}
+  .tl-item{display:flex;gap:11px;margin-bottom:7px;align-items:flex-start}
+  .tl-year{background:var(--ink);color:#a8e060;font-family:'Playfair Display',serif;font-size:11px;font-weight:700;border-radius:3px;padding:2px 8px;flex-shrink:0;white-space:nowrap;line-height:1.6}
+  .tl-text{font-size:13px;line-height:1.65;padding-top:2px}
+
+  ul.styled{list-style:none;padding:0}
+  ul.styled li{padding:2px 0 2px 17px;position:relative;font-size:13px}
+  ul.styled li::before{content:'▸';position:absolute;left:0;color:var(--muted);font-size:11px;top:5px}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:9px 0}
+  @media(max-width:600px){.two-col{grid-template-columns:1fr}.header{padding:24px 20px}.content{padding:0 15px}}
+
+  hr.divider{border:none;border-top:1.5px solid var(--rule);margin:32px 0 0}
+  b{font-weight:600} em{font-style:italic;color:var(--muted)}
+  p{margin-bottom:6px;font-size:13px}
+  .note{font-size:11.5px;color:var(--muted);font-style:italic;margin-top:3px}
+  .footer{margin-top:48px;text-align:center;font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-tag">Master 1 · Politique &amp; Gouvernance du Système de Santé · 2025/2026</div>
+  <h1>Thème 2 — <span>La loi de santé publique :</span><br>version 2016… et suivantes !</h1>
+  <div class="header-sub">Cours de Guylène Nicolas</div>
+  <div class="plan-row">
+    <span class="plan-pill">Section I · Prévenir avant d'avoir à guérir : lutter activement contre le tabagisme</span>
+    <span class="plan-pill">Section II · La politique vaccinale : de la protection à la contrainte</span>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- INTRO -->
+  <div class="intro-box">
+    <p><strong>Remarque introductive :</strong> « La protection de la santé fait partie des nouveaux paradigmes qui contribuent à construire un nouvel ordre économique et social où l'on prend en compte non seulement l'intérêt immédiat de la société, mais aussi celui des générations futures. » — SEDJARI, <em>Droits de l'homme et développement durable</em>, 2008.</p>
+    <p style="margin-top:8px"><strong>Tension centrale :</strong> JOURDAN (Didier) met en garde contre les déséquilibres entre <strong>liberté, sécurité et prospérité</strong> — les trois perspectives d'une intervention étatique dans l'optique du bien commun. Il souligne <em>« la subordination de la liberté et de la prospérité à la sécurité dans le contexte de ce que l'on appelle aujourd'hui ″l'urgence préventive″ ».</em></p>
+  </div>
+
+  <!-- HISTORIQUE ET CADRE JURIDIQUE -->
+  <div class="subsection" style="margin-top:22px">
+    <div class="sub-title gold">Historique et définition de la politique de santé</div>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-year">1902</div><div class="tl-text"><b>Loi du 15 février 1902</b> relative à la santé publique — première à avoir quitté le terme d'hygiène</div></div>
+      <div class="tl-item"><div class="tl-year">1998</div><div class="tl-text"><b>Loi n° 98-535 du 1er juillet 1998</b> relative au renforcement de la veille sanitaire et du contrôle de la sécurité sanitaire des produits destinés à l'homme</div></div>
+      <div class="tl-item"><div class="tl-year">2002</div><div class="tl-text"><b>Loi du 4 mars 2002</b> relative aux droits des malades et à la qualité du système de santé · Lois de bioéthique</div></div>
+      <div class="tl-item"><div class="tl-year">2004</div><div class="tl-text"><b>Loi n° 2004-806 du 9 août 2004</b> relative à la politique de santé publique — « la santé étatisée » (Jean-Marie Clément) · réaffirmation du rôle de l'État + régionalisation (confirmée par la loi HPST 2009)</div></div>
+      <div class="tl-item"><div class="tl-year">2016</div><div class="tl-text"><b>Loi n° 2016-41 du 26 janvier 2016</b> de modernisation de notre système de santé (adoptée le 14 déc. 2015 par le Sénat · saisine CC le 21 déc. 2015 par 60 députés et 60 sénateurs · Décision n° 2015-727 DC du 21 janv. 2016)</div></div>
+      <div class="tl-item"><div class="tl-year">2019</div><div class="tl-text"><b>Loi n° 2019-774 du 24 juillet 2019</b> relative à l'organisation et à la transformation du système de santé (« Ma santé 2022 »)</div></div>
+    </div>
+    <div class="law-box">
+      <div class="law-ref">Définition légale — Art. L. 1411-1 CSP (Ordonnance n° 2017-31 du 12 janvier 2017)</div>
+      <p>« La Nation définit sa politique de santé afin de garantir le droit à la protection de la santé de chacun. La politique de santé relève de la responsabilité de l'État. Elle tend à assurer la promotion de conditions de vie favorables à la santé, l'amélioration de l'état de santé de la population, la réduction des inégalités sociales et territoriales et l'égalité entre les femmes et les hommes et à garantir la meilleure sécurité sanitaire possible et l'accès effectif de la population à la prévention et aux soins. »</p>
+    </div>
+  </div>
+
+  <!-- STRATÉGIE NATIONALE DE SANTÉ -->
+  <div class="subsection">
+    <div class="sub-title gold">La Stratégie nationale de santé (SNS)</div>
+
+    <div class="law-box">
+      <div class="law-ref">Art. L. 1411-1-1 CSP — Art. 1er de la loi du 26 janvier 2016 (mécanisme pérennisé)</div>
+      <p>« La politique de santé est conduite dans le cadre d'une stratégie nationale de santé définie par le Gouvernement, dans des conditions fixées par décret en Conseil d'État. La stratégie nationale de santé détermine, de manière pluriannuelle, des domaines d'action prioritaires et des objectifs d'amélioration de la santé et de la protection sociale contre la maladie. Un volet de la stratégie nationale de santé détermine les priorités de la politique de santé de l'enfant. »</p>
+    </div>
+
+    <div class="subsection" style="margin-top:12px">
+      <div class="sub-title gold">SNS 2013-2017 (présentée le 23 sept. 2013 par Marisol Touraine)</div>
+      <div class="card">
+        <b>5 grandes orientations :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li>Encourager la prévention</li>
+          <li>Réduire les inégalités de santé et garantir l'accès aux soins</li>
+          <li>Adapter les soins aux besoins des patients (vieillissement de la population)</li>
+          <li>Développer la recherche et la formation</li>
+          <li>Affirmer les droits des usagers et impliquer les citoyens dans l'organisation du système</li>
+        </ul>
+        <b style="display:block;margin-top:7px">Processus démocratique :</b>
+        <ul class="styled" style="margin-top:3px">
+          <li>Nov. 2013 – fév. 2014 : <b>160 débats en région</b> sur la SNS</li>
+          <li>Plus de <b>25 000 personnes</b> ont participé</li>
+          <li>Orientations de la loi de Santé présentées le <b>19 juin 2014</b></li>
+          <li>Projet de loi présenté le <b>15 octobre 2014</b> au Conseil des ministres — intitulé « changer le quotidien des patients et des professionnels de santé »</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subsection" style="margin-top:12px">
+      <div class="sub-title gold">Loi de 2016 : 16 mesures réparties en 3 axes</div>
+      <div class="card">
+        <b>Axe 1 — Prévenir avant d'avoir à guérir :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li>Mesure 1 : Désigner un médecin traitant pour les enfants</li>
+          <li>Mesure 2 : Améliorer l'information nutritionnelle</li>
+          <li>Mesure 3 : Prévenir l'ivresse des jeunes en sanctionnant l'incitation à la consommation excessive d'alcool</li>
+          <li>Mesure 4 : Lutter activement contre le tabagisme (20 ans pour que les enfants d'aujourd'hui deviennent les non-fumeurs de demain)</li>
+          <li>Mesure 5 : Favoriser des stratégies de prévention innovantes</li>
+          <li>Mesure 6 : Créer l'<b>Institut national de prévention, de veille et d'intervention en santé publique = InVS + INPES + EPRUS = Santé Publique France</b></li>
+        </ul>
+        <b style="display:block;margin-top:7px">Axe 2 — Faciliter la santé au quotidien :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li>Mesure 7 : Généraliser le tiers payant, supprimer l'avance de frais chez le médecin</li>
+          <li>Mesure 8 : Étendre les tarifs sociaux pour lunettes, prothèses auditives et soins dentaires</li>
+          <li>Mesure 9 : Créer un numéro d'appel national pour joindre un médecin aux heures de fermeture des cabinets (→ <b>le 15 ou le 116 117</b>)</li>
+          <li>Mesure 10 : Mettre en place le service public d'information en santé</li>
+          <li>Mesure 11 : Permettre l'action de groupe en santé (« class action »)</li>
+        </ul>
+        <b style="display:block;margin-top:7px">Axe 3 — Innover pour consolider l'excellence de notre système de santé :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li>Mesure 12 : Refonder le service public hospitalier</li>
+          <li>Mesure 13 : Créer le service territorial de santé au public</li>
+          <li>Mesure 14 : Permettre aux professionnels de mieux coordonner le parcours de leur patient</li>
+          <li>Mesure 15 : Moderniser les pratiques et les professions de santé</li>
+          <li>Mesure 16 : Améliorer l'accès aux données de santé</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subsection" style="margin-top:12px">
+      <div class="sub-title gold">SNS 2018-2022 — 4 axes, 11 domaines, 43 objectifs nationaux</div>
+      <div class="card">
+        Lancée le <b>7 nov. 2017</b> par Agnès Buzyn (consultation publique en ligne). Décret du <b>29 décembre 2017</b>, signé par une vingtaine de ministres.
+      </div>
+      <div class="two-col">
+        <div class="card">
+          <b>Axe 1 :</b> Mettre en place une politique de promotion de la santé, incluant la prévention, dans tous les milieux
+        </div>
+        <div class="card">
+          <b>Axe 2 :</b> Lutter contre les inégalités sociales et territoriales d'accès à la santé
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="card">
+          <b>Axe 3 :</b> Garantir la qualité, la sécurité et la pertinence des prises en charge à chaque étape du parcours de santé
+        </div>
+        <div class="card">
+          <b>Axe 4 :</b> Innover pour transformer notre système de santé en réaffirmant la place des usagers
+        </div>
+      </div>
+      <div class="card" style="margin-top:4px">
+        <b>Axe 1 — contenu (Prévention et promotion de la santé) :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li>Promouvoir une alimentation saine · activité physique régulière</li>
+          <li>Prévenir l'entrée dans les pratiques addictives (tabac, alcool, substances psychoactives, addictions sans substances)</li>
+          <li>Réduire les prévalences addictives et comportements à risque</li>
+          <li>Prévenir les risques liés à la conduite dangereuse sur la route</li>
+          <li>Promouvoir la santé sexuelle et l'éducation à la sexualité</li>
+          <li>Prévenir la perte d'autonomie · promouvoir l'hygiène individuelle et collective</li>
+          <li>Promouvoir des conditions de vie et de travail favorables et maîtriser les risques environnementaux</li>
+          <li>Mobiliser les outils de prévention du système de santé (vaccination, etc.)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subsection" style="margin-top:12px">
+      <div class="sub-title gold">Loi n° 2019-774 du 24 juillet 2019 — « Ma santé 2022 »</div>
+      <div class="card">
+        Développement d'un <b>collectif de soins</b> entre professionnels, secteurs ambulatoire, médico-social et hospitalier. Meilleure structuration de l'offre de soins dans les territoires. Encouragement des projets de santé de territoire. Développement du <b>dossier médical partagé</b> : chaque usager peut ouvrir son <b>espace numérique de santé</b> d'ici le 1er janvier 2022.
+      </div>
+    </div>
+
+    <div class="subsection" style="margin-top:12px">
+      <div class="sub-title gold">SNS 2023-2033 — en cours d'élaboration</div>
+      <div class="card">
+        Tient compte des enseignements tirés de la crise sanitaire. Rédigé sur la base de l'analyse du <b>HCSP</b> sur l'état de santé de la population. <b>3 grands objectifs :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li>Permettre à tous de vivre plus longtemps en bonne santé, par la prévention, la promotion de la santé et l'accompagnement à tous les âges de la vie</li>
+          <li>Répondre aux besoins de santé de chacun, sur tout le territoire, avec une offre de santé adaptée</li>
+          <li>Rendre notre système de santé plus résilient et mieux préparé face aux défis écologiques et aux crises</li>
+        </ul>
+        <p class="note">⚠ Pas d'avancée depuis 2023.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ SECTION I ═══════════════════════════════ -->
+  <div class="section-block">
+    <div class="section-title">
+      <div class="section-num">I</div>
+      <div class="section-heading vert">Prévenir avant d'avoir à guérir : lutter activement contre le tabagisme</div>
+    </div>
+
+    <!-- A. Le constat -->
+    <div class="subsection">
+      <div class="sub-title vert">A · Le constat</div>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="sn">1 sur 2</div><div class="sl">fumeur meurt du tabac</div></div>
+        <div class="stat-card"><div class="sn">75 000</div><div class="sl">décès/an liés au tabac en France (≈ 200/jour)</div></div>
+        <div class="stat-card"><div class="sn">120 000</div><div class="sl">morts/an liées à l'alcool et au tabac réunis (chiffre 2021)</div></div>
+        <div class="stat-card"><div class="sn">25 %</div><div class="sl">des Français (18-75 ans) sont fumeurs en 2024 (contre 30 % en 2021)</div></div>
+        <div class="stat-card"><div class="sn">× 20</div><div class="sl">La cigarette tue 20 fois plus que les accidents de la route</div></div>
+        <div class="stat-card"><div class="sn">156 Mds€</div><div class="sl">coût social annuel du tabac en France en 2019</div></div>
+      </div>
+      <div class="card" style="margin-top:8px">
+        <b>Objectif du gouvernement :</b> « les enfants qui naissent aujourd'hui soient la 1ère génération de non-fumeurs ».<br>
+        <b>Contexte historique :</b> Pendant des décennies, les cigarettiers ont financé des études scientifiques pour faire douter de la dangerosité du tabac (ex. publicité Camel 1950 : « Not one single case of throat irritation »).
+      </div>
+    </div>
+
+    <!-- B. Programme national de réduction du tabagisme -->
+    <div class="subsection">
+      <div class="sub-title vert">B · Le Programme national de réduction du tabagisme (PNRT)</div>
+      <div class="law-box">
+        <div class="law-ref">PNRT — Présenté le 25 septembre 2014 par Marisol Touraine</div>
+        <p><b>3 axes d'intervention prioritaire :</b></p>
+        <ul class="styled" style="margin-top:5px">
+          <li><b>1. Protéger les jeunes</b></li>
+          <li><b>2. Aider les fumeurs à arrêter</b></li>
+          <li><b>3. Agir sur l'économie du tabac</b></li>
+        </ul>
+        <b style="display:block;margin-top:6px">3 objectifs chiffrés :</b>
+        <ul class="styled" style="margin-top:3px">
+          <li>En <b>2019</b> : le nombre de fumeurs doit avoir baissé d'au moins <b>10 %</b></li>
+          <li>En <b>2024</b> : passer sous la barre des <b>20 %</b> de fumeurs (contre &gt;30 % lors du lancement)</li>
+          <li>En <b>2032</b> : au moins <b>95 %</b> des jeunes de 18 ans non-fumeurs</li>
+        </ul>
+      </div>
+
+      <div class="subsection" style="margin-top:14px">
+        <div class="sub-title gold">Axe 1 — Protéger les jeunes</div>
+        <div class="card">
+          <ul class="styled">
+            <li><b>Paquet de cigarettes neutre</b> → 1er janvier 2017 (préconisé par l'OMS, déjà en place en Australie et au Royaume-Uni)</li>
+            <li><b>Interdiction de fumer en voiture</b> en présence d'un mineur</li>
+            <li>Les espaces extérieurs de jeux pour enfants deviennent <b>non-fumeurs</b></li>
+            <li>Encadrement de la <b>cigarette électronique</b> : publicité limitée puis interdite le 20/06/2016 · vapotage interdit dans les établissements accueillant des mineurs, transports collectifs et espaces collectifs clos de travail</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection" style="margin-top:12px">
+        <div class="sub-title gold">Axe 2 — Aider les fumeurs à arrêter</div>
+        <div class="card">
+          <ul class="styled">
+            <li>Campagne d'information TV/radio/internet : « le tabac tue un fumeur sur deux » · promotion du <b>39 89</b> (Tabac Info Service)</li>
+            <li>Impliquer davantage les médecins traitants : la réduction du tabagisme devient un <b>objectif de santé publique définissant la partie forfaitaire de rémunération des médecins traitants</b></li>
+            <li>Amélioration du remboursement du sevrage tabagique : depuis le 1er janvier 2019, plus de forfait d'aide. Les <b>traitements nicotiniques de substitution</b> inscrits sur la liste sont remboursés à <b>65 %</b> par l'AM obligatoire sur prescription</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection" style="margin-top:12px">
+        <div class="sub-title gold">Axe 3 — Agir sur l'économie du tabac</div>
+        <div class="card">
+          <ul class="styled">
+            <li>Création d'un <b>fonds dédié à la lutte contre le tabagisme</b> (financer information, prévention jeunes, prise en charge du sevrage) — l'industrie du tabac sollicitée pour le financer</li>
+            <li>Renforcer la <b>transparence sur les activités de lobbying</b> de l'industrie : www.transparence.sante.gouv.fr</li>
+            <li>Lutte contre le <b>commerce illicite de tabac</b> (services des douanes et répression des fraudes)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection" style="margin-top:12px">
+        <div class="sub-title gold">La hausse du prix comme moyen de prévention</div>
+        <div class="card">
+          Prix du paquet en 2000 : <b>3,20 €</b>. En 2023 : <b>10,92 €</b> (plus que triplé depuis 2000, source Statista/DGDDI). Au <b>1er mars 2026</b> : nouvelle hausse portant le prix moyen vers <b>13,50 €</b> le paquet (LFSS). <b>40 %</b> des anciens fumeurs quotidiens affirment que l'augmentation des taxes a été une motivation à leur arrêt. Le graphique prix/consommation montre clairement la corrélation : à mesure que le prix monte, le nombre de milliards de cigarettes vendues baisse (de 83,5 Mds en 2000 à 36,0 Mds en 2020).
+        </div>
+        <div class="law-box">
+          <div class="law-ref">Directive 2014/40/UE du 3 avril 2014 « Tabac » — transposée en droit français</div>
+          <ul class="styled" style="margin-top:4px">
+            <li>Interdiction des arômes et description précise des ingrédients</li>
+            <li>Avertissements sanitaires = <b>65 %</b> de la face avant et arrière des paquets de cigarettes et tabac à rouler</li>
+            <li>Système d'identification et de suivi dans toute l'UE contre le commerce illégal</li>
+            <li>Interdiction de la vente en ligne</li>
+            <li>Exigences de sécurité et de qualité pour les cigarettes électroniques</li>
+          </ul>
+        </div>
+        <div class="juris-box">
+          <div class="juris-ref">Décision n° 2015-727 DC du Conseil constitutionnel (21 janvier 2016)</div>
+          <p>Le CC juge conformes à la Constitution :</p>
+          <ul class="styled" style="margin-top:4px">
+            <li>L'art. 22 §II sur les modalités d'entrée en vigueur de l'interdiction des arômes et additifs</li>
+            <li>L'art. 23 §I 2° supprimant la dérogation à l'interdiction de publicité pour les affichettes dans les débits de tabac non visibles de l'extérieur</li>
+            <li>L'<b>art. 27 sur la neutralité et l'uniformisation des emballages de cigarettes</b></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- C. PNLT -->
+    <div class="subsection">
+      <div class="sub-title vert">C · Programme national de lutte contre le tabac (PNLT)</div>
+      <div class="law-box">
+        <div class="law-ref">PNLT 2018-2022</div>
+        <p>Essentiellement basé sur des <b>augmentations fiscales</b> pour atteindre le prix de <b>10 €</b> moyen le paquet de 20 cigarettes → objectif pleinement atteint. Résultat : chute importante des ventes et de la prévalence tabagique, passée de <b>29,4 % en 2016 à 24 % en 2020</b>. Au total : <b>4 millions de fumeurs quotidiens en moins depuis 2014</b>.</p>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">PNLT 2023-2027 — 5 engagements forts et 26 mesures (en attente d'arbitrage pour le PNLT 2023-2027)</div>
+        <ul class="styled" style="margin-top:4px">
+          <li><b>Axe 1 — Protéger les jeunes :</b> paquet à <b>13 €</b> en 2027 · interdire la vente des produits du vapotage (puffs)</li>
+          <li><b>Axe 2 — Accompagner les fumeurs vulnérables :</b> renforcer les efforts de prévention/accompagnement pour les publics à forte prévalence (personnes en précarité, maladies chroniques, secteurs fortement touchés, personnes sous main de justice)</li>
+          <li><b>Axe 3 — Préserver l'environnement de la pollution liée au tabac :</b> généraliser les lieux de santé sans tabac et les campus et écoles de santé sans tabac · interdire la vente des produits du vapotage jetables (puffs)</li>
+          <li><b>Axe 4 — Transformer les métiers du tabac et lutter contre les trafics :</b> poursuivre la transformation du métier de buraliste vers un commerce de proximité · harmoniser la politique fiscale à l'échelle UE pour réduire les écarts de prix</li>
+          <li><b>Axe 5 — Améliorer la connaissance :</b> développer la recherche sur tous les leviers du PNLT · renforcer la surveillance sur les produits du tabac et du vapotage · élaborer une feuille de route sur les produits nicotinés (sachets de nicotine…)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <b>Modèle — L'Australie :</b> moins de <b>5 %</b> de fumeurs grâce aux mesures mises en place ces dernières décennies → augmentation de l'espérance de vie en bonne santé. Pr Berlin et Josseran : « La politique mise en place depuis 2014 aurait dû être lancée il y a vingt ans au moins, on aurait évité plus de 30 000 morts par an. »
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══════════════════════════════ SECTION II ═══════════════════════════════ -->
+  <div class="section-block">
+    <div class="section-title">
+      <div class="section-num">II</div>
+      <div class="section-heading bleu">La politique vaccinale : entre protection et contrainte</div>
+    </div>
+
+    <!-- A. Contexte et état des lieux -->
+    <div class="subsection">
+      <div class="sub-title bleu">A · Contexte et état des lieux de la vaccination</div>
+      <div class="card">
+        <b>Impact historique de la vaccination en France :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li>Diphtérie (1923) : 45 000 cas/an avant vaccin → 0 aujourd'hui</li>
+          <li>Coqueluche (1926) : 550 000 cas/an avant vaccin → 1 000 en l'an 2000</li>
+          <li>Poliomyélite (1952) : 4 000 cas/an avant vaccin → 0 aujourd'hui</li>
+          <li>Rougeole (1963) : 550 000 cas/an avant vaccin → 1 000 aujourd'hui</li>
+        </ul>
+        <p style="margin-top:6px; font-style:italic;">1,4 million d'enfants décèdent chaque année dans le monde faute d'avoir été vaccinés (répartition : 38 % rougeole, 27 % grippe type B/HiB, 20 % coqueluche, 14 % tétanos, 1 % autres).</p>
+      </div>
+      <div class="key-box">
+        <div class="key-label">🔑 Seuils de couverture vaccinale nécessaires</div>
+        <ul class="styled">
+          <li><b>Rougeole :</b> 1 malade contamine 17 personnes → <b>&gt;95 %</b> de la population doit être vaccinée</li>
+          <li><b>Oreillons :</b> 1 malade contamine 7 personnes → <b>85 %</b> de la population doit être vaccinée</li>
+          <li><b>Grippe :</b> 1 malade contamine 2 personnes → <b>50 %</b> de la population doit être vaccinée</li>
+        </ul>
+        <p class="note">Exemple Finlande : couverture rougeole 98 % → incidence &lt;0,00001 cas pour 10 000. France : couverture 83 % → incidence &gt;30 cas pour 10 000.</p>
+      </div>
+    </div>
+
+    <!-- B. Politique vaccinale en Europe -->
+    <div class="subsection">
+      <div class="sub-title bleu">B · La politique vaccinale en Europe</div>
+      <div class="card">
+        <b>Obligations vaccinales en Europe (source AFP/Commission européenne) :</b><br>
+        <b>Pays sans obligation vaccinale</b> (couverture souvent satisfaisante) : Finlande, Pays-Bas, Suède, Danemark, Islande, Norvège, Irlande, Royaume-Uni, Espagne, Portugal, Allemagne.<br>
+        <b>Pays avec certains vaccins obligatoires</b> (couverture parfois insuffisante) : France, Italie, Belgique, Autriche, Pologne, Slovaquie, Hongrie, Roumanie, Bulgarie, Grèce, etc.<br>
+        <em>L'Autriche et le Royaume-Uni, sans obligation, ont connu des épidémies : rougeole au Royaume-Uni avec plus de <b>2 000 cas confirmés en 2012</b>.</em>
+      </div>
+      <div class="warn-box">
+        <div class="warn-ref">Rougeole en Europe — janvier 2025 (Centre européen de prévention et de contrôle des maladies)</div>
+        <p><b>1 033 cas de rougeole en Europe en janvier 2025.</b> Principaux pays touchés : Roumanie (<b>663 cas</b>), Italie (74), Espagne (70), France (67), Autriche (48), Belgique (32), Irlande (25), Allemagne (20).</p>
+      </div>
+    </div>
+
+    <!-- C. Baromètre 2024 -->
+    <div class="subsection">
+      <div class="sub-title bleu">C · Adhésion et réticences vaccinales — Baromètre Santé Publique France 2024 (déc. 2025)</div>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="sn">80 %</div><div class="sl">des adultes 18-79 ans favorables à la vaccination en 2024</div></div>
+        <div class="stat-card"><div class="sn">25 %</div><div class="sl">réticents à la vaccination Covid-19 — la plus contestée</div></div>
+        <div class="stat-card"><div class="sn">7 %</div><div class="sl">réticents à la vaccination contre la grippe</div></div>
+      </div>
+      <div class="card" style="margin-top:6px">
+        <b>Gradient socio-économique :</b> adhésion vaccinale plus élevée parmi les personnes avec un niveau d'éducation plus élevé et une meilleure situation financière. Ce gradient se poursuit en 2024.<br>
+        <b>Disparités régionales (2017) :</b> adhésion de 71,3 % en Corse et PACA à 87,4 % à La Réunion.
+      </div>
+    </div>
+
+    <!-- D. Faiblesses -->
+    <div class="subsection">
+      <div class="sub-title bleu">D · Rapport Cour des comptes (fév. 2018) — faiblesses de la politique vaccinale</div>
+      <div class="warn-box">
+        <div class="warn-ref">Rapport Cour des comptes, février 2018</div>
+        <ul class="styled" style="margin-top:4px">
+          <li>Couvertures vaccinales fragiles avec de fortes disparités selon les vaccins → à l'origine d'émergences épidémiques</li>
+          <li><b>Hésitation vaccinale plus marquée en France</b> qu'ailleurs → cause essentielle de la fragilisation de la couverture</li>
+          <li>La mobilisation des pouvoirs publics a <b>manqué de réactivité et de force</b></li>
+          <li>Plans successifs → mesures partielles, mal coordonnées, insuffisantes</li>
+          <li>Politique de moins en moins lisible : juxtaposition vaccinations obligatoires et recommandées</li>
+          <li><b>Non-investissement du ministère de l'Éducation nationale :</b> « position en complet retrait particulièrement dommageable » · « une stratégie vaccinale renouvelée impose une approche interministérielle forte qui doit redonner à l'école un rôle actif »</li>
+        </ul>
+        <b style="display:block;margin-top:6px">Recommandations de la Cour :</b>
+        <ul class="styled" style="margin-top:3px">
+          <li>Généraliser le <b>carnet de vaccination électronique</b></li>
+          <li>Ouvrir plus largement aux <b>infirmiers et pharmaciens</b> la possibilité de vacciner</li>
+          <li>Revenir sur la suspension de l'obligation de vaccination contre la <b>grippe des professionnels de santé</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- E. Extension à 11 vaccins -->
+    <div class="subsection">
+      <div class="sub-title bleu">E · Extension à 11 vaccins obligatoires</div>
+      <div class="law-box">
+        <div class="law-ref">Loi n° 2017-1836 du 30 décembre 2017 de financement de la Sécurité sociale pour 2018</div>
+        <p>Extension de <b>3 à 11 vaccins obligatoires</b> pour les enfants nés à partir du 1er janvier 2018.</p>
+        <p style="margin-top:6px"><b>3 vaccins déjà obligatoires :</b> diphtérie · tétanos · poliomyélite</p>
+        <p style="margin-top:5px"><b>8 vaccins ajoutés (jusqu'alors recommandés) :</b> haemophilius influenzae B (pneumopathies, méningites) · coqueluche · hépatite B · rougeole · oreillons · rubéole · méningocoque C · pneumocoque</p>
+        <p style="margin-top:5px"><b>En pratique :</b> 10 injections pour les enfants étalées sur 2 ans. Au moins 70 % des enfants connaissaient déjà ces 10 injections sur 2 ans et 80 % plus de 8 injections. Objectif : éliminer la rougeole (nécessite 95 % de couverture — niveau jamais atteint en France, ce qui a provoqué l'épidémie de milliers de cas entre 2008 et 2011).</p>
+      </div>
+      <div class="juris-box">
+        <div class="juris-ref">CE, 6 mai 2019, n° 419242 et 415694 — validation de l'extension à 11 vaccins</div>
+        <p>Le Conseil d'État valide l'extension et rejette la demande de retrait des vaccins contenant de l'aluminium.</p>
+        <ul class="styled" style="margin-top:4px">
+          <li>L'extension n'est <b>pas contraire au droit à l'intégrité physique et au respect de la vie privée</b> car elle est justifiée par la <b>protection de la santé publique</b></li>
+          <li>Rejet des arguments de la Ligne nationale pour la liberté des vaccinations « compte tenu de la gravité des maladies, de l'efficacité de ces vaccins et de la nécessité de les rendre obligatoires pour atteindre une couverture vaccinale satisfaisante »</li>
+          <li><b>Sur l'aluminium :</b> « le rapport bénéfices/risques est favorable » · « aucun lien de causalité n'a pu être établi entre les sels d'aluminium et les maladies auto-immunes ou l'autisme » · « le recours à ces sels est, en l'état des connaissances, indispensable à l'efficacité de la vaccination » · « utilisés depuis 1926, bien tolérés, très efficaces »</li>
+        </ul>
+        <p class="note">Rapport Cour des comptes du 14 déc. 2022 : la stratégie et l'organisation vaccinales contre la Covid-19 se sont adaptées pour conduire finalement à un succès majeur.</p>
+      </div>
+    </div>
+
+    <!-- F. Obligation vaccinale des soignants -->
+    <div class="subsection">
+      <div class="sub-title bleu">F · L'obligation vaccinale des soignants — jurisprudence CEDH</div>
+      <div class="juris-box">
+        <div class="juris-ref">CEDH, 29 août 2024, n° 24622/22, Pasquinelli et a. c/ San Marino — obligation vaccinale des soignants</div>
+        <p>Professionnels de santé de San Marin ayant refusé la vaccination Covid-19 → suspension sans salaire, travail d'intérêt général avec indemnité proportionnée ou réaffectation à des postes vacants. Invoquaient l'<b>article 8 CEDH</b> (vie privée).</p>
+        <ul class="styled" style="margin-top:5px">
+          <li>La Cour relève qu'aucun argument n'est de nature à remettre en cause la <b>légalité des mesures</b></li>
+          <li>Objectif : <b>protéger la santé publique et maintenir des conditions de sécurité adéquates dans le contexte d'une pandémie grave pour l'ensemble de la population</b></li>
+          <li>La pandémie de Covid-19 présentait un risque très grave → en vertu de l'<b>article 2 CEDH</b>, les États membres ont l'obligation positive de prendre des mesures appropriées pour protéger la vie des personnes relevant de leur juridiction</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- G. Vaccination HPV -->
+    <div class="subsection">
+      <div class="sub-title bleu">G · La vaccination HPV — exemple récent</div>
+      <div class="law-box">
+        <div class="law-ref">Campagne généralisée HPV dans les collèges — septembre 2023</div>
+        <p>Vaccination contre le papillomavirus (HPV : Human Papilloma Virus) accessible à tous les collégiens, filles et garçons, dès la <b>classe de 5ème</b>. Objectif : augmenter la couverture vaccinale pour prévenir l'infection responsable de <b>6 000 nouveaux cas de cancers</b> et de <b>30 000 lésions précancéreuses du col de l'utérus</b> par an. <b>Accord parental nécessaire · vaccination non obligatoire.</b></p>
+      </div>
+      <div class="card">
+        <b>Résultats :</b> Expérimentation Grand Est (2 ans) : taux de vaccination passé de 9 % à <b>27 %</b> la première année et de 14 % à <b>31 %</b> la seconde. Fin novembre 2023, seulement <b>11 %</b> des élèves avaient reçu leur première injection (vs objectif 30 %).<br>
+        <b>Raisons du retard :</b> processus administratif compliqué (deux parents doivent signer, carnet de santé obligatoire, venues ponctuelles des équipes) · manque d'information pour convaincre les parents · incompréhension sur la vaccination des garçons (qui peuvent aussi développer des cancers ORL, anus, pénis liés aux HPV).
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Évolution 2025 — Extension aux méningocoques ACWY</div>
+        <p>La proposition vaccinale au collège s'étend au vaccin contre les <b>méningocoques ACWY</b> : infections invasives graves (méningites) pouvant laisser de lourdes séquelles (surdité, retard mental, amputation) et parfois mortelles. Touchent particulièrement les adolescents et les jeunes adultes. En France : <b>500-600 cas/an</b> d'infection et <b>60 décès/an</b> (10 % des cas). Objectif : atteindre <b>80 % de couverture des 11-14 ans</b> en 2026 (HPV et ACWY).</p>
+      </div>
+    </div>
+
+    <!-- H. Indemnisation -->
+    <div class="subsection">
+      <div class="sub-title bleu">H · L'indemnisation du risque vaccinal</div>
+      <div class="card">
+        <ul class="styled">
+          <li><b>Vaccin obligatoire :</b> procédure d'indemnisation spécifique prévue en cas de préjudice lié à la vaccination → indemnisation par l'<b>ONIAM</b> (Office national d'indemnisation des accidents médicaux)</li>
+          <li><b>Vaccination facultative :</b> c'est le cadre général du préjudice consécutif à un acte médical qui s'applique → également ONIAM</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Fiche de révision · Thème 2 · Loi de santé publique · Master 1 PGSS 2025/2026</div>
+</div>
+</body>
+</html>

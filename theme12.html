@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thème 12 – La santé publique : des politiques dictées par des arbitrages économiques</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f3ef;
+    --ink: #0e0e14;
+    --s1: #1a3a7a;   /* bleu – Section I */
+    --s2: #7a1a1a;   /* rouge – Section II */
+    --gold: #8a6a0a;
+    --muted: #5a5250;
+    --rule: #d8d0c0;
+    --law-bg: #f0f4ff;
+    --law-brd: #3a5aaa;
+    --jur-bg: #fff0f0;
+    --jur-brd: #aa3a3a;
+    --key-bg: #fffaf0;
+    --key-brd: #8a6a0a;
+    --warn-bg: #f5fff5;
+    --warn-brd: #3a7a3a;
+    --stat-bg: #0e0e14;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Source Serif 4',Georgia,serif;font-size:14px;line-height:1.72;padding-bottom:60px}
+
+  .header{background:var(--ink);color:#fff;padding:34px 48px 28px;position:relative;overflow:hidden}
+  .header::before{content:'';position:absolute;top:0;right:0;width:220px;height:100%;background:linear-gradient(135deg,transparent 50%,rgba(100,130,200,.1))}
+  .header-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:7px}
+  .header h1{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;line-height:1.2}
+  .header h1 span{color:#f0c84a}
+  .header-sub{margin-top:8px;font-size:12px;color:rgba(255,255,255,.45);font-style:italic}
+  .plan-row{margin-top:18px;display:flex;gap:9px;flex-wrap:wrap}
+  .plan-pill{background:rgba(240,200,74,.1);border:1px solid rgba(240,200,74,.22);color:rgba(255,255,255,.85);border-radius:20px;padding:4px 13px;font-size:11px}
+
+  .content{max-width:860px;margin:0 auto;padding:0 28px}
+
+  .intro-box{background:var(--ink);color:#fff;border-radius:4px;padding:18px 22px;margin:26px 0 0}
+  .intro-box p{font-size:13px;line-height:1.75;color:rgba(255,255,255,.83)}
+  .intro-box strong{color:#f0c84a}
+
+  .section-block{margin-top:40px}
+  .section-title{display:flex;align-items:center;gap:13px;margin-bottom:4px}
+  .section-num{font-family:'Playfair Display',serif;font-size:40px;font-weight:900;line-height:1;color:var(--rule);flex-shrink:0;user-select:none}
+  .section-heading{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;border-bottom:2.5px solid var(--ink);padding-bottom:3px;flex:1}
+  .section-heading.bleu{border-color:var(--s1);color:var(--s1)}
+  .section-heading.rouge{border-color:var(--s2);color:var(--s2)}
+
+  .subsection{margin-top:20px}
+  .sub-title{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.9px;border-left:3px solid var(--rule);padding-left:9px;margin-bottom:9px;color:var(--muted)}
+  .sub-title.bleu{border-color:var(--s1);color:var(--s1)}
+  .sub-title.rouge{border-color:var(--s2);color:var(--s2)}
+  .sub-title.gold{border-color:var(--gold);color:var(--gold)}
+  .sub-title.vert{border-color:var(--warn-brd);color:var(--warn-brd)}
+
+  .card{background:#fff;border:1px solid var(--rule);border-radius:4px;padding:13px 17px;margin-bottom:9px}
+  .law-box{background:var(--law-bg);border-left:4px solid var(--law-brd);border-radius:0 4px 4px 0;padding:11px 15px;margin:7px 0}
+  .law-box .law-ref{font-family:'Playfair Display',serif;font-size:11.5px;font-weight:700;color:var(--law-brd);letter-spacing:.4px;margin-bottom:3px}
+  .juris-box{background:var(--jur-bg);border-left:4px solid var(--jur-brd);border-radius:0 4px 4px 0;padding:11px 15px;margin:7px 0}
+  .juris-box .juris-ref{font-family:'Playfair Display',serif;font-size:11.5px;font-weight:700;color:var(--jur-brd);letter-spacing:.4px;margin-bottom:3px}
+  .key-box{background:var(--key-bg);border:1px dashed var(--key-brd);border-radius:4px;padding:11px 15px;margin:7px 0}
+  .key-box .key-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--key-brd);font-weight:600;margin-bottom:3px}
+  .warn-box{background:var(--warn-bg);border-left:4px solid var(--warn-brd);border-radius:0 4px 4px 0;padding:11px 15px;margin:7px 0}
+  .warn-box .warn-ref{font-family:'Playfair Display',serif;font-size:11.5px;font-weight:700;color:var(--warn-brd);letter-spacing:.4px;margin-bottom:3px}
+
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:9px;margin:9px 0}
+  .stat-card{background:var(--stat-bg);color:#fff;border-radius:4px;padding:12px 13px;text-align:center}
+  .stat-card .sn{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#f0c84a;line-height:1.1}
+  .stat-card .sl{font-size:11px;color:rgba(255,255,255,.68);margin-top:3px}
+
+  .timeline{margin:8px 0;padding-left:4px}
+  .tl-item{display:flex;gap:11px;margin-bottom:7px;align-items:flex-start}
+  .tl-year{background:var(--ink);color:#f0c84a;font-family:'Playfair Display',serif;font-size:11.5px;font-weight:700;border-radius:3px;padding:2px 8px;flex-shrink:0;white-space:nowrap;line-height:1.6}
+  .tl-text{font-size:13px;line-height:1.65;padding-top:2px}
+
+  ul.styled{list-style:none;padding:0}
+  ul.styled li{padding:2px 0 2px 17px;position:relative;font-size:13px}
+  ul.styled li::before{content:'▸';position:absolute;left:0;color:var(--muted);font-size:11px;top:5px}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:9px 0}
+  @media(max-width:600px){.two-col{grid-template-columns:1fr}.header{padding:24px 20px}.content{padding:0 15px}}
+
+  hr.divider{border:none;border-top:1.5px solid var(--rule);margin:32px 0 0}
+  b{font-weight:600}
+  em{font-style:italic;color:var(--muted)}
+  p{margin-bottom:6px;font-size:13px}
+  .note{font-size:11.5px;color:var(--muted);font-style:italic;margin-top:3px}
+  .footer{margin-top:48px;text-align:center;font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-tag">Master 1 · Politique &amp; Gouvernance du Système de Santé · 2024/2025</div>
+  <h1>Thème 12 — <span>La santé publique :</span><br>des politiques dictées par des arbitrages économiques</h1>
+  <div class="header-sub">Cours de Guylène Nicolas</div>
+  <div class="plan-row">
+    <span class="plan-pill">I · La consommation de soins : une puissante dynamique de croissance, un enjeu de redistribution</span>
+    <span class="plan-pill">II · Les tentatives de régulation</span>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- INTRO -->
+  <div class="intro-box">
+    <p><strong>Contexte comparatif France / Allemagne :</strong> L'Allemagne est le berceau de l'assurance maladie sociale (Bismarck, fin XIXe). Dépenses de santé : <strong>12,7 % du PIB</strong> en Allemagne (2ème mondial derrière les États-Unis), <strong>12,1 %</strong> en France. Par habitant, l'Allemagne dépense environ <strong>20 % de plus</strong> que la France. Le modèle allemand se caractérise par la coexistence assurance publique + privée substitutive, et une gouvernance décentralisée avec fort pouvoir des organismes corporatistes.</p>
+  </div>
+
+  <!-- COMPTES NATIONAUX DE SANTÉ -->
+  <div class="subsection" style="margin-top:22px">
+    <div class="sub-title gold">Les comptes nationaux de santé — 2 agrégats fondamentaux</div>
+    <div class="two-col">
+      <div class="card">
+        <b>1. Consommation médicale totale (CMT)</b>
+        <p style="margin-top:5px">Valeur totale des biens et services médicaux consommés sur le territoire national (résidents + non-résidents). En défalquant la médecine préventive, on obtient la <b>Consommation de soins et de biens médicaux (CSBM)</b>.</p>
+        <p style="margin-top:5px; font-size:12px; color:var(--muted);">Les activités du secteur médico-social sont exclues des comptes nationaux de santé.</p>
+      </div>
+      <div class="card">
+        <b>2. Dépense courante de santé (DCS)</b>
+        <p style="margin-top:5px">Somme des dépenses engagées par les financeurs publics et privés. Comprend : la CMT + les indemnités journalières + les subventions + la recherche, l'enseignement et la gestion administrative de la santé.</p>
+      </div>
+    </div>
+    <div class="law-box">
+      <div class="law-ref">CSBM 2023 (données DREES)</div>
+      <ul class="styled" style="margin-top:3px">
+        <li>CSBM : <b>249,0 milliards €</b>, soit <b>3 660 €/habitant</b> (+5,2 % après +4,0 %)</li>
+        <li>Évolution : hausse des prix (+1,2 %) et du volume (+3,9 %)</li>
+        <li>Part dans le PIB : <b>8,8 %</b> (légère diminution de 0,1 point)</li>
+        <li>Part dans la consommation effective des ménages : <b>12,5 %</b> (−0,5 point)</li>
+        <li>Ces ratios restent à un niveau plus élevé qu'avant la crise sanitaire de 2020 (niveau 2019 : 8,6 % PIB)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- BDR -->
+  <div class="subsection">
+    <div class="sub-title gold">Photographie de la population des Bouches-du-Rhône</div>
+    <div class="card">
+      <b>Ménages sous le seuil de pauvreté :</b> BDR : <b>18 %</b> (vs 17 % PACA, 14 % France). Taux les plus élevés : -30 ans (27 % BDR vs 23 % France). <b>% de bénéficiaires CMU-C :</b> BDR nettement supérieur à la moyenne nationale. Indicateur de précarité et de recours aux soins subventionnés. (Source : INSEE/CNAMTS/ARS, 2013-2015)
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ SECTION I ═══════════════════════════════ -->
+  <div class="section-block">
+    <div class="section-title">
+      <div class="section-num">I</div>
+      <div class="section-heading bleu">La consommation de soins : une puissante dynamique de croissance, un enjeu de redistribution</div>
+    </div>
+
+    <!-- A. Développement exceptionnel -->
+    <div class="subsection">
+      <div class="sub-title bleu">A · Le développement exceptionnel de la consommation médicale</div>
+      <div class="key-box">
+        <div class="key-label">🔑 Notion de « biens supérieurs »</div>
+        <p>La santé est rangée par les économistes parmi les <b>biens supérieurs</b> : biens dont la consommation s'accroît plus que proportionnellement à l'augmentation du revenu. La dépense de santé nationale rapportée à la richesse nationale illustre cette règle. La dépense médicale directement supportée par les ménages a progressé au même rythme que les dépenses de communication, de loisirs et de culture.</p>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="sn">× 3</div><div class="sl">La CMT a pratiquement triplé depuis 1970</div></div>
+        <div class="stat-card"><div class="sn">+20 %</div><div class="sl">Consommation médicale/habitant (en termes réels) sur la décennie 1990</div></div>
+        <div class="stat-card"><div class="sn">× 2</div><div class="sl">Nombre de consultations médicales remboursées entre 1970 et 2000</div></div>
+        <div class="stat-card"><div class="sn">× 5</div><div class="sl">Volume d'actes techniques de spécialistes et de chirurgie par personne (1970-2000)</div></div>
+        <div class="stat-card"><div class="sn">2ème</div><div class="sl">poste de consommation des ménages, derrière le logement, devant transport et alimentation</div></div>
+        <div class="stat-card"><div class="sn">+6,2 %</div><div class="sl">à +6,4 %/an en moyenne depuis 1960 pour la part socialisée (vs +2,7 % pour l'éducation)</div></div>
+      </div>
+      <div class="card" style="margin-top:8px">
+        <b>Facteurs de la dynamique (offre et demande conjuguées) :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li>Élévation du niveau de vie et d'éducation</li>
+          <li>Extension progressive de l'assurance maladie</li>
+          <li>Progrès technique médical impressionnant</li>
+          <li>Enjeux industriels (pharmaceutiques) relayés au plan politique</li>
+          <li>Opacité du système : <b>asymétrie d'information</b> entre patients et financeurs</li>
+          <li>Évolutions culturelles portant sur les normes de bonne santé</li>
+        </ul>
+        <b style="display:block;margin-top:6px">L'offre stimule la demande :</b>
+        <ul class="styled" style="margin-top:3px">
+          <li>Les laboratoires pharmaceutiques consacrent <b>20 à 30 %</b> de leur CA à la promotion (visiteurs médicaux, campagnes de sensibilisation, formation des prescripteurs)</li>
+          <li>Induction médicale : pouvoir discrétionnaire du médecin, exercé différemment selon la déontologie personnelle, la densité médicale locale et les mesures d'encadrement</li>
+          <li>Réticence des pouvoirs publics à dérembourser les médicaments jugés inutiles = préservation du revenu des entreprises concernées</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- B. Extension assurance maladie -->
+    <div class="subsection">
+      <div class="sub-title bleu">B · L'extension de l'assurance maladie vers l'universalité</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-year">1948</div><div class="tl-text">Étudiants intégrés</div></div>
+        <div class="tl-item"><div class="tl-year">1949</div><div class="tl-text">Invalides, écrivains non salariés</div></div>
+        <div class="tl-item"><div class="tl-year">1950</div><div class="tl-text">Veuves et orphelins de guerre</div></div>
+        <div class="tl-item"><div class="tl-year">1975</div><div class="tl-text">Demandeurs d'emploi (loi du 4 juillet 1975) — sans toutefois intégrer la totalité de la population</div></div>
+        <div class="tl-item"><div class="tl-year">1978</div><div class="tl-text">Assurance personnelle pour ceux dont la situation économique ou familiale échappait encore aux catégories définies</div></div>
+        <div class="tl-item"><div class="tl-year">2000</div><div class="tl-text"><b>CMU</b> — 1er janvier 2000 : réalise enfin l'objectif d'universalité de l'assurance maladie (1,4 million de personnes). L'assurance maladie devient un instrument de <b>solvabilité universelle</b> de consommation courante de soins (exception : soins dentaires, optique, matériels correctifs)</div></div>
+        <div class="tl-item"><div class="tl-year">2017</div><div class="tl-text"><b>PUMA</b> — Loi n° 2016-1827 du 23 décembre 2016 (LFSS 2017), art. 59 / art. L. 160-1 à L. 160-7 CSS : garantit à toute personne qui <b>travaille ou réside en France de manière stable et régulière</b> un droit à la prise en charge de ses frais de santé <b>à titre personnel et de manière continue tout au long de la vie</b></div></div>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Complémentaire santé obligatoire en entreprise — Loi de sécurisation de l'emploi du 14 juin 2013</div>
+        <p>Instaure une complémentaire santé obligatoire pour toutes les entreprises à compter du <b>1er janvier 2016</b>, y compris les TPE. Décret n° 2014-1025 du 8 septembre 2014 : définit les niveaux de couvertures minimum (panier de soins minimum).</p>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">LFSS 2019 — Loi n° 2018-1203 du 22 décembre 2018 — Reste à charge zéro</div>
+        <p>Remboursement intégral par la SS et les complémentaires de certaines lunettes, prothèses dentaires et aides auditives grâce à la fixation de tarifs plafonds. <b>Décret n° 2019-21 du 11 janvier 2019</b> : application progressive (optique et dentaire au 1er jan. 2020 ; aides auditives au 1er jan. 2021). Création d'un comité de suivi de la réforme (remplace l'Observatoire des prix et de la prise en charge en optique médicale). Remboursement des médicaments sur la base du prix du médicament générique.</p>
+      </div>
+    </div>
+
+    <!-- C. Assurance complémentaire -->
+    <div class="subsection">
+      <div class="sub-title bleu">C · L'assurance maladie complémentaire et ses inégalités</div>
+      <div class="card">
+        <b>Rôle des complémentaires (mutuelles, assurances, institutions de prévoyance) :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li><b>12 %</b> de la dépense nationale de santé prise en charge</li>
+          <li><b>20 %</b> pour les dépenses de soins de ville</li>
+          <li><b>30 %</b> pour les seuls soins dentaires</li>
+          <li>À la veille de la CMU : 85 % de la population couverte · 11 % restait à la charge des ménages</li>
+        </ul>
+      </div>
+      <div class="card">
+        <b>Inégalités de la couverture complémentaire (étude 1998) :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li>85 % de la population bénéficiait d'une assurance complémentaire</li>
+          <li>Taux de couverture tombait à <b>72 %</b> chez les ouvriers qualifiés · <b>58 %</b> chez les chômeurs · <b>52 %</b> en bas de l'échelle des revenus</li>
+          <li>La moitié des contrats individuels de 1998 ne prévoyait pas le remboursement des dépassements d'honoraires</li>
+          <li>Les personnes sans complémentaire consultent <b>deux fois moins souvent</b> les médecins de ville et sacrifient les actes de prévention</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- D. Redistribution ambivalente -->
+    <div class="subsection">
+      <div class="sub-title bleu">D · Une redistribution ambivalente</div>
+      <div class="card">
+        <b>Concentration de la consommation :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li>Un <b>quart</b> de la population est à l'origine de <b>80 %</b> de la dépense de santé</li>
+          <li><b>5 %</b> des personnes concentrent <b>près de la moitié</b></li>
+          <li>Les 10 % plus gros consommateurs de soins hospitaliers engendrent <b>97 %</b> de la dépense hospitalière (vs 43 % pour les soins de ville)</li>
+          <li>Les personnes de 65 ans et plus représentent plus d'<b>un tiers</b> de la dépense (alors qu'elles ne constituent que 12 % de la population)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <b>Inégalités sociales de consommation :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li><b>Ouvriers / faibles ressources :</b> recours plus fréquent à l'hôpital et aux auxiliaires médicaux · peu de soins dentaires et d'optique</li>
+          <li><b>Cadres / professions libérales :</b> recours beaucoup plus fréquent aux spécialistes libéraux · consommation de médicaments plus élevée</li>
+          <li>Facteurs influençant indirectement la consommation : niveau d'éducation · effets culturels · risques professionnels · degré de préférence pour l'avenir · capacité à consentir un investissement en capital humain</li>
+          <li>Les individus en situation précaire <b>consultent avec retard</b> même s'ils peuvent accéder à des soins gratuits</li>
+        </ul>
+      </div>
+      <div class="card">
+        <b>Solidarité vs prolongation des inégalités :</b> Les cotisations ne sont pas corrélées au risque personnel de l'assuré (principe de solidarité). Mais le progrès scientifique et technique est générateur à la fois de bien-être et d'inégalités. Les inégalités sociales d'état de santé, mesurées par divers indicateurs, tendent à s'accroître. La CMU-C a permis de passer de 50 % à 80 % de personnes bénéficiant d'une complémentaire parmi les plus bas revenus dès la première année → <b>rattrapage de soins auparavant différés</b>, en majorité chez des personnes jeunes.
+      </div>
+      <div class="juris-box">
+        <div class="juris-ref">Décision du Défenseur des droits Jacques Toubon, 22 novembre 2018 — discrimination à l'accès aux soins</div>
+        <p>Six mois accordés aux plateformes de rendez-vous médicaux en ligne pour mettre fin aux mentions discriminatoires émises par des médecins à l'encontre des patients bénéficiaires de la CMU-C, de l'ACS et de l'AME.<br>
+        <b>Art. L. 1110-3 CSP (Loi n° 2012-954 du 6 août 2012, art. 3) :</b> Aucune personne ne peut faire l'objet de discriminations dans l'accès à la prévention ou aux soins. Un professionnel de santé ne peut refuser de soigner une personne pour l'un des motifs visés à l'art. 225-1 C. pénal ou au motif qu'elle est bénéficiaire de la protection complémentaire (CSS, art. L. 861-1 et L. 863-1) ou de l'AME (CASF, art. L. 251-1).</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══════════════════════════════ SECTION II ═══════════════════════════════ -->
+  <div class="section-block">
+    <div class="section-title">
+      <div class="section-num">II</div>
+      <div class="section-heading rouge">Les tentatives de régulation</div>
+    </div>
+
+    <!-- Intro Section II -->
+    <div class="subsection">
+      <div class="sub-title rouge">Introduction — stratégies de régulation</div>
+      <div class="card">
+        <p>La croissance rapide des dépenses de l'assurance maladie est devenue dès la fin des années 1960 un sujet de préoccupation politique. L'accroissement de la contribution financière demandée aux patients et aux assurés a produit des <b>effets pervers</b>. Dans les années 1990, changement de stratégie : les efforts de régulation sont reportés sur les <b>professionnels de santé eux-mêmes</b>. Méthodes diverses expérimentées.</p>
+      </div>
+    </div>
+
+    <!-- A. Maîtrise des dépenses prestataires -->
+    <div class="subsection">
+      <div class="sub-title rouge">A · Les efforts de maîtrise des dépenses sur les prestataires de soins</div>
+
+      <div class="subsection" style="margin-top:12px">
+        <div class="sub-title gold">1 — Contrats prix/volume (1991-1994)</div>
+        <div class="card">
+          La modération des volumes de soins dispensés ouvrait droit à une <b>revalorisation des tarifs unitaires</b>. Entre 1991 et 1994, infirmiers libéraux, laboratoires d'analyses biologiques, cliniques privées, masseurs-kinésithérapeutes, ambulanciers, firmes pharmaceutiques signent des contrats souvent <b>tripartites</b> avec l'État et/ou l'assurance maladie.
+        </div>
+      </div>
+
+      <div class="subsection" style="margin-top:12px">
+        <div class="sub-title gold">2 — Encadrement des médecins libéraux</div>
+        <div class="law-box">
+          <div class="law-ref">Ordonnance du 24 avril 1996 — maîtrise médicalisée des dépenses de santé</div>
+          <p>Applique le principe d'enveloppes de dépenses (honoraires + prescriptions) aux médecins libéraux. Les <b>reversements</b> prévus en cas de dépassement de l'enveloppe nationale dessinent une <b>responsabilité collective</b> exercée à l'échelle régionale. Depuis 2002 : revalorisation ciblée des tarifs de certaines consultations contre modération des prescriptions médicamenteuses (recours aux génériques).</p>
+        </div>
+      </div>
+
+      <div class="subsection" style="margin-top:12px">
+        <div class="sub-title gold">3 — L'ONDAM (Objectif National des Dépenses d'Assurance Maladie)</div>
+        <div class="law-box">
+          <div class="law-ref">Réforme « Juppé » de 1996 — ONDAM (art. LO 111-3 CSS)</div>
+          <p>Englobe l'ensemble des secteurs de soins (soins de ville, hôpitaux sous dotation globale, cliniques privées, ES médico-sociaux) et l'ensemble des régimes d'assurance maladie. <b>Voté chaque année par le Parlement</b> dans le cadre de la LFSS. <b>Portée seulement indicative</b> : les soins continuent à être délivrés et remboursés si l'objectif est dépassé.</p>
+        </div>
+        <div class="card">
+          <b>Évolution de l'ONDAM (graphiques) :</b>
+          <ul class="styled" style="margin-top:5px">
+            <li><b>1997-2003</b> : dépassements fréquents (bulles rouges) · taux de croissance réel souvent supérieur à l'ONDAM voté</li>
+            <li><b>2010-2019</b> : respect de l'ONDAM (bulles vertes) · progression ramenée autour de 2 % par an</li>
+            <li><b>2020</b> : explosion à +9,4 % (Covid-19) — niveau jamais atteint · ONDAM 2020 : ~218 Mds€</li>
+            <li><b>2021</b> : +8,7 % (Ségur de la santé + Covid) · ONDAM 2021 : 218,9 Mds€ (niveau jamais atteint)</li>
+            <li><b>2022</b> : retour à +2,2 %</li>
+          </ul>
+        </div>
+        <div class="law-box">
+          <div class="law-ref">LFSS 2023 — Loi n° 2022-1616 (déficit social 7,1 Mds€ en 2023)</div>
+          <ul class="styled" style="margin-top:4px">
+            <li>ONDAM 2023 : <b>244 milliards €</b> (+3,5 % hors Covid) · déficit en nette amélioration vs 2022 (−18,9 Mds€) et record 2020 (−39 Mds€)</li>
+            <li>Aucune économie sur les hôpitaux · rallonge de 1,1 Md€ en cours de débats (pédiatrie, surcoûts Covid)</li>
+            <li>Économies sur : médicaments · laboratoires de biologie · imagerie · complémentaires santé</li>
+            <li>Priorités : prévention et accès aux soins · soutien aux familles · personnes âgées en perte d'autonomie · lutte contre la fraude sociale</li>
+          </ul>
+        </div>
+        <div class="law-box">
+          <div class="law-ref">LFSS 2025 — Loi du 28 février 2025 — déficit social record hors crise</div>
+          <ul class="styled" style="margin-top:4px">
+            <li>Dépenses SS 2025 : plus de <b>666 Mds€</b> toutes branches</li>
+            <li>Déficit social 2025 : <b>22,1 Mds€</b> (jamais atteint hors crise), prévu à <b>24,1 Mds€</b> en 2028</li>
+            <li>Déficit 2024 déjà dégradé à <b>18,2 Mds€</b> (vs 10,5 Mds€ prévus) — branche maladie : 15,3 Mds€</li>
+            <li>ONDAM 2025 : <b>266 Mds€</b> (+3,4 %) · sous-ONDAM hospitalier rehaussé (+1 Md€)</li>
+            <li>Économies prévues : effort supplémentaire médicaments · maîtrise radiologie/biologie/transports sanitaires · baisse du plafond des IJ à <b>1,4 SMIC</b> (Décret du 20 fév. 2025 ; applicable aux arrêts de travail débutant à partir du <b>1er avril 2025</b>, contre 1,8 SMIC actuellement) · lutte contre la fraude (sécurisation carte vitale)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection" style="margin-top:12px">
+        <div class="sub-title gold">4 — La maîtrise médicalisée (loi du 13 août 2004)</div>
+        <div class="law-box">
+          <div class="law-ref">Loi du 13 août 2004 relative à l'assurance maladie — principe de maîtrise médicalisée</div>
+          <p><b>3 axes de responsabilisation :</b></p>
+          <ul class="styled" style="margin-top:5px">
+            <li><b>Assuré social :</b> désignation du médecin traitant · parcours de soins coordonné · dossier médical personnel</li>
+            <li><b>Offreurs de soins / médecins :</b> filière de soins via le médecin traitant · mise sous accord préalable des prescripteurs d'arrêts de travail nombreux et volumineux · T2A pour les ES</li>
+            <li><b>Organismes payeurs (AM) :</b> information des assurés pour s'orienter dans le système · accompagnement des professionnels et ES · contrôles ciblés et programmés</li>
+          </ul>
+          <p style="margin-top:6px">La maîtrise médicalisée nécessite des référentiels de bonnes pratiques élaborés par la <b>HAS</b>, l'<b>ANSM</b> et l'<b>INCa</b>, approuvés par les membres de la profession. Le service du contrôle médical les rappelle à bon escient.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- B. Maîtrise médicaments -->
+    <div class="subsection">
+      <div class="sub-title rouge">B · La maîtrise des dépenses de médicaments</div>
+
+      <div class="subsection" style="margin-top:12px">
+        <div class="sub-title gold">1 — Le ticket modérateur</div>
+        <div class="card">
+          <b>Ticket modérateur (TM) :</b> part de la dépense restant à la charge de l'assuré (forfait journalier à l'hôpital, part non remboursée pour consultations ou médicaments). Depuis la loi du 13 août 2004 : compétence sur le dispositif du TM et actualisation de la liste d'exonération confiée à la <b>HAS</b>. Impact limité car les organismes complémentaires ont pris en charge la plupart des frais dés-remboursés. <em>(Augmentation du forfait hospitalier en 2018.)</em>
+        </div>
+      </div>
+
+      <div class="subsection" style="margin-top:12px">
+        <div class="sub-title gold">2 — Le déremboursement des médicaments</div>
+        <div class="card">
+          Cible davantage les remboursements sur les médicaments dont le <b>service médical rendu (SMR)</b> est jugé satisfaisant par la HAS. Depuis les années 1970 : multiples plans de sauvetage de la SS incorporant des déremboursements (médicaments homéopathiques, antihistaminiques…). Impact marginal : risque de report sur les patients (factures plus importantes ou renoncement aux soins si les mutuelles ne prennent pas le relais).
+        </div>
+      </div>
+
+      <div class="subsection" style="margin-top:12px">
+        <div class="sub-title gold">3 — L'essor des génériques</div>
+        <div class="card">
+          <b>Mécanisme « tiers payant contre générique » :</b> renforcement dans les pharmacies. Données ANSM (2013) : génériques = plus de <b>15 %</b> du marché en valeur et plus de <b>30 %</b> en quantité. Données 2018 (Statista/LEEM/GERS) : génériques représentent <b>69 %</b> en valeur et <b>80,9 %</b> en volume des médicaments dans le répertoire générique. Objectif Marisol Touraine (2013) : 25 % du marché en 2017.
+        </div>
+      </div>
+
+      <div class="subsection" style="margin-top:12px">
+        <div class="sub-title gold">4 — L'automédication</div>
+        <div class="card">
+          <b>Part de l'automédication dans le marché pharmaceutique global en 2012 :</b>
+          <ul class="styled" style="margin-top:5px">
+            <li>France : <b>7,6 %</b></li>
+            <li>Allemagne : <b>11,2 %</b></li>
+            <li>Royaume-Uni : <b>12,3 %</b></li>
+            <li>Belgique : <b>14 %</b></li>
+          </ul>
+          <p style="margin-top:5px">En hausse (+3,2 % en 2012). Vente des médicaments (OTC) autorisée depuis <b>juin 2013</b>. Les pouvoirs publics tentent d'encourager l'automédication tout en prévenant les usages non conformes et la pharmacodépendance.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- C. LFSS hors période ordinaire -->
+    <div class="subsection">
+      <div class="sub-title rouge">C · Les LFSS clés hors période ordinaire</div>
+
+      <div class="law-box">
+        <div class="law-ref">LFSS 2021 — Loi n° 2020-1576 du 14 décembre 2020 (contexte Covid-19)</div>
+        <p>Adoptée dans le contexte du déficit record de <b>49 milliards €</b> en 2020. Principales dispositions :</p>
+        <ul class="styled" style="margin-top:5px">
+          <li>Dépenses liées à la pandémie + engagements du Ségur + 5ème branche + allongement congé paternité</li>
+          <li>ONDAM porté à <b>218,9 milliards €</b> (jamais atteint) : masques, respirateurs, primes Covid, tests PCR, vaccin</li>
+          <li>Dispositifs d'exonérations sociales pour les entreprises touchées : <b>8,2 milliards €</b></li>
+          <li><b>« Taxe Covid »</b> sur les complémentaires santé (moins sollicitées qu'habituellement)</li>
+          <li>Revalorisation salariale Ségur : <b>183 €/net/mois</b> pour personnels non-médicaux des hôpitaux publics (depuis 1er déc. 2020)</li>
+          <li><b>Forfait Patient Urgences (FPU)</b> : 18 € à compter du 1er septembre 2021, pour chaque passage aux urgences non suivi d'hospitalisation, pris en charge par les complémentaires santé</li>
+        </ul>
+      </div>
+
+      <div class="law-box">
+        <div class="law-ref">Loi du 7 août 2020 relative à la dette sociale et à l'autonomie — 5ème branche de la Sécurité sociale</div>
+        <p>Création d'une <b>5ème branche dédiée à la perte d'autonomie</b>. Gestion confiée à la <b>CNSA</b> (Caisse nationale de solidarité pour l'autonomie). La LFSS 2021 contient les premières mesures pour organiser son fonctionnement.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Fiche de révision · Thème 12 · Économie de la santé · Master 1 PGSS 2024/2025</div>
+</div>
+</body>
+</html>

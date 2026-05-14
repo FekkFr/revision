@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thème 1 — La Notion de Santé Publique : le Droit au Service de la Gouvernance</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fond:#f3f1eb;--carte:#fff;--texte:#111;--doux:#484848;--bord:#ddd5bc;
+  --v:#1a5c38;--vc:#278f52;--vp:#e4f4ec;
+  --b:#1a3a6a;--bc:#2a6aad;--bp:#e6f0fa;
+  --o:#9a6600;--oc:#c8940a;--op:#fdf4dc;
+  --r:#982020;--rp:#fdf0f0;
+  --m:#6b3500;--mp:#fdf0e0;--mc:#c06020;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--fond);color:var(--texte);font-size:14.5px;line-height:1.72;}
+header{background:linear-gradient(140deg,#0d1f10 0%,#1a5030 55%,#0a1808 100%);color:#fff;padding:3rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden;}
+header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent,transparent 55px,rgba(255,255,255,.016) 55px,rgba(255,255,255,.016) 110px);}
+.badge{display:inline-block;background:var(--oc);color:#fff;font-family:'Playfair Display',serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;padding:.3rem 1.1rem;border-radius:2px;margin-bottom:1rem;}
+header h1{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;line-height:1.2;margin-bottom:.4rem;}
+header h2{font-weight:300;font-style:italic;font-size:1rem;color:rgba(255,255,255,.62);margin-bottom:1.4rem;}
+.meta{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;}
+.meta span{font-size:.77rem;color:rgba(255,255,255,.45);}
+.meta strong{color:#d4b040;font-weight:600;}
+.plan{background:var(--carte);border:2px solid var(--vc);border-radius:8px;margin:2rem auto;max-width:960px;padding:1.3rem 1.8rem;box-shadow:0 2px 14px rgba(0,0,0,.08);}
+.plan h3{font-family:'Playfair Display',serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--v);margin-bottom:1rem;}
+.plan-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.7rem;}
+.pi{border-radius:0 6px 6px 0;padding:.8rem 1rem;border-left:4px solid;}
+.pi .num{font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:.2rem;}
+.pi .tit{font-family:'Playfair Display',serif;font-size:.87rem;font-weight:700;}
+.pi.i0{background:var(--vp);border-color:var(--vc);} .pi.i0 .num,.pi.i0 .tit{color:var(--v);}
+.pi.i1{background:var(--op);border-color:var(--oc);} .pi.i1 .num,.pi.i1 .tit{color:var(--o);}
+.pi.i2{background:var(--bp);border-color:var(--bc);} .pi.i2 .num,.pi.i2 .tit{color:var(--b);}
+main{max-width:960px;margin:0 auto;padding:0 1.5rem 5rem;}
+.sh{margin:3rem 0 1.3rem;padding:1rem 1.5rem;border-radius:8px;}
+.sh.i0{background:linear-gradient(135deg,#e4f4ec,#c8ecd8);border-left:5px solid var(--v);}
+.sh.i1{background:linear-gradient(135deg,#fdf4dc,#f5e8b0);border-left:5px solid var(--oc);}
+.sh.i2{background:linear-gradient(135deg,#e6f0fa,#d0e4f5);border-left:5px solid var(--b);}
+.sh .sn{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;opacity:.75;margin-bottom:.15rem;}
+.sh.i0 .sn,.sh.i0 h2{color:var(--v);} .sh.i1 .sn,.sh.i1 h2{color:var(--o);} .sh.i2 .sn,.sh.i2 h2{color:var(--b);}
+.sh h2{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:900;}
+.sh p{font-size:.84rem;color:var(--doux);font-style:italic;margin-top:.3rem;}
+.sub{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:700;margin:1.8rem 0 .8rem;padding-left:.8rem;border-left:3px solid var(--oc);color:var(--o);}
+.sub.v{border-color:var(--vc);color:var(--v);} .sub.b{border-color:var(--bc);color:var(--b);} .sub.m{border-color:var(--mc);color:var(--m);}
+.card{background:var(--carte);border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.07);padding:1.2rem 1.5rem;margin-bottom:1rem;border-left:4px solid var(--vc);}
+.card.o{border-color:var(--oc);} .card.b{border-color:var(--bc);} .card.m{border-color:var(--mc);}
+.ct{font-family:'Playfair Display',serif;font-size:.96rem;font-weight:700;color:var(--v);margin-bottom:.65rem;display:flex;align-items:center;gap:.5rem;}
+.card.o .ct{color:var(--o);} .card.b .ct{color:var(--b);} .card.m .ct{color:var(--m);}
+.ret{background:#fffde6;border:2px solid var(--oc);border-radius:8px;padding:1rem 1.4rem;margin:1rem 0;display:flex;gap:.9rem;align-items:flex-start;}
+.ri{font-size:1.2rem;flex-shrink:0;}
+.rb strong{color:#6a4700;display:block;margin-bottom:.3rem;font-size:.88rem;}
+.rb p,.rb ul{font-size:.86rem;color:var(--doux);}
+.rb ul{padding-left:1.1rem;} .rb ul li{margin-bottom:.2rem;}
+.def{border-radius:8px;padding:1rem 1.4rem;margin-bottom:.9rem;border:1.5px solid;}
+.def.v{background:var(--vp);border-color:var(--vc);} .def.b{background:var(--bp);border-color:var(--bc);}
+.def.o{background:var(--op);border-color:var(--oc);} .def.m{background:var(--mp);border-color:var(--mc);}
+.dl{font-family:'Playfair Display',serif;font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.35rem;display:block;}
+.def.v .dl{color:var(--v);} .def.b .dl{color:var(--b);} .def.o .dl{color:var(--o);} .def.m .dl{color:var(--m);}
+.dt{font-weight:700;font-size:.98rem;}
+.def.v .dt{color:var(--v);} .def.b .dt{color:var(--b);} .def.o .dt{color:var(--o);} .def.m .dt{color:var(--m);}
+.def p,.def ul{color:var(--doux);margin-top:.3rem;font-size:.88rem;}
+.def ul{padding-left:1.1rem;} .def ul li{margin-bottom:.18rem;}
+.loi{border:1.5px solid var(--oc);border-radius:8px;padding:1rem 1.4rem;margin-bottom:.8rem;background:var(--op);}
+.loi.v{background:var(--vp);border-color:var(--vc);} .loi.b{background:var(--bp);border-color:var(--bc);} .loi.m{background:var(--mp);border-color:var(--mc);}
+.lr{font-family:'Playfair Display',serif;font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.28rem;display:block;color:var(--oc);}
+.loi.v .lr{color:var(--vc);} .loi.b .lr{color:var(--bc);} .loi.m .lr{color:var(--mc);}
+.lt{font-weight:700;font-size:.93rem;margin-bottom:.45rem;color:#6a4700;}
+.loi.v .lt{color:#1a4028;} .loi.b .lt{color:#1a3a60;} .loi.m .lt{color:#5a2a00;}
+.loi ul{padding-left:1.2rem;color:var(--doux);font-size:.87rem;}
+.loi ul li{margin-bottom:.23rem;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.9rem;margin-bottom:1rem;}
+.org{background:var(--carte);border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.09);padding:1.5rem 1.5rem 1.2rem;margin-bottom:1.2rem;overflow-x:auto;}
+.org h3{font-family:'Playfair Display',serif;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:#555;margin-bottom:1rem;text-align:center;}
+.org svg{display:block;margin:0 auto;max-width:100%;}
+.tl{position:relative;padding-left:2rem;margin-bottom:1rem;}
+.tl::before{content:'';position:absolute;left:.6rem;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--m),var(--oc));}
+.tl-item{position:relative;margin-bottom:1rem;}
+.tl-item::before{content:'';position:absolute;left:-1.4rem;top:.5rem;width:11px;height:11px;border-radius:50%;background:var(--oc);border:2px solid #fff;box-shadow:0 0 0 2px var(--oc);}
+.tl-date{font-family:'Playfair Display',serif;font-weight:700;color:var(--m);font-size:.88rem;}
+.tl-desc{font-size:.87rem;color:var(--doux);margin-top:.15rem;}
+table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:1rem;}
+th{background:var(--v);color:#fff;padding:.55rem .9rem;text-align:left;font-family:'Playfair Display',serif;font-size:.77rem;letter-spacing:.05em;}
+th.b{background:var(--b);} th.o{background:var(--o);}
+td{padding:.5rem .9rem;border-bottom:1px solid var(--bord);color:var(--doux);vertical-align:top;}
+tr:nth-child(even) td{background:var(--fond);}
+tr:last-child td{border-bottom:none;}
+ul.l{padding-left:1.2rem;color:var(--doux);font-size:.89rem;}
+ul.l li{margin-bottom:.27rem;}
+blockquote{border-left:3px solid var(--oc);margin:1rem 0;padding:.7rem 1.2rem;background:var(--op);border-radius:0 6px 6px 0;font-style:italic;color:var(--doux);font-size:.88rem;}
+blockquote cite{display:block;font-style:normal;font-size:.73rem;color:var(--oc);margin-top:.3rem;font-weight:700;}
+footer{text-align:center;font-size:.76rem;color:#aaa;padding:2rem 1rem;border-top:1px solid var(--bord);margin-top:2rem;font-style:italic;}
+@media(max-width:700px){.g2,.g3,.plan-grid{grid-template-columns:1fr;}header h1{font-size:1.5rem;}}
+@media print{.card,.loi,.def,.ret,.org{break-inside:avoid;}}
+</style>
+</head>
+<body>
+<header>
+  <div class="badge">Fiche de Révision — Plan du cours</div>
+  <h1>Thème 1 — La Notion de Santé Publique</h1>
+  <h2>Le Droit au Service de la Gouvernance</h2>
+  <div class="meta">
+    <span>Cours <strong>Guylène NICOLAS</strong></span>
+    <span>Master 1 — <strong>2025/2026</strong></span>
+  </div>
+</header>
+<main>
+
+<div class="plan">
+  <h3>Plan du cours (slide 13)</h3>
+  <div class="plan-grid">
+    <div class="pi i0"><div class="num">Introduction</div><div class="tit">Définitions · 3 niveaux de prévention · Nudging · CCNE Avis 137 · Bilan démographique INSEE 2025</div></div>
+    <div class="pi i1"><div class="num">Section 1</div><div class="tit">Historique du droit de la protection de la santé — §1 Antiquité · §2 Péril épidémique (lèpre, peste) · §3 Investissement de second plan</div></div>
+    <div class="pi i2"><div class="num">Section 2</div><div class="tit">La loi de santé publique du 9 août 2004 — §1 Clarifier · §2 Fixer le cadre (100 objectifs, 5 plans) · §3 Prévention</div></div>
+  </div>
+</div>
+
+<!-- INTRODUCTION -->
+<div class="sh i0">
+  <div class="sn">Introduction</div>
+  <h2>Définitions · Prévention · Nudging · CCNE Avis 137 · Bilan démographique INSEE 2025</h2>
+  <p>Slides 2 à 12 du cours</p>
+</div>
+
+<div class="sub v">1. Définition de la santé publique (slide 2)</div>
+
+<div class="def v">
+  <span class="dl">Définition générale — slide 2</span>
+  <div class="dt">La santé publique</div>
+  <p>« L'ensemble des connaissances et des techniques propres à <strong>prévenir les maladies</strong>, à <strong>préserver la santé</strong>, à <strong>améliorer la vitalité et la longévité</strong> des individus par une <strong>action collective</strong> »</p>
+  <ul>
+    <li>Préoccupation majeure de l'opinion publique et de l'autorité politique</li>
+    <li>→ Définition de <strong>politiques de santé</strong></li>
+    <li>→ <strong>Gouvernance</strong> de la santé publique</li>
+    <li>→ Définition d'outils <strong>juridiques, économiques et de planification</strong></li>
+  </ul>
+</div>
+
+<div class="sub v">2. Les 3 niveaux de prévention de l'OMS — définis en 1948 (slide 3)</div>
+
+<div class="org">
+  <h3>Les 3 niveaux de prévention de l'OMS (1948)</h3>
+  <svg viewBox="0 0 860 190" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px;">
+    <rect x="5" y="10" width="270" height="170" rx="10" fill="#e4f4ec" stroke="#278f52" stroke-width="2"/>
+    <rect x="5" y="10" width="270" height="36" rx="10" fill="#1a5c38"/><rect x="5" y="31" width="270" height="15" fill="#1a5c38"/>
+    <text x="140" y="30" text-anchor="middle" font-family="Playfair Display,serif" font-size="12.5" font-weight="700" fill="white">1 — Prévention primaire</text>
+    <text x="17" y="65" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#1a5c38">Quand :</text>
+    <text x="17" y="81" font-family="Source Serif 4,serif" font-size="10" fill="#333">Intervient le plus tôt possible,</text>
+    <text x="17" y="95" font-family="Source Serif 4,serif" font-size="10" fill="#333">en amont de l'apparition de la maladie</text>
+    <text x="17" y="113" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#1a5c38">Objectif :</text>
+    <text x="17" y="129" font-family="Source Serif 4,serif" font-size="10" fill="#333">Diminuer les facteurs de risque</text>
+    <text x="17" y="147" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#1a5c38">Exemple :</text>
+    <text x="17" y="163" font-family="Source Serif 4,serif" font-size="10" fill="#333">Vaccination · règles d'hygiène</text>
+
+    <rect x="295" y="10" width="270" height="170" rx="10" fill="#fdf4dc" stroke="#c8940a" stroke-width="2"/>
+    <rect x="295" y="10" width="270" height="36" rx="10" fill="#9a6600"/><rect x="295" y="31" width="270" height="15" fill="#9a6600"/>
+    <text x="430" y="30" text-anchor="middle" font-family="Playfair Display,serif" font-size="12.5" font-weight="700" fill="white">2 — Prévention secondaire</text>
+    <text x="307" y="65" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#9a6600">Quand :</text>
+    <text x="307" y="81" font-family="Source Serif 4,serif" font-size="10" fill="#333">Stades précoces de l'évolution</text>
+    <text x="307" y="95" font-family="Source Serif 4,serif" font-size="10" fill="#333">d'une maladie déjà présente</text>
+    <text x="307" y="113" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#9a6600">Objectif :</text>
+    <text x="307" y="129" font-family="Source Serif 4,serif" font-size="10" fill="#333">Éviter son développement · traiter</text>
+    <text x="307" y="145" font-family="Source Serif 4,serif" font-size="10" fill="#333">le plus tôt possible</text>
+    <text x="307" y="163" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#9a6600">Exemple :</text>
+    <text x="307" y="179" font-family="Source Serif 4,serif" font-size="10" fill="#333">Dépistages cancers (sein, côlon…)</text>
+
+    <rect x="585" y="10" width="270" height="170" rx="10" fill="#e6f0fa" stroke="#2a6aad" stroke-width="2"/>
+    <rect x="585" y="10" width="270" height="36" rx="10" fill="#1a3a6a"/><rect x="585" y="31" width="270" height="15" fill="#1a3a6a"/>
+    <text x="720" y="30" text-anchor="middle" font-family="Playfair Display,serif" font-size="12.5" font-weight="700" fill="white">3 — Prévention tertiaire</text>
+    <text x="597" y="65" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#1a3a6a">Quand :</text>
+    <text x="597" y="81" font-family="Source Serif 4,serif" font-size="10" fill="#333">La maladie est apparue et</text>
+    <text x="597" y="95" font-family="Source Serif 4,serif" font-size="10" fill="#333">s'est développée</text>
+    <text x="597" y="113" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#1a3a6a">Objectif :</text>
+    <text x="597" y="129" font-family="Source Serif 4,serif" font-size="10" fill="#333">Limiter les complications</text>
+    <text x="597" y="145" font-family="Source Serif 4,serif" font-size="10" fill="#333">et les risques de récidive</text>
+    <text x="597" y="163" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#1a3a6a">Exemple :</text>
+    <text x="597" y="179" font-family="Source Serif 4,serif" font-size="10" fill="#333">Rééducation · soins palliatifs</text>
+  </svg>
+</div>
+
+<div class="sub v">3. La responsabilité individuelle — Le nudging (slide 4)</div>
+
+<div class="def o">
+  <span class="dl">Concept — slide 4 — Rapport CIB §118 sur le principe de responsabilité individuelle en matière de santé, 3 juillet 2019</span>
+  <div class="dt">Le nudging (« coup de pouce »)</div>
+  <p>Concept introduit récemment par des universitaires dans le débat sur la santé publique.</p>
+  <ul>
+    <li>Les <strong>nudges</strong> sont des outils d'incitation à des comportements sains qui <strong>évitent l'application de restrictions ou interdictions</strong></li>
+    <li>Principe : modifier la <strong>structure (architecture) du processus décisionnel</strong> de telle sorte que les citoyens puissent plus facilement faire un choix en faveur d'un <strong>comportement sain</strong></li>
+    <li>Outil entre la restriction et la liberté totale — Ex : présenter les fruits et légumes en premier dans une cafétéria scolaire</li>
+  </ul>
+</div>
+
+<div class="sub v">4. CCNE, Avis n° 137, Éthique et Santé Publique — 20 mai 2021 (slides 5 à 7)</div>
+
+<div class="def v">
+  <span class="dl">CCNE — Avis n° 137 du 20 mai 2021 — slide 5</span>
+  <div class="dt">Définition de la santé publique selon le CCNE</div>
+  <p>La santé publique a pour objectif de <strong>préserver et d'améliorer la santé</strong>, prise dans toutes ses dimensions, de la population présente sur le territoire, en mettant en place un ensemble cohérent de mesures et de moyens, mobilisant des <strong>compétences multidisciplinaires</strong> et non pas uniquement sanitaires et médicales, et constituant une <strong>politique publique impliquant une participation sociale</strong>.</p>
+</div>
+
+<div class="g2">
+  <div class="card">
+    <div class="ct">🎯 Les 2 directions du CCNE (slide 6)</div>
+    <div style="background:var(--vp);border-radius:6px;padding:.7rem .9rem;border-left:3px solid var(--vc);margin-bottom:.6rem;">
+      <p style="font-weight:700;font-size:.85rem;color:var(--v);margin-bottom:.3rem;">Direction 1 — Les politiques de santé en direction de la société</p>
+      <p style="font-size:.84rem;color:var(--doux);">Champ encore trop médical traversé par les <strong>questions sociales, environnementales et l'émergence du numérique</strong>. Nécessite la prise en compte de la diversité des groupes dans la population.</p>
+    </div>
+    <div style="background:var(--vp);border-radius:6px;padding:.7rem .9rem;border-left:3px solid var(--vc);">
+      <p style="font-weight:700;font-size:.85rem;color:var(--v);margin-bottom:.3rem;">Direction 2 — La construction des comportements individuels et collectifs</p>
+      <p style="font-size:.84rem;color:var(--doux);">En vue de préserver la santé, avec sa dimension psychique, en considérant le rôle essentiel de la <strong>communication et de l'information</strong>.</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ct">⚖️ Les 2 types de repères éthiques (slide 7)</div>
+    <div style="background:var(--bp);border-radius:6px;padding:.7rem .9rem;border-left:3px solid var(--bc);margin-bottom:.6rem;">
+      <p style="font-weight:700;font-size:.85rem;color:var(--b);margin-bottom:.3rem;">Type 1 — L'individu comme sujet et horizon</p>
+      <p style="font-size:.84rem;color:var(--doux);">Fondés sur le critère éthique du <strong>respect de la personne</strong></p>
+    </div>
+    <div style="background:var(--bp);border-radius:6px;padding:.7rem .9rem;border-left:3px solid var(--bc);">
+      <p style="font-weight:700;font-size:.85rem;color:var(--b);margin-bottom:.3rem;">Type 2 — La justice et l'équité comme fondement</p>
+      <p style="font-size:.84rem;color:var(--doux);"><strong>Justice et équité</strong> dans l'accès aux soins · solidarité · participation citoyenne → socle de valeurs intégrant la santé publique comme <strong>« bien commun »</strong></p>
+    </div>
+  </div>
+</div>
+
+<div class="sub v">5. Bilan démographique 2025 — INSEE (slides 8 à 11)</div>
+
+<div class="card">
+  <div class="ct">📊 Chiffres clés — INSEE, bilan démographique 2025</div>
+  <div class="g2">
+    <div>
+      <p style="font-weight:700;color:var(--v);font-size:.87rem;margin-bottom:.5rem;">Population et natalité :</p>
+      <ul class="l">
+        <li>Au 1er janvier 2026 : <strong>69,1 millions d'habitants</strong> en France</li>
+        <li>Croissance : <strong>+0,25 %</strong> en 2025</li>
+        <li>⚠️ Pour la 1ère fois depuis la fin de la 2ème Guerre mondiale : <strong>solde naturel négatif</strong> en 2025 : <strong>−6 000</strong></li>
+        <li><strong>645 000 naissances</strong> en 2025 (−18 000 / 2024 = −2,1 %)</li>
+        <li>Baisse de <strong>24 %</strong> par rapport à 2010</li>
+        <li>Indicateur conjoncturel de fécondité : <strong>1,56 enfant/femme</strong> en 2025 → <strong>niveau le plus bas depuis la fin de la 1ère Guerre mondiale</strong></li>
+      </ul>
+    </div>
+    <div>
+      <p style="font-weight:700;color:var(--v);font-size:.87rem;margin-bottom:.5rem;">Mortalité et espérance de vie :</p>
+      <ul class="l">
+        <li><strong>651 000 décès</strong> en 2025 (+1,5 % / 2024)</li>
+        <li>Augmentation liée à l'<strong>épidémie de grippe hivernale</strong> particulièrement meurtrière en début d'année</li>
+        <li>Espérance de vie à la naissance (en hausse) :
+          <ul>
+            <li><strong>85,9 ans</strong> pour les femmes (85,6 en 2024)</li>
+            <li><strong>80,3 ans</strong> pour les hommes (80 en 2024)</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="ret">
+  <div class="ri">⚠️</div>
+  <div class="rb">
+    <strong>Exemples de crises sanitaires évoquées dans le cours (slide 12)</strong>
+    <p>Le cours illustre la nécessité d'un encadrement juridique renforcé par les grandes crises : la <strong>vache folle</strong> (ESB), le <strong>sang contaminé</strong>, l'<strong>hormone de croissance</strong>. Ces scandales ont conduit à repenser la sécurité sanitaire (→ Thème 3).</p>
+  </div>
+</div>
+
+
+<!-- SECTION 1 -->
+<div class="sh i1">
+  <div class="sn">Section 1</div>
+  <h2>Historique du droit de la protection de la santé</h2>
+  <p>Slides 14 à 43 — §1 L'Antiquité · §2 Le péril épidémique · §3 L'investissement de second plan</p>
+</div>
+
+<div class="ret">
+  <div class="ri">🗝️</div>
+  <div class="rb">
+    <strong>3 constats fondamentaux du cours (slides 15-16) — à mémoriser !</strong>
+    <ul>
+      <li>I. Les pouvoirs établis se sont toujours <strong>impliqués</strong> dans la protection de la santé publique</li>
+      <li>II. L'interventionnisme public est issu de la <strong>menace épidémique</strong> → passé par des hauts et des bas selon la situation sanitaire</li>
+      <li>III. La protection de la santé publique a toujours été une préoccupation de <strong>second plan</strong> pour les gouvernants</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sub m">§1. Une implication au cœur des pratiques politiques dès l'Antiquité (slides 17 à 21)</div>
+
+<div class="g2">
+  <div class="card m">
+    <div class="ct">🏛️ La Grèce antique — Hippocrate et l'urbanisme sanitaire</div>
+    <ul class="l">
+      <li><strong>Hippocrate</strong> : les membres d'un groupe semblablement malades avaient en commun l'<strong>air insalubre, la nourriture ou l'eau</strong> → 1ère pensée épidémiologique</li>
+      <li><strong>Hippodame de Milet</strong> (architecte du Pirée) : plan de cité dit <strong>hippodamien</strong> permettant une libre circulation des vents → santé par l'urbanisme</li>
+      <li>À Athènes : grands travaux pour <strong>fontaines d'eau potable</strong> (l'Ennéacrounos, la plus célèbre)</li>
+      <li>Aliments du marché <strong>contrôlés</strong></li>
+      <li>Les coprologues (éboueurs) ne pouvaient pas décharger leurs ordures à <strong>moins de 10 stades de l'enceinte</strong></li>
+    </ul>
+  </div>
+  <div class="card m">
+    <div class="ct">🏛️ La Rome antique — Hygiène et encadrement médical (slides 19-21)</div>
+    <p style="font-weight:700;font-size:.85rem;color:var(--m);margin-bottom:.4rem;">Hygiène publique :</p>
+    <ul class="l">
+      <li>Conduites d'eau potable en plomb · <strong>égouts</strong> : le <em>Cloaca Maxima</em></li>
+    </ul>
+    <p style="font-weight:700;font-size:.85rem;color:var(--m);margin-top:.6rem;margin-bottom:.4rem;">Encadrement médical :</p>
+    <ul class="l">
+      <li><strong>César</strong> : citoyenneté romaine accordée à tous les médecins pour les retenir</li>
+      <li>Sous l'Empire : écoles privées de médecine (Athènes, Alexandrie, Marseille)</li>
+      <li><strong>Alexandre-Sévère</strong> (IIIe s.) : école publique à Rome, enseignants payés sur fonds publics</li>
+      <li><strong>Julien</strong> : loi imposant d'être approuvé par un collège de médecins pour exercer</li>
+      <li>⚠️ En droit romain : l'accès à la profession <strong>n'exigea jamais de titre universitaire</strong></li>
+    </ul>
+  </div>
+</div>
+
+<div class="card m">
+  <div class="ct">⛪ L'encadrement de la médecine au Moyen Âge — Rôle de l'Église (slides 22-23)</div>
+  <div class="g2">
+    <ul class="l">
+      <li>Après la <strong>Peste Noire</strong> : ordonnance de <strong>Jean le Bon (1352)</strong> → interdit l'exercice à Paris sans être <strong>au moins licencié</strong></li>
+      <li>Déclaration royale de <strong>1696</strong> : interdit la pratique sans être docteur en médecine d'une université du royaume</li>
+      <li>Édit de <strong>mars 1707 (dit « édit de Marly »)</strong> : règlement pour l'étude et l'exercice de la médecine → demeuré en vigueur jusqu'à <strong>la Révolution</strong></li>
+    </ul>
+    <div>
+      <p style="font-weight:700;font-size:.87rem;color:var(--m);margin-bottom:.4rem;">Rôle de l'Église :</p>
+      <ul class="l">
+        <li>Prenait en charge les <strong>pouvoirs régaliens de la santé</strong></li>
+        <li>Puissance économique considérable · statut fiscal avantageux</li>
+        <li>Création des <strong>hôtels-Dieu</strong> (près de la cathédrale) → sous responsabilité des évêques</li>
+        <li>C'est seulement sous <strong>Louis XIV</strong> qu'apparurent les hôpitaux au sens moderne</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sub m">§2. Un engagement relié au péril épidémique (slides 24 à 33)</div>
+
+<div class="g2">
+  <div class="card m">
+    <div class="ct">🦠 La lèpre — Première grande politique de santé publique (slides 24-26)</div>
+    <ul class="l">
+      <li>Grande terreur du Moyen Âge · domaine où les pouvoirs civils intervinrent le <strong>plus tôt</strong></li>
+      <li>Création des <strong>léproseries / maladreries</strong> : les malades isolés (à défaut de les guérir)</li>
+      <li>Premières mesures dès l'<strong>époque carolingienne</strong></li>
+      <li>Fin XIe siècle : lépreux plus nombreux (retour des croisades) → politique de <strong>relégation</strong> réactivée avec un <strong>caractère systématique sans précédent</strong></li>
+      <li>Au XIIIe siècle : <strong>60 000 malades</strong> dans le royaume · les ladres frappés d'une <strong>mort civile</strong> (dissolution du mariage, incapacité civile)</li>
+      <li>Vers <strong>1266</strong> : Louis VIII établit pour la France le <strong>règlement des léproseries</strong></li>
+      <li>~<strong>2 000 léproseries</strong> en France · <strong>19 000</strong> en Europe occidentale vers 1300</li>
+      <li>→ Plupart des établissements d'origine <strong>municipale</strong> (et non royale)</li>
+    </ul>
+  </div>
+  <div class="card m">
+    <div class="ct">🦠 La peste — Naissance des structures sanitaires permanentes (slides 27-33)</div>
+    <ul class="l">
+      <li><strong>Grande Peste noire de 1348</strong> → Bureaux de santé en Italie puis en France · établis d'abord provisoirement puis permanents</li>
+      <li><strong>1665</strong> : le Parlement de Paris enregistre l'obligation pour chaque ville d'avoir un <strong>Conseil de santé permanent</strong></li>
+      <li>Meilleur exemple : Conseil de santé de <strong>Marseille</strong> (modèle en Europe avant 1720 · fonctionne jusqu'en 1850)</li>
+      <li>La Provence : ~<strong>20 épidémies</strong> entre 1348 et 1720</li>
+    </ul>
+    <p style="font-weight:700;font-size:.85rem;color:var(--m);margin-top:.6rem;margin-bottom:.3rem;">Mesures des villes :</p>
+    <ul class="l">
+      <li>Respect des <strong>quarantaines</strong> · nettoyage des rues (arrosées au vin si possible)</li>
+      <li>Constitution de <strong>réserves alimentaires</strong></li>
+      <li>Rémunération des médecins gagés et des <strong>« corbeaux »</strong> (enterre-morts)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card m">
+  <div class="ct">💰 Le coût financier des épidémies — L'intervention progressive de l'État (slides 29-31)</div>
+  <div class="g2">
+    <div>
+      <p style="font-weight:700;font-size:.85rem;color:var(--m);margin-bottom:.4rem;">Le coût pour la ville d'Aix :</p>
+      <ul class="l">
+        <li><strong>1564-65</strong> : <strong>46 %</strong> des ressources annuelles consacrées à l'épidémie</li>
+        <li><strong>1580-81</strong> : presque <strong>65 %</strong></li>
+        <li>Peste de <strong>1629</strong> : dépenses atteignant <strong>160 % des recettes</strong> !</li>
+      </ul>
+    </div>
+    <div>
+      <p style="font-weight:700;font-size:.85rem;color:var(--m);margin-bottom:.4rem;">L'État s'associe progressivement :</p>
+      <ul class="l">
+        <li>D'abord : <strong>dons aux villes infectées</strong> (ex : Rouen en 1668)</li>
+        <li>Puis : <strong>cordons sanitaires</strong> (Basse-Provence 1720 → <strong>30 000 fantassins + 3 000 cavaliers</strong> pour surveiller le <strong>mur de la Peste</strong>)</li>
+        <li>Inclusion de questions de santé publique dans les <strong>lettres de commission des intendants</strong> → esquisse d'une politique de prévention</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sub m">§3. Un investissement de second plan, tributaire des pesanteurs politiques et économiques (slides 34 à 43)</div>
+
+<div class="ret">
+  <div class="ri">⚠️</div>
+  <div class="rb">
+    <strong>Le principe général — slide 38</strong>
+    <p>La France a toujours <strong>nié les menaces</strong> avant de devoir se rendre à l'évidence. Jusqu'en 1832, le choléra était considéré comme une infection « <em>plus effrayante que dangereuse</em> » (Dr Gabriel Prunelle, rapporteur à la Chambre en septembre 1831). Jusqu'en <strong>1889</strong>, les services de l'hygiène dépendaient du <strong>ministère du Commerce</strong>.</p>
+  </div>
+</div>
+
+<div class="tl">
+  <div class="tl-item">
+    <div class="tl-date">XIXème siècle — Réapparition de la peste à Marseille</div>
+    <div class="tl-desc">L'État s'investit pleinement dans la gestion de la santé publique → législation sanitaire.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">Loi du 3 mars 1822 « sur la police sanitaire »</div>
+    <div class="tl-desc"><strong>Généralise la quarantaine</strong> dans des lazarets à terre, à l'entrée des grands ports (décret du 7 août 1822).</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">Ordonnance du 7 août 1822</div>
+    <div class="tl-desc">Crée le <strong>Conseil supérieur de santé</strong> → ancêtre direct de l'actuel <strong>Conseil Supérieur d'Hygiène Publique de France</strong>.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">1er Empire — Vaccination préventive contre la variole</div>
+    <div class="tl-desc">Les préfets reçoivent des circulaires pour assurer la diffusion massive de la <strong>vaccination</strong> imaginée par Jenner.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">1832 — Épidémie de choléra à Paris</div>
+    <div class="tl-desc">Mars à septembre 1832 : <strong>18 000 décès</strong>. Vote de crédits extraordinaires d'un <strong>million de francs</strong> pour la rénovation des lazarets et la création de comités de salubrité. Mais réaction limitée : impossibilité médicale de parer vraiment à la menace.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">Décret du 15 octobre 1810 et Loi du 13 avril 1850 sur les logements insalubres</div>
+    <div class="tl-desc">Très peu appliqués : intervention <strong>volontaire</strong> des conseils municipaux → ils s'abstinrent massivement. <strong>29 d'entre eux</strong> firent même savoir qu'ils n'étaient pas concernés faute de logements insalubres !</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">Loi du 30 novembre 1892 sur l'exercice de la médecine</div>
+    <div class="tl-desc">1ère loi à imposer aux médecins de <strong>déclarer les maladies épidémiques</strong>. Mais : le législateur n'a pas cru devoir imposer des soins obligatoires ni même des vaccinations !</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">Loi du 15 février 1902 relative à la protection de la santé publique ★</div>
+    <div class="tl-desc"><strong>Seul grand texte sur la prévention au XXe siècle</strong>. Comité consultatif d'hygiène publique. Règlement sanitaire dans toutes les communes. Déclaration obligatoire d'une douzaine de maladies graves. ⚠️ Mais pas la tuberculose (pourtant responsable d'1/5 des décès en ville). Vaccination antivariolique obligatoire (1ère, 11ème, 21ème années). Restée longtemps « platonique » (pas de corps d'inspecteurs).</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">Octobre 1906 — 1er secrétariat d'État à la Santé</div>
+    <div class="tl-desc">À l'initiative de <strong>Clémenceau</strong> (médecin de formation) → dépendant du ministère du Travail et de la Prévoyance sociale · confié à <strong>René Viviani</strong>. Mais moyens très limités → tentation de se décharger sur les autorités locales.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">1920 — Création du ministère de l'Hygiène</div>
+    <div class="tl-desc">L'expérience tragique de l'épidémie de <strong>grippe espagnole de 1918</strong> (plus de <strong>400 000 morts</strong> en France) conduit à créer le ministère de l'Hygiène, de l'Assistance et de la Prévoyance, confié à <strong>Jules Breton</strong>.</div>
+  </div>
+</div>
+
+<div class="loi m">
+  <span class="lr">⚖️ Loi du 15 février 1902 — texte fondateur de la santé publique moderne — à maîtriser absolument !</span>
+  <div class="lt">Relative à la protection de la santé publique</div>
+  <ul>
+    <li>Création d'un <strong>Comité consultatif d'hygiène publique</strong></li>
+    <li>Exigence d'un <strong>règlement sanitaire</strong> dans toutes les communes pour garantir la salubrité des immeubles</li>
+    <li><strong>Déclaration obligatoire</strong> d'une douzaine de maladies graves + désinfection obligatoire</li>
+    <li>⚠️ La <strong>tuberculose ne figurait PAS sur la liste</strong> (pourtant démontrée contagieuse par Villemin en 1865, agent causal découvert par Koch en 1882, responsable d'<strong>1/5 des décès</strong> en ville à l'époque)</li>
+    <li>Prescrit la <strong>vaccination antivariolique obligatoire</strong> : 1ère année de vie + 11ème + 21ème année</li>
+    <li>Resta longtemps « <strong>platonique</strong> » : les parlementaires refusèrent un corps d'inspecteurs de la santé qui aurait pu lui donner plus d'effectivité</li>
+  </ul>
+</div>
+
+<div class="ret">
+  <div class="ri">📜</div>
+  <div class="rb">
+    <strong>Conclusion de la Section 1 — slide 43</strong>
+    <p>Rétrospectivement, l'arsenal institutionnel a été mis en place de manière <strong>tardive</strong>, les créations intervenues semblant avoir été conçues à la <strong>hâte dans le sillage des nombreuses crises sanitaires</strong>, toutes absolument imprévues. La France a même, dans certains cas, imprudemment <strong>baissé sa garde</strong> (ex : variole → <strong>23 400 morts</strong> en 1870-71).</p>
+  </div>
+</div>
+
+
+<!-- SECTION 2 -->
+<div class="sh i2">
+  <div class="sn">Section 2</div>
+  <h2>La loi de santé publique du 9 août 2004</h2>
+  <p>Slides 44 à 54 — §1 Rendre la politique plus claire · §2 Fixer le cadre (100 objectifs, 5 plans) · §3 Mieux prendre en compte la prévention</p>
+</div>
+
+<div class="loi b">
+  <span class="lr">⚖️ Loi n° 2004-806 du 9 août 2004 relative à la politique de santé publique</span>
+  <div class="lt">3 objectifs fondamentaux (slide 45)</div>
+  <ul>
+    <li>1. <strong>Rendre la définition de la politique nationale de santé publique plus claire et plus efficace</strong></li>
+    <li>2. <strong>Fixer le cadre de la politique de santé publique pour les cinq prochaines années</strong> (2004-2008)</li>
+    <li>3. <strong>Mieux prendre en compte les facteurs « santé publique » et « prévention »</strong></li>
+  </ul>
+</div>
+
+<div class="card b">
+  <div class="ct">📋 Le diagnostic à l'origine de la loi (slides 46-47)</div>
+  <div class="g2">
+    <div>
+      <p style="font-weight:700;font-size:.87rem;color:var(--b);margin-bottom:.4rem;">Double constat :</p>
+      <ul class="l">
+        <li>La France présente des taux de <strong>mortalité prématurée et de mortalité évitable trop élevés</strong></li>
+        <li>Ses habitants souffrent d'<strong>inégalités excessives en matière d'état de santé</strong></li>
+      </ul>
+    </div>
+    <div>
+      <p style="font-weight:700;font-size:.87rem;color:var(--b);margin-bottom:.4rem;">Le problème institutionnel :</p>
+      <ul class="l">
+        <li>Le système de santé français : <strong>complexité extrême</strong></li>
+        <li>Difficile de savoir <strong>« qui fait quoi »</strong> → problème d'efficacité, de cohérence, de responsabilité politique</li>
+        <li>→ Nécessité d'une <strong>clarification des compétences</strong> : État, collectivités territoriales, autres instances</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sub b">§1. Rendre la définition de la politique nationale de santé publique plus claire et plus efficace (slide 48)</div>
+
+<div class="card b">
+  <div class="ct">🏛️ Le rôle de l'État réaffirmé</div>
+  <ul class="l">
+    <li>L'État est réaffirmé dans sa <strong>responsabilité première</strong> : la définition de la politique de santé publique, composée d'<strong>objectifs pluriannuels</strong></li>
+    <li>L'État prend ses responsabilités en matière de : consultations de <strong>prévention</strong> · programmes de <strong>dépistage</strong> · <strong>politique vaccinale</strong></li>
+    <li>Les éléments composant la politique de santé publique sont introduits dans le <strong>Code de la santé publique</strong></li>
+    <li>Dispositions relatives à la <strong>prévention de crises sanitaires graves</strong> (épidémies, bioterrorisme…)</li>
+  </ul>
+</div>
+
+<div class="card b">
+  <div class="ct">🏛️ Un contexte institutionnel plus clair — Le Haut Conseil de la Santé Publique (slide 49)</div>
+  <ul class="l">
+    <li>La loi crée un <strong>Haut Conseil de la santé publique</strong></li>
+    <li>Détermine les <strong>rôles de chacun</strong> · définit les <strong>objectifs communs</strong> à atteindre</li>
+    <li>→ Mise en œuvre d'actions menées de manière <strong>cohérente et sur une longue période</strong></li>
+    <li>Des <strong>indicateurs</strong> mesurent les progrès réalisés</li>
+    <li>La loi marque la volonté de rendre la politique de santé publique plus <strong>simple, efficace et transparente</strong></li>
+  </ul>
+</div>
+
+<div class="card b">
+  <div class="ct">🗺️ Le rôle de la région (slide 50)</div>
+  <ul class="l">
+    <li>Au niveau régional : le <strong>représentant de l'État dans la région</strong> est chargé de concevoir la politique régionale</li>
+    <li>Il s'appuie sur la <strong>conférence régionale de santé publique</strong></li>
+    <li>Un <strong>groupement régional de santé publique</strong> coordonne les initiatives de multiples organismes agissant à l'échelon régional</li>
+    <li>Les régions pourront élaborer des <strong>programmes régionaux</strong></li>
+  </ul>
+</div>
+
+<div class="sub b">§2. Fixer le cadre de la politique de santé publique pour les cinq prochaines années (slides 51-53)</div>
+
+<div class="def b">
+  <span class="dl">Originalité de la loi — slide 51</span>
+  <div class="dt">Un double objet inédit : cadre institutionnel ET orientations pour 5 ans</div>
+  <p>Le texte présente l'originalité de fixer à la fois le <strong>cadre institutionnel</strong> de l'élaboration et de l'adoption des lois de politique de santé publique et de déterminer les <strong>orientations pour les 5 prochaines années</strong> (2004-2008). La loi propose en annexe <strong>100 objectifs</strong> dégagés à l'issue de la consultation nationale → ils ont valeur d'<strong>engagement</strong> pour tous les acteurs de santé.</p>
+</div>
+
+<div class="loi b">
+  <span class="lr">⚖️ Les 5 plans nationaux de santé publique 2004-2008 — slide 52</span>
+  <div class="lt">5 problèmes traités par des « plans stratégiques de santé publique » coordonnant l'action de tous les acteurs concernés</div>
+  <ul>
+    <li>1. <strong>Plan national de lutte contre le cancer</strong> → création de l'<strong>Institut National du Cancer (INCa)</strong></li>
+    <li>2. Plan national de lutte pour limiter l'impact sur la santé de la <strong>violence, des comportements à risque et des conduites addictives</strong></li>
+    <li>3. Plan national de lutte pour limiter l'impact sur la santé des <strong>facteurs d'environnement</strong></li>
+    <li>4. Plan national pour améliorer la <strong>qualité de vie des personnes atteintes de maladies chroniques</strong></li>
+    <li>5. Plan national pour améliorer la <strong>prise en charge des maladies rares</strong></li>
+  </ul>
+</div>
+
+<div class="card b">
+  <div class="ct">🎗️ Le Plan Cancer — dispositions spécifiques (slide 53)</div>
+  <ul class="l">
+    <li>La lutte contre le cancer fait l'objet de <strong>dispositions spécifiques</strong></li>
+    <li>Création de l'<strong>Institut national du cancer (INCa)</strong> pour coordonner des efforts qui étaient trop dispersés</li>
+    <li>Dispositions facilitant la lutte contre le <strong>tabagisme et l'alcoolisme</strong></li>
+  </ul>
+</div>
+
+<div class="sub b">§3. Mieux prendre en compte les facteurs « santé publique » et « prévention » (slide 54)</div>
+
+<div class="card b">
+  <div class="ct">🛡️ Profondes modifications institutionnelles pour la prévention</div>
+  <div class="g2">
+    <ul class="l">
+      <li>Recentrage de l'action de l'<strong>INPES</strong> (Institut National de Prévention et d'Éducation pour la Santé)</li>
+      <li>Définit des <strong>programmes de santé</strong> et des dispositifs de prévention :
+        <ul>
+          <li>Politique de <strong>vaccination</strong></li>
+          <li>Prévention des <strong>infections liées aux soins</strong></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="l">
+      <li>Dispositions relatives aux <strong>facteurs environnementaux</strong> :
+        <ul>
+          <li>Surveillance épidémiologique</li>
+          <li>Protection des captages d'eau</li>
+          <li>Lutte contre le <strong>saturnisme</strong></li>
+        </ul>
+      </li>
+      <li>Rénove l'organisation de la <strong>formation et de la recherche</strong> en santé publique</li>
+      <li>Obligation pour tous les médecins de suivre des actions de <strong>formation médicale continue</strong></li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- RÉCAPITULATIF -->
+<div class="sh i2" style="margin-top:3rem;background:linear-gradient(135deg,#f3f1eb,#e5dfcc);border-left-color:var(--oc);">
+  <div class="sn" style="color:var(--o);">Récapitulatif</div>
+  <h2 style="color:var(--o);">Tableau de synthèse — tous les textes</h2>
+</div>
+
+<div class="card o">
+  <div class="ct">📚 Bases légales complètes du Thème 1</div>
+  <table>
+    <thead><tr><th class="o">Texte</th><th class="o">Date</th><th class="o">Apport essentiel</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Ordonnance de Jean le Bon</strong></td><td>1352</td><td>Interdit l'exercice de la médecine à Paris sans être au moins licencié — après la Peste Noire</td></tr>
+      <tr><td><strong>Louis VIII — règlement des léproseries</strong></td><td>~1266</td><td>Établit pour la France le règlement des léproseries (~2 000 dans le royaume)</td></tr>
+      <tr><td><strong>Déclaration royale</strong></td><td>1696</td><td>Interdit la pratique médicale dans tout le royaume sans être docteur en médecine d'une université du royaume</td></tr>
+      <tr><td><strong>Édit de Marly</strong></td><td>Mars 1707</td><td>Règlement pour l'étude et l'exercice de la médecine → en vigueur jusqu'à la Révolution</td></tr>
+      <tr><td><strong>Loi du 3 mars 1822</strong></td><td>3 mars 1822</td><td>« Loi sur la police sanitaire » · généralise la quarantaine dans des lazarets à terre · premier grand texte sanitaire du XIXème</td></tr>
+      <tr><td><strong>Ordonnance du 7 août 1822</strong></td><td>7 août 1822</td><td>Crée le Conseil supérieur de santé → ancêtre de l'actuel Conseil Supérieur d'Hygiène Publique de France</td></tr>
+      <tr><td><strong>Loi du 13 avril 1850</strong></td><td>13 avr. 1850</td><td>Sur les logements insalubres — très peu appliquée (intervention volontaire des conseils municipaux)</td></tr>
+      <tr><td><strong>Loi du 30 novembre 1892</strong></td><td>30 nov. 1892</td><td>Sur l'exercice de la médecine · 1ère imposition aux médecins de déclarer les maladies épidémiques · mais pas les vaccinations obligatoires</td></tr>
+      <tr><td><strong>Loi du 15 février 1902 ★</strong></td><td>15 févr. 1902</td><td>Relative à la protection de la santé publique · <strong>1er grand texte de santé publique moderne</strong> · vaccination antivariolique obligatoire · Comité consultatif d'hygiène publique · règlement sanitaire communal obligatoire</td></tr>
+      <tr><td><strong>Ministère de l'Hygiène</strong></td><td>1920</td><td>Créé suite à la grippe espagnole de 1918 (400 000 morts) · ministère de l'Hygiène, de l'Assistance et de la Prévoyance · confié à Jules Breton</td></tr>
+      <tr><td><strong>Constitution OMS</strong></td><td>7 avr. 1948</td><td>Définition officielle de la santé (bien-être physique, mental et social) · 3 niveaux de prévention</td></tr>
+      <tr><td><strong>Rapport CIB — nudging</strong></td><td>3 juil. 2019</td><td>§118 : principe de responsabilité individuelle en matière de santé · le nudging comme outil d'incitation aux comportements sains</td></tr>
+      <tr><td><strong>CCNE — Avis n° 137</strong></td><td>20 mai 2021</td><td>Éthique et santé publique · définition SP · 2 directions · 2 types de repères éthiques · santé publique comme « bien commun »</td></tr>
+      <tr><td><strong>Loi n° 2004-806</strong></td><td>9 août 2004</td><td>Relative à la politique de santé publique · 3 objectifs · 100 objectifs · 5 plans nationaux (cancer, addictions, environnement, maladies chroniques, maladies rares) · Haut Conseil de la santé publique · INCa · rôle de la région</td></tr>
+      <tr><td><strong>Bilan démographique INSEE</strong></td><td>2025</td><td>69,1 M hab. · solde naturel négatif pour la 1ère fois depuis 1945 · fécondité 1,56 (plus bas depuis 1ère GM) · EVN : 85,9 ans (F) / 80,3 ans (H)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<blockquote>
+  « Rétrospectivement, l'arsenal institutionnel a été mis en place de manière tardive et les créations intervenues semblent avoir été conçues à la hâte dans le sillage des nombreuses crises sanitaires, toutes absolument imprévues. »
+  <cite>— Cours de Guylène NICOLAS, Thème 1</cite>
+</blockquote>
+
+</main>
+<footer>Fiche de révision — Thème 1 : La Notion de Santé Publique : le Droit au Service de la Gouvernance · cours Guylène NICOLAS · Master 1 · 2025/2026</footer>
+</body>
+</html>

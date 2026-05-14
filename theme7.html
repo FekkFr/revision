@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thème 7 — Une Santé Publique de Dimension Internationale</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fond:#f3f1eb;--carte:#fff;--texte:#111;--doux:#484848;--bord:#ddd5bc;
+  --b:#1a3a6a;--bc:#2a5aad;--bp:#e4ecfa;
+  --v:#1a5c38;--vc:#278f52;--vp:#e4f4ec;
+  --o:#9a6000;--oc:#c8900a;--op:#fdf3dc;
+  --r:#982020;--rp:#fdf0f0;
+  --eu:#003399;--eup:#e8edf8;--euc:#1a4aad;
+  --oms:#009B77;--omsp:#e0f5f0;--omsc:#007a5e;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--fond);color:var(--texte);font-size:14.5px;line-height:1.72;}
+
+header{background:linear-gradient(140deg,#001030 0%,#003399 55%,#001a50 100%);color:#fff;padding:3rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden;}
+header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent,transparent 55px,rgba(255,255,255,.016) 55px,rgba(255,255,255,.016) 110px);}
+.badge{display:inline-block;background:var(--oc);color:#fff;font-family:'Playfair Display',serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;padding:.3rem 1.1rem;border-radius:2px;margin-bottom:1rem;}
+header h1{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;line-height:1.2;margin-bottom:.4rem;}
+header h2{font-weight:300;font-style:italic;font-size:1rem;color:rgba(255,255,255,.62);margin-bottom:1.4rem;}
+.meta{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;}
+.meta span{font-size:.77rem;color:rgba(255,255,255,.45);}
+.meta strong{color:#d4b040;font-weight:600;}
+
+.plan{background:var(--carte);border:2px solid var(--euc);border-radius:8px;margin:2rem auto;max-width:960px;padding:1.3rem 1.8rem;box-shadow:0 2px 14px rgba(0,0,0,.08);}
+.plan h3{font-family:'Playfair Display',serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--eu);margin-bottom:1rem;}
+.plan-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.7rem;}
+.pi{border-radius:0 6px 6px 0;padding:.8rem 1rem;border-left:4px solid;}
+.pi .num{font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:.2rem;}
+.pi .tit{font-family:'Playfair Display',serif;font-size:.85rem;font-weight:700;}
+.pi.i0{background:#f5f7ff;border-color:var(--euc);} .pi.i0 .num,.pi.i0 .tit{color:var(--eu);}
+.pi.i1{background:var(--eup);border-color:var(--euc);} .pi.i1 .num,.pi.i1 .tit{color:var(--eu);}
+.pi.i2{background:var(--omsp);border-color:var(--omsc);} .pi.i2 .num,.pi.i2 .tit{color:var(--oms);}
+
+main{max-width:960px;margin:0 auto;padding:0 1.5rem 5rem;}
+
+.sh{margin:3rem 0 1.3rem;padding:1rem 1.5rem;border-radius:8px;}
+.sh.i0{background:linear-gradient(135deg,#f5f7ff,#e0e8f8);border-left:5px solid var(--eu);}
+.sh.i1{background:linear-gradient(135deg,var(--eup),#ccd8f5);border-left:5px solid var(--eu);}
+.sh.i2{background:linear-gradient(135deg,var(--omsp),#b8e8de);border-left:5px solid var(--oms);}
+.sh .sn{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;opacity:.75;margin-bottom:.15rem;}
+.sh.i0 .sn,.sh.i0 h2{color:var(--eu);}
+.sh.i1 .sn,.sh.i1 h2{color:var(--eu);}
+.sh.i2 .sn,.sh.i2 h2{color:var(--oms);}
+.sh h2{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:900;}
+.sh p{font-size:.84rem;color:var(--doux);font-style:italic;margin-top:.3rem;}
+
+.sub{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:700;margin:1.8rem 0 .8rem;padding-left:.8rem;border-left:3px solid var(--euc);color:var(--eu);}
+.sub.oms{border-color:var(--omsc);color:var(--oms);}
+.sub.o{border-color:var(--oc);color:var(--o);}
+.sub.r{border-color:var(--r);color:var(--r);}
+
+.card{background:var(--carte);border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.07);padding:1.2rem 1.5rem;margin-bottom:1rem;border-left:4px solid var(--euc);}
+.card.oms{border-color:var(--omsc);}
+.card.o{border-color:var(--oc);}
+.card.r{border-color:var(--r);}
+.card.v{border-color:var(--vc);}
+.ct{font-family:'Playfair Display',serif;font-size:.96rem;font-weight:700;color:var(--eu);margin-bottom:.65rem;display:flex;align-items:center;gap:.5rem;}
+.card.oms .ct{color:var(--oms);}
+.card.o .ct{color:var(--o);}
+.card.r .ct{color:var(--r);}
+.card.v .ct{color:var(--v);}
+
+.ret{background:#fffde6;border:2px solid var(--oc);border-radius:8px;padding:1rem 1.4rem;margin:1rem 0;display:flex;gap:.9rem;align-items:flex-start;}
+.ri{font-size:1.2rem;flex-shrink:0;}
+.rb strong{color:#6a4700;display:block;margin-bottom:.3rem;font-size:.88rem;}
+.rb p,.rb ul{font-size:.86rem;color:var(--doux);}
+.rb ul{padding-left:1.1rem;} .rb ul li{margin-bottom:.2rem;}
+
+.def{border-radius:8px;padding:1rem 1.4rem;margin-bottom:.9rem;border:1.5px solid;}
+.def.eu{background:var(--eup);border-color:var(--euc);}
+.def.oms{background:var(--omsp);border-color:var(--omsc);}
+.def.o{background:var(--op);border-color:var(--oc);}
+.dl{font-family:'Playfair Display',serif;font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.35rem;display:block;}
+.def.eu .dl{color:var(--eu);} .def.oms .dl{color:var(--oms);} .def.o .dl{color:var(--o);}
+.dt{font-weight:700;font-size:.98rem;}
+.def.eu .dt{color:var(--eu);} .def.oms .dt{color:var(--oms);} .def.o .dt{color:var(--o);}
+.def p,.def ul{color:var(--doux);margin-top:.3rem;font-size:.88rem;}
+.def ul{padding-left:1.1rem;} .def ul li{margin-bottom:.18rem;}
+
+.loi{border:1.5px solid;border-radius:8px;padding:1rem 1.4rem;margin-bottom:.8rem;}
+.loi.eu{background:var(--eup);border-color:var(--euc);}
+.loi.oms{background:var(--omsp);border-color:var(--omsc);}
+.loi.o{background:var(--op);border-color:var(--oc);}
+.loi.r{background:var(--rp);border-color:var(--r);}
+.lr{font-family:'Playfair Display',serif;font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.28rem;display:block;}
+.loi.eu .lr{color:var(--euc);} .loi.oms .lr{color:var(--omsc);}
+.loi.o .lr{color:var(--oc);} .loi.r .lr{color:var(--r);}
+.lt{font-weight:700;font-size:.93rem;margin-bottom:.45rem;}
+.loi.eu .lt{color:#001a60;} .loi.oms .lt{color:#005a45;}
+.loi.o .lt{color:#6a4700;} .loi.r .lt{color:#6a1010;}
+.loi ul{padding-left:1.2rem;color:var(--doux);font-size:.87rem;}
+.loi ul li{margin-bottom:.23rem;}
+
+.art{border-left:4px solid;border-radius:0 8px 8px 0;padding:.9rem 1.3rem;margin:.8rem 0;}
+.art.eu{background:var(--eup);border-color:var(--euc);}
+.art.oms{background:var(--omsp);border-color:var(--omsc);}
+.ar{font-family:'Playfair Display',serif;font-weight:700;font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;margin-bottom:.35rem;display:block;}
+.art.eu .ar{color:var(--eu);} .art.oms .ar{color:var(--oms);}
+.art p{color:var(--doux);font-style:italic;font-size:.87rem;}
+.an{font-style:normal!important;font-weight:700;font-size:.8rem;margin-top:.38rem!important;display:block;}
+.art.eu .an{color:var(--eu);} .art.oms .an{color:var(--oms);}
+
+.org{background:var(--carte);border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.09);padding:1.5rem 1.5rem 1.2rem;margin-bottom:1.2rem;overflow-x:auto;}
+.org h3{font-family:'Playfair Display',serif;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:#555;margin-bottom:1rem;text-align:center;}
+.org svg{display:block;margin:0 auto;max-width:100%;}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.9rem;margin-bottom:1rem;}
+
+.tl{position:relative;padding-left:2rem;margin-bottom:1rem;}
+.tl::before{content:'';position:absolute;left:.6rem;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--eu),var(--oms));}
+.tl-item{position:relative;margin-bottom:.9rem;}
+.tl-item::before{content:'';position:absolute;left:-1.4rem;top:.5rem;width:11px;height:11px;border-radius:50%;background:var(--oc);border:2px solid #fff;box-shadow:0 0 0 2px var(--oc);}
+.tl-date{font-family:'Playfair Display',serif;font-weight:700;color:var(--eu);font-size:.88rem;}
+.tl-item.oms .tl-date{color:var(--oms);}
+.tl-desc{font-size:.87rem;color:var(--doux);margin-top:.1rem;}
+
+table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:1rem;}
+th{background:var(--eu);color:#fff;padding:.55rem .9rem;text-align:left;font-family:'Playfair Display',serif;font-size:.77rem;letter-spacing:.05em;}
+th.oms{background:var(--oms);}
+td{padding:.5rem .9rem;border-bottom:1px solid var(--bord);color:var(--doux);vertical-align:top;}
+tr:nth-child(even) td{background:var(--fond);}
+tr:last-child td{border-bottom:none;}
+
+ul.l{padding-left:1.2rem;color:var(--doux);font-size:.89rem;}
+ul.l li{margin-bottom:.27rem;}
+
+blockquote{border-left:3px solid var(--oc);margin:1rem 0;padding:.7rem 1.2rem;background:var(--op);border-radius:0 6px 6px 0;font-style:italic;color:var(--doux);font-size:.88rem;}
+blockquote cite{display:block;font-style:normal;font-size:.73rem;color:var(--oc);margin-top:.3rem;font-weight:700;}
+
+footer{text-align:center;font-size:.76rem;color:#aaa;padding:2rem 1rem;border-top:1px solid var(--bord);margin-top:2rem;font-style:italic;}
+@media(max-width:700px){.g2,.g3,.plan-grid{grid-template-columns:1fr;}header h1{font-size:1.5rem;}}
+@media print{.card,.loi,.def,.ret,.org{break-inside:avoid;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Fiche de Révision — Plan du cours</div>
+  <h1>Thème 7 — Une Santé Publique de Dimension Internationale</h1>
+  <h2>Stratégie UE en santé · OMS · RSI · Gestion des crises sanitaires mondiales</h2>
+  <div class="meta">
+    <span>Cours <strong>Guylène NICOLAS</strong></span>
+    <span>Master 1 — <strong>2024/2025</strong></span>
+  </div>
+</header>
+
+<main>
+
+<div class="plan">
+  <h3>Plan du cours (slide 4)</h3>
+  <div class="plan-grid">
+    <div class="pi i0"><div class="num">Introduction</div><div class="tit">Mondialisation de la santé — enjeux et défis</div></div>
+    <div class="pi i1"><div class="num">Section 1</div><div class="tit">La stratégie de l'Union européenne en santé publique — Programmes · ECDC · EWRS · COVID</div></div>
+    <div class="pi i2"><div class="num">Section 2</div><div class="tit">La mondialisation de la santé publique — l'exemple de la gestion d'Ebola par l'OMS · RSI · Coronavirus · Retrait USA</div></div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     INTRODUCTION
+══════════════════════════════════════════ -->
+<div class="sh i0">
+  <div class="sn">Introduction</div>
+  <h2>La mondialisation de la santé</h2>
+  <p>Slides 2-3 — Est-il possible de répondre aux enjeux contemporains de la santé publique en ne tenant compte que des niveaux nationaux, régionaux et locaux ?</p>
+</div>
+
+<div class="card">
+  <div class="ct">🌍 Les enjeux de la mondialisation de la santé (slides 2-3)</div>
+  <div class="g2">
+    <ul class="l">
+      <li>L'émergence d'une véritable <strong>« worldculture »</strong> tend à imposer la mondialisation de nos modes de vie</li>
+      <li><strong>Maladies émergentes</strong> et potentiellement épidémiques, changements climatiques et catastrophes naturelles</li>
+      <li>Les <strong>lois du marché</strong> régissent les flux commerciaux mondiaux et impactent directement le marché des biens en santé (médicaments), le commerce des services, et indirectement les systèmes de santé nationaux</li>
+    </ul>
+    <ul class="l">
+      <li><strong>20 à 25 %</strong> des médecins formés en Afrique au sud du Sahara exercent dans des pays riches → problème de <strong>fuite des cerveaux</strong></li>
+      <li>La santé publique ne peut plus être pensée uniquement aux niveaux national, régional et local → nécessité d'une <strong>gouvernance internationale de la santé</strong></li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     SECTION 1 — UE
+══════════════════════════════════════════ -->
+<div class="sh i1">
+  <div class="sn">Section 1</div>
+  <h2>La stratégie de l'Union européenne en santé publique</h2>
+  <p>Slides 5 à 42 — Compétences UE · Programmes de santé · ECDC · EWRS · Décision 1082/2013 · Gestion Covid-19</p>
+</div>
+
+<div class="sub">Les compétences de l'UE en santé (slides 6-7)</div>
+
+<div class="loi eu">
+  <span class="lr">⚖️ Article 168 du Traité sur le Fonctionnement de l'Union Européenne (TFUE)</span>
+  <div class="lt">L'UE œuvre pour améliorer la protection de la santé dans toutes ses politiques et activités</div>
+  <ul>
+    <li>L'action de l'UE en matière de santé vise à :
+      <ul>
+        <li>Améliorer la <strong>santé publique</strong></li>
+        <li>Prévenir les <strong>maladies et les dangers pour la santé</strong> (y compris ceux liés au mode de vie : cancer, obésité…)</li>
+        <li>Promouvoir la <strong>recherche</strong></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<div class="ret">
+  <div class="ri">⚠️</div>
+  <div class="rb">
+    <strong>Limite des compétences de l'UE (slide 7) — à retenir !</strong>
+    <p>L'UE <strong>ne définit pas</strong> les politiques de santé, l'organisation et la fourniture de services de santé et de soins médicaux. Son action consiste plutôt à <strong>compléter les politiques nationales</strong> et à <strong>soutenir la coopération</strong> entre les États membres dans le domaine de la santé publique.</p>
+  </div>
+</div>
+
+<div class="sub">La stratégie de l'UE — 2 axes (slide 8)</div>
+
+<div class="card">
+  <div class="ct">🎯 La stratégie de l'UE en santé : 2 axes</div>
+  <div class="g2">
+    <div style="background:var(--eup);border-radius:6px;padding:.8rem 1rem;border-left:3px solid var(--euc);">
+      <p style="font-weight:700;font-size:.87rem;color:var(--eu);margin-bottom:.4rem;">Axe 1 — Un cadre de santé publique</p>
+      <ul class="l">
+        <li><strong>Un programme d'action</strong> dans le domaine de la santé publique :
+          <ul>
+            <li>2003-2008 (1er programme)</li>
+            <li>2008-2013 (2ème programme)</li>
+            <li>2014-2020 (3ème programme)</li>
+            <li>2021-2027 (4ème programme — « L'UE pour la santé »)</li>
+          </ul>
+        </li>
+        <li><strong>Une législation spécifique</strong> — Ex. : Directive 2011/24/UE du 9 mars 2011 relative à l'application des droits des patients en matière de soins de santé <strong>transfrontaliers</strong></li>
+      </ul>
+    </div>
+    <div style="background:var(--eup);border-radius:6px;padding:.8rem 1rem;border-left:3px solid var(--euc);">
+      <p style="font-weight:700;font-size:.87rem;color:var(--eu);margin-bottom:.4rem;">Axe 2 — Une stratégie de santé intégrée</p>
+      <p style="font-size:.85rem;color:var(--doux);">L'obligation d'intégrer la protection de la santé de manière <strong>horizontale</strong>, c'est-à-dire dans <strong>toutes les politiques de l'UE</strong> (principe de la santé dans toutes les politiques).</p>
+    </div>
+  </div>
+</div>
+
+<div class="sub">Le 3ème programme de santé 2014-2020 (slides 9-12)</div>
+
+<div class="loi eu">
+  <span class="lr">⚖️ Règlement (UE) n° 282/2014 du Parlement européen et du Conseil du 11 mars 2014</span>
+  <div class="lt">Troisième programme d'action de l'Union dans le domaine de la santé (2014-2020) — 450 millions € de financement</div>
+  <ul>
+    <li>Vise à favoriser la santé en Europe en encourageant la <strong>coopération entre les États membres</strong> → améliorer les politiques en matière de santé</li>
+    <li>Soutient la <strong>mise en commun des ressources</strong> dans les situations où une économie d'échelle est la solution optimale</li>
+  </ul>
+</div>
+
+<div class="org">
+  <h3>Les 4 axes du 3ème programme de santé 2014-2020 (slides 11-12)</h3>
+  <svg viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px;">
+    <!-- Titre central -->
+    <rect x="295" y="110" width="270" height="60" rx="10" fill="#003399"/>
+    <text x="430" y="134" text-anchor="middle" font-family="Playfair Display,serif" font-size="12.5" font-weight="700" fill="white">Programme UE Santé</text>
+    <text x="430" y="152" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#ccd8ff">2014-2020 · 450 M€</text>
+
+    <!-- Axe 1 -->
+    <rect x="5" y="10" width="238" height="80" rx="8" fill="#e8edf8" stroke="#2a5aad" stroke-width="1.5"/>
+    <rect x="5" y="10" width="238" height="28" rx="8" fill="#1a3a6a"/><rect x="5" y="25" width="238" height="13" fill="#1a3a6a"/>
+    <text x="124" y="26" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="white">① Promouvoir la bonne santé</text>
+    <text x="15" y="52" font-family="Source Serif 4,serif" font-size="9.5" fill="#333">Échanges d'informations et bonnes</text>
+    <text x="15" y="66" font-family="Source Serif 4,serif" font-size="9.5" fill="#333">pratiques : tabagisme, drogue, alcool,</text>
+    <text x="15" y="80" font-family="Source Serif 4,serif" font-size="9.5" fill="#333">régimes dangereux, sédentarité</text>
+    <line x1="243" y1="50" x2="295" y2="130" stroke="#2a5aad" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+    <!-- Axe 2 -->
+    <rect x="5" y="185" width="238" height="80" rx="8" fill="#e8edf8" stroke="#2a5aad" stroke-width="1.5"/>
+    <rect x="5" y="185" width="238" height="28" rx="8" fill="#1a3a6a"/><rect x="5" y="200" width="238" height="13" fill="#1a3a6a"/>
+    <text x="124" y="200" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="white">② Protéger contre les menaces</text>
+    <text x="15" y="226" font-family="Source Serif 4,serif" font-size="9.5" fill="#333">Menaces transfrontières pour la santé</text>
+    <text x="15" y="240" font-family="Source Serif 4,serif" font-size="9.5" fill="#333">→ voyages et échanges internationaux</text>
+    <text x="15" y="254" font-family="Source Serif 4,serif" font-size="9.5" fill="#333">→ intervention rapide et coordonnée</text>
+    <line x1="243" y1="225" x2="295" y2="140" stroke="#2a5aad" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+    <!-- Axe 3 -->
+    <rect x="617" y="10" width="238" height="80" rx="8" fill="#e8edf8" stroke="#2a5aad" stroke-width="1.5"/>
+    <rect x="617" y="10" width="238" height="28" rx="8" fill="#1a3a6a"/><rect x="617" y="25" width="238" height="13" fill="#1a3a6a"/>
+    <text x="736" y="26" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="white">③ Innover et assurer la viabilité</text>
+    <text x="627" y="52" font-family="Source Serif 4,serif" font-size="9.5" fill="#333">Renforcer les capacités d'intervention</text>
+    <text x="627" y="66" font-family="Source Serif 4,serif" font-size="9.5" fill="#333">Optimiser les ressources rares</text>
+    <text x="627" y="80" font-family="Source Serif 4,serif" font-size="9.5" fill="#333">Approches et technologies innovantes</text>
+    <line x1="617" y1="50" x2="565" y2="130" stroke="#2a5aad" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+    <!-- Axe 4 -->
+    <rect x="617" y="185" width="238" height="80" rx="8" fill="#e8edf8" stroke="#2a5aad" stroke-width="1.5"/>
+    <rect x="617" y="185" width="238" height="28" rx="8" fill="#1a3a6a"/><rect x="617" y="200" width="238" height="13" fill="#1a3a6a"/>
+    <text x="736" y="200" text-anchor="middle" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="white">④ Améliorer l'accès aux soins</text>
+    <text x="627" y="226" font-family="Source Serif 4,serif" font-size="9.5" fill="#333">Expertise médicale au-delà des</text>
+    <text x="627" y="240" font-family="Source Serif 4,serif" font-size="9.5" fill="#333">frontières nationales</text>
+    <text x="627" y="254" font-family="Source Serif 4,serif" font-size="9.5" fill="#333">Réseaux de centres d'expertise UE</text>
+    <line x1="617" y1="225" x2="565" y2="140" stroke="#2a5aad" stroke-width="1.5" stroke-dasharray="5,3"/>
+  </svg>
+</div>
+
+<div class="sub">Le 4ème programme — « L'UE pour la santé » 2021-2027 (slides 14-16)</div>
+
+<div class="loi eu">
+  <span class="lr">⚖️ Règlement (UE) 2021/522 du Parlement européen et du Conseil du 24 mars 2021</span>
+  <div class="lt">Quatrième programme d'action de l'Union dans le domaine de la santé 2021-2027 — « L'UE pour la santé »</div>
+  <ul>
+    <li><strong>5,1 milliards d'euros</strong> pour renforcer la résilience des systèmes de santé et promouvoir l'innovation</li>
+    <li>Constitue la <strong>réponse de l'UE à la COVID-19</strong></li>
+    <li>C'est le <strong>plus grand programme de santé de l'UE jamais mis en place</strong></li>
+    <li>Apportera des financements aux États, aux organisations de santé et aux ONG de l'Union</li>
+    <li>Objectif : construire une future <strong>Union européenne de la santé plus forte</strong></li>
+    <li><strong>4 objectifs</strong> :
+      <ul>
+        <li>1. Améliorer et promouvoir la santé dans l'Union</li>
+        <li>2. Protéger les citoyens contre les menaces transfrontières graves sur la santé</li>
+        <li>3. Améliorer la disponibilité, l'accessibilité et le caractère abordable des médicaments, dispositifs médicaux et produits nécessaires en cas de crise</li>
+        <li>4. Renforcer les systèmes de santé et leur résilience et améliorer l'utilisation efficace des ressources</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<div class="sub">L'ECDC — Centre européen de prévention et de contrôle des maladies (slides 17-22)</div>
+
+<div class="def eu">
+  <span class="dl">Agence européenne — créée en 2005</span>
+  <div class="dt">ECDC — European Centre for Disease Prevention and Control</div>
+  <ul>
+    <li>Agence de l'Union européenne qui a pour but de <strong>renforcer la lutte contre les maladies infectieuses en Europe</strong></li>
+    <li>Créé en <strong>2005</strong> — siège à <strong>Stockholm</strong></li>
+    <li>Créé après la crise de la <strong>grippe H5N1</strong></li>
+  </ul>
+</div>
+
+<div class="g2">
+  <div class="card">
+    <div class="ct">🔬 Missions de l'ECDC (slide 19)</div>
+    <ul class="l">
+      <li>Identifier et évaluer la <strong>menace</strong> que constituent les maladies infectieuses pour la santé humaine, puis <strong>communiquer</strong> sur ce sujet</li>
+      <li>Travailler en partenariat avec les organismes de protection de la santé dans toute l'Europe pour mettre sur pied des <strong>systèmes de surveillance et d'alerte précoce</strong> sur les infections</li>
+      <li>Émettre des <strong>avis scientifiques et recommandations</strong> concernant les risques liés aux maladies infectieuses actuelles et émergentes</li>
+      <li>Information et communication sur les maladies infectieuses via ses systèmes de surveillance, publications et coopération avec les autorités de santé</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="ct">🇫🇷 Collaboration ECDC / Santé Publique France (slides 21-22)</div>
+    <ul class="l">
+      <li>L'InVS (→ Santé Publique France) était membre des instances de gouvernance de l'ECDC</li>
+      <li>Représenté par son directeur général, l'InVS a été <strong>membre du Conseil d'administration de l'ECDC de 2005 à 2014</strong></li>
+      <li>Le directeur scientifique de Santé Publique France est <strong>membre du forum consultatif de l'ECDC</strong> (rôle : conseiller le directeur de l'ECDC)</li>
+      <li>SPF coordonne les interactions entre la France et l'ECDC ainsi qu'avec les organismes français susceptibles d'apporter une contribution</li>
+      <li>SPF est <strong>organisme compétent coordinateur pour la France</strong> selon la terminologie de l'ECDC</li>
+    </ul>
+  </div>
+</div>
+
+<div class="ret">
+  <div class="ri">🏛️</div>
+  <div class="rb">
+    <strong>Autres agences européennes liées à la santé (slide 17)</strong>
+    <ul>
+      <li><strong>EFSA</strong> — Autorité européenne de sécurité des aliments</li>
+      <li><strong>EU-OSHA</strong> — Agence européenne pour la sécurité et la santé au travail</li>
+      <li><strong>EMA</strong> — Agence européenne des médicaments</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sub">Comités scientifiques pour la santé publique, la sécurité des consommateurs et l'environnement (slide 28)</div>
+
+<div class="loi eu">
+  <span class="lr">⚖️ Décision (UE) 2024/1514 du 31 mai 2024</span>
+  <div class="lt">Établissant des comités scientifiques dans le domaine de la sécurité des consommateurs, de la santé publique et de l'environnement</div>
+  <ul>
+    <li>Créés en <strong>2008</strong>, rôle rationalisé par cette décision</li>
+    <li>Analysent les données scientifiques les plus récentes pour fournir à la Commission des <strong>évaluations des risques et des avis scientifiques de qualité</strong>, opportuns et fondés sur des données probantes</li>
+    <li>Destinés à l'élaboration et au suivi des politiques et de la législation de l'Union en matière de santé publique, sécurité des consommateurs et risques environnementaux</li>
+    <li>Activités essentielles pour permettre à la Commission d'atteindre les <strong>objectifs de l'Union</strong> dans ces domaines</li>
+  </ul>
+</div>
+
+<div class="sub">Le système d'alerte précoce EWRS (slides 29-31)</div>
+
+<div class="def eu">
+  <span class="dl">Système informatique confidentiel — slide 29-30</span>
+  <div class="dt">EWRS — Early Warning and Response System (Système d'alerte précoce et de réaction)</div>
+  <p>Système informatique <strong>confidentiel</strong> qui permet aux États membres d'envoyer des alertes à propos d'événements susceptibles d'avoir un impact dans l'UE, de <strong>partager des informations</strong> et de <strong>coordonner leur réaction</strong>.</p>
+  <ul>
+    <li>Les maladies et micro-organismes ne connaissent pas de frontière → la réaction de l'UE doit être <strong>rapide et coordonnée</strong></li>
+    <li>Déjà employé avec succès lors des épidémies de <strong>SRAS, grippe pandémique A(H1N1)</strong> et autres maladies transmissibles</li>
+  </ul>
+</div>
+
+<div class="loi eu">
+  <span class="lr">⚖️ Décision n° 1082/2013/UE du 22 octobre 2013 relative aux menaces transfrontières graves sur la santé (slide 31)</span>
+  <div class="lt">Établit les règles relatives à la surveillance épidémiologique et à la réaction aux menaces</div>
+  <ul>
+    <li>Établit les règles relatives à :
+      <ul>
+        <li>La <strong>surveillance épidémiologique</strong></li>
+        <li>La surveillance des <strong>menaces transfrontières graves</strong> sur la santé</li>
+        <li>L'<strong>alerte précoce</strong> en cas de telles menaces et la lutte contre celles-ci</li>
+        <li>La <strong>planification de la préparation et de la réaction</strong></li>
+      </ul>
+    </li>
+    <li>Précise les modalités de la <strong>coopération et de la coordination</strong> entre les différents acteurs au niveau de l'Union</li>
+    <li>Afin de <strong>coordonner et de compléter les politiques nationales</strong></li>
+  </ul>
+</div>
+
+<div class="sub">La gestion du Covid-19 en 2020 — Rôle de l'UE (slides 37-42)</div>
+
+<div class="card">
+  <div class="ct">🦠 Gestion du Covid-19 par la Commission européenne (slide 37)</div>
+  <div class="g2">
+    <ul class="l">
+      <li>La Commission porte la <strong>responsabilité de la gestion de la crise</strong> au niveau de l'UE</li>
+      <li>Son rôle consiste principalement à <strong>formuler des recommandations</strong> sur une ligne de conduite commune</li>
+      <li>Veut éviter que les États membres prennent des <strong>mesures non coordonnées</strong> ou contradictoires</li>
+      <li>Coordination nécessaire en : santé publique · transports · contrôles aux frontières · marché intérieur · commerce</li>
+    </ul>
+    <div>
+      <p style="font-weight:700;font-size:.87rem;color:var(--eu);margin-bottom:.4rem;">Déclenchement de <strong>ARGUS</strong> — le mécanisme de gestion des crises de la Commission (slide 38) :</p>
+      <ul class="l">
+        <li>Comité de coordination de crise réunissant tous les services concernés et agences de l'UE</li>
+        <li>Présidé par Janez Lenarčič (coordinateur européen de la réaction d'urgence)</li>
+        <li>Équipe de <strong>5 commissaires</strong> : Lenarčič (crises) · Kyriakides (santé) · Johansson (frontières) · Vălean (mobilité) · Gentiloni (macroéconomie)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="loi eu">
+  <span class="lr">⚖️ Recommandations (UE) 2021/472 de la Commission — 17 mars 2021 — Incubateur HERA (slide 41-42)</span>
+  <div class="lt">Plan européen de préparation en matière de biodéfense contre les variants du virus de la COVID-19 — « incubateur HERA »</div>
+  <ul>
+    <li>Rassemble chercheurs, entreprises de biotechnologie, fabricants, autorités de réglementation et pouvoirs publics pour <strong>surveiller les variants</strong></li>
+    <li>La Commission encourage les États membres à mettre en place un <strong>système national de surveillance des eaux usées</strong> vis-à-vis du SARS-CoV-2 et de ses variants</li>
+    <li>Et à <strong>partager les bonnes pratiques</strong> et résultats de cette surveillance</li>
+  </ul>
+</div>
+
+<div class="ret">
+  <div class="ri">📢</div>
+  <div class="rb">
+    <strong>Conséquences de la Covid-19 sur les prérogatives de l'ECDC (slide 26-27)</strong>
+    <ul>
+      <li>La Commission a proposé d'augmenter <strong>très sensiblement les prérogatives de l'ECDC</strong> : désormais pouvoir présenter des <strong>« recommandations politiques »</strong> aux États membres</li>
+      <li>Surveiller leurs <strong>capacités dans les hôpitaux, unités de soins intensifs et personnel</strong></li>
+      <li>Déployer des <strong>équipes d'experts dans les États membres</strong> lorsqu'une crise sanitaire rend leur aide nécessaire</li>
+      <li>Coordonner un nouveau réseau de <strong>laboratoires de référence de l'Union</strong> pour la santé publique</li>
+      <li>Intérêt pour la <strong>résistance aux antimicrobiens, la vaccination et la biosécurité</strong></li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     SECTION 2 — OMS / RSI
+══════════════════════════════════════════ -->
+<div class="sh i2">
+  <div class="sn">Section 2</div>
+  <h2>La mondialisation de la santé publique : l'exemple de la gestion des crises sanitaires</h2>
+  <p>Slides 43 à 70 — Place des textes internationaux · OMS · RSI · Ebola · Covid-19 · Retrait USA</p>
+</div>
+
+<div class="sub oms">Place des textes internationaux (slide 44)</div>
+
+<div class="card oms">
+  <div class="ct">📜 Historique de la coopération internationale en santé</div>
+  <div class="tl">
+    <div class="tl-item oms">
+      <div class="tl-date" style="color:var(--oms);">Fin du XIVe siècle</div>
+      <div class="tl-desc">Régime de <strong>quarantaine</strong> — première forme de coopération internationale en matière de santé.</div>
+    </div>
+    <div class="tl-item oms">
+      <div class="tl-date" style="color:var(--oms);">7 avril 1948</div>
+      <div class="tl-desc">La <strong>Constitution de l'OMS</strong> entre en vigueur. Date commémorée comme <strong>Journée mondiale de la Santé</strong>.</div>
+    </div>
+    <div class="tl-item oms">
+      <div class="tl-date" style="color:var(--oms);">11 septembre 1997</div>
+      <div class="tl-desc"><strong>Déclaration universelle sur le génome humain et les droits de l'homme</strong> adoptée par l'UNESCO → Comité interministériel de la bioéthique (ONU → UNESCO).</div>
+    </div>
+  </div>
+  <div class="g2" style="margin-top:.5rem;">
+    <div style="background:var(--omsp);border-radius:6px;padding:.8rem 1rem;border-left:3px solid var(--omsc);">
+      <p style="font-weight:700;font-size:.85rem;color:var(--oms);margin-bottom:.3rem;">À l'échelle européenne</p>
+      <p style="font-size:.84rem;color:var(--doux);">Pas d'organe spécialisé en santé mais <strong>le Conseil de l'Europe et l'UE</strong> interviennent dans le domaine de la santé.</p>
+    </div>
+    <div style="background:var(--omsp);border-radius:6px;padding:.8rem 1rem;border-left:3px solid var(--omsc);">
+      <p style="font-weight:700;font-size:.85rem;color:var(--oms);margin-bottom:.3rem;">L'OMS — une action variée (slide 45)</p>
+      <ul class="l" style="font-size:.84rem;">
+        <li>Assistance technique aux pays (notamment formation)</li>
+        <li>Programmes d'action : éradication variole, VIH/SIDA et IST, tuberculose, poliomyélite, diabète…</li>
+        <li>Standards internationaux (pharmacopée, dénominations communes, vaccins, eaux de boisson, additifs…)</li>
+        <li>Surveillance épidémiologique</li>
+        <li>⚠️ Des <strong>recommandations</strong> et <strong>non des conventions</strong> — sauf exception (Convention-cadre tabac, 21 mai 2003)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sub oms">Le Règlement Sanitaire International (RSI) (slides 46-52)</div>
+
+<div class="loi oms">
+  <span class="lr">⚖️ Règlement Sanitaire International (RSI) — 23 mai 2005 (texte actuel)</span>
+  <div class="lt">Premier RSI en 1950 (remplaçant de nombreuses conventions antérieures) — Force obligatoire pour 194 pays (États membres de l'OMS)</div>
+  <ul>
+    <li>Mais <strong>réserves et refus possibles</strong></li>
+    <li>Mise en œuvre en France : <strong>Décret n° 2017-471 du 3 avril 2017</strong> relatif à la mise en œuvre du règlement sanitaire international</li>
+  </ul>
+</div>
+
+<div class="art oms">
+  <span class="ar">Article 2 RSI — Objet et portée</span>
+  <p>« L'objet et la portée du présent Règlement consistent à prévenir la propagation internationale des maladies, à s'en protéger, à la maîtriser et à y réagir par une action de santé publique proportionnée et limitée aux risques qu'elle présente pour la santé publique, en évitant de créer des entraves inutiles au trafic et au commerce internationaux. »</p>
+</div>
+
+<div class="card oms">
+  <div class="ct">📡 Le RSI : un système d'alerte (slide 48)</div>
+  <ul class="l">
+    <li>Le RSI institue un <strong>système d'information rapide</strong> entre les États et les points de contacts RSI de l'OMS</li>
+    <li>L'État notifie, dans les <strong>24 heures</strong>, tout événement survenu sur son territoire pouvant constituer une <strong>urgence de santé publique de portée internationale</strong></li>
+    <li>Mécanisme :
+      <ul>
+        <li>Communications d'informations</li>
+        <li>Échanges entre l'État et l'OMS sur le risque</li>
+        <li>Concilier intervention et <strong>souveraineté nationale</strong></li>
+        <li>→ Avis du <strong>comité d'urgence</strong> → le directeur général peut déclarer une <strong>urgence de santé publique de portée internationale</strong></li>
+      </ul>
+    </li>
+    <li>Réseau mondial d'alerte et d'action en cas d'épidémie : <strong>GOARN</strong> (Global Outbreak Alert and Response Network)</li>
+  </ul>
+</div>
+
+<div class="card oms">
+  <div class="ct">📋 Les recommandations du RSI (slide 50)</div>
+  <div class="g2">
+    <div style="background:var(--omsp);border-radius:6px;padding:.8rem 1rem;border-left:3px solid var(--omsc);">
+      <p style="font-weight:700;font-size:.87rem;color:var(--oms);margin-bottom:.3rem;">Recommandations temporaires</p>
+      <ul class="l" style="font-size:.85rem;">
+        <li>Publiées par le directeur général en fonction de la situation</li>
+        <li>Ne peuvent être maintenues au-delà de la <strong>2ème Assemblée mondiale de la santé</strong> qui suit la déclaration d'urgence</li>
+      </ul>
+    </div>
+    <div style="background:var(--omsp);border-radius:6px;padding:.8rem 1rem;border-left:3px solid var(--omsc);">
+      <p style="font-weight:700;font-size:.87rem;color:var(--oms);margin-bottom:.3rem;">Recommandations permanentes</p>
+      <ul class="l" style="font-size:.85rem;">
+        <li>Peuvent être soumises à l'Assemblée par le directeur après avis du Comité d'examen</li>
+        <li>Ce sont des <strong>avis non contraignants</strong> pour les États</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card oms">
+  <div class="ct">⚖️ Droits des voyageurs dans le RSI (slide 52)</div>
+  <div class="g3">
+    <div style="background:var(--omsp);border-radius:6px;padding:.7rem .9rem;border-left:3px solid var(--omsc);">
+      <p style="font-weight:700;font-size:.85rem;color:var(--oms);margin-bottom:.25rem;">Art. 23 RSI</p>
+      <p style="font-size:.84rem;color:var(--doux);">Principe du <strong>consentement</strong> à toute mesure prise en vertu du RSI</p>
+    </div>
+    <div style="background:var(--omsp);border-radius:6px;padding:.7rem .9rem;border-left:3px solid var(--omsc);">
+      <p style="font-weight:700;font-size:.85rem;color:var(--oms);margin-bottom:.25rem;">Art. 31 RSI</p>
+      <p style="font-size:.84rem;color:var(--doux);">Autorise les États à imposer dans la mesure nécessaire : examen médical · vaccination · isolement · <strong>quarantaine</strong> · placement volontaire en observation</p>
+    </div>
+    <div style="background:var(--omsp);border-radius:6px;padding:.7rem .9rem;border-left:3px solid var(--omsc);">
+      <p style="font-weight:700;font-size:.85rem;color:var(--oms);margin-bottom:.25rem;">Art. 32 RSI</p>
+      <p style="font-size:.84rem;color:var(--doux);">Respect de la <strong>dignité et des droits humains fondamentaux</strong></p>
+    </div>
+  </div>
+  <div style="background:#fff8dc;border-radius:6px;padding:.7rem .9rem;margin-top:.6rem;border-left:3px solid var(--oc);">
+    <p style="font-size:.85rem;color:var(--doux);">⚠️ Les mesures sanitaires supplémentaires « ne doivent pas être <strong>plus restrictives pour le trafic international</strong> ni plus intrusives ou invasives pour les personnes que les autres mesures raisonnables applicables » qui permettraient d'assurer le niveau approprié de protection de la santé.</p>
+  </div>
+</div>
+
+<div class="sub oms">L'exemple de la gestion d'Ebola (slides 53-61)</div>
+
+<div class="card oms">
+  <div class="ct">🦠 Ebola — Une urgence de santé publique de portée internationale</div>
+  <div class="g2">
+    <div>
+      <p style="font-weight:700;font-size:.87rem;color:var(--oms);margin-bottom:.4rem;">Chronologie des 4 déclarations de l'OMS (slide 55) :</p>
+      <ul class="l">
+        <li><strong>8 août 2014</strong> — 1ère déclaration d'urgence USPPI</li>
+        <li><strong>22 septembre 2014</strong> — 2ème déclaration</li>
+        <li><strong>23 octobre 2014</strong> — 3ème déclaration</li>
+        <li><strong>20 janvier 2015</strong> — 4ème déclaration, recommandations réaffirmées</li>
+        <li><strong>26 janvier 2016</strong> — Le comité d'urgence convoqué pour le Zika</li>
+      </ul>
+    </div>
+    <div>
+      <p style="font-weight:700;font-size:.87rem;color:var(--oms);margin-bottom:.4rem;">Recommandations réaffirmées le 20 janvier 2015 (slides 56-57) :</p>
+      <p style="font-size:.85rem;color:var(--doux);font-weight:700;margin-bottom:.3rem;">Pour les États à forte transmission (Guinée, Libéria, Sierra Leone) :</p>
+      <ul class="l" style="font-size:.85rem;">
+        <li>Contrôle de sortie pour éviter l'exportation du virus</li>
+        <li>Aéroports, ports, postes frontières : questionnaire de santé + prise de température</li>
+        <li>Recueil et transmission des données à l'OMS</li>
+      </ul>
+      <p style="font-size:.85rem;color:var(--doux);font-weight:700;margin-top:.5rem;margin-bottom:.3rem;">Pour les autres États :</p>
+      <ul class="l" style="font-size:.85rem;">
+        <li>Aucune interdiction générale de voyages ou d'échanges</li>
+        <li>Efforts d'éducation et communication contre la stigmatisation</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card r">
+  <div class="ct">⚠️ L'OMS critiquée sur la gestion d'Ebola (slide 58)</div>
+  <ul class="l">
+    <li>Médecins du Monde à l'origine d'un rapport très critique</li>
+    <li>La directrice générale Margaret Chan : <em>« Le monde était mal préparé pour riposter à une épidémie qui était si étendue, si sévère, si soutenue et si complexe. L'OMS a été débordée. »</em></li>
+    <li>Critiques : réponse initiale <strong>lente et insuffisante</strong> · n'avoir pas été agressif en alertant le monde · capacité d'intervention <strong>limitée</strong> · coordination insuffisante avec les partenaires</li>
+  </ul>
+</div>
+
+<div class="card oms">
+  <div class="ct">📋 La réforme de l'OMS — mai 2015 (slide 59)</div>
+  <p style="font-size:.87rem;color:var(--doux);margin-bottom:.6rem;">Une réforme en 5 points, suite aux critiques sur la gestion d'Ebola :</p>
+  <ul class="l">
+    <li><strong>1.</strong> Programme unique pour les urgences</li>
+    <li><strong>2.</strong> Évaluation du programme avec des <strong>indicateurs de performance</strong> en partenariat avec les autres participants à la riposte</li>
+    <li><strong>3.</strong> Force internationale de ressources humaines pour les urgences sanitaires → renforce les capacités d'intervention de personnels de l'OMS entraînés à la riposte d'urgence</li>
+    <li><strong>4.</strong> Nouvelles procédures commerciales pour faciliter une riposte rapide et efficace (fourniture d'équipements de protection individuelle et autres matériels)</li>
+    <li><strong>5.</strong> Fonds de réserve budgétaire de <strong>100 millions de dollars</strong></li>
+  </ul>
+</div>
+
+<div class="card oms">
+  <div class="ct">📊 La fin de l'épidémie d'Ebola (slides 60-61)</div>
+  <ul class="l">
+    <li><strong>7 novembre 2015 à Freetown</strong> : l'OMS déclare que la transmission du virus Ebola a été interrompue en <strong>Sierra Leone</strong> (42 jours = double de la période d'incubation depuis le dernier test sanguin négatif)</li>
+    <li>Depuis mai 2014 (premier cas en Sierra Leone) :
+      <ul>
+        <li><strong>8 704 personnes infectées</strong></li>
+        <li><strong>3 589 décès</strong> dont <strong>221 agents de santé</strong></li>
+      </ul>
+    </li>
+    <li>Période de surveillance renforcée de <strong>90 jours</strong> jusqu'au 5 février 2016</li>
+    <li><strong>Mai 2016</strong> : Libéria et Guinée, après des résurgences, soumis à 42 jours de surveillance renforcée</li>
+    <li><strong>Décembre 2018</strong> : nouvelle épidémie de MVE en <strong>République Démocratique du Congo</strong></li>
+  </ul>
+</div>
+
+<div class="sub oms">OMS et Coronavirus — Covid-19 (slides 66-69)</div>
+
+<div class="card oms">
+  <div class="ct">🦠 OMS et Covid-19 (slides 66-67)</div>
+  <ul class="l">
+    <li><strong>30 janvier 2020</strong> : Le Directeur général de l'OMS déclare que la flambée de COVID-19 constitue une <strong>urgence de santé publique de portée internationale</strong> et émet des <strong>recommandations temporaires</strong></li>
+    <li>Sur la base des informations alors disponibles, l'OMS n'a recommandé <strong>aucune restriction aux voyages ou au commerce</strong></li>
+    <li>L'OMS collabore avec des experts mondiaux, les gouvernements et des partenaires pour acquérir rapidement davantage de connaissances scientifiques</li>
+  </ul>
+</div>
+
+<div class="sub r">Le retrait des États-Unis de l'OMS (slides 68-70)</div>
+
+<div class="card r">
+  <div class="ct">🇺🇸 Trump et l'OMS — 2020 : rupture annoncée puis avortée (slide 68-69)</div>
+  <div class="g2">
+    <div>
+      <p style="font-weight:700;font-size:.87rem;color:var(--r);margin-bottom:.3rem;">29 mai 2020 — Annonce de rupture (Trump)</p>
+      <ul class="l">
+        <li>Suspension du financement américain dès mi-avril 2020</li>
+        <li>Raison invoquée : gestion « trop indulgente » de la crise Covid vis-à-vis de Pékin</li>
+        <li>Contribution américaine à l'OMS : <strong>400 à 500 millions $ par an</strong> (vs 40 millions $ pour la Chine)</li>
+        <li>Avis de retrait envoyé au secrétaire général des Nations unies (effet 1 an plus tard : <strong>6 juillet 2021</strong>)</li>
+        <li>Les États-Unis devaient <strong>200 millions $</strong> en cotisations</li>
+      </ul>
+    </div>
+    <div>
+      <p style="font-weight:700;font-size:.87rem;color:var(--v);margin-bottom:.3rem;">2021 — Biden annule le retrait</p>
+      <ul class="l">
+        <li>Dès sa prise de fonction, Joe Biden décide le <strong>maintien des États-Unis</strong> au sein de l'OMS</li>
+        <li>Washington rejoint le dispositif de l'OMS pour faciliter un <strong>accès équitable aux vaccins</strong> contre la Covid-19 (<strong>COVAX</strong>)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card r">
+  <div class="ct">🇺🇸 Trump 2025 — Nouveau retrait engagé (slide 70)</div>
+  <ul class="l">
+    <li><strong>23 janvier 2025</strong> : Le président Donald Trump signe un <strong>décret</strong> pour entamer le processus de retrait des États-Unis de l'OMS</li>
+    <li>Le retrait ne sera effectif que d'ici <strong>un an</strong> mais la manne financière commence déjà à refluer</li>
+    <li>Les États-Unis financent l'OMS à hauteur de <strong>20 % de son budget chaque année</strong> — son principal bailleur</li>
+    <li>Plus globalement, Washington finance à lui seul <strong>26 % des organisations internationales basées à Genève</strong> :
+      <ul>
+        <li>Alliance mondiale pour les vaccins et la vaccination (<strong>GAVI</strong>)</li>
+        <li><strong>Fonds mondial</strong> — principal bailleur dans la lutte contre le sida, la tuberculose…</li>
+      </ul>
+    </li>
+    <li>L'OMS demande un « <strong>dialogue constructif</strong> » avec les États-Unis pour préserver et renforcer la relation historique</li>
+  </ul>
+</div>
+
+
+<!-- RÉCAPITULATIF -->
+<div class="sh i1" style="margin-top:3rem;background:linear-gradient(135deg,#f3f1eb,#e5dfcc);border-left-color:var(--oc);">
+  <div class="sn" style="color:var(--o);">Récapitulatif</div>
+  <h2 style="color:var(--o);">Tableau de synthèse — tous les textes</h2>
+</div>
+
+<div class="card o">
+  <div class="ct">📚 Bases légales complètes du Thème 7</div>
+  <table>
+    <thead><tr><th>Texte</th><th>Date</th><th>Apport essentiel</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Constitution de l'OMS</strong></td><td>7 avr. 1948</td><td>Entre en vigueur · Fondement de l'action internationale de l'OMS</td></tr>
+      <tr><td><strong>Premier RSI</strong></td><td>1950</td><td>Remplace de nombreuses conventions antérieures · Système de notification internationale</td></tr>
+      <tr><td><strong>Déclaration universelle sur le génome humain et les droits de l'homme</strong></td><td>11 sept. 1997</td><td>Adoptée par l'UNESCO · Comité interministériel de la bioéthique</td></tr>
+      <tr><td><strong>Convention-cadre OMS sur la lutte antitabac</strong></td><td>21 mai 2003</td><td>Seule véritable convention (contraignante) adoptée par l'OMS · publiée en France le 22 mars 2005</td></tr>
+      <tr><td><strong>RSI actuel (2005)</strong></td><td>23 mai 2005</td><td>Force obligatoire pour 194 pays · Art. 2 (objet) · Art. 23 (consentement) · Art. 31 (quarantaine) · Art. 32 (dignité) · Notification dans les 24h</td></tr>
+      <tr><td><strong>ECDC — création</strong></td><td>2005</td><td>Agence UE · Siège Stockholm · Créée après H5N1 · Surveillance maladies infectieuses</td></tr>
+      <tr><td><strong>Directive 2011/24/UE</strong></td><td>9 mars 2011</td><td>Application des droits des patients en matière de soins de santé transfrontaliers</td></tr>
+      <tr><td><strong>Règlement (UE) n° 282/2014</strong></td><td>11 mars 2014</td><td>3ème programme de santé UE 2014-2020 (450 M€) · 4 axes</td></tr>
+      <tr><td><strong>Décision n° 1082/2013/UE</strong></td><td>22 oct. 2013</td><td>Menaces transfrontières graves sur la santé · EWRS · Coordination UE</td></tr>
+      <tr><td><strong>Décret n° 2017-471</strong></td><td>3 avr. 2017</td><td>Mise en œuvre du RSI en France</td></tr>
+      <tr><td><strong>Règlement (UE) 2021/522</strong></td><td>24 mars 2021</td><td>4ème programme « L'UE pour la santé » 2021-2027 · 5,1 Md€ · Réponse Covid-19 · 4 objectifs</td></tr>
+      <tr><td><strong>Recommandation (UE) 2021/472</strong></td><td>17 mars 2021</td><td>Incubateur HERA · Surveillance eaux usées SARS-CoV-2 · Variants Covid</td></tr>
+      <tr><td><strong>Décision (UE) 2024/1514</strong></td><td>31 mai 2024</td><td>Comités scientifiques dans le domaine de la sécurité des consommateurs, de la santé publique et de l'environnement</td></tr>
+      <tr><td><strong>Décret Trump retrait OMS</strong></td><td>23 jan. 2025</td><td>Engager le processus de retrait des USA de l'OMS (20 % du budget OMS)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="org">
+  <h3>Architecture de la gouvernance internationale de la santé</h3>
+  <svg viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px;">
+    <!-- Niveau mondial -->
+    <rect x="270" y="5" width="320" height="50" rx="10" fill="#009B77"/>
+    <text x="430" y="25" text-anchor="middle" font-family="Playfair Display,serif" font-size="13" font-weight="700" fill="white">OMS — Organisation Mondiale de la Santé</text>
+    <text x="430" y="44" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#d0f5ee">Constitution 1948 · RSI 2005 · 194 pays · Genève</text>
+
+    <!-- Niveau européen -->
+    <rect x="50" y="95" width="350" height="50" rx="10" fill="#003399"/>
+    <text x="225" y="117" text-anchor="middle" font-family="Playfair Display,serif" font-size="12" font-weight="700" fill="white">Union Européenne</text>
+    <text x="225" y="134" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#ccd8ff">Art. 168 TFUE · Programmes santé · ECDC · EWRS</text>
+
+    <!-- ECDC -->
+    <rect x="460" y="95" width="350" height="50" rx="10" fill="#1a5a6a"/>
+    <text x="635" y="117" text-anchor="middle" font-family="Playfair Display,serif" font-size="12" font-weight="700" fill="white">ECDC</text>
+    <text x="635" y="134" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#cce8f0">Stockholm (2005) · Surveillance · Alerte · Avis</text>
+
+    <!-- Flèches -->
+    <line x1="350" y1="55" x2="280" y2="95" stroke="#009B77" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <line x1="510" y1="55" x2="580" y2="95" stroke="#009B77" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+    <!-- Niveau national France -->
+    <rect x="170" y="190" width="250" height="50" rx="10" fill="#1a5c38"/>
+    <text x="295" y="212" text-anchor="middle" font-family="Playfair Display,serif" font-size="12" font-weight="700" fill="white">France</text>
+    <text x="295" y="229" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#c0f0d8">Santé Publique France · ARS · Décret 2017-471</text>
+
+    <!-- RSI mécanisme -->
+    <rect x="480" y="190" width="370" height="80" rx="10" fill="#fdf3dc" stroke="#c8900a" stroke-width="1.5"/>
+    <text x="665" y="212" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" font-weight="700" fill="#9a6000">RSI 2005 — Mécanisme d'alerte</text>
+    <text x="665" y="228" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#555">Notification dans les 24h → Comité d'urgence</text>
+    <text x="665" y="243" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#555">→ DG peut déclarer USPPI</text>
+    <text x="665" y="258" text-anchor="middle" font-family="Source Serif 4,serif" font-size="9.5" fill="#555">→ Recommandations temporaires ou permanentes</text>
+
+    <!-- Flèches niveau national -->
+    <line x1="225" y1="145" x2="260" y2="190" stroke="#003399" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <line x1="430" y1="55" x2="550" y2="190" stroke="#009B77" stroke-width="1.5" stroke-dasharray="5,3"/>
+  </svg>
+</div>
+
+<blockquote>
+  « L'objet et la portée du présent Règlement consistent à prévenir la propagation internationale des maladies, à s'en protéger, à la maîtriser et à y réagir par une action de santé publique proportionnée et limitée aux risques qu'elle présente pour la santé publique, en évitant de créer des entraves inutiles au trafic et au commerce internationaux. »
+  <cite>— Article 2 du Règlement Sanitaire International (RSI), 23 mai 2005</cite>
+</blockquote>
+
+</main>
+<footer>Fiche de révision — Thème 7 : Une Santé Publique de Dimension Internationale · cours Guylène NICOLAS · Master 1 · 2024/2025</footer>
+</body>
+</html>

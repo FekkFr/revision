@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thème 9 – La Santé Mentale</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f5f2;
+    --ink: #141010;
+    --accent1: #1a5c8a;   /* bleu acier – section I */
+    --accent2: #2e7d52;   /* vert forêt – section II */
+    --accent3: #7b3fa0;   /* violet – section III */
+    --accent4: #b8450e;   /* brique – jurisprudence */
+    --gold:    #c9921a;
+    --muted:   #6b5c45;
+    --rule:    #ddd5c8;
+    --law-bg:  #fff8ee;
+    --law-brd: #c9921a;
+    --jur-bg:  #f0f5ff;
+    --jur-brd: #1a5c8a;
+    --key-bg:  #f5fff8;
+    --key-brd: #2e7d52;
+    --warn-bg: #fff3f0;
+    --warn-brd:#b8450e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Source Serif 4',Georgia,serif;
+    font-size:14px;
+    line-height:1.72;
+    padding-bottom:60px;
+  }
+
+  /* ── HEADER ── */
+  .header{
+    background:var(--ink);
+    color:#fff;
+    padding:34px 48px 28px;
+    position:relative;
+    overflow:hidden;
+  }
+  .header::after{
+    content:'';position:absolute;
+    bottom:-80px;right:-80px;
+    width:260px;height:260px;border-radius:50%;
+    background:rgba(255,255,255,0.03);
+  }
+  .header-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:7px}
+  .header h1{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;line-height:1.2;color:#fff}
+  .header h1 span{color:#f4c842}
+  .header-sub{margin-top:8px;font-size:12px;color:rgba(255,255,255,.45);font-style:italic}
+  .plan-row{margin-top:18px;display:flex;gap:9px;flex-wrap:wrap}
+  .plan-pill{
+    background:rgba(255,255,255,.09);
+    border:1px solid rgba(255,255,255,.18);
+    color:rgba(255,255,255,.85);
+    border-radius:20px;padding:4px 13px;font-size:11px;
+  }
+
+  /* ── LAYOUT ── */
+  .content{max-width:860px;margin:0 auto;padding:0 28px}
+
+  /* ── INTRO ── */
+  .intro-box{
+    background:var(--ink);color:#fff;
+    border-radius:4px;padding:18px 22px;margin:26px 0 0;
+  }
+  .intro-box p{font-size:13px;line-height:1.75;color:rgba(255,255,255,.83)}
+  .intro-box strong{color:#f4c842}
+
+  /* ── SECTION ── */
+  .section-block{margin-top:40px}
+  .section-title{display:flex;align-items:center;gap:13px;margin-bottom:4px}
+  .section-num{
+    font-family:'Playfair Display',serif;
+    font-size:40px;font-weight:900;line-height:1;
+    color:var(--rule);flex-shrink:0;user-select:none;
+  }
+  .section-heading{
+    font-family:'Playfair Display',serif;
+    font-size:17px;font-weight:700;
+    border-bottom:2.5px solid var(--ink);
+    padding-bottom:3px;flex:1;
+  }
+  .section-heading.bleu{border-color:var(--accent1);color:var(--accent1)}
+  .section-heading.vert{border-color:var(--accent2);color:var(--accent2)}
+  .section-heading.violet{border-color:var(--accent3);color:var(--accent3)}
+
+  /* ── SOUS-SECTION ── */
+  .subsection{margin-top:20px}
+  .sub-title{
+    font-family:'Playfair Display',serif;
+    font-size:13.5px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.9px;
+    border-left:3px solid var(--rule);
+    padding-left:9px;margin-bottom:9px;
+    color:var(--muted);
+  }
+  .sub-title.bleu{border-color:var(--accent1);color:var(--accent1)}
+  .sub-title.vert{border-color:var(--accent2);color:var(--accent2)}
+  .sub-title.violet{border-color:var(--accent3);color:var(--accent3)}
+  .sub-title.brique{border-color:var(--accent4);color:var(--accent4)}
+  .sub-title.gold{border-color:var(--gold);color:var(--gold)}
+
+  /* ── BOXES ── */
+  .card{background:#fff;border:1px solid var(--rule);border-radius:4px;padding:13px 17px;margin-bottom:9px}
+
+  .law-box{background:var(--law-bg);border-left:4px solid var(--law-brd);border-radius:0 4px 4px 0;padding:11px 15px;margin:7px 0}
+  .law-box .law-ref{font-family:'Playfair Display',serif;font-size:11.5px;font-weight:700;color:var(--law-brd);letter-spacing:.4px;margin-bottom:3px}
+
+  .juris-box{background:var(--jur-bg);border-left:4px solid var(--jur-brd);border-radius:0 4px 4px 0;padding:11px 15px;margin:7px 0}
+  .juris-box .juris-ref{font-family:'Playfair Display',serif;font-size:11.5px;font-weight:700;color:var(--jur-brd);letter-spacing:.4px;margin-bottom:3px}
+
+  .key-box{background:var(--key-bg);border:1px dashed var(--key-brd);border-radius:4px;padding:11px 15px;margin:7px 0}
+  .key-box .key-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--key-brd);font-weight:600;margin-bottom:3px}
+
+  .warn-box{background:var(--warn-bg);border-left:4px solid var(--warn-brd);border-radius:0 4px 4px 0;padding:11px 15px;margin:7px 0}
+  .warn-box .warn-ref{font-family:'Playfair Display',serif;font-size:11.5px;font-weight:700;color:var(--warn-brd);letter-spacing:.4px;margin-bottom:3px}
+
+  /* ── STATS ── */
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:9px;margin:9px 0}
+  .stat-card{background:var(--ink);color:#fff;border-radius:4px;padding:12px 13px;text-align:center}
+  .stat-card .sn{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:#f4c842;line-height:1.1}
+  .stat-card .sl{font-size:11px;color:rgba(255,255,255,.68);margin-top:3px}
+
+  /* ── TIMELINE ── */
+  .timeline{margin:8px 0;padding-left:6px}
+  .tl-item{display:flex;gap:12px;margin-bottom:7px;align-items:flex-start}
+  .tl-year{
+    background:var(--ink);color:#f4c842;
+    font-family:'Playfair Display',serif;font-size:12px;font-weight:700;
+    border-radius:3px;padding:2px 8px;flex-shrink:0;white-space:nowrap;
+    line-height:1.6;
+  }
+  .tl-text{font-size:13px;line-height:1.65;padding-top:2px}
+
+  /* ── LISTES ── */
+  ul.styled{list-style:none;padding:0}
+  ul.styled li{padding:2px 0 2px 17px;position:relative;font-size:13px}
+  ul.styled li::before{content:'▸';position:absolute;left:0;color:var(--muted);font-size:11px;top:5px}
+
+  /* ── GRILLE 2 COL ── */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:9px 0}
+  @media(max-width:600px){
+    .two-col{grid-template-columns:1fr}
+    .header{padding:24px 20px}
+    .content{padding:0 15px}
+    .section-num{font-size:28px}
+  }
+
+  /* ── BADGE ── */
+  .badge{
+    display:inline-block;font-size:10px;font-weight:700;
+    letter-spacing:1px;text-transform:uppercase;
+    border-radius:2px;padding:2px 7px;margin-right:4px;vertical-align:middle;color:#fff;
+  }
+  .badge.bleu{background:var(--accent1)}
+  .badge.vert{background:var(--accent2)}
+  .badge.violet{background:var(--accent3)}
+  .badge.brique{background:var(--accent4)}
+  .badge.gold{background:var(--gold)}
+
+  hr.divider{border:none;border-top:1.5px solid var(--rule);margin:32px 0 0}
+  b{font-weight:600}
+  em{font-style:italic;color:var(--muted)}
+  p{margin-bottom:6px;font-size:13px}
+  .note{font-size:11.5px;color:var(--muted);font-style:italic;margin-top:3px}
+  .footer{margin-top:48px;text-align:center;font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-tag">Master 1 · Politique &amp; Gouvernance du Système de Santé · 2024/2025</div>
+  <h1>Thème 9 — <span>La Santé Mentale</span><br>Comme nouvel enjeu de la santé publique</h1>
+  <div class="header-sub">Cours de Guylène Nicolas</div>
+  <div class="plan-row">
+    <span class="plan-pill">I · Réforme des soins psychiatriques sous contrainte</span>
+    <span class="plan-pill">II · Les plans de santé mentale : version française d'une préoccupation internationale</span>
+    <span class="plan-pill">III · Le projet territorial de santé mentale (loi du 26 janv. 2016)</span>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- INTRO -->
+  <div class="intro-box">
+    <p><strong>Contexte OIT/OMS (octobre 2022) :</strong> <strong>12 milliards de journées de travail</strong> perdues chaque année pour cause de dépression ou d'anxiété. La santé mentale est désormais un enjeu majeur de santé publique, à l'articulation entre libertés individuelles, sécurité collective et organisation des soins.</p>
+    <p style="margin-top:8px"><strong>Définition OMS :</strong> « Un état de bien-être qui permet à chacun de réaliser son potentiel, de faire face aux difficultés normales de la vie, de travailler avec succès et de manière productive et d'être en mesure d'apporter une contribution à la communauté. »</p>
+  </div>
+
+  <!-- OBSERVATOIRE 10 CHIFFRES CLÉS -->
+  <div class="subsection" style="margin-top:24px">
+    <div class="sub-title gold">L'Observatoire en 10 chiffres clés</div>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="sn">13 M</div>
+        <div class="sl">1 personne sur 5 touchée par un trouble psychique chaque année en France</div>
+      </div>
+      <div class="stat-card">
+        <div class="sn">13,2</div>
+        <div class="sl">taux de suicide pour 100 000 hab. en France (vs 10,5 en moyenne UE pays comparables)</div>
+      </div>
+      <div class="stat-card">
+        <div class="sn">21,8 %</div>
+        <div class="sl">des jeunes 15-34 ans ont consommé du cannabis dans les 12 derniers mois (vs 14,4 % UE)</div>
+      </div>
+      <div class="stat-card">
+        <div class="sn">9</div>
+        <div class="sl">psychiatres pour 100 000 hab. dans les départements les moins dotés (Aube, Cantal) — vs 36-37 en Gironde/Rhône</div>
+      </div>
+      <div class="stat-card">
+        <div class="sn">6,4 %</div>
+        <div class="sl">des téléconsultations = psychiatrie (2e spécialité après médecine générale) — 370 000 téléconsultations</div>
+      </div>
+      <div class="stat-card">
+        <div class="sn">23,4 Mds€</div>
+        <div class="sl">dépenses remboursées AM au titre des maladies psychiatriques et psychotropes — 1er poste de dépense</div>
+      </div>
+      <div class="stat-card">
+        <div class="sn">64 %</div>
+        <div class="sl">des Français déclarent avoir déjà ressenti un trouble ou souffrance psychique (75 % chez les -35 ans)</div>
+      </div>
+      <div class="stat-card">
+        <div class="sn">30 %</div>
+        <div class="sl">des Français ont dans leur entourage proche une personne concernée par une souffrance psychique (57 % chez -35 ans)</div>
+      </div>
+      <div class="stat-card">
+        <div class="sn">73 %</div>
+        <div class="sl">des Français n'ont rencontré aucune difficulté pour se faire rembourser les soins liés à une souffrance psychique</div>
+      </div>
+      <div class="stat-card">
+        <div class="sn">59 %</div>
+        <div class="sl">des médecins généralistes affirment prendre en charge eux-mêmes les patients en souffrance psychique</div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:6px">Sources : Observatoire national ; Sondages Harris Interactive pour la Mutualité Française (1 050 personnes + 299 médecins généralistes et 40 psychiatres/psychologues)</p>
+  </div>
+
+  <!-- SUICIDE -->
+  <div class="subsection" style="margin-top:18px">
+    <div class="sub-title gold">Suicide : faits et chiffres (OMS)</div>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="sn">800 000</div>
+        <div class="sl">personnes se suicident chaque année dans le monde — 1 mort toutes les 40 secondes</div>
+      </div>
+      <div class="stat-card">
+        <div class="sn">2e cause</div>
+        <div class="sl">de mortalité chez les 15-29 ans dans le monde</div>
+      </div>
+      <div class="stat-card">
+        <div class="sn">75 %</div>
+        <div class="sl">des suicides se produisent dans les pays à revenu faible ou intermédiaire</div>
+      </div>
+      <div class="stat-card">
+        <div class="sn">57 %</div>
+        <div class="sl">Le suicide fait plus de morts que les guerres et homicides réunis</div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:8px">
+      <b>Méthodes les plus utilisées :</b> pesticides, pendaison, armes à feu.<br>
+      <b>Mesures efficaces de prévention :</b> restreindre l'accès aux moyens, responsabiliser les médias, politiques sur l'alcool, identifier et traiter précocement, former les agents de santé, soins de suivi communautaire.<br>
+      <b>Approche multisectorielle :</b> médias + gouvernement + société civile. Actuellement, la plupart des pays n'ont pas de stratégie nationale de prévention du suicide.<br>
+      <b>Plan d'action global OMS 2013-2020 :</b> vise une baisse de <b>10 % des taux de suicide</b>.
+    </div>
+    <div class="card">
+      <b>Mortalité prématurée des personnes avec troubles mentaux sévères (IRDES, n°237, sept. 2018) :</b>
+      <p style="margin-top:5px">Pour les personnes souffrant de troubles mentaux sévères, l'espérance de vie est fortement réduite et la mortalité prématurée (avant 65 ans) a quadruplé. Taux de décès prématurés parmi les décès en 2014 selon les troubles :</p>
+      <ul class="styled" style="margin-top:5px">
+        <li>Troubles addictifs : <b>73 %</b></li>
+        <li>Troubles psychotiques : <b>43 %</b></li>
+        <li>Troubles maniaques et bipolaires : <b>35 %</b></li>
+        <li>Autres troubles mentaux : <b>31 %</b></li>
+        <li>Dépression et troubles de l'humeur : <b>23 %</b></li>
+        <li>Troubles névrotiques liés au stress / somatoformes : <b>20 %</b></li>
+        <li>Total consommateurs régime général (SLM) : <b>20 %</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ENJEU LIBERTÉ / SÉCURITÉ -->
+  <div class="subsection" style="margin-top:18px">
+    <div class="sub-title gold">Enjeu transversal : équilibre liberté / sécurité</div>
+    <div class="key-box">
+      <div class="key-label">🔑 Fil conducteur du cours</div>
+      <p>L'enjeu du ministère de la santé en 2011 : <b>repenser la sécurité en psychiatrie</b>, à travers le fil conducteur de la <b>bientraitance</b> mais avec la nécessité d'un contrôle des libertés publiques. → <b>Obligation constitutionnelle</b> de faire évoluer l'hospitalisation sous contrainte → Loi du 5 juillet 2011 puis loi du 27 septembre 2013.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SECTION I -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <div class="section-block">
+    <div class="section-title">
+      <div class="section-num">I</div>
+      <div class="section-heading bleu">La réforme des soins psychiatriques sous contrainte : à la recherche d'un équilibre sécurité / liberté dans le respect de la Constitution</div>
+    </div>
+
+    <!-- A. Contexte historique et fondements -->
+    <div class="subsection">
+      <div class="sub-title bleu">A · Fondements historiques et conception de l'ordre public en psychiatrie</div>
+      <div class="card">
+        <b>Héritage du droit romain :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li><b>Dementia</b> (maladie continue) → incapable → tuteur</li>
+          <li><b>Furor</b> (crise, accès de colère) → irresponsable → responsabilité de la famille</li>
+          <li>Posé par Marc-Aurèle et Commode (IIe s.) puis Ulpien (IIIe s.)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <b>Triptyque de la conception de l'ordre public en psychiatrie :</b>
+        <p style="margin-top:5px">Le <b>malade</b> (incapable et irresponsable) → légitime la privation de liberté → justifie les prérogatives des <b>pouvoirs publics</b> encadrés par le <b>médecin</b>.</p>
+        <p class="note">Circulaire Clemenceau, 1906 : « L'idée que l'un de nos semblables peut être indûment retenu dans un établissement d'aliéné est intolérable à la conscience humaine. »</p>
+      </div>
+    </div>
+
+    <!-- B. Les 4 lois -->
+    <div class="subsection">
+      <div class="sub-title bleu">B · Les 4 lois fondatrices de l'hospitalisation sous contrainte</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-year">1838</div>
+          <div class="tl-text"><b>Loi sur les aliénés du 30 juin 1838</b> dite loi Esquirol — premier cadre légal de l'internement psychiatrique.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">1990</div>
+          <div class="tl-text"><b>Loi du 27 juin 1990</b> relative aux droits et à la protection des personnes hospitalisées en raison des troubles mentaux et à leurs conditions d'hospitalisation.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2011</div>
+          <div class="tl-text"><b>Loi du 5 juillet 2011</b> relative aux droits et à la protection des personnes faisant l'objet de soins psychiatriques et aux modalités de leur prise en charge. → Intervention obligatoire du JLD.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2013</div>
+          <div class="tl-text"><b>Loi du 27 septembre 2013</b> modifiant certaines dispositions issues de la loi du 5 juillet 2011. → Corrections constitutionnelles (délai 15→12 jours, UMD, droits des pénalement irresponsables).</div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:6px">
+        <b>Évolution des pratiques :</b> en 50 ans, passage d'une offre exclusivement hospitalière à des soins ambulatoires et à domicile. <b>75 % des adultes</b> et <b>97 % des enfants/adolescents</b> soignés en psychiatrie publique ne sont jamais hospitalisés (DREES, 2003).
+      </div>
+    </div>
+
+    <!-- C. Pression constitutionnelle et européenne -->
+    <div class="subsection">
+      <div class="sub-title bleu">C · La pression constitutionnelle et européenne : une révision sous initiative citoyenne</div>
+      <div class="key-box">
+        <div class="key-label">🔑 7 décisions du Conseil constitutionnel</div>
+        <ul class="styled">
+          <li>Décision n° 2010-71 QPC du 26 novembre 2010</li>
+          <li>Décision n° 2011-135/140 QPC du 9 juin 2011</li>
+          <li>Décision n° 2011-174 QPC du 6 octobre 2011</li>
+          <li>Décision n° 2011-185 QPC du 21 octobre 2011</li>
+          <li>Décision n° 2011-202 QPC du 2 décembre 2011</li>
+          <li>Décision n° 2012-235 QPC du 20 avril 2012</li>
+          <li>Décision n° 2013-367 QPC du 14 février 2014</li>
+        </ul>
+      </div>
+      <div class="juris-box">
+        <div class="juris-ref">6 condamnations CEDH (2006)</div>
+        <p><b>CEDH, 7 fév. 2006, Donnadieu c/ France</b> et <b>CEDH, 4 avril 2006, Bitton c/ France</b> : violation de l'<b>article 6-1</b> (durée excessive de la procédure) et de l'<b>article 13</b> (insuffisance d'un recours effectif) lors de la contestation de l'hospitalisation d'office.</p>
+        <p style="margin-top:6px"><b>CEDH, 7 mars 2006, Van Glabecke c/ France</b> et <b>CEDH, 28 mars 2006, Gaultier c/ France</b> : violation de l'<b>article 5 §4</b> — droit pour toute personne privée de liberté d'introduire un recours dans les plus brefs délais.</p>
+        <p class="note">Ce n'est pas la loi de 1990 qui est remise en cause mais les travers de son application → régime « sous haute surveillance » (Pr Nathalie Albert).</p>
+      </div>
+    </div>
+
+    <!-- D. Décision 2010 -->
+    <div class="subsection">
+      <div class="sub-title bleu">D · Décision du 26 novembre 2010 (n° 2010-71 QPC) — obligation de réforme</div>
+      <div class="two-col">
+        <div class="card">
+          <b>1. Admission vs maintien</b>
+          <ul class="styled" style="margin-top:5px">
+            <li>L'admission sans consentement répond à des exigences de santé publique → <b>pas de violation</b></li>
+            <li>Le maintien &gt; 15 jours sans intervention judiciaire → <b>inconstitutionnel</b></li>
+            <li>Modification de la loi imposée avant le <b>1er août 2011</b></li>
+          </ul>
+        </div>
+        <div class="card">
+          <b>2. Droits du malade</b>
+          <ul class="styled" style="margin-top:5px">
+            <li>Droit de saisir à tout moment le TGI pour mettre fin à l'hospitalisation</li>
+            <li>Réserve CC : le juge doit statuer dans les plus brefs délais</li>
+            <li>→ Modification par la loi de 2011</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- E. Décision 2012 -->
+    <div class="subsection">
+      <div class="sub-title bleu">E · Décision du 20 avril 2012 (n° 2012-235 QPC)</div>
+      <div class="card">
+        <b>4 points :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li><b>1. Soins ambulatoires :</b> Aucune mesure de contrainte ne peut être mise en œuvre sans transformation préalable en hospitalisation complète → <b>équilibre conforme</b> entre protection de la santé/ordre public et liberté personnelle</li>
+          <li><b>2. Réexamen périodique :</b> au maximum tous les 6 mois pour les mesures d'hospitalisation complète déjà jugées → <b>conforme</b></li>
+          <li><b>3. UMD :</b> L. 3211-12 et L. 3213-8 → <b>inconstitutionnels</b> (pas de garantie légale de l'admission en UMD ; JLD ne pouvait statuer qu'après avis d'un collège + 2 expertises psychiatriques)</li>
+          <li><b>4. Infractions pénales en état de trouble mental :</b> préfet ne peut lever la mesure qu'après avis collège + 2 psychiatres quelle que soit la gravité → <b>inconstitutionnel</b> → modification avant le <b>1er octobre 2013</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- F. Loi 2013 -->
+    <div class="subsection">
+      <div class="sub-title bleu">F · Apports de la loi du 27 septembre 2013</div>
+      <div class="law-box">
+        <div class="law-ref">Loi du 27 septembre 2013 (+ Décret n° 2016-94 du 1er fév. 2016 — constitutionnalité confirmée par 367 QPC)</div>
+        <ul class="styled" style="margin-top:5px">
+          <li><b>1.</b> Patient assisté systématiquement par un <b>avocat</b></li>
+          <li><b>2.</b> Sorties d'essai à nouveau permises (non accompagnées max. <b>48h</b>)</li>
+          <li><b>3.</b> Fin des UMD à régime spécifique → redeviennent un service hospitalier classique</li>
+          <li><b>4.</b> Délai d'intervention du JLD : <b>15 → 12 jours</b></li>
+          <li><b>5.</b> Droits des patients pénalement irresponsables renforcés</li>
+          <li><b>6.</b> Prise en charge des personnes détenues souffrant de troubles mentaux : hospitalisation libre en <b>unité hospitalière spécialement aménagée (UHSA)</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- G. Dispositif légal actuel -->
+    <div class="subsection">
+      <div class="sub-title bleu">G · Le nouveau dispositif d'hospitalisation sous contrainte (depuis 2011/2013)</div>
+      <div class="key-box">
+        <div class="key-label">🔑 Principes directeurs</div>
+        <ul class="styled">
+          <li>Les <b>soins psychiatriques libres demeurent la règle</b></li>
+          <li>Le patient reste un citoyen à part entière, informé de ses droits et voies de recours</li>
+          <li>Les hospitalisations longues ne doivent pas être la règle</li>
+          <li>Contrôle systématique du JLD maintenu mais simplifié</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <b>3 modalités de soins sans consentement (SSC) :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li><b>SDDE</b> (Soins sur Décision du Directeur d'Établissement) :
+            <ul class="styled" style="margin-left:10px">
+              <li>SDT / SDTU : soins à la demande d'un tiers, en urgence ou non</li>
+              <li>SPI : soins en cas de péril imminent sans tiers</li>
+            </ul>
+          </li>
+          <li><b>SDRE</b> : Soins sur Décision du Représentant de l'État (préfet)</li>
+        </ul>
+      </div>
+
+      <div class="subsection" style="margin-top:14px">
+        <div class="sub-title brique">Conditions d'admission — Tiers</div>
+        <div class="law-box">
+          <div class="law-ref">Conditions cumulatives</div>
+          <ul class="styled">
+            <li>Troubles mentaux rendant <b>impossible le consentement</b></li>
+            <li>État imposant des <b>soins immédiats + surveillance constante</b></li>
+            <li>Demande au directeur : lettre manuscrite signée + <b>2 certificats médicaux &lt; 15 jours</b> (1er certificat : médecin extérieur à l'établissement)</li>
+            <li>En cas de risque grave d'atteinte à l'intégrité : 1 seul certificat d'un médecin de l'établissement suffit</li>
+          </ul>
+        </div>
+        <div class="juris-box">
+          <div class="juris-ref">Cass. 1ère civ., 15 nov. 2017</div>
+          <p>Le pourvoi en cassation du <b>tiers demandeur</b> de soins est irrecevable contre une décision statuant sur la prolongation de la mesure.</p>
+        </div>
+      </div>
+
+      <div class="subsection" style="margin-top:14px">
+        <div class="sub-title brique">Conditions d'admission — Péril imminent</div>
+        <div class="card">
+          <ul class="styled">
+            <li>Danger immédiat pour la santé ou la vie du malade</li>
+            <li>Impossible de recueillir une demande d'un tiers (inconnu ou refus)</li>
+            <li>Un seul certificat médical d'un médecin extérieur à l'établissement, adressé au directeur</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection" style="margin-top:14px">
+        <div class="sub-title brique">Conditions d'admission — Préfet (SDRE)</div>
+        <div class="law-box">
+          <div class="law-ref">Art. L. 3213-2 CSP</div>
+          <p>Le préfet prononce l'hospitalisation par <b>arrêté</b> au vu du certificat d'un psychiatre lorsque le malade compromet la sûreté des personnes ou porte gravement atteinte à l'ordre public. En cas de danger immédiat : le <b>maire</b> (à Paris : commissaire de police) prend les mesures provisoires et en réfère au préfet dans les <b>24h</b>.</p>
+        </div>
+        <div class="juris-box">
+          <div class="juris-ref">Cass. 1ère civ., 15 juin 2017</div>
+          <p>Un médecin <b>non psychiatre</b> de l'hôpital d'accueil peut établir le certificat médical d'admission pour une SDRE.</p>
+        </div>
+      </div>
+
+      <div class="subsection" style="margin-top:14px">
+        <div class="sub-title brique">Durée des soins et intervention du JLD</div>
+        <div class="card">
+          <ul class="styled">
+            <li>Période d'observation initiale : <b>72h</b> en hospitalisation complète</li>
+            <li>2 certificats médicaux (à 24h et à 72h) confirmant la nécessité des soins</li>
+            <li>Hospitalisation complète &gt; <b>12 jours</b> → saisine obligatoire du <b>JLD</b> par le directeur (ou préfecture pour SDRE à Paris)</li>
+            <li>Saisine accompagnée d'un avis motivé du psychiatre de l'établissement</li>
+            <li>Tous les certificats et avis transmis au juge, communiqués au patient et à son avocat</li>
+          </ul>
+        </div>
+        <div class="juris-box">
+          <div class="juris-ref">Cass. 1ère civ., 24 mai 2018</div>
+          <p>Le respect du délai de saisine du JLD a un <b>caractère impératif</b>. En cas de non-respect sans circonstance exceptionnelle : le juge doit prononcer la <b>mainlevée automatique</b> de la mesure sans débat.</p>
+        </div>
+      </div>
+
+      <div class="subsection" style="margin-top:14px">
+        <div class="sub-title brique">Audience du JLD</div>
+        <div class="law-box">
+          <div class="law-ref">Décret n° 2014-897 du 15 août 2014</div>
+          <p>L'assistance par un <b>avocat est obligatoire</b> (choisi, désigné au titre de l'AJ ou commis d'office). L'audience a lieu dans une salle à l'hôpital ou en salle d'audience au TGI. Appel possible sous <b>10 jours</b> devant le 1er président de la cour d'appel. Si le juge ne statue pas dans les délais : <b>mainlevée acquise de plein droit</b>.</p>
+        </div>
+        <div class="juris-box">
+          <div class="juris-ref">Cass. 1ère civ., 27 sept. 2017</div>
+          <p>Le juge <b>ne doit pas substituer son analyse à celle du psychiatre</b> : la Cour censure une mainlevée prononcée par un 1er président ayant dénaturé les éléments médicaux établis par les psychiatres.</p>
+        </div>
+        <div class="juris-box">
+          <div class="juris-ref">CA Bordeaux, 12 mai 2021, n° 21/00649</div>
+          <p>Le JLD est compétent pour la mainlevée de la mesure d'admission, mais <b>pas pour ordonner la sortie de l'UMD</b> : cette décision relève de la seule compétence du <b>préfet</b>.</p>
+        </div>
+        <div class="juris-box">
+          <div class="juris-ref">Cass. 1ère civ., 26 janvier 2022</div>
+          <p>L'<b>audition du malade est obligatoire</b> en appel, sauf motifs médicaux établis par un médecin ou circonstance insurmontable l'empêchant.</p>
+        </div>
+      </div>
+
+      <div class="subsection" style="margin-top:14px">
+        <div class="sub-title brique">Sorties et fin d'hospitalisation</div>
+        <div class="card">
+          <b>Sorties :</b>
+          <ul class="styled" style="margin-top:5px">
+            <li>Sorties accompagnées : max. <b>12h</b> (personnel ou famille)</li>
+            <li>Sorties non accompagnées : max. <b>48h</b></li>
+          </ul>
+          <b style="display:block;margin-top:7px">Fin de l'hospitalisation sur décision :</b>
+          <ul class="styled" style="margin-top:5px">
+            <li>Du <b>psychiatre</b> (disparition des troubles)</li>
+            <li>Du <b>JLD</b> (d'office ou à la demande de la famille/procureur)</li>
+            <li>Du <b>préfet</b></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- H. Isolement et contention -->
+    <div class="subsection">
+      <div class="sub-title bleu">H · L'isolement et la contention : encadrement sous pression constitutionnelle</div>
+      <div class="warn-box">
+        <div class="warn-ref">Décision n° 2020-844 QPC du 19 juin 2020, M. Éric G.</div>
+        <p>L'isolement et la contention constituent une <b>privation de liberté</b> imposant un contrôle du juge judiciaire à brefs délais. Art. L. 3222-5-1 CSP déclaré <b>inconstitutionnel</b> avec effet différé au 31 décembre 2020.</p>
+      </div>
+      <div class="warn-box">
+        <div class="warn-ref">Décision n° 2021-912/913/914 QPC du 4 juin 2021</div>
+        <p>La réforme portée par l'art. 84 de la LFSS 2021 (loi n° 2020-1576 du 14 décembre 2020) est à nouveau censurée : le CC appelle à instaurer un contrôle systématique du juge judiciaire au-delà d'une certaine durée. Modification imposée avant fin 2021.</p>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Loi n° 2022-46 du 22 janvier 2022 — Nouvel art. L. 3222-5-1 CSP (art. 17)</div>
+        <p><b>Isolement :</b> durée maximale de <b>12h</b>, renouvelable dans la limite de <b>48h</b> (2 évaluations par 24h).<br>
+        <b>Contention :</b> dans le cadre d'une mesure d'isolement, max. <b>6h</b>, renouvelable dans la limite de <b>24h</b> (évaluée 2 fois par 12h).<br>
+        Au-delà des durées totales : le directeur informe <b>sans délai le JLD</b> (qui peut se saisir d'office) + information d'un membre de la famille (conjoint/PACS/concubin en priorité).<br>
+        Le JLD dispose d'un délai maximal de <b>24h</b> pour statuer sur les demandes de mainlevée.</p>
+      </div>
+      <div class="warn-box">
+        <div class="warn-ref">Décision n° 2024-1127 QPC du 5 mars 2025</div>
+        <p>Le CC reconnaît l'inconstitutionnalité de l'absence d'information systématique de la <b>personne chargée d'une mesure de protection juridique</b> en cas de renouvellement &gt; 48h de l'isolement d'un majeur protégé. Méconnaissance du droit à un recours juridictionnel effectif (art. 16 DDHC 1789). <b>Une nouvelle loi devra modifier l'art. L. 3222-5-1 CSP.</b></p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SECTION II -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <div class="section-block">
+    <div class="section-title">
+      <div class="section-num">II</div>
+      <div class="section-heading vert">Les plans de santé mentale : la version française d'une préoccupation internationale</div>
+    </div>
+
+    <!-- A. Cadre international -->
+    <div class="subsection">
+      <div class="sub-title vert">A · Le cadre international et européen</div>
+      <div class="law-box">
+        <div class="law-ref">Pacte européen pour la santé mentale et le bien-être — Conférence du 13 juin 2008</div>
+        <p>La santé mentale est affirmée comme un <b>droit de l'homme</b>. Le niveau de santé mentale joue un rôle essentiel dans la réussite de l'UE (stratégie de Lisbonne : croissance, emploi, cohésion sociale, développement durable).</p>
+        <p style="margin-top:6px"><b>4 objectifs prioritaires du plan européen :</b></p>
+        <ul class="styled" style="margin-top:3px">
+          <li>Prévention du suicide et de la dépression</li>
+          <li>Santé mentale chez les jeunes et l'éducation</li>
+          <li>Santé mentale dans le lieu de travail</li>
+          <li>Santé mentale chez les personnes âgées</li>
+        </ul>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Plan d'action global de l'OMS pour la santé mentale 2013-2030 (actualisé, approuvé par l'Assemblée mondiale de la Santé WHA74(14) en 2022)</div>
+        <p>Approche portant sur <b>toute la durée de la vie</b>. Objectifs : promouvoir la santé mentale et le bien-être de tous, prévenir les problèmes chez les personnes à risque, assurer la <b>couverture universelle</b> des soins de santé mentale.</p>
+      </div>
+    </div>
+
+    <!-- B. Objectifs nationaux -->
+    <div class="subsection">
+      <div class="sub-title vert">B · Les objectifs nationaux de la politique de santé mentale (France)</div>
+      <div class="law-box">
+        <div class="law-ref">Loi n° 2004-806 du 9 août 2004 relative à la politique de santé publique — 5 objectifs</div>
+        <ul class="styled" style="margin-top:5px">
+          <li>Réduire la marginalisation sociale et la <b>stigmatisation</b> des personnes atteintes de troubles psychiatriques</li>
+          <li>Réduire de <b>10 %</b> le nombre de psychotiques chroniques en situation de précarité</li>
+          <li>Réduire de <b>20 %</b> le nombre de suicides en population générale</li>
+          <li>Réduire de <b>20 %</b> le nombre de personnes souffrant de troubles bipolaires, dépressifs ou névrotiques non reconnus</li>
+          <li>Augmenter de <b>20 %</b> le nombre de personnes souffrant de troubles dépressifs/névrotiques/anxieux traitées selon les recommandations de bonne pratique clinique</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- C. Plan 2005-2008 -->
+    <div class="subsection">
+      <div class="sub-title vert">C · Plan de santé mentale 2005-2008</div>
+      <div class="card">
+        <p>Après la reconnaissance du <b>handicap psychique</b> par la loi du 11 février 2005, ce premier plan a permis un renforcement significatif des moyens accordés à la psychiatrie et à la santé mentale.</p>
+        <p style="margin-top:6px"><b>Renouveau :</b> Garantir la <b>citoyenneté et l'inclusion</b> malgré la pathologie et le handicap. Lutter contre les préjugés et la stigmatisation. Élaboré en concertation avec les usagers, professionnels sanitaires/sociaux, universitaires et chercheurs.</p>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">AXE 1 — Une prise en charge décloisonnée · Budget : 207,27 M€ sur 4 ans (2005-2008)</div>
+        <b>1.1 Mieux informer et prévenir</b>
+        <ul class="styled" style="margin-top:3px">
+          <li>1.1.1 Mettre en œuvre des campagnes grand public (Campagne INPES : 7 M€ en 2006)</li>
+          <li>1.1.2 Promouvoir la santé mentale (1,5 M€ en 2005)</li>
+        </ul>
+        <b style="display:block;margin-top:6px">1.2 Mieux accueillir et mieux soigner</b>
+        <ul class="styled" style="margin-top:3px">
+          <li>1.2.1 Rompre l'isolement des médecins généralistes</li>
+          <li>1.2.2 Renforcer les prises en charge ambulatoires au sein des CMP et diversifier les alternatives à l'hospitalisation complète (53,4 M€, 2005-2008)</li>
+          <li>1.2.3 Adapter l'hospitalisation complète (52,8 M€, 2005-2008)</li>
+          <li>1.2.4 Faire évoluer la répartition géographique des professionnels médicaux</li>
+          <li>1.2.5 Développer les réseaux en santé mentale (5 M€, 2005-2007)</li>
+        </ul>
+        <b style="display:block;margin-top:6px">1.3 Mieux accompagner</b>
+        <ul class="styled" style="margin-top:3px">
+          <li>1.3.1 Développer les services d'accompagnement → création de <b>1 900 places</b> (28,5 M€, 2005-2007)</li>
+          <li>1.3.2 Créer des lieux d'entraide mutuelle (« clubs ») sur l'ensemble du territoire → <b>300 clubs</b> (20 M€, 2005)</li>
+          <li>1.3.3 Favoriser l'accès à un logement ou hébergement adapté → création de <b>1 000 places</b> (38 M€, 2005-2007)</li>
+          <li>1.3.4 Mobiliser les dispositifs de travail protégé</li>
+        </ul>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">AXE 2 — Des patients, des familles et des professionnels · Budget : 71 M€ + 35 M€/an FMESPP sur 6 ans (2005-2010)</div>
+        <b>2.1 Renforcer les droits des malades et de leurs proches</b>
+        <ul class="styled" style="margin-top:3px">
+          <li>2.1.1 Accroître la place des usagers et des familles dans la concertation</li>
+          <li>2.1.2 Renforcer le soutien aux associations d'usagers et de familles (0,6 M€, 2006)</li>
+          <li>2.1.3 Élargir les compétences des commissions départementales des hospitalisations psychiatriques</li>
+          <li>2.1.4 Expertiser une réforme du dispositif d'hospitalisation sans consentement</li>
+        </ul>
+        <b style="display:block;margin-top:6px">2.2 Améliorer l'exercice des professionnels en santé mentale</b>
+        <ul class="styled" style="margin-top:3px">
+          <li>2.2.1 Renforcer la formation initiale et continue et favoriser l'évolution des métiers → tutorat/compagnonnage pour nouveaux infirmiers psychiatrie (25 M€/an, 2005-2008)</li>
+          <li>2.2.2 Renforcer l'investissement pour soutenir l'évolution de l'offre de soins en psychiatrie → 1,5 milliard € d'investissements supplémentaires (aides au remboursement emprunt : 70 M€, 2006-2010 ; aides en capital FMESPP : 10 M€/an, 2006-2010)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- D. Plan 2011-2015 -->
+    <div class="subsection">
+      <div class="sub-title vert">D · Plan de santé mentale 2011-2015</div>
+      <div class="card">
+        <p>Premier plan après la réforme territoriale de la <b>loi HPST 2009</b>. La santé mentale affirmée comme <b>priorité de santé publique</b>. Déclinaison opérationnelle pilotée par les <b>ARS</b>. S'inscrit dans le prolongement de la loi du 11 fév. 2005 : participation citoyenne, inclusion, nécessité de dépasser la dimension sanitaire (logement, emploi).</p>
+      </div>
+      <div class="key-box">
+        <div class="key-label">🔑 4 Axes — « Prévenir et réduire les ruptures pour mieux vivre avec des troubles psychiques »</div>
+        <ul class="styled">
+          <li><b>Axe 1 :</b> Prévenir et réduire les ruptures au cours de la vie de la personne</li>
+          <li><b>Axe 2 :</b> Prévenir et réduire les ruptures selon les publics et les territoires</li>
+          <li><b>Axe 3 :</b> Prévenir et réduire les ruptures entre la psychiatrie et son environnement sociétal</li>
+          <li><b>Axe 4 :</b> Prévenir et réduire les ruptures entre les savoirs</li>
+        </ul>
+      </div>
+      <div class="card">
+        <b>Mode opératoire — 3 échelons ARS :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li>Commission régionale de concertation (sous-commission CRSA)</li>
+          <li>Échelon départemental (en lien avec les conférences de territoire)</li>
+          <li>Échelon de proximité basé sur la <b>sectorisation</b> (conseils locaux de santé mentale, ateliers santé-ville, réseaux)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- E. Bilan 2016 -->
+    <div class="subsection">
+      <div class="sub-title vert">E · Bilan du plan 2011-2015 (HCSP, avril 2016)</div>
+      <div class="two-col">
+        <div class="card">
+          <b style="color:var(--accent2)">✓ Points positifs</b>
+          <ul class="styled" style="margin-top:5px">
+            <li>Meilleure reconnaissance du rôle des personnes vivant avec des troubles psychiques et de leur entourage</li>
+            <li>Développement des études et recommandations sur le handicap psychique</li>
+            <li>Rôle accru des secteurs médico-social et social</li>
+            <li>Meilleure prise en compte de la santé somatique</li>
+            <li>Attention à l'urgence et aux populations défavorisées</li>
+          </ul>
+        </div>
+        <div class="card">
+          <b style="color:var(--accent4)">✗ Points négatifs</b>
+          <ul class="styled" style="margin-top:5px">
+            <li>Hétérogénéité des pratiques de soins et des moyens</li>
+            <li>Absence de remboursement des soins de psychothérapie</li>
+          </ul>
+          <b style="display:block;margin-top:7px">Recommandation HCSP :</b>
+          <p style="margin-top:4px;font-size:12.5px">Inscrire la politique de santé mentale de façon <b>pérenne et pilotée à long terme</b> avec une dimension interministérielle, plutôt que des plans successifs.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- F. Dispositifs récents -->
+    <div class="subsection">
+      <div class="sub-title vert">F · Dispositifs récents d'accès aux soins</div>
+
+      <div class="law-box">
+        <div class="law-ref">Loi du 23 décembre 2016 (LFSS 2017) + Décret n° 2017-813 + arrêtés du 5 mai et 19 décembre 2017</div>
+        <p><b>Dispositif expérimental 11-21 ans :</b> prescription par médecins traitants/scolaires/pédiatres de consultations chez un psychologue libéral, remboursées par la SS dans la limite d'un <b>forfait de 12 séances</b>. Exclusion : troubles psychiatriques ou crise suicidaire (→ soins spécialisés). 3 territoires : Île-de-France, Pays de Loire, Grand-Est. Coordination : Maison des adolescents.</p>
+      </div>
+
+      <div class="law-box">
+        <div class="law-ref">LFSS pour 2022 — Dispositif « Mon Psy » (mis en place en avril 2022)</div>
+        <p>Remboursement par l'Assurance maladie de consultations chez les psychologues libéraux en centre/maison de santé. S'adresse aux enfants &gt; 3 ans et adultes présentant des troubles selon les critères fixés. <b>8 séances par an</b> (40 € première séance, 30 € suivantes).</p>
+      </div>
+
+      <div class="law-box">
+        <div class="law-ref">Santé mentale — Grande cause nationale 2025 (annoncé le 11 octobre 2024)</div>
+        <p>S'appuie sur la feuille de route 2018-2026. <b>4 objectifs prioritaires :</b></p>
+        <ul class="styled" style="margin-top:5px">
+          <li><b>1.</b> Déstigmatisation — changer le regard des Français sur les troubles psychiques</li>
+          <li><b>2.</b> Développement de la prévention et du repérage précoce</li>
+          <li><b>3.</b> Amélioration de l'accès aux soins partout sur le territoire (gradation des parcours, nouveaux métiers)</li>
+          <li><b>4.</b> Accompagnement dans toutes les dimensions de la vie quotidienne : formation, emploi, logement, loisirs</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <b>Programme pluriannuel HAS Psychiatrie et Santé Mentale 2018-2026</b>
+        <p style="margin-top:4px">Cadre de référence pour les recommandations de bonnes pratiques en psychiatrie.</p>
+        <p style="margin-top:4px"><b>Avis CESE, mars 2021 — Améliorer le parcours de soins en psychiatrie :</b></p>
+        <ul class="styled" style="margin-top:4px">
+          <li>Santé mentale = <b>1er poste de dépense</b> de l'Assurance maladie (<b>23 milliards €/an</b>)</li>
+          <li>Coût global pour la société : <b>109 milliards €/an</b></li>
+          <li>3 priorités CESE : agir sur la connaissance/représentation, favoriser une entrée précoce dans le soin (rôle pivot du médecin généraliste), assurer la synergie soins/accompagnement</li>
+        </ul>
+        <p style="margin-top:6px"><b>Rapport Cour des comptes, fév. 2021 :</b> dénonce une offre de soins <b>cloisonnée</b> → préconise de recentrer les secteurs psychiatriques sur les patients présentant les troubles les plus complexes, avec mobilité « proactive » des équipes.</p>
+        <p style="margin-top:6px"><b>Rapport défenseur des droits, nov. 2021 :</b> inquiétude pour le bien-être des mineurs (notamment ceux confiés à l'ASE) ; demande un plan d'urgence pour la santé mentale des enfants ; la crise sanitaire comme « révélateur ».</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SECTION III -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <div class="section-block">
+    <div class="section-title">
+      <div class="section-num">III</div>
+      <div class="section-heading violet">Le projet territorial de santé mentale de la loi du 26 janvier 2016</div>
+    </div>
+
+    <!-- A. La loi de 2016 -->
+    <div class="subsection">
+      <div class="sub-title violet">A · La loi de 2016 : définition de la politique de santé mentale</div>
+      <div class="law-box">
+        <div class="law-ref">Loi du 26 janvier 2016 — Art. L. 3221-1 CSP (+ Décret n° 2017-1200 du 27 juillet 2017 relatif au PTSM)</div>
+        <p>« La politique de santé mentale comprend des actions de <b>prévention, de diagnostic, de soins, de réadaptation et de réinsertion sociale</b>. Elle est mise en œuvre par des acteurs diversifiés intervenant dans ces domaines, notamment les établissements de santé autorisés en psychiatrie, des médecins libéraux, des psychologues et l'ensemble des acteurs de la prévention, du logement, de l'hébergement et de l'insertion. »</p>
+      </div>
+    </div>
+
+    <!-- B. Le PTSM -->
+    <div class="subsection">
+      <div class="sub-title violet">B · Le Projet Territorial de Santé Mentale (PTSM)</div>
+      <div class="key-box">
+        <div class="key-label">🔑 Objet</div>
+        <p>L'amélioration continue de l'accès des personnes concernées à des <b>parcours de santé et de vie de qualité, sécurisés et sans rupture</b>.</p>
+      </div>
+      <div class="card">
+        <b>Élaboration :</b> à l'initiative des professionnels et établissements travaillant dans le champ de la santé mentale, à un niveau territorial suffisant. Basé sur un <b>diagnostic territorial partagé</b>.
+        <p class="note">En l'absence d'initiative des professionnels, le directeur général de l'ARS prend les dispositions nécessaires pour couvrir l'ensemble de la région.</p>
+      </div>
+      <div class="card">
+        <b>Acteurs associés :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li>Représentants des usagers</li>
+          <li>Professionnels et établissements de santé</li>
+          <li>Établissements et services sociaux et médico-sociaux</li>
+          <li>Organismes locaux d'assurance maladie et services publics de l'État</li>
+          <li>Collectivités territoriales</li>
+          <li>Conseils locaux de santé mentale, conseils de secteur, ateliers santé-ville, réseaux</li>
+        </ul>
+      </div>
+      <div class="card">
+        <b>Tient compte de :</b> caractéristiques socio-démographiques de la population, caractéristiques géographiques des territoires, offre de soins et de services.
+      </div>
+    </div>
+
+    <!-- C. Rôle du PTSM -->
+    <div class="subsection">
+      <div class="sub-title violet">C · Le rôle du PTSM</div>
+      <div class="card">
+        <b>3 missions :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li><b>1.</b> Accès à la prévention et au repérage, diagnostic et intervention précoce sur les troubles</li>
+          <li><b>2.</b> Accès à l'ensemble des modalités et techniques de soins et de prises en charge spécifiques</li>
+          <li><b>3.</b> Accès aux modalités d'accompagnement et d'insertion sociale → programme dédié au <b>maintien et à l'accès au logement et à l'hébergement accompagné</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- D. Les moyens -->
+    <div class="subsection">
+      <div class="sub-title violet">D · Les moyens : le contrat territorial de santé mentale</div>
+      <div class="law-box">
+        <div class="law-ref">Contrat territorial de santé mentale (CTSM) — conclu entre l'ARS et les acteurs du territoire</div>
+        <p>Définit : les actions assurées par ses signataires, leurs missions et engagements, les moyens consacrés et les modalités de <b>financement, de suivi et d'évaluation</b>.</p>
+      </div>
+      <div class="card">
+        <b>Exemple : PTSM 13 — Bouches-du-Rhône 2021-2025</b>
+        <p style="margin-top:4px">Validé par le directeur général de l'ARS PACA. Premier PTSM départemental mis en œuvre en région PACA.</p>
+      </div>
+    </div>
+
+    <!-- E. Bilan et évaluation -->
+    <div class="subsection">
+      <div class="sub-title violet">E · Bilan et évaluation</div>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="sn">23 Md€</div>
+          <div class="sl">1er poste de dépense de l'Assurance maladie (santé mentale/psychiatrie)</div>
+        </div>
+        <div class="stat-card">
+          <div class="sn">109 Md€</div>
+          <div class="sl">coût économique et social global des troubles mentaux par an (CESE, 2021)</div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:9px">
+        <b>Évaluation des PTSM (CESE, 2021) — 3 critères prioritaires :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li>Inclusion de tous les acteurs</li>
+          <li>Couverture territoriale de proximité</li>
+          <li>Association des patients et de leurs proches</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Fiche de révision · Thème 9 · Santé mentale · Master 1 PGSS 2024/2025</div>
+</div>
+</body>
+</html>

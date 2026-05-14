@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thème 8 – La Santé Sexuelle</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf8f5;
+    --ink: #1a1208;
+    --accent1: #c0392b;
+    --accent2: #8e44ad;
+    --accent3: #1a6b9a;
+    --accent4: #16834a;
+    --accent5: #d35400;
+    --muted: #6b5c45;
+    --rule: #d9cfc0;
+    --tag-bg: #1a1208;
+    --tag-fg: #faf8f5;
+    --law-bg: #fff9f0;
+    --law-border: #e07b39;
+    --juris-bg: #f0f4ff;
+    --juris-border: #3a5bcd;
+    --key-bg: #fff0f0;
+    --key-border: #c0392b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 14.5px;
+    line-height: 1.7;
+    padding: 0 0 60px 0;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 36px 48px 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .header-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1.2;
+    color: #fff;
+  }
+  .header h1 span { color: #f4b942; }
+  .header-sub {
+    margin-top: 10px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    font-style: italic;
+  }
+  .header-plan {
+    margin-top: 18px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .plan-pill {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.85);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 11.5px;
+  }
+
+  /* BODY */
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* SECTION HEADERS */
+  .section-block {
+    margin-top: 40px;
+  }
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 4px;
+  }
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--rule);
+    flex-shrink: 0;
+    user-select: none;
+  }
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    border-bottom: 2.5px solid var(--ink);
+    padding-bottom: 4px;
+    flex: 1;
+  }
+  .section-heading.rouge { border-color: var(--accent1); color: var(--accent1); }
+  .section-heading.violet { border-color: var(--accent2); color: var(--accent2); }
+  .section-heading.bleu { border-color: var(--accent3); color: var(--accent3); }
+
+  /* SUBSECTION */
+  .subsection {
+    margin-top: 22px;
+  }
+  .subsection-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    border-left: 3px solid var(--rule);
+    padding-left: 10px;
+    margin-bottom: 10px;
+  }
+  .subsection-title.rouge { border-color: var(--accent1); color: var(--accent1); }
+  .subsection-title.violet { border-color: var(--accent2); color: var(--accent2); }
+  .subsection-title.bleu { border-color: var(--accent3); color: var(--accent3); }
+  .subsection-title.vert { border-color: var(--accent4); color: var(--accent4); }
+  .subsection-title.orange { border-color: var(--accent5); color: var(--accent5); }
+
+  /* CARDS */
+  .card {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+  }
+
+  /* LOIS */
+  .law-box {
+    background: var(--law-bg);
+    border-left: 4px solid var(--law-border);
+    border-radius: 0 4px 4px 0;
+    padding: 12px 16px;
+    margin: 8px 0;
+  }
+  .law-box .law-ref {
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--law-border);
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  /* JURISPRUDENCE */
+  .juris-box {
+    background: var(--juris-bg);
+    border-left: 4px solid var(--juris-border);
+    border-radius: 0 4px 4px 0;
+    padding: 12px 16px;
+    margin: 8px 0;
+  }
+  .juris-box .juris-ref {
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--juris-border);
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  /* KEY POINTS */
+  .key-box {
+    background: var(--key-bg);
+    border: 1px dashed var(--key-border);
+    border-radius: 4px;
+    padding: 12px 16px;
+    margin: 8px 0;
+  }
+  .key-box .key-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--key-border);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  /* CHIFFRES */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+    gap: 10px;
+    margin: 10px 0;
+  }
+  .stat-card {
+    background: var(--ink);
+    color: #fff;
+    border-radius: 4px;
+    padding: 12px 14px;
+    text-align: center;
+  }
+  .stat-card .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 900;
+    color: #f4b942;
+    line-height: 1.1;
+  }
+  .stat-card .stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 3px;
+  }
+
+  /* TAGS */
+  .tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--tag-fg);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    padding: 2px 7px;
+    margin-right: 4px;
+    margin-bottom: 2px;
+    vertical-align: middle;
+  }
+  .tag.rouge { background: var(--accent1); }
+  .tag.violet { background: var(--accent2); }
+  .tag.bleu { background: var(--accent3); }
+  .tag.vert { background: var(--accent4); }
+  .tag.orange { background: var(--accent5); }
+
+  /* LISTE */
+  ul.styled {
+    list-style: none;
+    padding: 0;
+  }
+  ul.styled li {
+    padding: 3px 0 3px 18px;
+    position: relative;
+    font-size: 13.5px;
+  }
+  ul.styled li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-size: 11px;
+    top: 5px;
+  }
+
+  /* GRID 2 COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 10px 0;
+  }
+  @media (max-width: 600px) {
+    .two-col { grid-template-columns: 1fr; }
+    .header { padding: 24px 20px; }
+    .content { padding: 0 16px; }
+    .section-num { font-size: 30px; }
+    .section-heading { font-size: 15px; }
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1.5px solid var(--rule);
+    margin: 28px 0 0 0;
+  }
+
+  /* INTRO BOX */
+  .intro-box {
+    background: var(--ink);
+    color: #fff;
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin: 28px 0 0 0;
+  }
+  .intro-box p {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.85);
+  }
+  .intro-box strong { color: #f4b942; }
+
+  b { font-weight: 600; }
+  em { font-style: italic; color: var(--muted); }
+  p { margin-bottom: 7px; font-size: 13.5px; }
+
+  .note {
+    font-size: 11.5px;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 4px;
+  }
+
+  .footer {
+    margin-top: 48px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-tag">Master 1 · Politique & Gouvernance du Système de Santé · 2024/2025</div>
+  <h1>Thème 8 — <span>La Santé Sexuelle</span><br>Un objectif de prévention renouvelé</h1>
+  <div class="header-sub">Cours de Guylène Nicolas</div>
+  <div class="header-plan">
+    <span class="plan-pill">I · Position de l'OMS</span>
+    <span class="plan-pill">II · Stratégie nationale de santé sexuelle</span>
+    <span class="plan-pill">III · Questionnements soulevés par la prostitution</span>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- INTRODUCTION -->
+  <div class="intro-box">
+    <p><strong>Problématique centrale :</strong> La santé sexuelle est un domaine qui touche à la spiritualité, aux coutumes et à la morale sociale. Elle interroge la place des politiques étatiques et de l'éducation hors sphère familiale. Elle est intimement liée à la liberté sexuelle, au droit de disposer de son corps, à la liberté individuelle/vie privée et au principe d'autonomie.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION I -->
+  <!-- ============================================================ -->
+  <div class="section-block">
+    <div class="section-title">
+      <div class="section-num">I</div>
+      <div class="section-heading rouge">La position de l'OMS : la santé sexuelle comme exigence internationale</div>
+    </div>
+
+    <!-- A. Historique -->
+    <div class="subsection">
+      <div class="subsection-title rouge">A · Historique des droits sexuels</div>
+      <div class="card">
+        <ul class="styled">
+          <li><b>1987</b> – OMS-Europe : <em>Concepts of sexual health</em> (1ère association santé sexuelle / droits de l'Homme)</li>
+          <li><b>1996</b> – IPPF : 1ère déclaration complète des droits sexuels</li>
+          <li><b>1997/1999</b> – WAS (World Association for Sexology) : Déclarations de Valencia (1997) et Hong Kong (1999) → 1ère inscription dans les droits de l'Homme à portée universelle</li>
+          <li><b>À partir de 2000</b> – Hybridation santé sexuelle / droits sexuels : les droits sexuels sont intégrés dans la définition de la santé sexuelle</li>
+          <li><b>2002/2006</b> – OMS : liste des droits sexuels publiée en 2006, <em>sans force contraignante</em></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- B. Définition OMS -->
+    <div class="subsection">
+      <div class="subsection-title rouge">B · Définition de la santé sexuelle par l'OMS</div>
+      <div class="key-box">
+        <div class="key-label">🔑 Définition à retenir</div>
+        <p>« La santé sexuelle est un <b>état de bien-être physique, mental et social</b> dans le domaine de la sexualité. Elle requiert une approche positive et respectueuse de la sexualité et des relations sexuelles, ainsi que la possibilité d'avoir des expériences sexuelles qui soient sources de plaisir et sans risque, <b>libres de toute coercition, discrimination ou violence</b>. »</p>
+      </div>
+      <div class="juris-box">
+        <div class="juris-ref">Parlement européen, Résolution du 24 juin 2021</div>
+        <p>Affirme la santé et les droits sexuels et génésiques comme piliers de l'égalité H/F, de la démocratie et de l'élimination de la violence sexiste. Définition élargie : <em>« toute personne a droit de prendre des décisions concernant son corps, sans aucune discrimination, contrainte ni violence ».</em></p>
+      </div>
+    </div>
+
+    <!-- C. Mortalité maternelle -->
+    <div class="subsection">
+      <div class="subsection-title rouge">C · Mortalité maternelle et infantile</div>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-num">830</div>
+          <div class="stat-label">femmes meurent/jour de causes évitables liées à la grossesse (mondial)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">99%</div>
+          <div class="stat-label">des décès maternels dans les pays en développement</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">−44%</div>
+          <div class="stat-label">mortalité maternelle mondiale entre 1990 et 2015</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">5,3M</div>
+          <div class="stat-label">décès enfants &lt;5 ans en 2018 (vs 12,5M en 1990)</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:10px">
+        <b>En France (rapport Santé publique France / INSERM, 3 avril 2024) :</b>
+        <ul class="styled" style="margin-top:6px">
+          <li><b>1 femme meurt tous les 4 jours</b> → 11,8 décès pour 100 000 ; 272 décès sur 2016-2018</li>
+          <li>Causes : suicide, hémorragies obstétricales, maladies cardiovasculaires</li>
+          <li><b>60 % de ces morts sont évitables</b></li>
+          <li>Risque × 2,6 chez les 35-39 ans ; × 5 à partir de 40 ans</li>
+          <li>33 % des femmes décédées étaient migrantes (× 3,1 chez les femmes nées en Afrique subsaharienne)</li>
+        </ul>
+      </div>
+
+      <div class="law-box">
+        <div class="law-ref">ODD 2016-2030 (OMS)</div>
+        <p>Objectif : passer le taux mondial de mortalité maternelle sous <b>70 pour 100 000</b> naissances vivantes. Programme <em>Safe Childbirth Checklist</em> : liste de contrôle sécurité accouchement pour réduire les événements indésirables.</p>
+      </div>
+    </div>
+
+    <!-- D. MSF -->
+    <div class="subsection">
+      <div class="subsection-title rouge">D · Mutilations sexuelles féminines (MSF)</div>
+      <div class="two-col">
+        <div class="card">
+          <b>Définition OMS</b>
+          <p style="margin-top:6px">Toutes les interventions incluant l'ablation partielle ou totale des organes génitaux externes ou toute autre lésion des organes génitaux féminins pratiquées pour des raisons <b>non médicales</b>.</p>
+        </div>
+        <div class="card">
+          <b>Conséquences</b>
+          <ul class="styled" style="margin-top:6px">
+            <li>Graves hémorragies, problèmes urinaires</li>
+            <li>Kystes, infections, stérilité</li>
+            <li>Complications à l'accouchement</li>
+            <li>Risque accru de décès du nouveau-né</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <b>Causes invoquées :</b> reconnaissance sociale, rite de passage, préparation au mariage, virginité prénuptiale, fidélité conjugale, réduction de la libido féminine.
+      </div>
+
+      <div class="law-box">
+        <div class="law-ref">Bases légales – Action internationale</div>
+        <p><b>2008</b> – Déclaration OMS sur l'élimination des MSF<br>
+        <b>2010</b> – Stratégie mondiale OMS contre la médicalisation des MSF<br>
+        <b>2012</b> – Résolution Assemblée générale ONU sur l'élimination des MSF<br>
+        <b>2013</b> – Rapport UNICEF (30 pays)<br>
+        <b>2016</b> – Premières lignes directrices OMS sur la prise en charge des complications</p>
+      </div>
+
+      <div class="law-box">
+        <div class="law-ref">Loi n° 2013-711 du 5 août 2013 (France)</div>
+        <p>Crée de nouvelles infractions en matière de mutilations sexuelles (application droit UE et engagements internationaux). Renforce la répression de l'excision. L'article 227-24-1 C. pénal pourrait encadrer ou restreindre certaines pratiques religieuses attentatoires à l'intégrité physique.</p>
+      </div>
+
+      <div class="juris-box">
+        <div class="juris-ref">CNDA, 8 septembre 2022, n° 21059269</div>
+        <p>La CNDA reconnaît pour la 1ère fois l'existence du groupe social des femmes et enfants exposés au risque d'excision en Égypte (prévalence 87 %). Octroie la protection conventionnelle à une jeune fille de 14 ans originaire de Tanta.</p>
+      </div>
+
+      <div class="subsection" style="margin-top:16px">
+        <div class="subsection-title orange">Focus : Circoncision</div>
+        <div class="card">
+          <ul class="styled">
+            <li><b>OMS 2007</b> : 30 % de la population masculine mondiale circoncise</li>
+            <li><b>France</b> : acte usuel si nécessité médicale (Cass. Civ. 1ère, 26 janv. 1994). Circoncision rituelle sans consentement des deux parents = responsabilité civile du médecin (Lyon, 25 juill. 2007). Contraire à l'art. 34 CIDE</li>
+            <li><b>Allemagne</b> : Tribunal correctionnel Cologne, 7 mai 2012 (coups et blessures) → Loi 12 déc. 2012 : cadre légal à la circoncision</li>
+            <li><b>Islande</b> : Projet de loi 1er fév. 2018 (interdiction &lt;18 ans, peine max. 6 ans) → <em>retiré 3 mois plus tard</em></li>
+          </ul>
+        </div>
+        <div class="juris-box">
+          <div class="juris-ref">Conseil de l'Europe, Résolution n° 1952 du 1er octobre 2013</div>
+          <p>L'Assemblée parlementaire recommande vivement aux États membres de sensibiliser aux risques des pratiques attentatoires à la santé physique et mentale des enfants, et invite à interdire les interventions non médicalement justifiées.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- E. Cadres juridiques -->
+    <div class="subsection">
+      <div class="subsection-title rouge">E · Recours aux droits de l'Homme pour améliorer les cadres juridiques</div>
+      <div class="card">
+        <p>Depuis 2010, l'OMS élabore des recommandations pour éliminer les obstacles réglementaires et politiques à la santé sexuelle et génésique, avec une affectation claire des responsabilités au ministère de la santé.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ============================================================ -->
+  <!-- SECTION II -->
+  <!-- ============================================================ -->
+  <div class="section-block">
+    <div class="section-title">
+      <div class="section-num">II</div>
+      <div class="section-heading violet">La santé sexuelle comme composante de la stratégie nationale de santé</div>
+    </div>
+
+    <!-- A. SNS -->
+    <div class="subsection">
+      <div class="subsection-title violet">A · La Stratégie nationale de santé (SNS) : structure générale</div>
+      <div class="key-box">
+        <div class="key-label">🔑 Architecture de la SNS</div>
+        <p><b>4 axes</b> → <b>11 domaines d'action prioritaires</b> → <b>43 objectifs nationaux</b></p>
+      </div>
+      <div class="card">
+        <b>Axe 1 – Prévention et promotion de la santé</b> (inclut notamment) :
+        <ul class="styled" style="margin-top:6px">
+          <li>Promouvoir la santé sexuelle et l'éducation à la sexualité</li>
+          <li>Prévenir les pratiques addictives, les risques routiers, la perte d'autonomie</li>
+          <li>Maîtriser les risques environnementaux, renforcer la protection vaccinale</li>
+        </ul>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Stratégie nationale de santé sexuelle 2017-2030</div>
+        <p>Cadre de référence national dédié à la santé sexuelle, intégré dans la SNS.</p>
+      </div>
+    </div>
+
+    <!-- B. Éducation à la sexualité -->
+    <div class="subsection">
+      <div class="subsection-title violet">B · Éducation à la sexualité</div>
+      <div class="law-box">
+        <div class="law-ref">Loi du 4 juillet 2001 (IVG et contraception)</div>
+        <p>Crée l'éducation à la sexualité à l'école.</p>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Code de l'éducation, art. L312-16 (modifié par Loi n° 2021-1109 du 24 août 2021, art. 33)</div>
+        <p>« L'information et l'éducation à la sexualité sont dispensées dans les écoles, collèges et lycées à raison d'<b>au moins 3 séances annuelles</b> et par groupes d'âge homogène. »</p>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Circulaire MEN n° 2018-111 du 12 septembre 2018</div>
+        <p>Fondée sur les valeurs de liberté, égalité, tolérance, respect de soi et d'autrui, dans un esprit de laïcité et de neutralité. <b>Sans dimension sexuelle stricto sensu à l'école élémentaire</b>. À l'adolescence : compréhension de la sexualité dans le respect de l'autre.</p>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Arrêté du 3 février 2025</div>
+        <p>Programme d'éducation à la sexualité – éduquer à la vie affective et relationnelle à l'école maternelle et élémentaire, et à la sexualité au collège et au lycée.</p>
+      </div>
+    </div>
+
+    <!-- C. Contraception -->
+    <div class="subsection">
+      <div class="subsection-title violet">C · Contraception et accès aux soins</div>
+      <div class="law-box">
+        <div class="law-ref">LFSS n° 2019-1446 du 24 décembre 2019</div>
+        <p>Gratuité de la contraception (pilule, implant, stérilet) pour toutes les <b>mineures quel que soit leur âge</b>, incluant consultations et examens biologiques. Objectif : réduire les IVG (<em>~1 000 adolescentes de 12-14 ans enceintes/an en France ; 770 IVG</em>).</p>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">LFSS pour 2022</div>
+        <p>Extension de la gratuité de la contraception jusqu'à <b>25 ans</b>.</p>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Loi n° 2022-1616 du 23 décembre 2022 (LFSS 2023)</div>
+        <p>Depuis le 1er janvier 2023 :</p>
+        <ul class="styled" style="margin-top:6px">
+          <li>Préservatifs (marques « Eden » et « Sortez couverts ! ») <b>pris en charge à 100 %</b> sans ordonnance pour les <b>&lt; 26 ans</b>, sans minimum d'âge</li>
+          <li>Gratuité contraception femmes jusqu'à 25 ans inclus</li>
+          <li>Dépistage sérologique VIH dans tous les labos médicaux <b>sans ordonnance, 100 %</b></li>
+          <li>Dépistage IST sans ordonnance + prise en charge 100 % pour les &lt; 26 ans</li>
+          <li>Contraception d'urgence : prise en charge 100 %, sans prescription, <b>pour toutes les femmes</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- D. Personnes handicapées / âgées -->
+    <div class="subsection">
+      <div class="subsection-title violet">D · Sexualité des personnes en situation de handicap et des personnes âgées</div>
+      <div class="law-box">
+        <div class="law-ref">Loi n° 2005-102 du 11 février 2005 – Art. L114-1-1 CASF</div>
+        <p>« La personne handicapée a droit à la compensation des conséquences de son handicap quels que soient l'origine et la nature de sa déficience, son âge ou son mode de vie. »<br>Certaines associations estiment que les services d'aidants sexuels pourraient s'inscrire dans cette démarche de compensation.</p>
+      </div>
+      <div class="juris-box">
+        <div class="juris-ref">Avis n° 118 du CCNE, 27 septembre 2012 – Vie affective et sexuelle des personnes handicapées – Question de l'assistance sexuelle</div>
+        <p>Recommandation : <b>aucun devoir ou obligation de la collectivité</b> au-delà de la facilitation des rencontres sociales. L'aide sexuelle ne relève pas d'un droit-créance ; elle dépend d'initiatives individuelles. La frontière avec la prostitution est ténue.</p>
+      </div>
+      <div class="card">
+        <b>Assistance sexuelle à l'étranger :</b> Danemark, Allemagne, Suisse, Pays-Bas ont encadré l'assistance sexuelle. Aux Pays-Bas, les prestations sont remboursées par les assurances sociales des collectivités locales. Formation en milieu paramédical (psychologues, kiné, aides-soignants).
+      </div>
+    </div>
+
+    <!-- E. Liberté sexuelle et consentement -->
+    <div class="subsection">
+      <div class="subsection-title violet">E · Les limites de la volonté et la liberté sexuelle</div>
+      <div class="key-box">
+        <div class="key-label">🔑 Principe fondateur</div>
+        <p>Le viol et toutes les agressions sexuelles sont avant tout des <b>atteintes à la liberté de consentir</b> à l'union sexuelle. L'<b>absence de consentement</b> est une condition de caractérisation de l'infraction. Inversement, des pratiques sexuelles consenties entre adultes dans un lieu privé ne peuvent être remises en cause.</p>
+      </div>
+      <div class="juris-box">
+        <div class="juris-ref">CEDH, 22 octobre 1981, Dudgeon c/ Royaume-Uni</div>
+        <p>Arrêt de principe : <b>liberté du comportement sexuel</b>. Pas de besoin social impérieux d'ériger en infractions les actes d'homosexualité entre adultes consentants. Les menaces de poursuites pénales constituent une atteinte injustifiée à l'<b>article 8 CEDH</b> (vie privée). → <em>Dépénalisation de l'homosexualité en France le 4 août 1982</em>. Suivi par la Cour Suprême US : Lawrence c/ Texas, 26 juin 2003.</p>
+      </div>
+      <div class="juris-box">
+        <div class="juris-ref">CEDH, 17 février 2005, K.A. et A.D. c/ Belgique – Pratiques sadomasochistes</div>
+        <p>« Le droit d'entretenir des relations sexuelles découle du droit de disposer de son corps, partie intégrante de la notion d'<b>autonomie personnelle</b>. »<br>
+        Mais les deux hommes avaient pu être valablement sanctionnés car ils n'avaient pas respecté le signal d'arrêt convenu.<br>
+        <em>A contrario :</em> si le consentement est assuré constamment et rigoureusement, la pénalisation constitue une atteinte disproportionnée à la vie privée.</p>
+      </div>
+      <div class="card">
+        <b>Doctrine :</b>
+        <ul class="styled" style="margin-top:6px">
+          <li><b>Pr Muriel Fabre-Magnan</b> : critique la consécration d'un « droit au sadisme » et le reniement de la primauté de la <em>dignité humaine</em> au nom de l'autonomie personnelle.</li>
+          <li><b>Pr Jean-Pierre Marguénaud</b> : « Le droit de disposer de son corps élargit la liberté du consentement au détriment de la morale et des bonnes mœurs. […] on peut paradoxalement perdre en morale et gagner en dignité. » / <em>« L'État doit s'interdire d'intervenir au nom de la morale dans la vie sexuelle. »</em></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ============================================================ -->
+  <!-- SECTION III -->
+  <!-- ============================================================ -->
+  <div class="section-block">
+    <div class="section-title">
+      <div class="section-num">III</div>
+      <div class="section-heading bleu">Questionnements soulevés par la prostitution : entre protection des droits, des femmes et de la santé</div>
+    </div>
+
+    <!-- A. Définitions -->
+    <div class="subsection">
+      <div class="subsection-title bleu">A · Définitions et principe juridique</div>
+      <div class="card">
+        <b>Cass. Crim., 27 mars 1996, Bull. crim. n° 138 :</b>
+        <p style="margin-top:5px">« La prostitution consiste à se prêter <b>moyennant rémunération</b> à des contacts physiques de quelque nature qu'ils soient, afin de satisfaire les besoins sexuels d'autrui. »</p>
+        <p style="margin-top:5px; font-size:12px; color: var(--muted);">Décret 5 nov. 1947 : « activité d'une personne qui consent habituellement à des rapports sexuels avec un nombre indéterminé d'individus moyennant rémunération ».</p>
+      </div>
+      <div class="card">
+        <b>Gail Pheterson (sociologue) :</b> La prostitution est « une institution servant à la régulation des rapports sociaux de sexe » – un <b>instrument de contrôle</b>, pas seulement une transaction.
+      </div>
+      <div class="key-box">
+        <div class="key-label">🔑 Principe juridique fondamental</div>
+        <p>Le droit en matière de prostitution repose sur le <b>droit de disposer de son corps</b>. La liberté va jusqu'à l'utilisation lucratives du corps (exception au principe d'indisponibilité). Le droit de se prostituer relève du <b>droit au respect de la vie privée</b>. <b>La prostitution n'est pas un délit en soi.</b></p>
+      </div>
+    </div>
+
+    <!-- B. Panorama législatif -->
+    <div class="subsection">
+      <div class="subsection-title bleu">B · Panorama des législations européennes</div>
+      <div class="card">
+        <p>Les États européens adoptent des approches très différentes : réglementarisme, abolitionnisme, légalisation, prohibition. La France a une position <b>abolitionniste</b>.</p>
+      </div>
+    </div>
+
+    <!-- C. Évolution du droit français -->
+    <div class="subsection">
+      <div class="subsection-title bleu">C · Évolution du droit français sur la prostitution</div>
+
+      <div class="law-box">
+        <div class="law-ref">Loi du 13 avril 1946 (loi Marthe Richard)</div>
+        <p>Fermeture des maisons de tolérance. Abrogation des registres spéciaux et de l'obligation de se présenter à la police. <em>Initiative de Marthe Richard au conseil municipal de Paris le 13 décembre 1945 ; Pierre Dominjon étendit à toute la France.</em></p>
+      </div>
+
+      <div class="law-box">
+        <div class="law-ref">Convention des Nations Unies du 2 décembre 1949 – Ratifiée par la France le 28 juillet 1960</div>
+        <p>Convention abolitionniste pour la répression de la traite des êtres humains et l'exploitation de la prostitution d'autrui. Depuis les ordonnances du 25 novembre 1960 : la prostitution est une <b>activité libre</b>, ni interdite ni contrôlée (sphère privée).</p>
+      </div>
+
+      <div class="law-box">
+        <div class="law-ref">Loi n° 2003-239 du 18 mars 2003 (Loi sécurité intérieure)</div>
+        <p>→ <b>Racolage passif</b> érigé en délit (6 mois d'emprisonnement + 3 750 € d'amende). Passage de la contravention au délit.<br>→ <b>Proxénétisme</b> (art. 225-5 C. pén.) : 7 ans d'emprisonnement + 150 000 € d'amende.<br>
+        3 formes : aider/assister/protéger, tirer profit, embaucher/entraîner/exercer une pression.</p>
+      </div>
+
+      <div class="juris-box">
+        <div class="juris-ref">Conseil constitutionnel, n° 2003-467 DC du 13 mars 2003</div>
+        <p>Valide le délit de racolage : le racolage peut entraîner des troubles pour l'ordre public et prive le proxénétisme de sources de profit. Aucune atteinte à une règle ou un principe de valeur constitutionnelle.</p>
+      </div>
+
+      <div class="law-box">
+        <div class="law-ref">Loi n° 2016-444 du 13 avril 2016 – Lutte contre le système prostitutionnel</div>
+        <p><b>Mesures clés :</b></p>
+        <ul class="styled" style="margin-top:6px">
+          <li>Sanction des <b>clients</b> : amende de <b>1 500 €</b> (3 750 € en récidive)</li>
+          <li>Peine complémentaire possible : <b>stage de sensibilisation</b> aux conditions de la prostitution</li>
+          <li><b>Dépénalisation du racolage passif</b></li>
+          <li>Droit pour les victimes de la prostitution à un système de <b>protection et d'assistance</b></li>
+        </ul>
+      </div>
+
+      <div class="juris-box">
+        <div class="juris-ref">CC, n° 2018-761 QPC du 1er février 2019 – Association Médecins du Monde et autres</div>
+        <p>QPC sur la pénalisation des clients. Le législateur entendait assurer la sauvegarde de la <b>dignité de la personne humaine</b> contre l'asservissement et poursuivait l'objectif de sauvegarde de l'ordre public. <b>Conformité</b> à la Constitution : conciliation équilibrée entre dignité/ordre public et liberté personnelle.</p>
+        <p class="note">Critiques soulevées : atteinte à la vie privée/autonomie personnelle, liberté d'entreprendre, liberté contractuelle, aggravation de l'isolement et des risques sanitaires.</p>
+      </div>
+
+      <div class="card">
+        <b>Bilan 4 ans d'application (Rapport déc. 2019) :</b>
+        <ul class="styled" style="margin-top:6px">
+          <li>Infraction peu constatée : <b>1 939 personnes mises en cause en 2018</b></li>
+          <li>50 % des constats en région parisienne</li>
+          <li>Stages de sensibilisation proposés dans 8 % des cas seulement, mais semblent porter leurs fruits</li>
+          <li>Loi dépassée sur le terrain : prostitution via Internet et prostitution des mineures en plein essor non traités</li>
+        </ul>
+        <p style="margin-top:8px;"><b>28 mesures proposées :</b> campagne Éducation nationale, lutte contre le cyberproxénétisme.</p>
+      </div>
+
+      <div class="juris-box">
+        <div class="juris-ref">CEDH, 25 juillet 2024, M.A. et autres c/ France (250 travailleur·ses du sexe)</div>
+        <p>La CEDH <b>refuse d'entrer dans le débat</b> sur la contrainte systématique ou le caractère privé de la prostitution consentie. Elle juge que l'incrimination de l'achat d'actes sexuels <b>ne porte pas atteinte au droit à la vie privée</b> des personnes prostituées.<br>
+        → Ample <b>marge d'appréciation</b> des États (absence de consensus européen).<br>
+        → Mais la France est invitée à garder <b>« sous examen constant »</b> son approche, notamment si basée sur une interdiction générale et absolue, en fonction de l'évolution des sociétés et des normes internationales.</p>
+      </div>
+    </div>
+
+    <!-- D. Protection des mineurs -->
+    <div class="subsection">
+      <div class="subsection-title bleu">D · Protection des mineurs</div>
+
+      <div class="law-box">
+        <div class="law-ref">Plan national contre la prostitution des mineurs, novembre 2021</div>
+        <p>14 millions d'euros engagés pour : informer le public, repérer et accompagner les victimes, réprimer clients et proxénètes. Appui sur assistants sociaux et éducateurs de rue.</p>
+      </div>
+
+      <div class="law-box">
+        <div class="law-ref">Loi n° 2021-478 du 21 avril 2021 – Protection des mineurs des crimes et délits sexuels et de l'inceste</div>
+        <p><b>Seuil de non-consentement :</b> relation entre majeur et mineur &lt;15 ans avec &gt;5 ans d'écart (clause « Roméo et Juliette ») ; &lt;18 ans en cas d'inceste.</p>
+        <p style="margin-top:8px;"><b>4 nouvelles infractions</b> (sans besoin d'établir violence/contrainte/menace/surprise) :</p>
+        <ul class="styled" style="margin-top:6px">
+          <li>Crime de viol sur mineur &lt;15 ans → <b>20 ans de réclusion</b></li>
+          <li>Crime de viol incestueux sur mineur &lt;18 ans → <b>20 ans de réclusion</b></li>
+          <li>Délit d'agression sexuelle sur mineur &lt;15 ans → <b>10 ans de prison + 150 000 €</b></li>
+          <li>Délit d'agression sexuelle incestueuse sur mineur &lt;18 ans → <b>10 ans de prison + 150 000 €</b></li>
+        </ul>
+        <p style="margin-top:8px;"><b>Autres dispositions :</b></p>
+        <ul class="styled">
+          <li>Actes bucco-génitaux inclus dans la définition du viol ; inceste étendu aux grands-oncles/tantes</li>
+          <li><b>Sextorsion</b> : incitation d'un enfant à des pratiques sexuelles en ligne = délit, 10 ans max</li>
+          <li><b>Prostitution</b> : relation sexuelle avec enfant prostitué &lt;15 ans = viol (20 ans) ; proxénète = 20 ans (vs 15 ans)</li>
+          <li><b>Exhibition sexuelle</b> : même sans partie dénudée si acte sexuel réel/simulé imposé à la vue du public</li>
+          <li><b>FIJAISV</b> : inscription automatique + peine complémentaire d'interdiction d'exercice au contact des enfants</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Fiche de révision · Thème 8 · Santé sexuelle · Master 1 PGSS 2024/2025</div>
+</div>
+
+</body>
+</html>

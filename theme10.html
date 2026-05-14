@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thème 10 – Handicap</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f4f0;
+    --ink: #141008;
+    --s1: #1a5c3a;   /* vert forêt – Section I */
+    --s2: #8b3a0f;   /* brique – Section II */
+    --gold: #b07d10;
+    --muted: #6b5c40;
+    --rule: #ddd5c4;
+    --law-bg: #fff9ee;
+    --law-brd: #b07d10;
+    --jur-bg: #f0f6ff;
+    --jur-brd: #2a4fa0;
+    --key-bg: #f0faf4;
+    --key-brd: #1a5c3a;
+    --warn-bg: #fff3ef;
+    --warn-brd: #8b3a0f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Source Serif 4',Georgia,serif;font-size:14px;line-height:1.72;padding-bottom:60px}
+
+  /* HEADER */
+  .header{background:var(--ink);color:#fff;padding:34px 48px 28px;position:relative;overflow:hidden}
+  .header::after{content:'';position:absolute;bottom:-80px;right:-80px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.03)}
+  .header-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:7px}
+  .header h1{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;line-height:1.2}
+  .header h1 span{color:#f4c842}
+  .header-sub{margin-top:8px;font-size:12px;color:rgba(255,255,255,.45);font-style:italic}
+  .plan-row{margin-top:18px;display:flex;gap:9px;flex-wrap:wrap}
+  .plan-pill{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.85);border-radius:20px;padding:4px 13px;font-size:11px}
+
+  /* LAYOUT */
+  .content{max-width:860px;margin:0 auto;padding:0 28px}
+
+  /* INTRO */
+  .intro-box{background:var(--ink);color:#fff;border-radius:4px;padding:18px 22px;margin:26px 0 0}
+  .intro-box p{font-size:13px;line-height:1.75;color:rgba(255,255,255,.83)}
+  .intro-box strong{color:#f4c842}
+
+  /* SECTIONS */
+  .section-block{margin-top:40px}
+  .section-title{display:flex;align-items:center;gap:13px;margin-bottom:4px}
+  .section-num{font-family:'Playfair Display',serif;font-size:40px;font-weight:900;line-height:1;color:var(--rule);flex-shrink:0;user-select:none}
+  .section-heading{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;border-bottom:2.5px solid var(--ink);padding-bottom:3px;flex:1}
+  .section-heading.vert{border-color:var(--s1);color:var(--s1)}
+  .section-heading.brique{border-color:var(--s2);color:var(--s2)}
+
+  /* SOUS-SECTIONS */
+  .subsection{margin-top:20px}
+  .sub-title{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.9px;border-left:3px solid var(--rule);padding-left:9px;margin-bottom:9px;color:var(--muted)}
+  .sub-title.vert{border-color:var(--s1);color:var(--s1)}
+  .sub-title.brique{border-color:var(--s2);color:var(--s2)}
+  .sub-title.gold{border-color:var(--gold);color:var(--gold)}
+  .sub-title.bleu{border-color:#2a4fa0;color:#2a4fa0}
+
+  /* BOXES */
+  .card{background:#fff;border:1px solid var(--rule);border-radius:4px;padding:13px 17px;margin-bottom:9px}
+  .law-box{background:var(--law-bg);border-left:4px solid var(--law-brd);border-radius:0 4px 4px 0;padding:11px 15px;margin:7px 0}
+  .law-box .law-ref{font-family:'Playfair Display',serif;font-size:11.5px;font-weight:700;color:var(--law-brd);letter-spacing:.4px;margin-bottom:3px}
+  .juris-box{background:var(--jur-bg);border-left:4px solid var(--jur-brd);border-radius:0 4px 4px 0;padding:11px 15px;margin:7px 0}
+  .juris-box .juris-ref{font-family:'Playfair Display',serif;font-size:11.5px;font-weight:700;color:var(--jur-brd);letter-spacing:.4px;margin-bottom:3px}
+  .key-box{background:var(--key-bg);border:1px dashed var(--key-brd);border-radius:4px;padding:11px 15px;margin:7px 0}
+  .key-box .key-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--key-brd);font-weight:600;margin-bottom:3px}
+  .warn-box{background:var(--warn-bg);border-left:4px solid var(--warn-brd);border-radius:0 4px 4px 0;padding:11px 15px;margin:7px 0}
+  .warn-box .warn-ref{font-family:'Playfair Display',serif;font-size:11.5px;font-weight:700;color:var(--warn-brd);letter-spacing:.4px;margin-bottom:3px}
+
+  /* STATS */
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(172px,1fr));gap:9px;margin:9px 0}
+  .stat-card{background:var(--ink);color:#fff;border-radius:4px;padding:12px 13px;text-align:center}
+  .stat-card .sn{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#f4c842;line-height:1.1}
+  .stat-card .sl{font-size:11px;color:rgba(255,255,255,.68);margin-top:3px}
+
+  /* TIMELINE */
+  .timeline{margin:8px 0;padding-left:4px}
+  .tl-item{display:flex;gap:11px;margin-bottom:7px;align-items:flex-start}
+  .tl-year{background:var(--ink);color:#f4c842;font-family:'Playfair Display',serif;font-size:12px;font-weight:700;border-radius:3px;padding:2px 8px;flex-shrink:0;white-space:nowrap;line-height:1.6}
+  .tl-text{font-size:13px;line-height:1.65;padding-top:2px}
+
+  /* LISTES */
+  ul.styled{list-style:none;padding:0}
+  ul.styled li{padding:2px 0 2px 17px;position:relative;font-size:13px}
+  ul.styled li::before{content:'▸';position:absolute;left:0;color:var(--muted);font-size:11px;top:5px}
+
+  /* 2 COL */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:9px 0}
+  @media(max-width:600px){.two-col{grid-template-columns:1fr}.header{padding:24px 20px}.content{padding:0 15px}}
+
+  hr.divider{border:none;border-top:1.5px solid var(--rule);margin:32px 0 0}
+  b{font-weight:600}
+  em{font-style:italic;color:var(--muted)}
+  p{margin-bottom:6px;font-size:13px}
+  .note{font-size:11.5px;color:var(--muted);font-style:italic;margin-top:3px}
+  .footer{margin-top:48px;text-align:center;font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-tag">Master 1 · Politique &amp; Gouvernance du Système de Santé · 2025/2026</div>
+  <h1>Thème 10 — <span>Personnes en situation de handicap</span><br>Construire une société inclusive ?</h1>
+  <div class="header-sub">Cours de Guylène Nicolas</div>
+  <div class="plan-row">
+    <span class="plan-pill">I · Loi du 30 juin 1975 : les valeurs d'insertion et son échec</span>
+    <span class="plan-pill">II · Loi du 11 février 2005 : le renouveau de la solidarité ?</span>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- ═══ INTRODUCTION ═══ -->
+  <div class="intro-box">
+    <p><strong>Contexte international :</strong> La France est régulièrement mise en cause par les instances internationales pour ses carences en matière de handicap. L'ONU (2021), le Conseil de l'Europe (2023) et la Commission européenne soulignent l'écart entre les engagements et la réalité.</p>
+  </div>
+
+  <!-- POSITION ONU & EUROPE -->
+  <div class="subsection" style="margin-top:22px">
+    <div class="sub-title gold">Cadre international : position de l'ONU, du Conseil de l'Europe et de l'UE</div>
+    <div class="warn-box">
+      <div class="warn-ref">Convention internationale relative aux droits des personnes handicapées (CIDPH) — ratifiée par la France en 2009</div>
+      <p>Le Comité des droits des personnes handicapées a rendu ses conclusions sur la France le <b>14 septembre 2021</b> :</p>
+      <ul class="styled" style="margin-top:5px">
+        <li>Législation et politiques publiques fondées sur le <b>modèle médical</b> et des approches paternalistes</li>
+        <li>Loi de 2005 critiquée car elle « met l'accent sur l'incapacité des personnes handicapées et fait de l'institutionnalisation la norme »</li>
+        <li>L'ONU invite la France à se mettre en conformité avec la CIDPH via un <b>modèle fondé sur les droits de l'Homme</b></li>
+      </ul>
+    </div>
+    <div class="warn-box">
+      <div class="warn-ref">ONU — Lignes directrices sur la désinstitutionnalisation, 9 septembre 2022 (Rosemary Kayess)</div>
+      <p>Destinées à guider les États pour « réaliser le droit des personnes handicapées à <b>vivre de manière autonome</b> et à être incluses dans la société » et leur fournir l'opportunité de quitter les institutions, quitte à priver ces dernières de moyens financiers.</p>
+    </div>
+    <div class="warn-box">
+      <div class="warn-ref">Conseil de l'Europe — Avis du 17 avril 2023</div>
+      <p>Dénonce une violation des droits des personnes en situation de handicap et de leurs familles par la France. Constate l'absence de « politique cohérente et coordonnée en matière de handicap ». Conclut à l'<b>unanimité</b> que la France a enfreint <b>3 articles de la Charte des droits sociaux</b> (accès aux services d'accompagnement, aux services publics, au logement, à la santé). Le handicap représente <b>20 % des réclamations</b> pour discrimination adressées au défenseur des droits.</p>
+    </div>
+    <div class="law-box">
+      <div class="law-ref">Stratégie européenne en faveur des droits des personnes handicapées 2021-2030 (Commission européenne, 3 mars 2021)</div>
+      <p>S'appuie sur la stratégie 2010-2020. Tient compte de la diversité des handicaps (incapacités physiques, mentales, intellectuelles ou sensorielles, souvent <b>invisibles</b>). Conforme à l'article 1er de la CIDPH. Constat : les personnes handicapées restent confrontées à des obstacles et davantage exposées au risque de <b>pauvreté et d'exclusion sociale</b>.</p>
+    </div>
+  </div>
+
+  <!-- ORIGINE ET HISTORIQUE DU TERME -->
+  <div class="subsection">
+    <div class="sub-title gold">Origine et historique du terme « handicap »</div>
+    <div class="card">
+      <b>Étymologie :</b> Anglicisme issu des jeux de hasard (« Hand in Cap »), puis des courses hippiques. Marque la volonté de rétablir les inégalités naturelles par différents artifices. Acceptions : désavantage dans une concurrence, infériorité/limitation d'activité, différence « hors normes ».
+    </div>
+    <div class="card">
+      <b>Modèle de Wood (OMS) — Classification internationale du fonctionnement du handicap et de la santé (CIF) :</b> concept tridimensionnel articulant <b>déficiences</b> (fonctions organiques/anatomiques) → <b>activités</b> (possibilités/limitations fonctionnelles) → <b>participation</b> (possibilités/limitations professionnelles et sociales). Ces dimensions interagissent avec les <b>facteurs environnementaux</b> (habitat, santé, accessibilité, géographie) et les <b>facteurs personnels</b> (croyances, culture, situation socio-économique, éducation).
+    </div>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-year">1670</div><div class="tl-text">Louis XIV crée l'Institution des Invalides pour héberger les vétérans inaptes au travail</div></div>
+      <div class="tl-item"><div class="tl-year">1898</div><div class="tl-text">Loi sur les accidents du travail : assurance à charge de l'employeur pour les infirmités acquises dans le cadre du travail</div></div>
+      <div class="tl-item"><div class="tl-year">1905</div><div class="tl-text">Loi sur l'assistance aux vieillards, infirmes et incurables : accueil en hospices et asiles sans distinction d'âge ou de handicap</div></div>
+      <div class="tl-item"><div class="tl-year">1909</div><div class="tl-text">Ministère de l'instruction publique : création de classes de perfectionnement pour enfants « anormaux d'école »</div></div>
+      <div class="tl-item"><div class="tl-year">1919</div><div class="tl-text">Barème d'évaluation des handicaps des victimes de WWI (utilisé jusqu'en 1993 pour tous les invalides civils)</div></div>
+      <div class="tl-item"><div class="tl-year">1945</div><div class="tl-text">Création de la Sécurité sociale : assurance contre les maladies et accidents privant des « capacités de gains »</div></div>
+      <div class="tl-item"><div class="tl-year">1949</div><div class="tl-text">Loi Cordonnier du 5 août 1949 sur l'assistance aux infirmes</div></div>
+      <div class="tl-item"><div class="tl-year">1957</div><div class="tl-text">Loi du 23 novembre 1957 sur le reclassement professionnel → 1ère apparition du terme « travailleur handicapé »</div></div>
+      <div class="tl-item"><div class="tl-year">1975</div><div class="tl-text">Loi du 30 juin 1975 d'orientation en faveur des personnes handicapées — unifie et rationalise les dispositifs antérieurs</div></div>
+    </div>
+  </div>
+
+  <!-- CHIFFRES CLÉS -->
+  <div class="subsection">
+    <div class="sub-title gold">Le handicap en France : chiffres clés</div>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="sn">2,7 M</div><div class="sl">reconnaissance administrative du handicap (6,6 % des 15-64 ans) — INSEE 2015</div></div>
+      <div class="stat-card"><div class="sn">5,7 M</div><div class="sl">maladie ou problème de santé chronique limitant depuis ≥ 6 mois (15 %)</div></div>
+      <div class="stat-card"><div class="sn">9,6 M</div><div class="sl">personnes de 15-64 ans considérées comme handicapées (enquête INSEE 2007)</div></div>
+      <div class="stat-card"><div class="sn">24 %</div><div class="sl">de la population active (15-64 ans) est touchée</div></div>
+      <div class="stat-card"><div class="sn">54 %</div><div class="sl">sont des femmes (alors qu'elles ne représentent que 50,6 % de la population active)</div></div>
+    </div>
+    <div class="card" style="margin-top:8px">
+      <b>Les principaux handicaps :</b>
+      <ul class="styled" style="margin-top:5px">
+        <li><b>5,2 millions</b> — déficiences auditives (13,2 % pop. active ; 4 déficients auditifs sur 5 déclarent d'autres déficiences ; &lt;1 % utilisent la langue des signes)</li>
+        <li><b>2,3 millions</b> — déficiences motrices (5,8 % pop. active ; 37 % isolées ou prédominantes)</li>
+        <li><b>1,7 million</b> — déficiences visuelles (4,3 % pop. active ; 33 % légère, 55 % moyenne, 12 % profonde dont 3,6 % aveugles ; 30 % souffrent d'un polyhandicap)</li>
+        <li><b>0,7 million</b> — déficiences intellectuelles (1,8 % pop. active ; difficultés d'apprentissage, langage, retards mentaux)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <b>Le plurihandicap :</b> certaines personnes souffrent de plusieurs handicaps (42 % : 1 seul ; 20 % : 2 ; 17 % : 3 ; 12 % : 4 ; 8 % : 5 ou plus). À distinguer du <b>polyhandicap</b> qui associe déficience mentale sévère + déficit moteur grave entraînant une restriction extrême de l'autonomie.
+    </div>
+    <div class="card">
+      <b>Chômage des travailleurs handicapés (AGEFIPH/Pôle emploi, 2021) :</b>
+      <ul class="styled" style="margin-top:5px">
+        <li>8,3 % des demandeurs d'emploi sont des BOE (bénéficiaires de l'obligation d'emploi)</li>
+        <li>482 373 DEBOE inscrits à Pôle emploi en catégories A-B-C (−2,2 % en un an)</li>
+        <li>63 % des DEBOE sont en chômage de longue durée</li>
+        <li>4,3 % de travailleurs handicapés dans les recrutements recensés par Pôle emploi (jan-avr. 2021)</li>
+        <li>10 834 maintiens dans l'emploi au 1er semestre 2021 via les Cap Emploi</li>
+        <li>Taux de chômage (2010-2018) : +98 % chez les travailleurs handicapés vs +38 % pour l'ensemble des demandeurs d'emploi</li>
+      </ul>
+    </div>
+    <div class="card">
+      <b>Scolarité — données contextuelles :</b>
+      <ul class="styled" style="margin-top:5px">
+        <li>Répartition : 50 % en milieu scolaire ordinaire / 25 % en classe spécialisée en école ordinaire / 25 % en établissement médico-social</li>
+        <li>La scolarité reste difficile après le Bac : taux de limitation fonctionnelle grave selon le diplôme (pop. 45-64 ans) : 4,2 % (enseignement supérieur) · 9,4 % (Bac) · 13,2 % (fin de 3ème) — source Eurostat 2014</li>
+        <li>L'origine sociale influence fortement la scolarisation : les élèves des familles très favorisées atteignent plus souvent la 3ème en classe ordinaire</li>
+        <li>La scolarisation en classe ordinaire décroît fortement avec l'âge : de 12 à 20 ans, le nombre d'élèves scolarisés en classe ordinaire ou ULIS diminue progressivement</li>
+      </ul>
+    </div>
+    <div class="card">
+      <b>Vieillissement des personnes handicapées (Cour des comptes, sept. 2023) :</b>
+      <p style="margin-top:5px">Augmentation de +55 % des bénéficiaires de l'AAH de plus de 50 ans entre 2011 et 2019. Phénomène non anticipé par les pouvoirs publics malgré la combinaison du vieillissement des générations nées après-guerre et de l'amélioration de l'espérance de vie des personnes handicapées. Les conséquences sur les besoins en établissements et services spécifiques n'ont pas été prises en compte.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ SECTION I ═══════════════════════════════ -->
+  <div class="section-block">
+    <div class="section-title">
+      <div class="section-num">I</div>
+      <div class="section-heading vert">La loi du 30 juin 1975 : la définition des valeurs d'insertion et son échec</div>
+    </div>
+
+    <!-- A. Principe de solidarité -->
+    <div class="subsection">
+      <div class="sub-title vert">A · Le principe de solidarité</div>
+      <div class="law-box">
+        <div class="law-ref">Loi n° 75-534 du 30 juin 1975 d'orientation en faveur des personnes handicapées</div>
+        <p>« La prévention et le dépistage des handicaps, les soins, l'éducation, la formation et l'orientation professionnelle, l'emploi, la garantie d'un minimum de ressources, l'intégration sociale et l'accès aux sports et aux loisirs du mineur et de l'adulte handicapés physiques, sensoriels ou mentaux, constituent une <b>obligation nationale</b>. »</p>
+        <p style="margin-top:6px">Le respect de la dignité nécessite la scolarisation des enfants handicapés en milieu ordinaire puis l'intégration des travailleurs handicapés en milieu ordinaire.</p>
+      </div>
+    </div>
+
+    <!-- B. Insertion scolaire -->
+    <div class="subsection">
+      <div class="sub-title vert">B · L'insertion en milieu scolaire ordinaire et les CDES</div>
+      <div class="card">
+        <p>La loi de 1975 institue l'<b>obligation éducative</b> pour les enfants et adolescents handicapés et fixe comme objectif prioritaire leur intégration en milieu scolaire ordinaire, de la crèche à l'université, conciliée avec les besoins spécifiques de soins.</p>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Commissions départementales de l'éducation spécialisée (CDES) — créées par la loi du 30 juin 1975</div>
+        <p>Compétentes pour les enfants de moins de 20 ans non encore entrés dans la vie active. <b>2 missions :</b></p>
+        <ul class="styled" style="margin-top:5px">
+          <li><b>1.</b> Évaluation du taux d'incapacité → attribution de l'allocation d'éducation spéciale et de la carte d'invalidité</li>
+          <li><b>2.</b> Orientation : intégration en établissement scolaire ordinaire / prise en charge en établissement d'éducation spécialisé (IME, IMPro…) / SESSAD (service d'éducation spéciale et de soins à domicile)</li>
+        </ul>
+        <p style="margin-top:6px"><b>Composition (12 membres nommés par le préfet pour 3 ans) :</b> 3 DDASS (dont ≥1 médecin) + 3 inspecteur d'académie + 3 organismes AM et prestations familiales + 1 établissements privés + 2 associations de parents d'élèves/familles d'enfants handicapés.</p>
+      </div>
+    </div>
+
+    <!-- C. Insertion professionnelle -->
+    <div class="subsection">
+      <div class="sub-title vert">C · L'insertion en milieu de travail ordinaire et la COTOREP</div>
+      <div class="law-box">
+        <div class="law-ref">Loi n° 87-517 du 10 juillet 1987 — obligation d'emploi des travailleurs handicapés</div>
+        <p>Tout employeur public ou privé d'<b>au moins 20 salariés</b> doit employer une proportion de travailleurs handicapés correspondant à <b>6 % de l'effectif</b>. Inclut les bénéficiaires reconnus par la COTOREP, les victimes d'accidents du travail et certains titulaires de pensions d'invalidité.</p>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Commission technique d'orientation et de reclassement professionnel (COTOREP) — créée par la loi du 30 juin 1975</div>
+        <p>Placée sous l'autorité du préfet. Compétente pour les adultes à partir de 20 ans (dérogation : 16 ans si hors prestations familiales). Organisée en <b>2 sections spécialisées :</b></p>
+        <ul class="styled" style="margin-top:5px">
+          <li><b>Section 1 — Insertion professionnelle :</b> apprécie l'attitude au travail, reconnaît la qualité de « travailleur handicapé », oriente vers emploi en milieu ordinaire / stage de réadaptation ou formation / emploi en milieu protégé (atelier protégé, CAT)</li>
+          <li><b>Section 2 — Médico-sociale :</b> apprécie le taux d'invalidité, oriente vers établissement spécialisé, ouvre le bénéfice de l'AAH et de l'allocation compensatrice pour tierce personne</li>
+        </ul>
+        <p style="margin-top:6px"><b>Composition (24 membres nommés par le préfet pour 3 ans) :</b> 3 conseillers généraux + 4 personnes emploi/inspection du travail (dont ANPE + médecin du travail) + 2 désignées par le président du CG (dont 1 médecin) + 2 DDASS (dont 1 médecin) + 1 ONAC + 1 médecin-conseil SS + 4 organismes SS/prestations familiales + 2 gestionnaires foyers d'hébergement + 1 gestionnaire + 2 associations PH + 1 syndicat d'employeurs + 1 syndicat de salariés.</p>
+      </div>
+      <div class="card">
+        <b>Statut du travailleur handicapé en milieu ordinaire (secteur privé) :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li>Même statut que les autres salariés au regard du droit du travail</li>
+          <li>Allongement de la durée du préavis de licenciement</li>
+          <li>Salaire ≥ convention collective ; si rendement notoirement diminué : le préfet (DDTEFP) peut autoriser un abattement → le salarié perçoit un complément de l'<b>AGEFIPH</b> jusqu'à concurrence d'une garantie de ressources de 100 % à 130 % du SMIC</li>
+        </ul>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">AGEFIPH — Association pour la gestion du fonds pour l'insertion professionnelle des personnes handicapées (issue de la loi du 10 juillet 1987)</div>
+        <p>Mission : favoriser l'accès et le maintien dans l'emploi des PH en <b>milieu ordinaire</b>. Budget abondé par les contributions des entreprises ne satisfaisant pas l'obligation d'emploi. Intervient à toutes les étapes : placement, maintien dans l'emploi, création d'activité, conseil, formation, aménagement des postes. S'adresse aux entreprises privées, aux PH en réinsertion dans le secteur privé et aux opérateurs terrain (Cap Emploi, organismes de formation, milieu protégé…).</p>
+        <p style="margin-top:6px"><b>Conseil d'administration paritaire :</b> collège des employeurs + collège des salariés + collège des associations + collège des personnalités qualifiées.</p>
+      </div>
+    </div>
+
+    <!-- D. Constat d'échec -->
+    <div class="subsection">
+      <div class="sub-title vert">D · Le constat d'échec : l'arrêt Perruche et ses suites</div>
+      <div class="juris-box">
+        <div class="juris-ref">Cour de cassation, 17 novembre 2000, Perruche</div>
+        <p>« L'enfant né handicapé peut demander la réparation du préjudice résultant de son handicap si ce dernier est en relation de causalité directe avec les fautes commises par le médecin dans l'exécution du contrat formé avec sa mère et qui ont empêché celle-ci d'exercer son choix d'interrompre sa grossesse. »</p>
+      </div>
+      <div class="card">
+        <b>Condamnation de cette jurisprudence :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li>Avis du CCNE n° 68 du 29 mai 2001 — <em>Handicaps congénitaux et préjudices</em></li>
+          <li>Grève des gynécologues, échographistes et obstétriciens</li>
+          <li>Manifestations des parents d'enfants handicapés</li>
+        </ul>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Loi du 4 mars 2002 relative aux droits des malades et à la qualité du système de santé (loi Kouchner, dite « anti-arrêt Perruche »)</div>
+        <p>Titre 1er — « Solidarité envers les personnes handicapées » :</p>
+        <ul class="styled" style="margin-top:5px">
+          <li>« <b>Nul ne peut se prévaloir d'un préjudice du seul fait de sa naissance</b> »</li>
+          <li>Création du Conseil national consultatif des personnes handicapées chargé d'évaluer la situation matérielle, financière et morale des PH et de présenter des propositions au Parlement et au gouvernement pour une programmation pluriannuelle continue</li>
+        </ul>
+      </div>
+      <div class="juris-box">
+        <div class="juris-ref">CEDH, 3 février 2022, N.M. et autres c/ France</div>
+        <p>La France condamnée « pour avoir refusé d'indemniser le handicap d'un enfant qui n'avait pas été diagnostiqué avant sa naissance » (syndrome de Vacterl, né en décembre 2001). Application rétroactive de la loi Kouchner jugée contraire à la Convention européenne. La CEDH estime que les parents auraient pu « légitimement espérer obtenir réparation ». La France avait déjà été condamnée à deux reprises en 2005 (affaires <b>Maurice et Draon</b> — versement de 4,9 millions d'euros à deux familles).</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══════════════════════════════ SECTION II ═══════════════════════════════ -->
+  <div class="section-block">
+    <div class="section-title">
+      <div class="section-num">II</div>
+      <div class="section-heading brique">La loi du 11 février 2005 : le renouveau de la solidarité ?</div>
+    </div>
+
+    <!-- A. Changement de politique -->
+    <div class="subsection">
+      <div class="sub-title brique">A · Un changement de politique : la nouvelle définition du handicap</div>
+      <div class="law-box">
+        <div class="law-ref">Loi n° 2005-102 du 11 février 2005 pour l'égalité des droits et des chances, la participation et la citoyenneté des personnes handicapées</div>
+        <p>3 axes du changement de politique :</p>
+        <ul class="styled" style="margin-top:5px">
+          <li>Politique de <b>partenariat</b> avec les personnes handicapées</li>
+          <li>Rendre effective la <b>pleine participation</b> des PH à la vie en société</li>
+          <li><b>Droit à compensation</b> = donner aux PH les moyens de former elles-mêmes et en toute responsabilité leur projet de vie</li>
+        </ul>
+      </div>
+      <div class="key-box">
+        <div class="key-label">🔑 Définition légale du handicap — Art. L. 114 CASF</div>
+        <p>« Constitue un handicap, au sens de la présente loi, toute <b>limitation d'activité ou restriction de participation à la vie en société</b> subie dans son environnement par une personne en raison d'une altération substantielle, durable ou définitive d'une ou plusieurs fonctions physiques, sensorielles, mentales, cognitives ou psychiques, d'un polyhandicap ou d'un trouble de santé invalidant. »</p>
+      </div>
+    </div>
+
+    <!-- B. Apport 1 : financier -->
+    <div class="subsection">
+      <div class="sub-title brique">B · Apport essentiel n° 1 : le volet financier (AAH)</div>
+      <div class="law-box">
+        <div class="law-ref">Allocation aux adultes handicapés (AAH) — montant au 1er avril 2026 : 1 041,59 €/mois</div>
+        <ul class="styled" style="margin-top:5px">
+          <li>Meilleur cumul AAH + revenus du travail pour les PH qui travaillent</li>
+          <li>En établissement (hospitalier, médico-social ou pénitentiaire) : AAH disponible d'<b>au moins 30 %</b> (contre 12 % antérieurement)</li>
+        </ul>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Décret n° 2022-1694 du 28 décembre 2022 — Déconjugalisation de l'AAH</div>
+        <p>Permet aux PH de calculer l'AAH sur la base de leurs <b>seules ressources individuelles</b>, sans dépendre des ressources de leur conjoint.</p>
+      </div>
+    </div>
+
+    <!-- C. Apport 2 : MDPH -->
+    <div class="subsection">
+      <div class="sub-title brique">C · Apport essentiel n° 2 : les Maisons départementales des personnes handicapées (MDPH)</div>
+      <div class="law-box">
+        <div class="law-ref">MDPH — créées depuis 2006 (Décret n° 2005-1589 du 19 décembre 2005)</div>
+        <p><b>Guichet unique</b> dans chaque département : interlocuteur unique, démarches simplifiées, accompagnement dans l'élaboration du <b>projet de vie</b>. Depuis 2009, chargées du bilan professionnel des PH (mais considèrent ne pas disposer des outils adaptés).</p>
+      </div>
+      <div class="card">
+        <b>Parcours MDPH en 7 étapes :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li><b>1.</b> Accueil MDPH</li>
+          <li><b>2.</b> Instruction : saisie des informations (recevabilité)</li>
+          <li><b>3.</b> Accusé de réception si dossier complet</li>
+          <li><b>4.</b> Unité d'expertise : coordonnateur médical (guide barème) + coordonnateur administratif + responsables techniques de pôle</li>
+          <li><b>5.</b> Équipe pluridisciplinaire : évaluation</li>
+          <li><b>6.</b> ITEC (Instance Technique d'Évaluation et de Coordination) : coordination, orientations, étude des PPC, préparation de la CDAPH — Proposition de PPC* ou PPS** envoyée 15 jours avant CDAPH</li>
+          <li><b>7.</b> CDAPH : décision</li>
+        </ul>
+        <p class="note">*PPC : Plan Personnalisé de Compensation · **PPS : Projet Personnalisé de Scolarisation</p>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Commission des droits et de l'autonomie des personnes handicapées (CDAPH)</div>
+        <p>Prend toutes les décisions relatives aux droits de la PH sur la base de l'évaluation de l'équipe pluridisciplinaire et du plan de compensation. Compétences : apprécier le taux d'incapacité, attribuer la PCH, reconnaître la qualité de travailleur handicapé, se prononcer sur les mesures d'insertion scolaire. Les décisions peuvent faire l'objet d'un recours précédé d'une tentative de conciliation.</p>
+        <p style="margin-top:6px"><b>Composition — 23 membres titulaires + 23 suppléants :</b> représentants du département (4), services de l'État (4), organismes de protection sociale (2), organisations syndicales employeurs+salariés (2), associations de parents d'élèves (1), associations de PH pour au moins 1/3 des membres (7), membre du CDCPH (1), établissements ou services (2). Président élu tous les 2 ans (mandat renouvelable 2 fois), membres nommés pour 4 ans renouvelables.</p>
+        <p style="margin-top:6px"><b>2 procédures :</b></p>
+        <ul class="styled">
+          <li><b>Procédure simplifiée :</b> (carte d'invalidité, carte de priorité, renouvellement AAH, RQTH maintien dans l'emploi) → médecin → CDAPH réduite</li>
+          <li><b>Procédure complète :</b> (orientations scolaire/médico-sociale/professionnelle, AAH et compléments, AEEH et compléments, PCH) → équipe médico-sociale → équipe pluridisciplinaire → Plan Personnalisé de Compensation → CDAPH plénière</li>
+        </ul>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Voies de recours (depuis le 1er janvier 2019)</div>
+        <p>Suppression des TASS, TCI, CDAS et CCAS. Un recours gracieux est obligatoire avant de saisir le tribunal judiciaire.</p>
+      </div>
+      <div class="juris-box">
+        <div class="juris-ref">Conseil d'État, 8 novembre 2019</div>
+        <p>Le <b>juge judiciaire est compétent</b> pour statuer sur un recours contre une décision de la CDAPH, y compris lorsque la responsabilité de la MDPH est recherchée.</p>
+      </div>
+      <div class="card">
+        <b>Maison départementale de l'autonomie (MDA) :</b> évolution institutionnelle visant à regrouper MDPH et services d'aide à l'autonomie des personnes âgées au sein d'une même structure départementale.
+      </div>
+    </div>
+
+    <!-- D. Apport 3 : droit à compensation -->
+    <div class="subsection">
+      <div class="sub-title brique">D · Apport essentiel n° 3 : le droit à compensation (PCH)</div>
+      <div class="law-box">
+        <div class="law-ref">Prestation de compensation du handicap (PCH)</div>
+        <p>Destinée à compenser les conséquences du handicap. Prend la forme d'une aide <b>humaine, technique ou animalière</b> en fonction du projet de vie. Première prestation ascendante venant compenser le handicap au-delà des ressources propres.</p>
+        <p style="margin-top:6px"><b>Répartition des dépenses de PCH par type d'aide (DREES 2016) :</b> 91,5 % aide humaine · 4 % aménagement logement/véhicule · 2,3 % aide technique · 2,1 % dépenses spécifiques et exceptionnelles · 0,03 % aide animalière.</p>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Loi n° 2020-220 du 6 mars 2020 — amélioration de l'accès à la PCH</div>
+        <p>Suppression de la limite d'âge de 75 ans pour demander la PCH (précédemment, demande possible jusqu'à 75 ans si handicap reconnu avant 60 ans). Lorsque le handicap n'est pas susceptible d'évoluer favorablement, droit à la PCH <b>sans limitation de durée</b>.</p>
+      </div>
+    </div>
+
+    <!-- E. Apport 4 : accessibilité -->
+    <div class="subsection">
+      <div class="sub-title brique">E · Apport essentiel n° 4 : le principe d'accessibilité (« tout pour tous »)</div>
+      <div class="card">
+        <b>Objectif 2015 :</b> transports en commun + tous les lieux recevant du public (publics ou privés) accessibles selon le principe « <b>tout pour tous</b> ». Des dérogations peuvent intervenir sur les <b>moyens</b>, jamais sur les <b>objectifs</b>. Sanctions pénales pour non-mise en accessibilité.
+        <ul class="styled" style="margin-top:6px">
+          <li>Accessibilité du cadre bâti (tout bâtiment recevant du public)</li>
+          <li>Accessibilité des transports et de toute la chaîne du déplacement</li>
+          <li>Accessibilité à l'information et aux savoirs : sous-titrage TV, sites Internet, reconnaissance de la <b>langue française des signes (LSF)</b></li>
+        </ul>
+      </div>
+      <div class="warn-box">
+        <div class="warn-ref">Échec de l'objectif 2015 (Baromètre APF, 11 février 2014)</div>
+        <p>À peine plus de la moitié des écoles et 42 % des réseaux de bus accessibles. Moins de 50 000 ERP mis en accessibilité entre 2005 et 2015.</p>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Loi du 10 juillet 2014 + Ordonnance n° 2014-1090 du 26 septembre 2014 — Agendas d'accessibilité programmée (Ad'AP) et Schémas directeurs d'accessibilité (SD'AP)</div>
+        <p><b>Apports de l'ordonnance :</b></p>
+        <ul class="styled" style="margin-top:5px">
+          <li>Communes &lt;500 hab. : pas obligées d'élaborer le plan de mise en accessibilité de la voirie (PAVE)</li>
+          <li>Communes 500-1 000 hab. : limitées aux voies les plus fréquentées</li>
+          <li>Délai de mise en accessibilité des ERP porté de 6 à 9 ans selon les catégories</li>
+        </ul>
+        <p style="margin-top:6px"><b>Résultats Ad'AP :</b> plus de <b>660 000 ERP</b> entrés dans le dispositif. Construits depuis 2005 ou mis en accessibilité entre 2005 et 2015 : <b>350 000 ERP</b> accessibles. Au total : <b>1 million d'ERP</b> dans le processus.</p>
+        <p style="margin-top:6px"><b>Sanction (art. 5 ordonnance) :</b> amende de <b>45 000 €</b> + en cas de récidive : <b>6 mois d'emprisonnement</b>.</p>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Loi n° 2018-1021 du 23 novembre 2018 ELAN (Évolution du logement, de l'aménagement et du numérique)</div>
+        <p>Article 18 : seulement <b>10 % des logements neufs</b> devront être accessibles (contre 100 % prévus par la loi de 2005). Les 90 % restants seront « <b>évolutifs</b> » (supprimer une cloison, transformer une baignoire en douche…). Le bailleur ne peut pas refuser cette modification.</p>
+      </div>
+    </div>
+
+    <!-- F. Apport 5 : emploi -->
+    <div class="subsection">
+      <div class="sub-title brique">F · Apport essentiel n° 5 : l'emploi</div>
+      <div class="card">
+        <ul class="styled">
+          <li>Principe de <b>non-discrimination à l'embauche</b> des personnes handicapées</li>
+          <li>Durcissement des sanctions financières (= coût annuel de la rémunération d'une personne au SMIC)</li>
+          <li>Suppression des « emplois exclus », augmentation de la cotisation AGEFIPH pour les entreprises n'employant aucun travailleur handicapé, modulation selon les efforts de l'employeur</li>
+          <li>Alignement des entreprises publiques sur le dispositif privé : sanctions + création du <b>Fonds de la fonction publique (FIPHFP)</b></li>
+          <li>Taux d'emploi direct en équivalent temps plein : <b>3,5 %</b> en 2017 (rapport AGEFIPH 2017)</li>
+          <li>2,7 millions de bénéficiaires de l'obligation d'emploi (DEBOE) avec reconnaissance administrative en 2019 (+300 000 depuis 2013) ; 36 % ont un niveau ≥ Bac ; représentent 7 % des 15-64 ans et 3,8 % des emplois</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- G. Apport 6 : scolarité -->
+    <div class="subsection">
+      <div class="sub-title brique">G · Apport essentiel n° 6 : la scolarité</div>
+      <div class="card">
+        <ul class="styled">
+          <li>Tous les enfants inscrits dans l'école du quartier de résidence</li>
+          <li>Si maintien nécessaire en milieu médico-social : passerelles avec l'Éducation nationale</li>
+          <li>La décision finale d'orientation revient aux <b>parents</b></li>
+          <li>Véritable projet de parcours scolaire : <b>Projet Personnalisé de Scolarisation (PPS)</b></li>
+          <li>Mise en place des <b>auxiliaires de vie scolaire (AVS)</b></li>
+        </ul>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Loi n° 2019-791 du 26 juillet 2019 pour une école de la confiance (loi Blanquer) — Pôles inclusifs d'accompagnement localisés (PIAL)</div>
+        <p>3 objectifs :</p>
+        <ul class="styled" style="margin-top:5px">
+          <li><b>1.</b> Accompagnement défini au plus près des besoins de chaque élève en situation de handicap afin de développer son autonomie et lui permettre d'acquérir les connaissances du socle commun</li>
+          <li><b>2.</b> Plus de réactivité et flexibilité dans l'organisation de l'accompagnement humain</li>
+          <li><b>3.</b> Professionnalisation des accompagnants et amélioration de leurs conditions de travail</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- H. Apport 7 : prévention et soins -->
+    <div class="subsection">
+      <div class="sub-title brique">H · Apport essentiel n° 7 : prévention, recherche et accès aux soins</div>
+      <div class="card">
+        <ul class="styled">
+          <li>Formation et sensibilisation au handicap des <b>médecins généralistes et infirmiers</b> (déceler les souffrances physiques afin que le handicap ne cache pas la personne et la maladie)</li>
+          <li>Création d'un <b>Observatoire national</b> sur la formation, la recherche et l'innovation sur le handicap</li>
+          <li>Formation sur le handicap de tous les personnels de la santé</li>
+          <li>Mise en place de consultations médicales de prévention spécifiques</li>
+          <li>Allongement de la durée du congé maternité pour les femmes ayant accouché d'un enfant très prématuré</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- I. Vie affective et sexuelle -->
+    <div class="subsection">
+      <div class="sub-title brique">I · Vie affective et sexuelle des personnes handicapées</div>
+      <div class="law-box">
+        <div class="law-ref">Avis n° 118 du CCNE (2012) — Vie affective et sexuelle des personnes handicapées : question de l'assistance sexuelle</div>
+        <p>Avis <b>réservé</b> sur l'assistance sexuelle au nom du principe de <b>non-marchandisation du corps</b>. Incite à faire changer le regard sur le handicap.</p>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">CCNE, 13 juillet 2021 — Réponse à la saisine de la Ministre chargée des PH</div>
+        <p>Articulation et conciliation entre le <b>droit des PH d'accéder à une vie relationnelle et intime</b> et la préservation du principe de <b>non-marchandisation du corps humain</b>.</p>
+        <p style="margin-top:6px"><b>3 propositions du CCNE :</b></p>
+        <ul class="styled" style="margin-top:5px">
+          <li><b>1.</b> Réaliser une cartographie des initiatives des Centres ressources régionaux sur la vie intime, affective et sexuelle et de soutien à la parentalité ; les faire connaître aux PH vivant à domicile et établir des liens avec tout établissement accueillant des personnes vulnérables ; ancrer et généraliser ces Centres sur le territoire</li>
+          <li><b>2.</b> Inscrire dans le projet de tout établissement et service à domicile une politique favorisant un droit d'accès à la vie relationnelle, affective et intime pour répondre aux besoins des PH et faciliter les rencontres au sein de la société</li>
+          <li><b>3.</b> Pour les PH mental, sensoriel, psychique et physique ayant besoin d'être accompagnées dans l'accès à la vie affective et sexuelle, expérimenter des initiatives permettant, dans le cadre législatif actuel, l'accompagnement aux gestes du corps et de l'intimité dans le champ du handicap (destiné aux professionnels volontaires formés)</li>
+        </ul>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Circulaire n° DGCS/SD3B/2021/147 du 5 juillet 2021</div>
+        <p>Relative au respect de l'intimité, des droits sexuels et reproductifs des personnes accompagnées dans les établissements et services médico-sociaux (ESSMS) relevant du champ du handicap et de la lutte contre les violences. <b>3 mesures :</b></p>
+        <ul class="styled" style="margin-top:5px">
+          <li><b>1.</b> Création et déploiement de <b>centres de ressources</b> dans chaque région (à partir du 1er trimestre 2021) pour accompagner les PH dans leur vie intime, sexuelle et leur parentalité</li>
+          <li><b>2.</b> Développement d'une <b>formation en ligne</b> pour les professionnels</li>
+          <li><b>3.</b> Instruction aux ESMS rappelant la nécessité de respecter le droit à l'intimité, la vie amoureuse, les droits sexuels et reproductifs, et de lutter contre les violences</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Fiche de révision · Thème 10 · Personnes en situation de handicap · Master 1 PGSS 2025/2026</div>
+</div>
+</body>
+</html>

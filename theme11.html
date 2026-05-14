@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thème 11 – Santé et Environnement</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f6f0;
+    --ink: #0f1a0a;
+    --s1: #1a5c1a;    /* vert – Section I */
+    --s2: #2a5a2a;    /* vert foncé – Section II */
+    --s3: #1a4a2a;    /* vert forêt – Section III */
+    --gold: #7a6010;
+    --muted: #4a5c3a;
+    --rule: #c8d8b8;
+    --law-bg: #f0f8e8;
+    --law-brd: #5a8a2a;
+    --jur-bg: #e8f0f8;
+    --jur-brd: #2a5a9a;
+    --key-bg: #f8fff0;
+    --key-brd: #3a8a3a;
+    --warn-bg: #fff4e8;
+    --warn-brd: #c85a10;
+    --stat-bg: #0f1a0a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Source Serif 4',Georgia,serif;font-size:14px;line-height:1.72;padding-bottom:60px}
+
+  /* HEADER */
+  .header{background:var(--ink);color:#fff;padding:34px 48px 28px;position:relative;overflow:hidden}
+  .header::before{content:'';position:absolute;top:0;right:0;width:200px;height:100%;background:linear-gradient(135deg,transparent 60%,rgba(90,140,40,.2))}
+  .header-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:7px}
+  .header h1{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;line-height:1.2}
+  .header h1 span{color:#a8d848}
+  .header-sub{margin-top:8px;font-size:12px;color:rgba(255,255,255,.45);font-style:italic}
+  .plan-row{margin-top:18px;display:flex;gap:9px;flex-wrap:wrap}
+  .plan-pill{background:rgba(168,216,72,.12);border:1px solid rgba(168,216,72,.25);color:rgba(255,255,255,.85);border-radius:20px;padding:4px 13px;font-size:11px}
+
+  /* LAYOUT */
+  .content{max-width:860px;margin:0 auto;padding:0 28px}
+
+  /* INTRO */
+  .intro-box{background:var(--ink);color:#fff;border-radius:4px;padding:18px 22px;margin:26px 0 0}
+  .intro-box p{font-size:13px;line-height:1.75;color:rgba(255,255,255,.83)}
+  .intro-box strong{color:#a8d848}
+
+  /* SECTIONS */
+  .section-block{margin-top:40px}
+  .section-title{display:flex;align-items:center;gap:13px;margin-bottom:4px}
+  .section-num{font-family:'Playfair Display',serif;font-size:40px;font-weight:900;line-height:1;color:var(--rule);flex-shrink:0;user-select:none}
+  .section-heading{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;border-bottom:2.5px solid var(--ink);padding-bottom:3px;flex:1}
+  .section-heading.s1{border-color:var(--s1);color:var(--s1)}
+  .section-heading.s2{border-color:var(--s2);color:var(--s2)}
+  .section-heading.s3{border-color:var(--s3);color:var(--s3)}
+
+  /* SOUS-SECTIONS */
+  .subsection{margin-top:20px}
+  .sub-title{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.9px;border-left:3px solid var(--rule);padding-left:9px;margin-bottom:9px;color:var(--muted)}
+  .sub-title.s1{border-color:var(--s1);color:var(--s1)}
+  .sub-title.s2{border-color:var(--s2);color:var(--s2)}
+  .sub-title.s3{border-color:var(--s3);color:var(--s3)}
+  .sub-title.gold{border-color:var(--gold);color:var(--gold)}
+  .sub-title.warn{border-color:var(--warn-brd);color:var(--warn-brd)}
+
+  /* BOXES */
+  .card{background:#fff;border:1px solid var(--rule);border-radius:4px;padding:13px 17px;margin-bottom:9px}
+  .law-box{background:var(--law-bg);border-left:4px solid var(--law-brd);border-radius:0 4px 4px 0;padding:11px 15px;margin:7px 0}
+  .law-box .law-ref{font-family:'Playfair Display',serif;font-size:11.5px;font-weight:700;color:var(--law-brd);letter-spacing:.4px;margin-bottom:3px}
+  .juris-box{background:var(--jur-bg);border-left:4px solid var(--jur-brd);border-radius:0 4px 4px 0;padding:11px 15px;margin:7px 0}
+  .juris-box .juris-ref{font-family:'Playfair Display',serif;font-size:11.5px;font-weight:700;color:var(--jur-brd);letter-spacing:.4px;margin-bottom:3px}
+  .key-box{background:var(--key-bg);border:1px dashed var(--key-brd);border-radius:4px;padding:11px 15px;margin:7px 0}
+  .key-box .key-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--key-brd);font-weight:600;margin-bottom:3px}
+  .warn-box{background:var(--warn-bg);border-left:4px solid var(--warn-brd);border-radius:0 4px 4px 0;padding:11px 15px;margin:7px 0}
+  .warn-box .warn-ref{font-family:'Playfair Display',serif;font-size:11.5px;font-weight:700;color:var(--warn-brd);letter-spacing:.4px;margin-bottom:3px}
+
+  /* STATS */
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:9px;margin:9px 0}
+  .stat-card{background:var(--stat-bg);color:#fff;border-radius:4px;padding:12px 13px;text-align:center}
+  .stat-card .sn{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#a8d848;line-height:1.1}
+  .stat-card .sl{font-size:11px;color:rgba(255,255,255,.68);margin-top:3px}
+
+  /* PNSE timeline */
+  .timeline{margin:8px 0;padding-left:4px}
+  .tl-item{display:flex;gap:11px;margin-bottom:7px;align-items:flex-start}
+  .tl-year{background:var(--ink);color:#a8d848;font-family:'Playfair Display',serif;font-size:12px;font-weight:700;border-radius:3px;padding:2px 8px;flex-shrink:0;white-space:nowrap;line-height:1.6}
+  .tl-text{font-size:13px;line-height:1.65;padding-top:2px}
+
+  /* LISTES */
+  ul.styled{list-style:none;padding:0}
+  ul.styled li{padding:2px 0 2px 17px;position:relative;font-size:13px}
+  ul.styled li::before{content:'▸';position:absolute;left:0;color:var(--muted);font-size:11px;top:5px}
+
+  /* 2 COL */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:9px 0}
+  @media(max-width:600px){.two-col{grid-template-columns:1fr}.header{padding:24px 20px}.content{padding:0 15px}}
+
+  hr.divider{border:none;border-top:1.5px solid var(--rule);margin:32px 0 0}
+  b{font-weight:600}
+  em{font-style:italic;color:var(--muted)}
+  p{margin-bottom:6px;font-size:13px}
+  .note{font-size:11.5px;color:var(--muted);font-style:italic;margin-top:3px}
+  .footer{margin-top:48px;text-align:center;font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-tag">Master 1 · Politique &amp; Gouvernance du Système de Santé · 2024/2025</div>
+  <h1>Thème 11 — <span>Santé et Environnement</span><br>La protection de la santé au profit des générations à venir…</h1>
+  <div class="header-sub">Cours de Guylène Nicolas</div>
+  <div class="plan-row">
+    <span class="plan-pill">I · La protection de l'environnement : une préoccupation de santé publique</span>
+    <span class="plan-pill">II · Le rôle de l'ANSES : un aiguillon du changement ?</span>
+    <span class="plan-pill">III · Soigner : une activité polluante</span>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- ═══ INTRODUCTION ═══ -->
+  <div class="intro-box">
+    <p><strong>Fil conducteur :</strong> L'environnement est aujourd'hui considéré comme l'ensemble des facteurs pathogènes « <strong>externes</strong> » ayant un impact sur la santé (substances chimiques, radiations, germes…) par opposition aux facteurs « internes » (causes héréditaires, congénitales, fonctionnelles). La santé environnementale couvre les conditions de vie, la contamination des milieux (eau, air, sol) et les changements environnementaux (climatiques, UV…).</p>
+  </div>
+
+  <!-- CHIFFRES CLÉS -->
+  <div class="subsection" style="margin-top:22px">
+    <div class="sub-title gold">Chiffres clés — impacts sanitaires de l'environnement</div>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="sn">20 %</div><div class="sl">des cancers sont d'origine environnementale (OMS)</div></div>
+      <div class="stat-card"><div class="sn">48 000</div><div class="sl">décès prématurés/an en France liés à la pollution chronique de l'air</div></div>
+      <div class="stat-card"><div class="sn">68–97 Mds€</div><div class="sl">coût annuel sanitaire de la pollution de l'air en France</div></div>
+      <div class="stat-card"><div class="sn">&gt;150 Mds€</div><div class="sl">coût annuel des perturbateurs endocriniens en Europe</div></div>
+      <div class="stat-card"><div class="sn">&gt;11 Mds€</div><div class="sl">coût sanitaire du seul bruit des transports en France</div></div>
+      <div class="stat-card"><div class="sn">9 M</div><div class="sl">décès prématurés liés à la pollution dans le monde en 2015 (The Lancet)</div></div>
+      <div class="stat-card"><div class="sn">250 000</div><div class="sl">décès supplémentaires/an attendus entre 2030-2050 liés au changement climatique (OMS)</div></div>
+      <div class="stat-card"><div class="sn">2–4 Mds$</div><div class="sl">coût des dommages directs pour la santé liés au changement climatique d'ici 2030 (OMS)</div></div>
+    </div>
+    <div class="card" style="margin-top:8px">
+      <b>Décès prématurés mondiaux dus à la pollution (The Lancet, 2015) :</b>
+      <ul class="styled" style="margin-top:5px">
+        <li>Particules (air extérieur) : <b>4,2 M</b></li>
+        <li>Air intérieur : <b>2,9 M</b></li>
+        <li>Eau (assainissement + source) : <b>2,1 M</b></li>
+        <li>Professionnel (cancérogènes + particules) : <b>0,9 M</b></li>
+        <li>Sols, métaux lourds, produits chimiques : <b>0,5 M</b></li>
+        <li>Ozone : <b>0,3 M</b></li>
+      </ul>
+    </div>
+    <div class="card">
+      <b>Changement climatique et agriculture :</b> En 2012, l'agriculture a contribué à hauteur de <b>10 %</b> aux émissions de GES de l'UE (diminution de 24 % entre 1990 et 2012). Entre 2001 et 2011, les émissions mondiales liées à la production agricole et l'élevage ont augmenté de <b>14 %</b> (accroissement des pays en développement).
+    </div>
+    <div class="card">
+      <b>One Health / « Une seule santé » (Conseil scientifique Covid-19, 8 fév. 2022) :</b> Approche intégrée santé humaine, animale, environnement. Préconisations : repenser la gouvernance mondiale pour y inclure le One Health · favoriser les réseaux régionaux One Health dans les zones d'émergence · organiser en France une collaboration interministérielle pour mieux anticiper, prévenir, détecter et gérer les crises (santé, agriculture, transition écologique, recherche, MAE).
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ SECTION I ═══════════════════════════════ -->
+  <div class="section-block">
+    <div class="section-title">
+      <div class="section-num">I</div>
+      <div class="section-heading s1">La protection de l'environnement : une préoccupation de santé publique</div>
+    </div>
+
+    <!-- A. OMS -->
+    <div class="subsection">
+      <div class="sub-title s1">A · Le rôle de l'OMS</div>
+      <div class="card">
+        <b>Conférence ministérielle Santé et environnement (juin 1999) :</b> « L'environnement est la clé d'une meilleure santé. » L'OMS inclut la qualité des milieux (pollution atmosphère, eau, sols, déchets, nuisances sonores, insalubrité) et l'ensemble des activités humaines (air ambiant, accidents domestiques, violences urbaines…).
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Sommet de la Terre de Rio de Janeiro, 1992</div>
+        <p>L'OMS a apporté ses compétences lors de l'adoption de : la Convention-cadre des Nations Unies sur les changements climatiques · la Convention sur la diversité biologique · la Convention des Nations Unies sur la lutte contre la désertification.</p>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">61ème Assemblée mondiale de la Santé, 2008 → Plan de travail approuvé par le Conseil exécutif en 2009</div>
+        <p>L'OMS se voit fixer comme priorités : soutenir les systèmes de santé pour évaluer et surveiller la vulnérabilité et les risques sanitaires liés au changement climatique · définir des stratégies pour protéger la santé des groupes les plus vulnérables · mettre en commun les connaissances et bonnes pratiques.</p>
+      </div>
+    </div>
+
+    <!-- B. PNSE -->
+    <div class="subsection">
+      <div class="sub-title s1">B · Les Plans nationaux santé environnement (PNSE)</div>
+      <div class="law-box">
+        <div class="law-ref">Art. L. 1311 CSP — renouvellement tous les 5 ans</div>
+        <p>Compétences communes : ministères chargés de la santé, de l'environnement, du travail et de la recherche.</p>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-year">PNSE 1 — 2004-2008</div>
+          <div class="tl-text">Identifier et concevoir les principales actions pour améliorer la santé des Français en lien avec la qualité de leur environnement, dans une perspective de développement durable.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">PNSE 2 — 2009-2013</div>
+          <div class="tl-text">Décline les engagements du <b>Grenelle de l'environnement</b> en matière de santé environnementale.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">PNSE 3 — 2015-2019</div>
+          <div class="tl-text"><b>4 grandes catégories d'enjeux :</b> ① enjeux de santé prioritaires ② connaissance des expositions et de leurs effets ③ recherche en santé environnement ④ actions territoriales, information, communication, formation.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">PNSE 4 — 2021-2025</div>
+          <div class="tl-text">« Mon environnement, ma santé » — <b>4 grands axes :</b><br>① Mieux connaître les expositions et les effets sur la santé (<strong>concept d'exposome</strong> : considérer globalement les expositions tout au long de la vie ; introduit dans le CSP)<br>② Informer, communiquer et former professionnels et citoyens<br>③ Réduire les expositions environnementales (dont qualité de l'air intérieur)<br>④ Démultiplier les actions concrètes dans les territoires (rôle important des collectivités locales)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- C. Gouvernance PNSE -->
+    <div class="subsection">
+      <div class="sub-title s1">C · Gouvernance du suivi du PNSE et PRSE</div>
+      <div class="card">
+        <b>Comité de suivi national :</b> Groupe Santé Environnement (GSE), mis en place par les ministres chargés de l'environnement et de la santé.
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Art. L. 1311-7 CSP — Plans régionaux santé environnement (PRSE)</div>
+        <p>Déclinaisons régionales du PNSE, <b>co-pilotés</b> par l'État, l'ARS et en général le Conseil régional.</p>
+      </div>
+      <div class="card">
+        <b>PRSE (3) PACA 2015-2021</b> — co-piloté par : Préfet de région (DREAL) · ARS · Région PACA.<br>
+        <b>9 thématiques :</b> Air · Eau · Habitat · Bruit · Risques émergents et changement climatique · Système de santé · Urbanisme · Déchets · Alimentation
+      </div>
+      <div class="card">
+        <b>PRSE (4) PACA 2022-2027</b> — 2 axes, 9 actions :<br>
+        <b>Axe 1 — Partager les connaissances :</b> informer et sensibiliser les jeunes · former les professionnels de santé à la santé environnementale · inscrire tous les professionnels dans le cadre « une seule santé » (surveillance faune terrestre, prévention zoonoses)<br>
+        <b>Axe 2 — Agir pour des environnements favorables :</b> promouvoir la santé dans toutes les politiques via des CLS (UFS/EIS) · réduire l'exposition à la pollution de l'air (outil EQIS) · sécuriser la qualité de l'eau · prévenir les maladies vectorielles · gérer les espèces exotiques envahissantes (ambroisie, chenilles processionnaires…) · améliorer la qualité de l'air intérieur des établissements accueillant des populations sensibles
+      </div>
+      <div class="card">
+        <b>Qualité de l'air en PACA :</b> 3 sources de pollution — urbaine (transports sur Marseille, Nice, Avignon, Toulon) · industrielle (zone Étang de Berre) · ozone (conditions climatiques). <b>900 000 personnes (20 % de la population)</b> exposées à au moins un dépassement des normes. <b>2 500 décès précoces annuels</b> dans les 6 agglomérations Aix, Avignon, Cannes, Marseille, Nice, Toulon.
+      </div>
+    </div>
+
+    <!-- D. Intervention législateur -->
+    <div class="subsection">
+      <div class="sub-title s1">D · L'intervention du législateur : exemples</div>
+
+      <div class="subsection" style="margin-top:12px">
+        <div class="sub-title warn">Jurisprudence — pollution de l'air</div>
+        <div class="juris-box">
+          <div class="juris-ref">CE, 10 juillet 2020, Association Les Amis de la Terre</div>
+          <p>Condamnation historique de l'État pour son <b>inaction face à la pollution de l'air</b>. Injonction d'appliquer les principes européens de protection de l'air sous peine d'une amende de <b>10 millions d'euros par semestre</b>.<br>
+          Base légale : <em>Directive 2008/50/CE du 21 mai 2008</em> concernant la qualité de l'air ambiant (ramener sur tout le territoire les concentrations en particules fines et en dioxyde d'azote en deçà des valeurs limites).</p>
+        </div>
+        <div class="juris-box">
+          <div class="juris-ref">CE, 17 octobre 2022, n° 451129</div>
+          <p>Le CE confirme que le droit de vivre dans un environnement équilibré et respectueux de sa santé (Charte de l'environnement) constitue une <b>liberté fondamentale</b> permettant de bénéficier d'un <b>référé liberté</b>. L'État condamné à une amende record de <b>20 millions d'euros</b> (pour incapacité à faire respecter les normes dans les principales agglomérations). Après une première condamnation en août 2021 → total : <b>30 millions d'euros</b>.</p>
+        </div>
+      </div>
+
+      <div class="subsection" style="margin-top:12px">
+        <div class="sub-title s1">Loi EGAlim — alimentation saine et durable</div>
+        <div class="law-box">
+          <div class="law-ref">Loi n° 2018-938 du 30 octobre 2018 — #EGAlim</div>
+          <p>Pour l'équilibre des relations commerciales dans le secteur agricole et alimentaire et une alimentation saine, durable et accessible à tous. <b>3 objectifs :</b></p>
+          <ul class="styled" style="margin-top:5px">
+            <li><b>1.</b> Payer le juste prix aux producteurs pour leur permettre de vivre dignement de leur travail</li>
+            <li><b>2.</b> Renforcer la qualité sanitaire, environnementale et nutritionnelle des produits</li>
+            <li><b>3.</b> Favoriser une alimentation saine, sûre et durable pour tous</li>
+          </ul>
+        </div>
+        <div class="card">
+          <b>Mesures de qualité sanitaire et environnementale :</b>
+          <ul class="styled" style="margin-top:5px">
+            <li>Interdiction des <b>néonicotinoïdes</b> et de tous produits à mode d'action identique (protection des abeilles, biodiversité)</li>
+            <li>Séparation des activités de vente et de conseil pour les produits phytosanitaires · interdiction des rabais/remises/ristournes</li>
+            <li>Suspension du <b>dioxyde de titane</b> dans les produits alimentaires (aucune valeur nutritive, usage esthétique)</li>
+            <li>Protection des riverains à proximité des zones à traitement phytos</li>
+            <li><b>Bien-être animal :</b> extension du délit de maltraitance au transport et à l'abattage · peines doublées (1 an + 15 000 € vs 6 mois + 7 500 €) · associations de protection animale pouvant se porter partie civile · responsable de la protection animale dans chaque abattoir (statut de lanceur d'alerte) · expérimentation vidéo-surveillance abattoirs volontaires · interdiction de nouveaux bâtiments pour poules pondeuses élevées en cages</li>
+          </ul>
+        </div>
+        <div class="card">
+          <b>Mesures pour une alimentation saine, sûre et durable :</b>
+          <ul class="styled" style="margin-top:5px">
+            <li><b>50 % de produits locaux ou sous signes d'origine et de qualité (dont bio)</b> dans la restauration collective publique à partir du 1er janvier 2022</li>
+            <li>Lutte contre le gaspillage alimentaire (dons alimentaires élargis à la restauration collective et l'industrie agroalimentaire)</li>
+            <li>Possibilité d'emporter les aliments non consommés (contenants réutilisables ou recyclables)</li>
+          </ul>
+          <b style="display:block;margin-top:6px">Réduction du plastique dans l'alimentation :</b>
+          <ul class="styled" style="margin-top:3px">
+            <li>Interdiction des contenants alimentaires de cuisson/réchauffe/service en plastique dans la restauration collective des collectivités locales en <b>2025</b></li>
+            <li>Interdiction des touillettes et pailles en plastique dans la restauration et vente à emporter en <b>2020</b></li>
+            <li>Interdiction des bouteilles d'eau en plastique dans les cantines scolaires en <b>2020</b></li>
+          </ul>
+        </div>
+        <div class="warn-box">
+          <div class="warn-ref">Danger de la substitution du plastique (UFC-Que Choisir, mai 2021)</div>
+          <p>Alerte sur la dangerosité de certaines substances dans les alternatives végétales (gobelets, couverts, assiettes, pailles) : composés perfluorés, dérivés chlorés, pesticides, métaux lourds. Appel à revoir la réglementation européenne.</p>
+        </div>
+      </div>
+
+      <div class="subsection" style="margin-top:12px">
+        <div class="sub-title warn">Jurisprudence constitutionnelle — environnement</div>
+        <div class="juris-box">
+          <div class="juris-ref">CC, QPC n° 2019-823 du 21 janvier 2020 — interdiction d'exporter des pesticides dangereux</div>
+          <p>Saisine sur la constitutionnalité de l'interdiction faite par la loi de <b>produire et d'exporter des pesticides dangereux</b>. Le CC juge que l'atteinte à la liberté d'entreprendre est bien en lien avec les <b>objectifs de valeur constitutionnelle de protection de la santé et de l'environnement</b>. → Le CC consacre un <b>objectif de valeur constitutionnelle de protection de l'environnement, patrimoine commun des êtres humains</b>.</p>
+          <p class="note">Étude européenne fév. 2021 : 96,1 % des aliments se situent dans les limites légales autorisées sur la présence de pesticides.</p>
+        </div>
+        <div class="juris-box">
+          <div class="juris-ref">CC, QPC n° 2023-1066 du 27 octobre 2023 — stockage des déchets radioactifs</div>
+          <p>Art. L. 542-10-1 C. env. : régime applicable à la création d'un centre de stockage en couche géologique profonde de déchets radioactifs (exigence de réversibilité). Le CC juge en termes <b>inédits</b> : « lorsqu'il adopte des mesures susceptibles de porter une atteinte grave et durable à l'environnement, [le législateur] doit veiller à ce que les choix destinés à répondre aux besoins du présent <strong>ne compromettent pas la capacité des générations futures</strong> et des autres peuples à satisfaire leurs propres besoins, en préservant leur liberté de choix à cet égard. »</p>
+          <p style="margin-top:5px">→ <b>1ère reconnaissance du droit des générations futures et des autres peuples de vivre dans un environnement équilibré et respectueux de la santé</b>. (Pas de violation de l'article 1er de la Charte en l'espèce.)</p>
+        </div>
+        <div class="juris-box">
+          <div class="juris-ref">CC, n° 2025-876 DC du 20 mars 2025 — Loi n° 2025-268 du 24 mars 2025 d'orientation pour la souveraineté alimentaire</div>
+          <p>Art. 1er Charte de l'environnement : « Chacun a le droit de vivre dans un environnement équilibré et respectueux de la santé. » Art. 3 : obligation de prévenir les atteintes à l'environnement. En permettant que certaines piscicultures ne soient soumises à <b>aucun régime de protection</b> des atteintes à l'environnement aquatique, le législateur a <b>privé de garanties légales les exigences constitutionnelles</b> découlant des articles 1er et 3 de la Charte. → <b>Inconstitutionnalité</b>.</p>
+        </div>
+      </div>
+
+      <div class="subsection" style="margin-top:12px">
+        <div class="sub-title s1">Rapport de la Commission d'enquête d'évaluation des politiques publiques de santé environnementale (16 déc. 2020)</div>
+        <div class="card">
+          <b>20 propositions principales :</b> La santé environnementale doit être reconnue comme <b>politique majeure</b>.
+          <ul class="styled" style="margin-top:5px">
+            <li><b>Prop. 1 :</b> Développer des programmes de recherche sur les effets combinés (effets cocktail), expositions multiples à faible dose, et l'exposome</li>
+            <li><b>Prop. 2 :</b> Tenir annuellement une Conférence nationale de santé environnementale (CNSE)</li>
+            <li><b>Prop. 3 :</b> Transformer la feuille de route Obésité en stratégie nationale incluant ses facteurs environnementaux</li>
+            <li><b>Prop. 4 :</b> Placer les cancers pédiatriques au cœur de la prochaine stratégie décennale de lutte contre le cancer</li>
+            <li><b>Prop. 5 :</b> Cesser de considérer la santé environnementale comme une politique ciblée → l'imposer comme dimension obligatoire de toutes les autres politiques</li>
+            <li><b>Prop. 6 :</b> Élaborer un document budgétaire de politique transversale (DPT) consacré à la santé environnementale</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══════════════════════════════ SECTION II ═══════════════════════════════ -->
+  <div class="section-block">
+    <div class="section-title">
+      <div class="section-num">II</div>
+      <div class="section-heading s2">Le rôle de l'ANSES : un aiguillon du changement ?</div>
+    </div>
+
+    <!-- A. Missions de l'ANSES -->
+    <div class="subsection">
+      <div class="sub-title s2">A · Les missions de l'ANSES</div>
+      <div class="card">
+        <ul class="styled">
+          <li>Évalue les impacts de l'environnement sur la santé : pollutions des milieux de vie (air, eaux, sols) ou agents physiques (champs et ondes)</li>
+          <li>Évaluation avant mise sur le marché des produits phytopharmaceutiques, matières fertilisantes, supports de culture, adjuvants, biocides</li>
+          <li>Évaluation des produits chimiques dans le cadre de la réglementation <b>REACh</b></li>
+          <li>Grandes problématiques : cancer et environnement · agents biologiques, chimiques et physiques · champs électromagnétiques</li>
+        </ul>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Loi d'avenir pour l'agriculture, l'alimentation et la forêt du 13 octobre 2014</div>
+        <p>Confie à l'ANSES la gestion des <b>autorisations de mise sur le marché (AMM)</b> des produits phytopharmaceutiques, matières fertilisantes, supports de culture, adjuvants et produits biocides.</p>
+      </div>
+      <div class="key-box">
+        <div class="key-label">🔑 REACh — Règlement (CE) n° 1907/2006 — en vigueur en 2007</div>
+        <p>Règlement européen pour sécuriser la fabrication et l'utilisation des substances chimiques dans l'industrie européenne. Signifie : <b>R</b>en<b>E</b>gistrement (substances fabriquées/importées &gt;1 tonne/an) · <b>A</b>utorisation (substances extrêmement préoccupantes) · <b>C</b>himi<b>H</b>iques (restrictions pour substances à risques).</p>
+      </div>
+    </div>
+
+    <!-- B. Exemple 1 : couches bébé -->
+    <div class="subsection">
+      <div class="sub-title s2">B · Exemple 1 — Sécurité des couches pour bébé (2019)</div>
+      <div class="card">
+        <b>Contexte :</b> Janvier 2017, 60 millions de consommateurs révèle la présence de substances chimiques (pesticides, dioxines, furanes, HAP, composés organiques volatils) dans des couches pour bébé. L'ANSES est saisie le <b>25 janvier 2017</b> par la DGS, la DGCCRF et la DGPR.
+      </div>
+      <div class="card">
+        <b>Constats de l'ANSES (avis janvier 2019) :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li>Aucune disposition réglementaire spécifique aux couches en France ou dans l'UE</li>
+          <li>Des substances chimiques dangereuses ont été retrouvées dans ces couches</li>
+          <li>L'évaluation quantitative de risques sanitaires (EQRS) a mis en évidence des <b>dépassements de seuils sanitaires</b> pour plusieurs substances</li>
+          <li>→ Il n'est pas possible d'exclure un risque sanitaire lié au port des couches à usage unique</li>
+          <li>Aucune donnée épidémiologique ne permet de mettre en évidence une association entre effets sanitaires et port de couches</li>
+        </ul>
+      </div>
+      <div class="card">
+        <b>Recommandations du CES (Comité d'experts scientifiques) :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li>Aux pouvoirs publics : élaborer un cadre réglementaire plus restrictif via une <b>procédure de restriction par type d'article selon le règlement REACh (Annexe XVII)</b></li>
+          <li>Aux fabricants : supprimer les substances parfumantes (risque sensibilisant cutané) · mieux maîtriser l'origine des matières premières · améliorer les procédés de fabrication</li>
+          <li>Poursuivre les campagnes de mesures sur l'ensemble des produits du marché</li>
+        </ul>
+      </div>
+      <div class="juris-box">
+        <div class="juris-ref">CE, Ordonnance du 12 juillet 2019 — référé liberté couches bébés</div>
+        <p>Le CE <b>refuse de prescrire des mesures temporaires d'urgence</b> concernant les couches de bébés. Il s'appuie sur l'analyse de l'ANSES et rappelle ses recommandations : les premières mesures ont déjà été adoptées par les professionnels et la DGCCRF a intensifié ses campagnes de vérification.</p>
+      </div>
+      <div class="card">
+        <b>Décision au niveau européen (ECHA) :</b> Saisine pour restriction de certaines substances (formaldéhyde, HAP, dioxines, furanes, PCB). Conclusion de l'ECHA : <b>pas suffisamment de preuves scientifiques</b> pour conclure que ces produits chimiques dans les couches présentent un risque.
+      </div>
+    </div>
+
+    <!-- C. Exemple 2 : agénésies -->
+    <div class="subsection">
+      <div class="sub-title s2">C · Exemple 2 — Agénésies transverses des membres supérieurs</div>
+      <div class="card">
+        <p><b>Contexte :</b> Des familles ont constaté des concentrations anormales d'enfants souffrant d'agénésie (malformation d'un ou plusieurs membres : main manquante, bras atrophié, tibia court…). <b>Plus de 370 enfants naissent avec une malformation d'un ou plusieurs membres chaque année en France.</b> Trois clusters identifiés dans : l'<b>Ain</b> · la <b>Loire-Atlantique</b> · le <b>Morbihan</b>.</p>
+        <p style="margin-top:6px">L'ANSES et Santé Publique France sont saisies le <b>29 octobre 2018</b> par les ministères de la santé, de l'environnement et de l'agriculture. Dispositif d'expertise collective : un COS (comité d'orientation et de suivi) + un CES (comité d'experts scientifiques). Premier rapport d'étape : 1er février 2019.</p>
+      </div>
+      <div class="card">
+        <b>Premier rapport ANSES (juillet 2019) :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li>Le CES n'a pas pu élucider la cause commune ayant conduit à ces clusters</li>
+          <li>Le système de surveillance et d'alerte pour les malformations existe mais est complexe</li>
+          <li>Recommande de <b>renforcer le système de surveillance des malformations</b></li>
+          <li>Les Centres de référence maladie rare devraient largement participer à l'amélioration de la prise en charge</li>
+        </ul>
+      </div>
+      <div class="card">
+        <b>Second rapport ANSES (mai 2021) :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li>Les travaux complémentaires n'ont pas permis d'identifier d'exposition à un facteur de risque commun</li>
+          <li>Aucune surexposition à risque dans l'environnement de résidence des familles du cluster ATMS dans le Morbihan</li>
+          <li>Confirme la nécessité de renforcer le dispositif de surveillance des anomalies congénitales en France et d'améliorer la connaissance de leurs facteurs de risque pour des actions de prévention ciblée</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- D. Exemple 3 : pesticides et voisinage -->
+    <div class="subsection">
+      <div class="sub-title s2">D · Exemple 3 — Pesticides : protection des riverains</div>
+      <div class="juris-box">
+        <div class="juris-ref">TA Rennes, ordonnance du 27 août 2019 — Arrêté anti-pesticides du maire de Langouët</div>
+        <p>Le premier arrêté anti-pesticides d'un maire a été <b>suspendu</b> : un maire n'est pas compétent pour prendre des décisions sur l'utilisation de produits phytosanitaires, y compris au nom du principe de précaution (pouvoir réservé à l'État).</p>
+      </div>
+      <div class="juris-box">
+        <div class="juris-ref">TA de Cergy-Pontoise, ordonnances du 8 novembre 2019 (2 ordonnances)</div>
+        <p>Justifient l'intervention des maires face aux pesticides : les produits phytopharmaceutiques visés constituent un <b>danger grave pour les populations exposées</b>. Eu égard à la <em>« présomption suffisamment établie de dangerosité et de persistance dans le temps »</em> et <em>« en l'absence de mesures réglementaires suffisantes prises par les ministres titulaires de la police spéciale »</em>, les maires ont pu considérer que leurs administrés étaient exposés à un danger grave justifiant leurs mesures.</p>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Avis ANSES de juin 2019 — distances de sécurité pesticides</div>
+        <p>Recommande de limiter l'exposition des résidents par la mise en place de <b>distances de sécurité</b> par rapport aux bâtiments occupés lors de pulvérisations.</p>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Arrêté du 27 décembre 2019 — mesures de protection lors de l'utilisation de produits phytopharmaceutiques</div>
+        <p>S'appuie principalement sur l'avis ANSES de juin 2019 :</p>
+        <ul class="styled" style="margin-top:5px">
+          <li>Substances les plus préoccupantes : <b>20 mètres incompressibles</b></li>
+          <li>Arboriculture, viticulture, arbres/arbustes, forêt, petits fruits, cultures ornementales &gt;50 cm, bananiers, houblon : <b>10 mètres</b></li>
+          <li>Autres cultures : <b>5 mètres</b></li>
+          <li>Ces distances peuvent être réduites dans le cadre des <b>chartes départementales validées par les préfets</b></li>
+        </ul>
+      </div>
+      <div class="warn-box">
+        <div class="warn-ref">Bilan — Rapport Générations futures (novembre 2021)</div>
+        <p>La distance de <b>100 m</b> est la seule permettant d'avoir un effet très net sur la baisse de l'exposition aux pesticides. En deçà, ce n'est pas suffisant.</p>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Fonds d'indemnisation des victimes de pesticides — Art. 70 LFSS 2020</div>
+        <p>Garantit la réparation forfaitaire des dommages subis par les personnes dont la maladie est liée à une <b>exposition professionnelle aux pesticides</b>. Financé par des contributions des régimes AT/MP et une fraction de la taxe sur la vente des produits phytopharmaceutiques.</p>
+        <p style="margin-top:5px"><b>Décret n° 2020-1463 du 27 novembre 2020 :</b> fonctionnement, organisation et modalités d'indemnisation.<br>
+        <b>Arrêté du 7 janvier 2022 :</b> mécanisme d'indemnisation des <b>enfants exposés aux pesticides durant la période prénatale</b> du fait de l'activité professionnelle de l'un de leurs parents.</p>
+      </div>
+    </div>
+
+    <!-- E. Exemple 4 : nanoparticules -->
+    <div class="subsection">
+      <div class="sub-title s2">E · Exemple 4 — Nanoparticules dans les aliments</div>
+      <div class="card">
+        <b>Définition :</b> additifs alimentaires et substances utilisées dans les matériaux au contact des denrées alimentaires (MCDA). Présents dans les laits infantiles, petits-pots, bonbons, céréales… <b>Dangerosité méconnue :</b> les études chez l'animal laissent suspecter des troubles respiratoires, cardiovasculaires, neurologiques ou cancéreux. Impossibilité de faire des généralités (risques différents selon la nature chimique, la taille, la forme des nanoparticules). Très peu de connaissances sur leur diffusion dans l'eau ou la nourriture animale.
+      </div>
+      <div class="card">
+        <b>L'UE = seule région du monde à disposer de mesures règlementaires obligatoires</b> sur les nanomatériaux (pas de règlement-cadre, mais dispositions sectorielles via des Règlements CE) :<br>
+        MCDA (2004, 2009, 2011) · additifs alimentaires (2008) · novel food (2015) · information du consommateur (2011).<br>
+        <b>Risque :</b> morcellement de la législation sur les nouveaux aliments.
+      </div>
+      <div class="law-box">
+        <div class="law-ref">ANSES, mai 2020 — Nanomatériaux dans les produits destinés à l'alimentation</div>
+        <p>Propose une méthodologie d'aide à la décision permettant d'orienter l'évaluation du risque sanitaire vers une approche « standard » ou une approche « nano-spécifique ». Cette méthodologie repose notamment sur les propriétés de dissolution des nanomatériaux dans les conditions du tractus gastro-intestinal — <em>pour le moment méconnues</em>.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══════════════════════════════ SECTION III ═══════════════════════════════ -->
+  <div class="section-block">
+    <div class="section-title">
+      <div class="section-num">III</div>
+      <div class="section-heading s3">Soigner : une activité polluante</div>
+    </div>
+
+    <!-- A. Déchets hospitaliers -->
+    <div class="subsection">
+      <div class="sub-title s3">A · Les déchets hospitaliers et leur gestion</div>
+      <div class="card">
+        <b>Types de déchets produits par les ES et médico-sociaux :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li>Déchets ménagers</li>
+          <li>Déchets à risque infectieux (DASRI)</li>
+          <li>Déchets à risque radioactif</li>
+          <li>Déchets issus de médicaments</li>
+        </ul>
+        <p style="margin-top:6px">Les ES se sont intéressés d'abord aux déchets <b>solides</b>, puis depuis plusieurs années à la prise en charge des <b>déchets liquides</b> (prévention des risques + développement durable). La gestion des déchets liquides figure dans la convention portant engagements mutuels entre les ministères Environnement et Santé et les fédérations hospitalières.</p>
+      </div>
+    </div>
+
+    <!-- B. Déchets médicaments -->
+    <div class="subsection">
+      <div class="sub-title s3">B · Les déchets de médicaments</div>
+      <div class="law-box">
+        <div class="law-ref">Plan national sur les résidus de médicaments dans les eaux 2011-2015</div>
+        <p>Objectif : préservation de l'environnement et des ressources en eau vis-à-vis des résidus de médicaments · réduction à la source des émissions dans l'environnement par des stratégies de prévention portant sur la gestion des déchets souillés et des médicaments non utilisés.</p>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Manuel de certification HAS — V2010, V2014, V2020</div>
+        <p>La gestion des déchets (solides et liquides) est inscrite dans le manuel de certification des ES par la HAS. Améliorer la gestion des déchets issus de médicaments et des déchets liquides dans les ES et ESMS était une des mesures de la feuille de route environnementale du Gouvernement pour 2015.</p>
+      </div>
+    </div>
+
+    <!-- C. Déchets liquides radioactifs -->
+    <div class="subsection">
+      <div class="sub-title s3">C · Déchets liquides à risque radioactif</div>
+      <div class="card">
+        <b>4 domaines d'utilisation de la radioactivité en ES :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li>Diagnostic in vivo (scintigraphie)</li>
+          <li>Thérapeutique (radiothérapie interne vectorisée)</li>
+          <li>Laboratoire de biologie médicale (analyses de radio-immunologie)</li>
+          <li>Recherche (unités de recherche dans les ES)</li>
+        </ul>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Art. L. 1333-4 CSP — Autorisation de l'ASN</div>
+        <p>Les utilisations de radionucléides en source non scellée sont soumises à <b>autorisation de l'Agence de Sûreté Nucléaire (ASN)</b>. L'autorisation est délivrée à une <b>personne physique</b>. Le titulaire est responsable de la gestion des déchets et effluents jusqu'à leur traitement final (art. L. 1331-10 et R. 1333-12 CSP).</p>
+      </div>
+      <div class="card">
+        <b>Gestion des urines radioactives (médecine nucléaire) :</b>
+        <ul class="styled" style="margin-top:5px">
+          <li>Filière de décroissance (iode-131, RIV) : directement vers une <b>cuve de décroissance</b> ou via le dispositif de collecte</li>
+          <li>Patients ambulatoires : <b>fosse toutes eaux</b> (type fosse septique) pour selles et urines</li>
+          <li>Déchets liquides radioactifs provenant de la radiopharmacie → <b>cuves de décroissance</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- D. DASRI -->
+    <div class="subsection">
+      <div class="sub-title s3">D · Les DASRI — Déchets d'activités de soins à risques infectieux</div>
+      <div class="key-box">
+        <div class="key-label">🔑 Définition</div>
+        <p>Les DASRI sont les déchets issus des activités de <b>diagnostic, de suivi et de traitement, curatif et palliatif</b> dans les domaines de la santé humaine ou vétérinaire. Le professionnel définit le degré de danger biologique. Un protocole interne à l'établissement couvre toutes les étapes : <b>tri → entreposage → collecte → destruction</b>.</p>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Art. R. 1335-4 CSP — Traçabilité des DASRI</div>
+        <p>Les personnes responsables doivent établir les documents permettant le suivi des opérations d'élimination (valable pour les ES et le secteur libéral) :</p>
+        <ul class="styled" style="margin-top:5px">
+          <li>Convention entre la personne responsable et le prestataire</li>
+          <li>Bon de prise en charge ou bordereau de suivi DASRI CERFA (avec ou sans regroupement)</li>
+          <li>Attestation de l'élimination des DASRI</li>
+          <li>Durée de conservation des bordereaux et bons de prise en charge : <b>3 ans</b></li>
+        </ul>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Covid-19 et gestion des DASRI — Arrêtés du 18 et 20 avril 2020 + Décret n° 2020-452 du 21 avril 2020</div>
+        <p>La surproduction de DASRI et déchets perforants liée à la crise sanitaire a conduit à : <b>prolonger la durée d'entreposage</b> entre la production et le traitement (pour éviter la propagation du virus).</p>
+        <ul class="styled" style="margin-top:5px">
+          <li><b>Arrêté 18 avril 2020 :</b> conditions d'entreposage des DASRI pour faire face à la crise</li>
+          <li><b>Arrêté 20 avril 2020 :</b> allongement du temps de stockage pour les productions de DASRI perforants &lt;15 kgs/mois portant de <b>3 à 6 mois</b></li>
+          <li><b>Décret n° 2020-452 du 21 avril 2020 :</b> entrée en vigueur immédiate des 2 arrêtés</li>
+        </ul>
+      </div>
+      <div class="law-box">
+        <div class="law-ref">Arrêté du 25 novembre 2021 — DASRI électroniques (DASRIe)</div>
+        <p>Le cahier des charges des organismes agréés pour gérer les DASRI a évolué pour qu'ils puissent prendre en charge les déchets issus des équipements électriques ou électroniques associés aux dispositifs médicaux perforants présentant un risque infectieux (<b>DASRIe</b>).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Fiche de révision · Thème 11 · Santé et environnement · Master 1 PGSS 2024/2025</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thème 5 — La Qualité des Soins et la Restructuration Hospitalière</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fond:#f3f1eb;--carte:#fff;--texte:#111;--doux:#484848;--bord:#ddd5bc;
+  --b:#1a4870;--bc:#2a6aad;--bp:#e6f0fa;
+  --v:#1a5c38;--vc:#278f52;--vp:#e4f4ec;
+  --o:#9a6600;--oc:#c8940a;--op:#fdf4dc;
+  --r:#982020;--rp:#fdf0f0;
+  --vi:#5a2e80;--vip:#f0ebfa;
+  --t:#1a5a70;--tc:#2a8aad;--tp:#e4f4f8;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--fond);color:var(--texte);font-size:14.5px;line-height:1.72;}
+
+header{background:linear-gradient(140deg,#1a2a0d 0%,#2a5018 55%,#0f2008 100%);color:#fff;padding:3rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden;}
+header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(55deg,transparent,transparent 55px,rgba(255,255,255,.016) 55px,rgba(255,255,255,.016) 110px);}
+.badge{display:inline-block;background:var(--oc);color:#fff;font-family:'Playfair Display',serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;padding:.3rem 1.1rem;border-radius:2px;margin-bottom:1rem;}
+header h1{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;line-height:1.2;margin-bottom:.4rem;}
+header h2{font-weight:300;font-style:italic;font-size:1rem;color:rgba(255,255,255,.62);margin-bottom:1.4rem;}
+.meta{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;}
+.meta span{font-size:.77rem;color:rgba(255,255,255,.45);}
+.meta strong{color:#d4b040;font-weight:600;}
+
+.plan{background:var(--carte);border:2px solid var(--vc);border-radius:8px;margin:2rem auto;max-width:960px;padding:1.3rem 1.8rem;box-shadow:0 2px 14px rgba(0,0,0,.08);}
+.plan h3{font-family:'Playfair Display',serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--v);margin-bottom:1rem;}
+.plan-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:.6rem;}
+.pi{border-radius:0 6px 6px 0;padding:.8rem 1rem;border-left:4px solid;}
+.pi .num{font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:.2rem;}
+.pi .tit{font-family:'Playfair Display',serif;font-size:.82rem;font-weight:700;}
+.pi.i0{background:var(--bp);border-color:var(--bc);} .pi.i0 .num,.pi.i0 .tit{color:var(--b);}
+.pi.i1{background:var(--vp);border-color:var(--vc);} .pi.i1 .num,.pi.i1 .tit{color:var(--v);}
+.pi.i2{background:var(--tp);border-color:var(--tc);} .pi.i2 .num,.pi.i2 .tit{color:var(--t);}
+.pi.i3{background:var(--op);border-color:var(--oc);} .pi.i3 .num,.pi.i3 .tit{color:var(--o);}
+.pi.i4{background:var(--vip);border-color:var(--vi);} .pi.i4 .num,.pi.i4 .tit{color:var(--vi);}
+
+main{max-width:960px;margin:0 auto;padding:0 1.5rem 5rem;}
+
+.sh{margin:3rem 0 1.3rem;padding:1rem 1.5rem;border-radius:8px;}
+.sh.i0{background:linear-gradient(135deg,#e6f0fa,#d0e4f5);border-left:5px solid var(--b);}
+.sh.i1{background:linear-gradient(135deg,#e4f4ec,#c8ecd8);border-left:5px solid var(--v);}
+.sh.i2{background:linear-gradient(135deg,#e4f4f8,#c5e8f2);border-left:5px solid var(--t);}
+.sh.i3{background:linear-gradient(135deg,#fdf4dc,#f5e8b0);border-left:5px solid var(--oc);}
+.sh.i4{background:linear-gradient(135deg,#f0ebfa,#ddd0f0);border-left:5px solid var(--vi);}
+.sh .sn{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;opacity:.75;margin-bottom:.15rem;}
+.sh.i0 .sn,.sh.i0 h2{color:var(--b);} .sh.i1 .sn,.sh.i1 h2{color:var(--v);}
+.sh.i2 .sn,.sh.i2 h2{color:var(--t);} .sh.i3 .sn,.sh.i3 h2{color:var(--o);}
+.sh.i4 .sn,.sh.i4 h2{color:var(--vi);}
+.sh h2{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:900;}
+.sh p{font-size:.84rem;color:var(--doux);font-style:italic;margin-top:.3rem;}
+
+.sub{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:700;margin:1.8rem 0 .8rem;padding-left:.8rem;border-left:3px solid var(--oc);color:var(--o);}
+.sub.b{border-color:var(--bc);color:var(--b);}
+.sub.v{border-color:var(--vc);color:var(--v);}
+.sub.t{border-color:var(--tc);color:var(--t);}
+.sub.vi{border-color:var(--vi);color:var(--vi);}
+
+.card{background:var(--carte);border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.07);padding:1.2rem 1.5rem;margin-bottom:1rem;border-left:4px solid var(--vc);}
+.card.b{border-color:var(--bc);} .card.o{border-color:var(--oc);}
+.card.t{border-color:var(--tc);} .card.vi{border-color:var(--vi);} .card.r{border-color:var(--r);}
+.ct{font-family:'Playfair Display',serif;font-size:.96rem;font-weight:700;color:var(--v);margin-bottom:.65rem;display:flex;align-items:center;gap:.5rem;}
+.card.b .ct{color:var(--b);} .card.o .ct{color:var(--o);}
+.card.t .ct{color:var(--t);} .card.vi .ct{color:var(--vi);} .card.r .ct{color:var(--r);}
+
+.ret{background:#fffde6;border:2px solid var(--oc);border-radius:8px;padding:1rem 1.4rem;margin:1rem 0;display:flex;gap:.9rem;align-items:flex-start;}
+.ri{font-size:1.2rem;flex-shrink:0;}
+.rb strong{color:#6a4700;display:block;margin-bottom:.3rem;font-size:.88rem;}
+.rb p,.rb ul{font-size:.86rem;color:var(--doux);}
+.rb ul{padding-left:1.1rem;} .rb ul li{margin-bottom:.2rem;}
+
+.def{border-radius:8px;padding:1rem 1.4rem;margin-bottom:.9rem;border:1.5px solid;}
+.def.b{background:var(--bp);border-color:var(--bc);}
+.def.v{background:var(--vp);border-color:var(--vc);}
+.def.t{background:var(--tp);border-color:var(--tc);}
+.def.o{background:var(--op);border-color:var(--oc);}
+.dl{font-family:'Playfair Display',serif;font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.35rem;display:block;}
+.def.b .dl{color:var(--b);} .def.v .dl{color:var(--v);} .def.t .dl{color:var(--t);} .def.o .dl{color:var(--o);}
+.dt{font-weight:700;font-size:.98rem;}
+.def.b .dt{color:var(--b);} .def.v .dt{color:var(--v);} .def.t .dt{color:var(--t);} .def.o .dt{color:var(--o);}
+.def p,.def ul{color:var(--doux);margin-top:.3rem;font-size:.88rem;}
+.def ul{padding-left:1.1rem;} .def ul li{margin-bottom:.18rem;}
+.def .src{font-size:.78rem;font-style:italic;margin-top:.4rem;}
+.def.b .src{color:var(--bc);} .def.v .src{color:var(--vc);} .def.t .src{color:var(--tc);}
+
+.loi{border:1.5px solid var(--oc);border-radius:8px;padding:1rem 1.4rem;margin-bottom:.8rem;background:var(--op);}
+.loi.b{background:var(--bp);border-color:var(--bc);}
+.loi.v{background:var(--vp);border-color:var(--vc);}
+.loi.t{background:var(--tp);border-color:var(--tc);}
+.loi.vi{background:var(--vip);border-color:var(--vi);}
+.loi.r{background:var(--rp);border-color:var(--r);}
+.lr{font-family:'Playfair Display',serif;font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.28rem;display:block;color:var(--oc);}
+.loi.b .lr{color:var(--bc);} .loi.v .lr{color:var(--vc);} .loi.t .lr{color:var(--tc);} .loi.vi .lr{color:var(--vi);} .loi.r .lr{color:var(--r);}
+.lt{font-weight:700;font-size:.93rem;margin-bottom:.45rem;color:#6a4700;}
+.loi.b .lt{color:#1a3a60;} .loi.v .lt{color:#1a4028;} .loi.t .lt{color:#1a3a50;} .loi.vi .lt{color:#3a1060;} .loi.r .lt{color:#6a1010;}
+.loi ul{padding-left:1.2rem;color:var(--doux);font-size:.87rem;}
+.loi ul li{margin-bottom:.23rem;}
+
+.art{border-left:4px solid;border-radius:0 8px 8px 0;padding:.9rem 1.3rem;margin:.8rem 0;}
+.art.v{background:var(--vp);border-color:var(--vc);}
+.art.b{background:var(--bp);border-color:var(--bc);}
+.art.t{background:var(--tp);border-color:var(--tc);}
+.ar{font-family:'Playfair Display',serif;font-weight:700;font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;margin-bottom:.35rem;display:block;}
+.art.v .ar{color:var(--v);} .art.b .ar{color:var(--b);} .art.t .ar{color:var(--t);}
+.art p{color:var(--doux);font-style:italic;font-size:.87rem;}
+.an{font-style:normal!important;font-weight:700;font-size:.8rem;margin-top:.38rem!important;display:block;}
+.art.v .an{color:var(--v);} .art.b .an{color:var(--b);} .art.t .an{color:var(--t);}
+
+.org{background:var(--carte);border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.09);padding:1.5rem 1.5rem 1.2rem;margin-bottom:1.2rem;overflow-x:auto;}
+.org h3{font-family:'Playfair Display',serif;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:#555;margin-bottom:1rem;text-align:center;}
+.org svg{display:block;margin:0 auto;max-width:100%;}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.9rem;margin-bottom:1rem;}
+
+table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:1rem;}
+th{background:var(--v);color:#fff;padding:.55rem .9rem;text-align:left;font-family:'Playfair Display',serif;font-size:.77rem;letter-spacing:.05em;}
+th.b{background:var(--b);} th.t{background:var(--t);} th.vi{background:var(--vi);}
+td{padding:.5rem .9rem;border-bottom:1px solid var(--bord);color:var(--doux);vertical-align:top;}
+tr:nth-child(even) td{background:var(--fond);}
+tr:last-child td{border-bottom:none;}
+
+ul.l{padding-left:1.2rem;color:var(--doux);font-size:.89rem;}
+ul.l li{margin-bottom:.27rem;}
+
+blockquote{border-left:3px solid var(--oc);margin:1rem 0;padding:.7rem 1.2rem;background:var(--op);border-radius:0 6px 6px 0;font-style:italic;color:var(--doux);font-size:.88rem;}
+blockquote cite{display:block;font-style:normal;font-size:.73rem;color:var(--oc);margin-top:.3rem;font-weight:700;}
+
+.tl{position:relative;padding-left:2rem;margin-bottom:1rem;}
+.tl::before{content:'';position:absolute;left:.6rem;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--v),var(--oc));}
+.tl-item{position:relative;margin-bottom:.9rem;}
+.tl-item::before{content:'';position:absolute;left:-1.4rem;top:.5rem;width:11px;height:11px;border-radius:50%;background:var(--oc);border:2px solid #fff;box-shadow:0 0 0 2px var(--oc);}
+.tl-date{font-family:'Playfair Display',serif;font-weight:700;color:var(--v);font-size:.88rem;}
+.tl-desc{font-size:.87rem;color:var(--doux);margin-top:.1rem;}
+
+footer{text-align:center;font-size:.76rem;color:#aaa;padding:2rem 1rem;border-top:1px solid var(--bord);margin-top:2rem;font-style:italic;}
+@media(max-width:700px){.g2,.g3,.plan-grid{grid-template-columns:1fr;}header h1{font-size:1.5rem;}}
+@media print{.card,.loi,.def,.ret,.org{break-inside:avoid;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Fiche de Révision — Plan du cours</div>
+  <h1>Thème 5 — La Qualité des Soins et la Restructuration Hospitalière</h1>
+  <h2>Certification · Évaluation · GHT · Hôpitaux de proximité</h2>
+  <div class="meta">
+    <span>Cours <strong>Guylène NICOLAS</strong></span>
+    <span>Master 1 — <strong>2025/2026</strong></span>
+  </div>
+</header>
+
+<main>
+
+<div class="plan">
+  <h3>Plan du cours</h3>
+  <div class="plan-grid">
+    <div class="pi i0"><div class="num">Introduction</div><div class="tit">Avis 140 CCNE · Historique · Service public hospitalier</div></div>
+    <div class="pi i1"><div class="num">§1</div><div class="tit">La notion de qualité des soins · Les vigilances</div></div>
+    <div class="pi i2"><div class="num">§2</div><div class="tit">L'évaluation des pratiques professionnelles · HAS · Certification périodique 2023</div></div>
+    <div class="pi i3"><div class="num">§3</div><div class="tit">La certification des établissements de santé · Référentiel 12 objectifs · Bilan 2024</div></div>
+    <div class="pi i4"><div class="num">§4</div><div class="tit">Les GHT · Loi 2019 · Hôpitaux de proximité · PAERPA · EHPAD · Loi 2023</div></div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     INTRODUCTION
+══════════════════════════════════════════ -->
+<div class="sh i0">
+  <div class="sn">Introduction</div>
+  <h2>Avis 140 du CCNE · Remarques introductives · Historique · Service public hospitalier</h2>
+  <p>Slides 2 à 11 du cours</p>
+</div>
+
+<div class="sub b">Avis 140 du CCNE — Repenser le système de soins sur un fondement éthique (20 oct. 2022) — slides 2-3</div>
+
+<div class="ret">
+  <div class="ri">📋</div>
+  <div class="rb">
+    <strong>L'éthique, condition indispensable (slide 2)</strong>
+    <p>Le CCNE rappelle que pour définir les politiques en matière de santé et de soins, <strong>l'éthique n'est ni optionnelle ni facultative</strong> : elle est une condition indispensable pour que les professionnels retrouvent le sens de leur métier et pour que la collectivité conserve sa confiance dans le système de santé.</p>
+  </div>
+</div>
+
+<div class="card b">
+  <div class="ct">🔭 Les 3 directions proposées par le CCNE (slide 3)</div>
+  <div style="background:var(--bp);border-radius:6px;padding:.8rem 1rem;margin-bottom:.6rem;border-left:3px solid var(--bc);">
+    <p style="font-weight:700;font-size:.87rem;color:var(--b);">Direction 1</p>
+    <p style="font-size:.85rem;color:var(--doux);">Assurer à tous les conditions d'une vie en bonne santé, la prévention des maladies et des <strong>soins de qualité</strong> en cas de maladie</p>
+  </div>
+  <div style="background:var(--bp);border-radius:6px;padding:.8rem 1rem;margin-bottom:.6rem;border-left:3px solid var(--bc);">
+    <p style="font-weight:700;font-size:.87rem;color:var(--b);">Direction 2</p>
+    <p style="font-size:.85rem;color:var(--doux);">Redonner du sens et de la valeur aux métiers du soin, ce qui implique un meilleur équilibre entre le traitement (<strong>« cure »</strong>) et la relation de soin (<strong>« care »</strong>), entre le temps dévolu aux gestes techniques et le temps de la <strong>relation humaine</strong></p>
+  </div>
+  <div style="background:var(--bp);border-radius:6px;padding:.8rem 1rem;border-left:3px solid var(--bc);">
+    <p style="font-weight:700;font-size:.87rem;color:var(--b);">Direction 3</p>
+    <p style="font-size:.85rem;color:var(--doux);">Une meilleure écoute des différents acteurs (professionnels de santé et du médico-social, patients), ce qui passe par une <strong>dynamique plus forte de la démocratie en santé</strong></p>
+  </div>
+</div>
+
+<div class="sub b">Remarques introductives — l'hôpital acteur central (slide 4)</div>
+
+<div class="card">
+  <div class="ct">🏥 L'hôpital en chiffres (2018)</div>
+  <div class="g2">
+    <ul class="l">
+      <li><strong>3 036</strong> établissements en 2018</li>
+      <li><strong>396 000</strong> lits en hospitalisation complète pour 67 millions d'habitants</li>
+      <li><strong>1 356</strong> établissements publics de santé</li>
+      <li><strong>631</strong> établissements privés à but non lucratif</li>
+      <li><strong>999</strong> établissements privés à but lucratif</li>
+    </ul>
+    <ul class="l">
+      <li><strong>2 millions</strong> d'emplois directs et indirects</li>
+      <li>Plus de <strong>18 millions</strong> d'entrées chaque année dans les hôpitaux</li>
+      <li>L'hôpital est un <strong>acteur économique important</strong> au sein du système de santé</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sub b">Historique des hôpitaux (slides 5 à 7)</div>
+
+<div class="tl">
+  <div class="tl-item">
+    <div class="tl-date">1941 — La charte hospitalière</div>
+    <div class="tl-desc">Début de l'étatisation des hôpitaux. L'organisation actuelle se profile : organisation en service, chef de service, commission médicale d'établissement (CME).</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">1958 — La réforme hospitalo-universitaire (3 ordonnances)</div>
+    <div class="tl-desc">Création des <strong>CHRU</strong> (union des CHR et des facultés de médecine). Création d'une <strong>commission nationale de l'équipement hospitalier</strong> concourant à l'inventaire des équipements sanitaires, donnant son avis sur les créations, transformations et suppressions d'hôpitaux, et sur le plan national de modernisation des hôpitaux.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">1970 — Les premiers jalons d'un système hospitalier</div>
+    <div class="tl-desc">Instaure la <strong>carte sanitaire</strong>. Met en place des <strong>syndicats inter-hospitaliers</strong> (coopération des petits hôpitaux).</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">1991 — Le planisme hospitalier</div>
+    <div class="tl-desc">Nécessité de maîtriser les coûts → la carte sanitaire est renforcée du <strong>SROS</strong>. Réformée en 1998 pour créer de nouvelles instances de participation (commission des services de soins infirmiers).</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">1996 — La régionalisation étatique et la reconfiguration des ES</div>
+    <div class="tl-desc">Création de la <strong>Charte des patients hospitalisés</strong>. Création des <strong>ARH</strong>. Création de l'<strong>ANAES</strong> (Agence nationale d'accréditation et d'évaluation en santé) → fixe les normes de bonnes pratiques cliniques et des références médicales pour l'hôpital et l'ambulatoire. Financement : <strong>dotation globale limitative</strong> déterminée en fonction de l'objectif national des dépenses fixé par les LFSS.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">2002 — Les droits des malades</div>
+    <div class="tl-desc">Association de malades. Contrepoint du pouvoir médical.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">2005 — La nouvelle gouvernance (ordonnance du 2 mai 2005)</div>
+    <div class="tl-desc">Instaure la nouvelle <strong>tarification à l'activité (T2A)</strong>, qui privilégie les recettes sur les dépenses, les résultats sur les moyens. Création du <strong>conseil exécutif</strong> (composé ½ médecins, ½ administratifs).</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">2009 — Loi HPST</div>
+    <div class="tl-desc">Modifiée par la <strong>loi Fourcade n° 2011-940 du 10 août 2011</strong>. Approche fonctionnelle du service public hospitalier : 14 missions, ouverte à tous les établissements privés.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">2016 — Loi n° 2016-41 de modernisation du système de santé</div>
+    <div class="tl-desc">Refonder le service public hospitalier. Approche <strong>mixte</strong> qui renforce les garanties offertes à l'usager.</div>
+  </div>
+</div>
+
+<div class="sub b">Le service public hospitalier — La loi du 26 janvier 2016 (slides 8 à 11)</div>
+
+<div class="card b">
+  <div class="ct">🏛️ Évolution de la notion de service public hospitalier</div>
+  <div class="g2">
+    <div style="background:var(--vp);border-radius:6px;padding:.8rem 1rem;border-left:3px solid var(--vc);">
+      <p style="font-weight:700;font-size:.85rem;color:var(--v);margin-bottom:.3rem;">Avant la loi HPST : approche ORGANIQUE</p>
+      <p style="font-size:.84rem;color:var(--doux);">Seuls quelques acteurs pouvaient se voir attribuer des missions de service public : CHU, CH, hôpitaux locaux, et les établissements privés non lucratifs participant au service public hospitalier <strong>(PSPH)</strong></p>
+    </div>
+    <div style="background:var(--op);border-radius:6px;padding:.8rem 1rem;border-left:3px solid var(--oc);">
+      <p style="font-weight:700;font-size:.85rem;color:var(--o);margin-bottom:.3rem;">Loi HPST 2009 : approche FONCTIONNELLE</p>
+      <p style="font-size:.84rem;color:var(--doux);">Le service public est défini par <strong>14 missions</strong>. Ouverture à <strong>tous les établissements privés</strong>.</p>
+    </div>
+  </div>
+  <div style="background:var(--bp);border-radius:6px;padding:.8rem 1rem;margin-top:.6rem;border-left:3px solid var(--bc);">
+    <p style="font-weight:700;font-size:.85rem;color:var(--b);margin-bottom:.3rem;">Loi du 26 janvier 2016 : approche MIXTE (slide 8)</p>
+    <p style="font-size:.84rem;color:var(--doux);">Renforce les garanties offertes à l'usager. Réintroduit la notion de service public hospitalier.</p>
+  </div>
+</div>
+
+<div class="loi b">
+  <span class="lr">⚖️ Loi du 26 janvier 2016 — Garanties offertes aux patients (slide 10)</span>
+  <div class="lt">Les établissements assurant le service public hospitalier doivent garantir :</div>
+  <ul>
+    <li>L'<strong>accueil adapté</strong> (notamment pour les situations de handicap ou de précarité sociale, et dans un délai de prise en charge en rapport avec son état de santé)</li>
+    <li>La <strong>permanence de l'accueil</strong> et de la prise en charge</li>
+    <li>L'<strong>égal accès</strong> à des activités de prévention et des soins de qualité</li>
+    <li>L'<strong>absence de facturation de dépassements des tarifs</strong> (tarif secteur 1)</li>
+    <li>Ces garanties s'appliquent <strong>y compris lors d'un transfert temporaire</strong> dans un autre établissement ou structure</li>
+  </ul>
+</div>
+
+<div class="card b">
+  <div class="ct">🏥 Les catégories d'établissements de santé (slide 11)</div>
+  <div class="g2">
+    <div>
+      <p style="font-weight:700;font-size:.87rem;color:var(--b);margin-bottom:.5rem;">62 % — Établissements publics de santé + mission de SP</p>
+      <ul class="l">
+        <li><strong>CHRU</strong> (CHU) : 30 CHR + 2 CHR = 32 · Personne morale de droit public · 235 brevets/an · 35 % de l'activité · Principaux employeurs de leur ville · Soins + recherche + enseignement · Activité libérale des praticiens</li>
+        <li><strong>Centres Hospitaliers (CH)</strong> : 88</li>
+        <li><strong>Centres hospitaliers spécialisés en psychiatrie</strong> : 8</li>
+        <li><strong>Hôpitaux d'instructions des armées</strong> : 75 % des patients non militaires</li>
+      </ul>
+    </div>
+    <div>
+      <p style="font-weight:700;font-size:.87rem;color:var(--r);margin-bottom:.5rem;">38 % — Établissements privés de santé</p>
+      <ul class="l">
+        <li><strong>Établissements de santé privés d'intérêt collectif (ESPIC)</strong> : Personne morale de droit privé sous contrôle de l'État · Investissent les intérêts dans l'innovation et la recherche · Même financement et valeur que hôpitaux publics</li>
+        <li><strong>Centres de lutte contre le cancer (CLCC)</strong> : 20 · Soins + recherche + enseignement</li>
+        <li><strong>Établissements à but lucratif</strong> : Société de capitaux ou de personnes</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     §1 — NOTION DE QUALITÉ
+══════════════════════════════════════════ -->
+<div class="sh i1">
+  <div class="sn">§1</div>
+  <h2>La notion de qualité des soins</h2>
+  <p>Slides 12 à 18 — Définitions · Évaluation des ES · Autorisation d'exercice · Vigilances</p>
+</div>
+
+<div class="sub v">Définitions de la qualité (slides 12-13)</div>
+
+<div class="g2">
+  <div class="def v">
+    <span class="dl">Définition — En milieu hospitalier (slide 12)</span>
+    <div class="dt">La qualité à l'hôpital</div>
+    <p>L'<strong>aptitude à satisfaire des besoins exprimés et implicites</strong>, par l'engagement de la structure hospitalière et des professionnels dans des actions <strong>permanentes et systématiques d'amélioration</strong> du service rendu au patient.</p>
+    <div class="src">→ Mesurer la qualité = vérifier régulièrement la conformité de l'organisation des soins, de l'accueil et autres, au regard de niveaux de performance préalablement définis.</div>
+  </div>
+  <div class="def v">
+    <span class="dl">Définition — OMS (slide 13)</span>
+    <div class="dt">Un soin de qualité</div>
+    <p>Doit permettre de garantir à chaque patient <strong>l'assortiment d'actes diagnostiques et thérapeutiques</strong> qui leur assurera le meilleur résultat en termes de santé, conformément à l'état actuel de la science médicale, <strong>au meilleur coût</strong> pour un même résultat, <strong>au moindre risque iatrogène</strong>, et pour sa grande satisfaction, en termes de procédures, de résultats et de <strong>contacts humains</strong> à l'intérieur du système de soins.</p>
+  </div>
+</div>
+
+<div class="def t">
+  <span class="dl">Définition — Haute Autorité de Santé (slide 13)</span>
+  <div class="dt">La qualité selon la HAS</div>
+  <p>La qualité d'un système de santé augmente lorsque les soins prodigués sont aussi <strong>efficaces, sûrs et accessibles</strong> que possible, dans des conditions aussi <strong>équitables et efficientes</strong> que possible.</p>
+</div>
+
+<div class="sub v">Bases légales de la qualité (slides 15-17)</div>
+
+<div class="tl">
+  <div class="tl-item">
+    <div class="tl-date">Article 9 du code de déontologie médicale — version 1979</div>
+    <div class="tl-desc">Le médecin doit limiter ses prescriptions et ses actes à ce qui est nécessaire, « dans toute la mesure compatible avec l'efficacité des soins ».</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">Article R. 4127-8 — version 1995</div>
+    <div class="tl-desc">La limite s'applique à « ce qui est nécessaire à la <strong>qualité, à la sécurité et à l'efficacité des soins</strong> ».</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">Loi du 31 juillet 1991 — Évaluation des établissements (slide 16)</div>
+    <div class="tl-desc">Les établissements de santé publics ou privés doivent « disposer des moyens adéquats et de procéder à <strong>l'évaluation de leur activité</strong> » afin « de dispenser des soins de qualité ».</div>
+  </div>
+</div>
+
+<div class="loi v">
+  <span class="lr">⚖️ Article L. 6122-1 CSP — Autorisation d'exercice (slide 17)</span>
+  <div class="lt">L'obtention d'une autorisation pour l'exercice d'une activité de soins ou d'un équipement matériel lourd</div>
+  <ul>
+    <li>Dans le cadre du SROS : article <strong>L. 1434-7 CSP</strong> : « Le schéma régional d'organisation des soins a pour objet de prévoir et de susciter les évolutions nécessaires de l'offre de soins afin de répondre aux besoins de santé de la population et aux exigences d'efficacité et d'accessibilité géographique »</li>
+    <li>Les établissements doivent procéder à l'analyse de leur activité grâce à un <strong>Programme de Médicalisation des Systèmes d'Information (PMSI)</strong> → améliorer la connaissance et l'évaluation de l'activité et des coûts et favoriser l'optimisation de l'offre de soins</li>
+  </ul>
+</div>
+
+<div class="sub v">Les vigilances sanitaires (slide 18)</div>
+
+<div class="card v">
+  <div class="ct">🔍 Les 7 types de vigilance sanitaire</div>
+  <table>
+    <thead><tr><th class="v">Type de vigilance</th><th class="v">Définition</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Protection contre les incendies</strong></td><td>Sécurité des locaux hospitaliers</td></tr>
+      <tr><td><strong>Sécurité anesthésique</strong></td><td>Surveillance des risques liés aux anesthésies</td></tr>
+      <tr><td><strong>Pharmacovigilance</strong></td><td>Lutte contre les <strong>accidents liés à une prise médicamenteuse</strong></td></tr>
+      <tr><td><strong>Matériovigilance</strong></td><td>Gestion du risque lié à l'utilisation de <strong>dispositifs médicaux</strong> lors des activités de soins</td></tr>
+      <tr><td><strong>Hémovigilance</strong></td><td>Ensemble des procédures de surveillance organisées depuis la <strong>collecte de sang et ses composants jusqu'au suivi des receveurs</strong></td></tr>
+      <tr><td><strong>Biovigilance</strong></td><td>Prévention des risques liés à l'environnement : qualité de l'eau, de l'air, sécurité alimentaire, gestion des déchets…</td></tr>
+      <tr><td><strong>Nosovigilance</strong></td><td>Lutte contre les <strong>infections nosocomiales</strong> (infections contractées par certains patients au cours d'une hospitalisation) → Rôle du <strong>CLIN</strong> (comité de lutte contre les infections nosocomiales), dont la création est <strong>obligatoire</strong> dans chaque établissement hospitalier</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     §2 — ÉVALUATION DES PRATIQUES
+══════════════════════════════════════════ -->
+<div class="sh i2">
+  <div class="sn">§2</div>
+  <h2>L'évaluation des pratiques professionnelles</h2>
+  <p>Slides 19 à 23 — Obligation déontologique · Médecine de ville · Hôpital · HAS · Certification périodique 2023</p>
+</div>
+
+<div class="sub t">Une obligation déontologique (slide 19)</div>
+
+<div class="card t">
+  <div class="ct">📋 L'obligation d'évaluation dans les règles déontologiques</div>
+  <ul class="l">
+    <li>La nécessité d'une <strong>formation continue des professionnels de santé</strong> est inscrite dans leurs règles déontologiques de longue date</li>
+    <li><strong>Article 16, version 1979</strong> : « les médecins ont le devoir d'entretenir et de perfectionner leurs connaissances »</li>
+    <li><strong>1995</strong> : ces obligations avaient été complétées par la mention : « tout médecin participe à <strong>l'évaluation des pratiques professionnelles</strong> »</li>
+  </ul>
+</div>
+
+<div class="sub t">Évaluation pour la médecine de ville (slide 20)</div>
+
+<div class="loi t">
+  <span class="lr">⚖️ Loi de financement de la sécurité sociale pour 1999 — Article 23</span>
+  <div class="lt">Évaluation des pratiques en médecine libérale</div>
+  <ul>
+    <li>Confie aux <strong>unions des médecins exerçant à titre libéral</strong>, en liaison avec l'<strong>ANAES</strong>, l'organisation d'actions d'évaluation des pratiques</li>
+    <li>Des médecins « habilités » par l'ANAES devaient procéder à des <strong>évaluations individuelles ou collectives</strong> des pratiques à la demande des médecins libéraux</li>
+    <li><strong>ANAES</strong> (Agence nationale d'accréditation et d'évaluation en santé) → devenue <strong>Haute Autorité de Santé en 2013</strong></li>
+  </ul>
+</div>
+
+<div class="sub t">Évaluation des professionnels à l'hôpital (slide 21)</div>
+
+<div class="loi t">
+  <span class="lr">⚖️ Loi hospitalière du 31 juillet 1991</span>
+  <div class="lt">Obligation d'évaluation des pratiques professionnelles à l'hôpital</div>
+  <ul>
+    <li>Obligation aux établissements de santé, publics ou privés, de développer « une <strong>politique d'évaluation des pratiques professionnelles</strong>, des modalités d'organisation des soins et de toute action concourant à une prise en charge globale du malade</li>
+    <li>Afin notamment d'en garantir la <strong>qualité et l'efficience</strong> »</li>
+  </ul>
+</div>
+
+<div class="sub t">La Haute Autorité de Santé — HAS (slide 22)</div>
+
+<div class="loi t">
+  <span class="lr">⚖️ Loi du 13 août 2004 relative à l'assurance maladie — section « qualité des soins »</span>
+  <div class="lt">Obligation d'évaluation des pratiques professionnelles — confiée à la HAS</div>
+  <ul>
+    <li>Obligation d'évaluation des pratiques professionnelles pour :
+      <ul>
+        <li>Les médecins libéraux</li>
+        <li>Les médecins du service public hospitalier</li>
+        <li>Les médecins salariés non hospitaliers</li>
+        <li>Les médecins exerçant dans des établissements de santé privés</li>
+      </ul>
+    </li>
+    <li>Cette évaluation est désormais confiée à la <strong>Haute Autorité de Santé (HAS)</strong></li>
+  </ul>
+</div>
+
+<div class="def t">
+  <span class="dl">Définition</span>
+  <div class="dt">La Haute Autorité de Santé (HAS)</div>
+  <p><strong>Autorité publique indépendante</strong> qui contribue à la <strong>régulation du système de santé par la qualité</strong>.</p>
+</div>
+
+<div class="sub t">Certification périodique des professionnels de santé — à partir du 1er janvier 2023 (slide 23)</div>
+
+<div class="loi t">
+  <span class="lr">⚖️ Ordonnance n° 2021-961 du 19 juillet 2021</span>
+  <div class="lt">Certification périodique des professionnels de santé — en vigueur au 1er janvier 2023</div>
+  <ul>
+    <li><strong>Professionnels concernés</strong> : médecin · chirurgien-dentiste · sage-femme · pharmacien · infirmier · masseur-kinésithérapeute · pédicure-podologue</li>
+    <li>Ces professionnels doivent réaliser, au cours d'une <strong>période de six ans</strong>, un <strong>programme minimal d'actions</strong> visant à :
+      <ul>
+        <li>Actualiser leurs <strong>connaissances et leurs compétences</strong></li>
+        <li>Renforcer la <strong>qualité de leurs pratiques professionnelles</strong></li>
+        <li>Améliorer la <strong>relation avec leurs patients</strong></li>
+        <li>Mieux prendre en compte leur <strong>santé personnelle</strong></li>
+      </ul>
+    </li>
+    <li>Articulé avec le <strong>compte individuel de formation</strong></li>
+  </ul>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     §3 — CERTIFICATION DES ES
+══════════════════════════════════════════ -->
+<div class="sh i3">
+  <div class="sn">§3</div>
+  <h2>La certification des établissements de santé</h2>
+  <p>Slides 24 à 29 — Accréditation 1996 → Certification 2004 · Référentiel 12 objectifs · Bilan 2024</p>
+</div>
+
+<div class="sub">Création et évolution de la procédure (slide 24)</div>
+
+<div class="tl">
+  <div class="tl-item">
+    <div class="tl-date">1996 — Ordonnance hospitalière du 24 avril 1996</div>
+    <div class="tl-desc">Institue une procédure d'<strong>accréditation</strong>, confiée à l'<strong>ANAES</strong>. Le terme d'accréditation concerne à présent les médecins aux activités à risques.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">2004 — Loi du 13 août 2004</div>
+    <div class="tl-desc">Transforme l'accréditation en <strong>certification</strong>, confiée à la <strong>HAS</strong>.</div>
+  </div>
+</div>
+
+<div class="loi">
+  <span class="lr">⚖️ Article L. 6113-3 du Code de la santé publique — Loi du 13 août 2004</span>
+  <div class="lt">Définition de la certification des établissements de santé</div>
+  <ul>
+    <li>Afin d'assurer l'<strong>amélioration continue de la qualité et de la sécurité des soins</strong>, tous les établissements de santé publics et privés doivent faire l'objet d'une procédure externe d'évaluation dénommée <strong>certification</strong></li>
+    <li>Procédure conduite par la <strong>Haute Autorité de Santé</strong></li>
+    <li>Vise à porter une <strong>appréciation indépendante</strong> sur la qualité d'un établissement ou d'un ou plusieurs pôles, structures internes ou activités d'un établissement</li>
+    <li>À l'aide d'<strong>indicateurs, de critères et de référentiels</strong> portant sur les procédures, les bonnes pratiques cliniques et les résultats des différents services</li>
+  </ul>
+</div>
+
+<div class="ret">
+  <div class="ri">🏛️</div>
+  <div class="rb">
+    <strong>Dispositif de certification — slide 25</strong>
+    <p>La certification mobilise les <strong>ES (équipes de soins)</strong> et la <strong>CCES (Commission de Certification des Établissements de Santé)</strong>. La devise est : <strong>« Patients, soignants, un engagement partagé »</strong>.</p>
+  </div>
+</div>
+
+<div class="sub">Le référentiel de certification — 12 objectifs répartis en 3 chapitres (slides 27-28)</div>
+
+<div class="org">
+  <h3>Référentiel de certification HAS — 3 chapitres, 12 objectifs</h3>
+  <svg viewBox="0 0 860 350" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px;">
+
+    <!-- Titre -->
+    <rect x="200" y="5" width="460" height="40" rx="8" fill="#1a5c38"/>
+    <text x="430" y="22" text-anchor="middle" font-family="Playfair Display,serif" font-size="12" font-weight="700" fill="white">Référentiel de certification HAS</text>
+    <text x="430" y="38" text-anchor="middle" font-family="Source Serif 4,serif" font-size="10" fill="#c0f0d8">12 objectifs répartis en 3 chapitres · « Patients, soignants, un engagement partagé »</text>
+
+    <!-- Chapitre 1 : Le patient -->
+    <rect x="5" y="58" width="273" height="280" rx="10" fill="#e6f0fa" stroke="#2a6aad" stroke-width="2"/>
+    <rect x="5" y="58" width="273" height="38" rx="10" fill="#1a4870"/><rect x="5" y="78" width="273" height="18" fill="#1a4870"/>
+    <text x="141" y="78" text-anchor="middle" font-family="Playfair Display,serif" font-size="12" font-weight="700" fill="white">Chapitre 1 — Le patient</text>
+    <text x="17" y="116" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#1a4870">4 objectifs :</text>
+    <text x="17" y="135" font-family="Source Serif 4,serif" font-size="10" fill="#333">1.1 — Le respect des droits du patient</text>
+    <text x="17" y="153" font-family="Source Serif 4,serif" font-size="10" fill="#333">1.2 — L'information du patient</text>
+    <text x="17" y="171" font-family="Source Serif 4,serif" font-size="10" fill="#333">1.3 — L'engagement du patient dans</text>
+    <text x="30" y="186" font-family="Source Serif 4,serif" font-size="10" fill="#333">son projet de soins</text>
+    <text x="17" y="205" font-family="Source Serif 4,serif" font-size="10" fill="#333">1.4 — L'implication des patients et de</text>
+    <text x="30" y="220" font-family="Source Serif 4,serif" font-size="10" fill="#333">leurs représentants dans la vie de</text>
+    <text x="30" y="235" font-family="Source Serif 4,serif" font-size="10" fill="#333">l'établissement</text>
+    <line x1="17" y1="248" x2="265" y2="248" stroke="#cde3f8" stroke-width="1"/>
+    <text x="17" y="265" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">Droits respectés, besoins spécifiques</text>
+    <text x="17" y="279" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">pris en compte. Engagement du patient</text>
+    <text x="17" y="293" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">comme partenaire de sa prise en charge.</text>
+
+    <!-- Chapitre 2 : Les équipes de soins -->
+    <rect x="293" y="58" width="273" height="280" rx="10" fill="#fdf4dc" stroke="#c8940a" stroke-width="2"/>
+    <rect x="293" y="58" width="273" height="38" rx="10" fill="#9a6600"/><rect x="293" y="78" width="273" height="18" fill="#9a6600"/>
+    <text x="429" y="78" text-anchor="middle" font-family="Playfair Display,serif" font-size="12" font-weight="700" fill="white">Chapitre 2 — Les équipes de soins</text>
+    <text x="305" y="116" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#9a6600">4 objectifs :</text>
+    <text x="305" y="135" font-family="Source Serif 4,serif" font-size="10" fill="#333">2.1 — La coordination des équipes pour</text>
+    <text x="320" y="150" font-family="Source Serif 4,serif" font-size="10" fill="#333">la prise en charge du patient</text>
+    <text x="305" y="168" font-family="Source Serif 4,serif" font-size="10" fill="#333">2.2 — La maîtrise des risques liés aux</text>
+    <text x="320" y="183" font-family="Source Serif 4,serif" font-size="10" fill="#333">pratiques</text>
+    <text x="305" y="201" font-family="Source Serif 4,serif" font-size="10" fill="#333">2.3 — La sécurité dans les secteurs à</text>
+    <text x="320" y="216" font-family="Source Serif 4,serif" font-size="10" fill="#333">risques majeurs (urgences, chirurgie,</text>
+    <text x="320" y="231" font-family="Source Serif 4,serif" font-size="10" fill="#333">maternité, SAMU/SMUR, psy…)</text>
+    <text x="305" y="249" font-family="Source Serif 4,serif" font-size="10" fill="#333">2.4 — La culture de la pertinence et</text>
+    <text x="320" y="264" font-family="Source Serif 4,serif" font-size="10" fill="#333">de l'évaluation</text>
+    <line x1="305" y1="278" x2="553" y2="278" stroke="#f0dfa0" stroke-width="1"/>
+    <text x="305" y="295" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">Capacité à rechercher pertinence,</text>
+    <text x="305" y="309" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">efficacité, sécurité des soins. Maîtrise</text>
+    <text x="305" y="323" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">des risques liés au soin.</text>
+
+    <!-- Chapitre 3 : L'établissement -->
+    <rect x="581" y="58" width="273" height="280" rx="10" fill="#e4f4ec" stroke="#278f52" stroke-width="2"/>
+    <rect x="581" y="58" width="273" height="38" rx="10" fill="#1a5c38"/><rect x="581" y="78" width="273" height="18" fill="#1a5c38"/>
+    <text x="717" y="78" text-anchor="middle" font-family="Playfair Display,serif" font-size="12" font-weight="700" fill="white">Chapitre 3 — L'établissement</text>
+    <text x="593" y="116" font-family="Playfair Display,serif" font-size="10.5" font-weight="700" fill="#1a5c38">4 objectifs :</text>
+    <text x="593" y="135" font-family="Source Serif 4,serif" font-size="10" fill="#333">3.1 — Le management global par la</text>
+    <text x="608" y="150" font-family="Source Serif 4,serif" font-size="10" fill="#333">qualité et la sécurité des soins</text>
+    <text x="593" y="168" font-family="Source Serif 4,serif" font-size="10" fill="#333">3.2 — La maîtrise des ressources</text>
+    <text x="608" y="183" font-family="Source Serif 4,serif" font-size="10" fill="#333">professionnelles et des compétences</text>
+    <text x="593" y="201" font-family="Source Serif 4,serif" font-size="10" fill="#333">3.3 — Le positionnement territorial</text>
+    <text x="593" y="219" font-family="Source Serif 4,serif" font-size="10" fill="#333">3.4 — L'adaptation à des soins</text>
+    <text x="608" y="234" font-family="Source Serif 4,serif" font-size="10" fill="#333">éco-responsables et aux innovations</text>
+    <text x="608" y="249" font-family="Source Serif 4,serif" font-size="10" fill="#333">numériques</text>
+    <line x1="593" y1="263" x2="841" y2="263" stroke="#b0ddc0" stroke-width="1"/>
+    <text x="593" y="280" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">Gouvernance (direction et CME).</text>
+    <text x="593" y="294" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">Insertion territoriale. Dynamique forte</text>
+    <text x="593" y="308" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">d'amélioration qualité et sécurité.</text>
+  </svg>
+</div>
+
+<div class="ret">
+  <div class="ri">📊</div>
+  <div class="rb">
+    <strong>Objectif de la structuration en 3 chapitres</strong>
+    <p>Permet l'analyse croisée entre le résultat pour le patient, les pratiques mises en œuvre par les équipes de soins et la dynamique impulsée par la gouvernance. L'objectif est de construire une <strong>vision intégrée du niveau de qualité de prise en charge</strong> au sein d'un établissement.</p>
+  </div>
+</div>
+
+<div class="sub">Bilan de la certification 2024 (slide 29)</div>
+
+<div class="card o">
+  <div class="ct">📊 Résultats HAS — Bilan certification février 2024</div>
+  <div class="g2">
+    <div>
+      <p style="font-weight:700;font-size:.87rem;color:var(--v);margin-bottom:.5rem;">✅ 85 % des établissements certifiés</p>
+      <ul class="l">
+        <li><strong>63 %</strong> : mention « <strong>Qualité de soins confirmée</strong> »</li>
+        <li><strong>22 %</strong> : mention « <strong>Haute qualité de soins</strong> »</li>
+      </ul>
+    </div>
+    <div>
+      <p style="font-weight:700;font-size:.87rem;color:var(--r);margin-bottom:.5rem;">❌ 15 % des établissements non certifiés</p>
+      <ul class="l">
+        <li><strong>13 %</strong> : mention « <strong>Qualité de soins à améliorer</strong> » → nouvelle visite reprogrammée entre 6 et 12 mois</li>
+        <li><strong>3 %</strong> (33 établissements) : mention « <strong>Qualité des soins insuffisante</strong> » → nouvelle visite entre 12 et 24 mois</li>
+      </ul>
+    </div>
+  </div>
+  <p style="font-size:.83rem;color:var(--doux);margin-top:.5rem;font-style:italic;">Sur près de 2 400 établissements recensés, un peu plus de 1 000 ont reçu leur certification. Ce chiffre de 3 % de non-certifiés est bas, mais <strong>il n'a jamais été aussi élevé</strong>.</p>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     §4 — GHT
+══════════════════════════════════════════ -->
+<div class="sh i4">
+  <div class="sn">§4</div>
+  <h2>Les Groupements Hospitaliers de Territoire (GHT)</h2>
+  <p>Slides 30 à 49 — Constitution · Projet médical partagé · Loi 2019 · 3 niveaux de soins · Hôpitaux de proximité · PAERPA · EHPAD · Loi 2023</p>
+</div>
+
+<div class="sub vi">La création des GHT — La loi du 26 janvier 2016 (slides 30-31)</div>
+
+<div class="loi vi">
+  <span class="lr">⚖️ Loi n° 2016-41 du 26 janvier 2016 — Articles L. 6132-1 et L. 6132-7 CSP</span>
+  <div class="lt">Obligation pour tous les établissements publics de santé d'adhérer à une convention de GHT</div>
+  <ul>
+    <li>Les <strong>établissements publics sociaux et médico-sociaux</strong> peuvent être parties à un GHT</li>
+    <li>Les <strong>établissements psychiatriques, les ES privés, les hôpitaux des armées</strong> pourront être partenaires ou associés pour l'élaboration du projet médical partagé des GHT (sans en être parties)</li>
+    <li>Cette association sera <strong>obligatoire</strong> pour les CHU et pour les établissements exerçant une activité d'<strong>HAD</strong></li>
+    <li>Le choix des partenaires reste une <strong>liberté pour les centres hospitaliers</strong>, qui ne sont pas contraints par le territoire de démocratie sanitaire</li>
+    <li>C'est le <strong>projet médical partagé</strong> qui doit dicter la configuration de la coopération</li>
+  </ul>
+</div>
+
+<div class="loi vi">
+  <span class="lr">⚖️ Constitution des GHT (slide 31)</span>
+  <div class="lt">Le GHT — un dispositif de coopération conventionnelle</div>
+  <ul>
+    <li>Obligatoire pour tous les établissements publics de santé, sous peine de <strong>suspension du versement des dotations MIGAC</strong> (Missions d'intérêt général et d'aide à la contractualisation)</li>
+    <li>Chaque établissement a dû conclure une convention de GHT avant le <strong>1er juillet 2016</strong></li>
+    <li>Le contenu de la <strong>convention constitutive de GHT</strong> est fixé par la loi</li>
+    <li>Toutefois, les établissements conservent une certaine liberté contractuelle pour : le choix des partenaires · la mise en place de la gouvernance · la mise en œuvre des mutualisations attendues</li>
+    <li>→ <strong>Un GHT par département</strong> en principe (slide 32)</li>
+  </ul>
+</div>
+
+<div class="sub vi">Le projet médical partagé — socle du GHT (slide 37)</div>
+
+<div class="card vi">
+  <div class="ct">📋 Le projet médical partagé</div>
+  <ul class="l">
+    <li>La loi fait du <strong>projet médical partagé</strong> le <strong>socle du GHT</strong></li>
+    <li>C'est en considération des éléments du projet médical partagé que se décline ensuite le périmètre du GHT</li>
+    <li>Tous les établissements ne pouvant assurer toutes les activités, le projet médical partagé a comme objet principal de mettre en place une <strong>stratégie territoriale de complémentarité</strong></li>
+    <li>Il a vocation à déterminer par filière une offre de :
+      <ul>
+        <li><strong>Proximité</strong></li>
+        <li><strong>Recours</strong></li>
+        <li><strong>Référence</strong></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<div class="sub vi">Loi n° 2019-774 du 24 juillet 2019 — Organisation et transformation du système de santé (slides 39-44)</div>
+
+<div class="loi vi">
+  <span class="lr">⚖️ Loi n° 2019-774 du 24 juillet 2019 relative à l'organisation et à la transformation du système de santé</span>
+  <div class="lt">Faire émerger un système de santé mieux organisé dans les territoires</div>
+  <ul>
+    <li><strong>Projets territoriaux de santé</strong> → décloisonnement entre ville, hôpital et médico-social</li>
+    <li>Favorise les <strong>coopérations entre les acteurs et les métiers de la santé</strong></li>
+    <li>Développer un <strong>collectif de soins</strong> entre professionnels, secteur ambulatoire, médico-social ou hospitalier → <strong>communautés professionnelles territoriales de santé</strong></li>
+    <li>Mieux structurer l'offre de soins dans les territoires</li>
+    <li>Dépasse les approches sectorielles et apporte des réponses globales et cohérentes</li>
+  </ul>
+</div>
+
+<div class="org">
+  <h3>Nouvelle organisation territoriale en 3 niveaux (slide 40)</h3>
+  <svg viewBox="0 0 860 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px;">
+    <!-- Niveau 1 -->
+    <rect x="5" y="10" width="274" height="215" rx="10" fill="#e4f4ec" stroke="#278f52" stroke-width="2"/>
+    <rect x="5" y="10" width="274" height="38" rx="10" fill="#1a5c38"/><rect x="5" y="30" width="274" height="18" fill="#1a5c38"/>
+    <text x="142" y="30" text-anchor="middle" font-family="Playfair Display,serif" font-size="12" font-weight="700" fill="white">Niveau 1 — Soins de proximité</text>
+    <text x="17" y="68" font-family="Playfair Display,serif" font-size="10" font-weight="700" fill="#1a5c38">Les soins les plus courants</text>
+    <text x="17" y="87" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Au plus près des lieux de vie des patients</text>
+    <text x="17" y="104" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Dispensés par les professionnels de santé</text>
+    <text x="17" y="121" font-family="Source Serif 4,serif" font-size="10" fill="#333">  ambulatoires</text>
+    <text x="17" y="138" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Et dans les hôpitaux de proximité</text>
+    <text x="17" y="165" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">→ Arrêté du 7 novembre 2019</text>
+    <text x="17" y="180" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">  relatif à l'exercice de l'activité</text>
+    <text x="17" y="195" font-family="Source Serif 4,serif" font-size="9.5" fill="#888">  d'assistant médical</text>
+
+    <!-- Niveau 2 -->
+    <rect x="293" y="10" width="274" height="215" rx="10" fill="#fdf4dc" stroke="#c8940a" stroke-width="2"/>
+    <rect x="293" y="10" width="274" height="38" rx="10" fill="#9a6600"/><rect x="293" y="30" width="274" height="18" fill="#9a6600"/>
+    <text x="430" y="30" text-anchor="middle" font-family="Playfair Display,serif" font-size="12" font-weight="700" fill="white">Niveau 2 — Soins spécialisés</text>
+    <text x="305" y="68" font-family="Playfair Display,serif" font-size="10" font-weight="700" fill="#9a6600">Soins nécessitant une expertise</text>
+    <text x="305" y="87" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Dispensés à la fois par des médecins</text>
+    <text x="305" y="104" font-family="Source Serif 4,serif" font-size="10" fill="#333">  spécialistes libéraux</text>
+    <text x="305" y="121" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Et par des équipes hospitalières</text>
+    <text x="305" y="138" font-family="Source Serif 4,serif" font-size="10" fill="#333">  disposant des compétences et</text>
+    <text x="305" y="155" font-family="Source Serif 4,serif" font-size="10" fill="#333">  infrastructures garantissant la qualité</text>
+    <text x="305" y="172" font-family="Source Serif 4,serif" font-size="10" fill="#333">  et la sécurité</text>
+
+    <!-- Niveau 3 -->
+    <rect x="581" y="10" width="274" height="215" rx="10" fill="#f0ebfa" stroke="#5a2e80" stroke-width="2"/>
+    <rect x="581" y="10" width="274" height="38" rx="10" fill="#5a2e80"/><rect x="581" y="30" width="274" height="18" fill="#5a2e80"/>
+    <text x="718" y="30" text-anchor="middle" font-family="Playfair Display,serif" font-size="12" font-weight="700" fill="white">Niveau 3 — Soins ultraspécialisés</text>
+    <text x="593" y="68" font-family="Playfair Display,serif" font-size="10" font-weight="700" fill="#5a2e80">Compétences et plateaux rares</text>
+    <text x="593" y="87" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Nécessitant des compétences</text>
+    <text x="593" y="104" font-family="Source Serif 4,serif" font-size="10" fill="#333">  particulières et des plateaux</text>
+    <text x="593" y="121" font-family="Source Serif 4,serif" font-size="10" fill="#333">  techniques de pointe</text>
+    <text x="593" y="138" font-family="Source Serif 4,serif" font-size="10" fill="#333">• CHU · Centre de lutte contre</text>
+    <text x="593" y="155" font-family="Source Serif 4,serif" font-size="10" fill="#333">  le cancer</text>
+    <text x="593" y="172" font-family="Source Serif 4,serif" font-size="10" fill="#333">• Compétences et moyens techniques</text>
+    <text x="593" y="189" font-family="Source Serif 4,serif" font-size="10" fill="#333">  rares à des fins de recherche</text>
+    <text x="593" y="206" font-family="Source Serif 4,serif" font-size="10" fill="#333">  et d'excellence</text>
+  </svg>
+</div>
+
+<div class="sub vi">Les hôpitaux de proximité — Article L. 6111-3-1 CSP (slides 42-44)</div>
+
+<div class="art b">
+  <span class="ar">Article L. 6111-3-1 CSP — Modifié par la Loi n° 2019-774 du 24 juillet 2019, art. 35</span>
+  <p>« Les hôpitaux de proximité sont des établissements de santé publics ou privés, ou des sites identifiés de ces établissements. Ils assurent le <strong>premier niveau de la gradation des soins hospitaliers</strong> et orientent les patients qui le nécessitent, conformément au principe de pertinence des soins, vers les établissements de santé de recours et de référence ou vers les autres structures adaptées à leurs besoins. Les missions des hôpitaux de proximité sont exercées avec la participation conjointe des structures et des professionnels de la médecine ambulatoire avec lesquels ils partagent une <strong>responsabilité territoriale</strong>. »</p>
+</div>
+
+<div class="card b">
+  <div class="ct">📋 Les 4 missions des hôpitaux de proximité (slide 43)</div>
+  <ul class="l">
+    <li><strong>Mission 1</strong> : Apportent un appui aux professionnels de santé de ville et aux autres acteurs de l'offre de soins pour répondre aux besoins de la population, notamment le cadre hospitalier nécessaire pour poursuivre la prise en charge de leurs patients</li>
+    <li><strong>Mission 2</strong> : Favorisent la prise en charge des personnes en situation de vulnérabilité et leur <strong>maintien dans leur lieu de vie</strong>, en liaison avec le médecin traitant</li>
+    <li><strong>Mission 3</strong> : Participent à la <strong>prévention et à la promotion de la santé</strong> sur le territoire</li>
+    <li><strong>Mission 4</strong> : Contribuent à la <strong>permanence des soins</strong> et à la continuité des prises en charge en complémentarité avec les structures et professionnels de la médecine ambulatoire</li>
+  </ul>
+</div>
+
+<div class="ret">
+  <div class="ri">⚠️</div>
+  <div class="rb">
+    <strong>Chirurgie et activités des hôpitaux de proximité (slide 44)</strong>
+    <ul>
+      <li>Les 500 à 600 futurs hôpitaux de proximité labellisés pourront proposer de la chirurgie <strong>« à titre dérogatoire »</strong>, à partir d'une liste de la HAS et sur <strong>autorisation expresse du DG de l'ARS</strong></li>
+      <li>Ils n'auront <strong>aucune activité d'obstétrique</strong> (mais des activités prénatales et postnatales)</li>
+      <li>Ils pourront assurer des <strong>soins palliatifs</strong></li>
+      <li>Recentrés sur la <strong>médecine générale, la gériatrie et la réadaptation</strong></li>
+    </ul>
+  </div>
+</div>
+
+<div class="sub vi">L'exemple PAERPA — Évaluation d'une expérimentation (slides 45-46)</div>
+
+<div class="card vi">
+  <div class="ct">🔬 PAERPA — Parcours Santé des Aînés (lancé en 2014)</div>
+  <div class="g2">
+    <div>
+      <p style="font-weight:700;font-size:.87rem;color:var(--vi);margin-bottom:.4rem;">Contexte :</p>
+      <ul class="l">
+        <li>Expérimentation lancée en <strong>2014</strong> dans <strong>9 territoires pilotes</strong></li>
+        <li>Programme visant à faire progresser la <strong>coordination des acteurs sanitaires et médico-sociaux</strong> au niveau local</li>
+      </ul>
+      <p style="font-weight:700;font-size:.87rem;color:var(--vi);margin-bottom:.4rem;margin-top:.6rem;">Résultats :</p>
+      <ul class="l">
+        <li>Effet <strong>modeste mais significatif</strong> pour réduire les risques de <strong>iatrogénie médicamenteuse</strong> et les passages aux urgences</li>
+        <li>Sans impact sur les hospitalisations des personnes âgées</li>
+        <li>La faible mobilisation des professionnels de santé explique en partie ces résultats</li>
+        <li>Les analyses par territoire montrent que les résultats globaux sont portés par <strong>quelques territoires</strong> dont les contextes locaux ont permis une plus forte adhésion</li>
+      </ul>
+    </div>
+    <div>
+      <p style="font-weight:700;font-size:.87rem;color:var(--vi);margin-bottom:.4rem;">Plans Personnalisés de Santé (PPS) :</p>
+      <ul class="l">
+        <li>Ont permis d'enclencher une prise en charge médico-sociale au domicile des personnes âgées les plus fragiles</li>
+        <li>Hausse des dépenses de <strong>soins infirmiers</strong></li>
+        <li>Baisse des dépenses de médecine générale et de pharmacie</li>
+        <li>Pas d'impact immédiat sur le recours à l'hôpital et la polymédication</li>
+      </ul>
+      <p style="font-weight:700;font-size:.87rem;color:var(--vi);margin-bottom:.4rem;margin-top:.6rem;">Leçon principale :</p>
+      <p style="font-size:.85rem;color:var(--doux);">Pour assurer la qualité et la continuité de la prise en charge globale des personnes âgées, il est nécessaire de créer des <strong>passerelles plus formalisées entre professionnels de ville, spécialistes, soignants à domicile et acteurs hospitaliers</strong>.</p>
+    </div>
+  </div>
+</div>
+
+<div class="sub vi">Décret n° 2022-731 du 27 avril 2022 — Améliorer les soins en EHPAD (slide 47)</div>
+
+<div class="loi vi">
+  <span class="lr">⚖️ Décret n° 2022-731 du 27 avril 2022</span>
+  <div class="lt">Améliorer les soins en EHPAD</div>
+  <ul>
+    <li>Les EHPAD souffrent d'une <strong>insuffisance de la prise en charge médicale</strong> des personnes hébergées</li>
+    <li>Le décret impose aux EHPAD de conclure des <strong>conventions avec un ou plusieurs établissements de santé</strong> de leur territoire</li>
+    <li>Depuis <strong>2023</strong> : le temps de présence minimale des <strong>médecins coordonnateurs</strong> au sein des EHPAD est augmenté</li>
+  </ul>
+</div>
+
+<div class="sub vi">Loi du 27 décembre 2023 — Améliorer l'accès aux soins par l'engagement territorial (slides 48-49)</div>
+
+<div class="loi vi">
+  <span class="lr">⚖️ Loi du 27 décembre 2023 visant à améliorer l'accès aux soins par l'engagement territorial des professionnels</span>
+  <div class="lt">2 axes principaux</div>
+</div>
+
+<div class="card vi">
+  <div class="ct">① Renforcement par la coopération et l'engagement territorial (slide 48)</div>
+  <ul class="l">
+    <li>Le territoire de santé = <strong>échelon de référence</strong> de l'organisation locale de la politique de santé</li>
+    <li>Le <strong>CTS</strong> (Conseil territorial de Santé) est précisé, élargi et renforcé dans ses missions et responsabilités</li>
+    <li>La responsabilité d'organisation de la <strong>permanence des soins en établissements de santé (PDSES)</strong> est étendue → rééquilibrer les contributions entre le secteur public et le secteur privé</li>
+    <li>Les <strong>GHT sont renforcés et simplifiés</strong> grâce à la possibilité d'acquérir la <strong>personnalité morale</strong> → Le GHT doté de la personnalité morale pourra notamment être <strong>titulaire d'autorisations de soins</strong></li>
+    <li>Le <strong>contrôle financier sur les cliniques privées</strong>, leurs satellites et les sociétés qui les entourent, est renforcé</li>
+  </ul>
+</div>
+
+<div class="card vi">
+  <div class="ct">② Renforcement par la coopération entre les acteurs de santé (slide 49)</div>
+  <ul class="l">
+    <li><strong>Interdiction de l'intérim</strong> en début de carrière soignante (pour stabiliser les collectifs de travail hospitaliers)</li>
+    <li>Création de la fonction d'<strong>infirmier référent</strong> pour les patients en affection de longue durée (ALD)</li>
+    <li>Renforcement du rôle du <strong>médecin coordonnateur en EHPAD</strong></li>
+    <li>Le bénéfice des aides financières et exonérations fiscales à l'installation est limité à une attribution <strong>tous les 10 ans</strong></li>
+    <li>Les médecins, sages-femmes et dentistes souhaitant cesser définitivement leur activité devront respecter un <strong>préavis de six mois</strong></li>
+    <li>La <strong>majoration du ticket modérateur</strong> appliquée aux patients perdant leur médecin traitant du fait d'un départ à la retraite ou d'un déménagement est <strong>supprimée la première année</strong></li>
+    <li>Facilitation de l'exercice des <strong>PADHUE</strong> (praticiens diplômés hors de l'Union européenne) avec de nouvelles autorisations d'exercice provisoire</li>
+  </ul>
+</div>
+
+
+<!-- ══ RÉCAPITULATIF ══ -->
+<div class="sh i3" style="margin-top:3rem;background:linear-gradient(135deg,#f3f1eb,#e5dfcc);border-left-color:var(--oc);">
+  <div class="sn" style="color:var(--o);">Récapitulatif</div>
+  <h2 style="color:var(--o);">Tableau de synthèse — tous les textes</h2>
+</div>
+
+<div class="card o">
+  <div class="ct">📚 Bases légales complètes du Thème 5</div>
+  <table>
+    <thead><tr><th>Texte</th><th>Date</th><th>Apport essentiel</th></tr></thead>
+    <tbody>
+      <tr><td>3 ordonnances — réforme hospitalo-universitaire</td><td>1958</td><td>Création des CHRU · Commission nationale de l'équipement hospitalier</td></tr>
+      <tr><td><strong>Loi hospitalière</strong></td><td>31 déc. 1970</td><td>Carte sanitaire · Syndicats inter-hospitaliers</td></tr>
+      <tr><td><strong>Art. 9, Code de déontologie médicale</strong></td><td>1979</td><td>Médecin doit limiter les actes à ce qui est nécessaire « dans toute la mesure compatible avec l'efficacité des soins »</td></tr>
+      <tr><td><strong>Loi hospitalière du 31 juillet 1991</strong></td><td>31 juil. 1991</td><td>Obligation d'évaluation de l'activité pour tous les ES · Politique d'évaluation des pratiques professionnelles</td></tr>
+      <tr><td><strong>Art. R. 4127-8, Code de déontologie</strong></td><td>1995</td><td>Limiter les actes à « ce qui est nécessaire à la qualité, à la sécurité et à l'efficacité des soins »</td></tr>
+      <tr><td><strong>Ordonnance hospitalière du 24 avril 1996</strong></td><td>24 avr. 1996</td><td>Création ARH · Création ANAES · Procédure d'accréditation des ES · Charte des patients hospitalisés · T2A</td></tr>
+      <tr><td><strong>Ordonnance du 2 mai 2005</strong></td><td>2 mai 2005</td><td>Nouvelle gouvernance · T2A (tarification à l'activité) · Conseil exécutif (½ médecins, ½ administratifs)</td></tr>
+      <tr><td><strong>LFSS 1999 — Article 23</strong></td><td>1999</td><td>Évaluation des pratiques des médecins libéraux confiée aux unions de médecins, en liaison avec l'ANAES</td></tr>
+      <tr><td><strong>Loi du 13 août 2004</strong></td><td>13 août 2004</td><td>Section « qualité des soins » · Évaluation des pratiques pro. confiée à la HAS · Accréditation → certification (art. L. 6113-3 CSP)</td></tr>
+      <tr><td><strong>Loi HPST n° 2009-879</strong></td><td>21 juil. 2009</td><td>14 missions de SP hospitalier · Approche fonctionnelle · Loi Fourcade n° 2011-940 du 10 août 2011 la modifie</td></tr>
+      <tr><td><strong>Loi n° 2016-41</strong></td><td>26 jan. 2016</td><td>Réintroduit service public hospitalier · Art. L. 6132-1 et L. 6132-7 CSP : obligation de GHT pour tous les ES publics · Convention GHT avant le 1er juillet 2016</td></tr>
+      <tr><td><strong>Loi n° 2019-774</strong></td><td>24 juil. 2019</td><td>Organisation et transformation du SS · 3 niveaux de soins · Art. L. 6111-3-1 CSP : hôpitaux de proximité · Communautés professionnelles territoriales de santé</td></tr>
+      <tr><td><strong>Arrêté du 7 novembre 2019</strong></td><td>7 nov. 2019</td><td>Exercice de l'activité d'assistant médical</td></tr>
+      <tr><td><strong>Ordonnance n° 2021-961</strong></td><td>19 juil. 2021</td><td>Certification périodique des professionnels de santé à partir du 1er janv. 2023 (6 ans · 7 professions)</td></tr>
+      <tr><td><strong>Décret n° 2022-731</strong></td><td>27 avr. 2022</td><td>Améliorer les soins en EHPAD · Conventions avec ES · Augmentation temps présence médecins coordonnateurs (depuis 2023)</td></tr>
+      <tr><td><strong>Avis 140 CCNE</strong></td><td>20 oct. 2022</td><td>Repenser le système de soins sur un fondement éthique · 3 directions : qualité des soins / cure-care / démocratie en santé</td></tr>
+      <tr><td><strong>Loi du 27 décembre 2023</strong></td><td>27 déc. 2023</td><td>GHT renforcés avec personnalité morale possible · PDSES rééquilibrée · Interdiction intérim début de carrière · Infirmier référent ALD · Préavis 6 mois pour cessation d'activité · PADHUE</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<blockquote>
+  « L'éthique n'est ni optionnelle ni facultative : elle est une condition indispensable pour que les professionnels travaillant dans le champ de la santé retrouvent le sens de leur métier et de leur engagement. »
+  <cite>— CCNE, Avis 140, 20 octobre 2022</cite>
+</blockquote>
+
+</main>
+<footer>Fiche de révision — Thème 5 : La Qualité des Soins et la Restructuration Hospitalière · cours Guylène NICOLAS · Master 1 · 2025/2026</footer>
+</body>
+</html>
