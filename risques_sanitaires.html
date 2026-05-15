@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flash Cards — Maîtrise des risques sanitaires</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#1B2F55; --orange:#D4600A; --blue:#2558A8; --green:#2A5C38;
+  --teal:#0E6E6E; --gold:#8A6200; --red:#8B1A10; --purple:#5B3A8A;
+  --border:#D8D5CF; --bg:#F5F3EF;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Source Serif 4',Georgia,serif; background:var(--bg); min-height:100vh; }
+
+/* ── App header ── */
+.app-header { background:var(--navy); padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+.app-header h1 { font-family:'Playfair Display',serif; font-size:18px; font-weight:900; color:#fff; }
+.app-header .subtitle { font-size:11px; color:rgba(255,255,255,.55); letter-spacing:.08em; text-transform:uppercase; }
+
+/* ── Progress bar ── */
+.progress-bar { background:rgba(255,255,255,.15); border-radius:4px; height:6px; width:200px; }
+.progress-fill { background:var(--orange); height:100%; border-radius:4px; transition:width .3s; }
+
+/* ── Chapter tabs ── */
+.chap-tabs { background:#fff; border-bottom:2px solid var(--border); padding:0 24px; display:flex; gap:0; overflow-x:auto; }
+.chap-tab { padding:10px 16px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.06em; text-transform:uppercase; font-weight:600; color:#888; border-bottom:3px solid transparent; cursor:pointer; white-space:nowrap; transition:all .15s; margin-bottom:-2px; }
+.chap-tab:hover { color:var(--navy); }
+.chap-tab.active { color:var(--navy); border-bottom-color:var(--orange); }
+.chap-tab .tab-count { background:#EEE; color:#666; font-size:9px; padding:1px 5px; border-radius:10px; margin-left:5px; }
+.chap-tab.active .tab-count { background:var(--orange); color:#fff; }
+
+/* ── Main layout ── */
+.main { max-width:860px; margin:0 auto; padding:24px 20px; }
+
+/* ── Stats bar ── */
+.stats-bar { display:flex; gap:10px; margin-bottom:18px; flex-wrap:wrap; align-items:center; }
+.stat-pill { font-family:'JetBrains Mono',monospace; font-size:10px; padding:4px 10px; border-radius:20px; font-weight:600; }
+.sp-total  { background:var(--navy-lt,#EEF2FA); color:var(--navy); }
+.sp-ok     { background:#E6F2EB; color:var(--green); }
+.sp-ko     { background:#FCEAE8; color:var(--red); }
+.sp-rest   { background:#FEF8E6; color:var(--gold); }
+.btn-shuffle { margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:10px; padding:5px 12px; border-radius:20px; background:var(--navy); color:#fff; border:none; cursor:pointer; transition:opacity .15s; }
+.btn-shuffle:hover { opacity:.85; }
+
+/* ── Flash card ── */
+.card-area { perspective:1200px; margin-bottom:20px; }
+.card { width:100%; min-height:240px; position:relative; transform-style:preserve-3d; transition:transform .5s cubic-bezier(.4,0,.2,1); cursor:pointer; }
+.card.flipped { transform:rotateY(180deg); }
+.card-face { position:absolute; width:100%; min-height:240px; backface-visibility:hidden; border-radius:12px; padding:28px 32px; display:flex; flex-direction:column; justify-content:center; }
+.card-front { background:#fff; border:1px solid var(--border); box-shadow:0 4px 20px rgba(0,0,0,.08); }
+.card-back  { background:var(--navy); transform:rotateY(180deg); box-shadow:0 4px 20px rgba(0,0,0,.15); }
+
+/* front */
+.card-front .chapter-tag { font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; padding:3px 9px; border-radius:3px; color:#fff; display:inline-block; margin-bottom:14px; align-self:flex-start; }
+.card-front .question { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:var(--navy); line-height:1.4; }
+.card-front .hint { font-size:12px; color:#999; margin-top:10px; font-style:italic; }
+.card-front .flip-cue { position:absolute; bottom:16px; right:20px; font-size:11px; color:#bbb; font-style:italic; }
+
+/* back */
+.card-back .answer-label { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.45); margin-bottom:10px; }
+.card-back .answer { font-size:14.5px; color:#fff; line-height:1.7; }
+.card-back .answer strong { color:#FFC870; }
+.card-back .answer em { color:rgba(255,255,255,.75); }
+.card-back .answer ul { padding-left:18px; margin:6px 0; }
+.card-back .answer li { margin-bottom:4px; }
+.card-back .law-ref { display:inline-block; font-family:'JetBrains Mono',monospace; font-size:10px; background:rgba(255,255,255,.12); color:rgba(255,255,255,.7); padding:3px 8px; border-radius:3px; margin-top:10px; }
+
+/* ── Nav buttons ── */
+.nav-row { display:flex; gap:10px; align-items:center; justify-content:center; }
+.btn { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; padding:10px 22px; border-radius:8px; border:none; cursor:pointer; transition:all .15s; letter-spacing:.04em; }
+.btn-prev { background:#fff; border:1px solid var(--border); color:var(--navy); }
+.btn-prev:hover { background:var(--bg); }
+.btn-flip { background:var(--orange); color:#fff; min-width:140px; }
+.btn-flip:hover { background:#B85008; }
+.btn-next { background:#fff; border:1px solid var(--border); color:var(--navy); }
+.btn-next:hover { background:var(--bg); }
+.card-counter { font-family:'JetBrains Mono',monospace; font-size:12px; color:#888; min-width:80px; text-align:center; }
+
+/* ── Verdict buttons ── */
+.verdict-row { display:flex; gap:10px; justify-content:center; margin-top:12px; }
+.btn-ok { background:#2A5C38; color:#fff; } .btn-ok:hover { background:#1A4A28; }
+.btn-ko { background:#8B1A10; color:#fff; } .btn-ko:hover { background:#6B0A00; }
+.verdict-label { font-size:12px; color:#888; text-align:center; margin-top:8px; font-style:italic; }
+
+/* ── Chapter complete ── */
+.chap-complete { text-align:center; padding:48px 24px; background:#fff; border-radius:12px; border:1px solid var(--border); }
+.chap-complete .emoji { font-size:48px; margin-bottom:12px; }
+.chap-complete h3 { font-family:'Playfair Display',serif; font-size:22px; color:var(--navy); margin-bottom:8px; }
+.chap-complete p { color:#666; font-size:14px; margin-bottom:18px; }
+.chap-complete .score { font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--green); font-weight:700; }
+
+/* ── All done ── */
+.all-done { text-align:center; padding:60px 24px; background:var(--navy); border-radius:12px; color:#fff; }
+.all-done h2 { font-family:'Playfair Display',serif; font-size:28px; margin-bottom:12px; }
+.all-done p { color:rgba(255,255,255,.7); font-size:15px; }
+</style>
+</head>
+<body>
+
+<div class="app-header">
+  <div>
+    <div class="subtitle">Master 1 · AMU 2025-2026 · S. Sereno</div>
+    <h1>Flash Cards — Maîtrise des risques sanitaires</h1>
+  </div>
+  <div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.5);margin-bottom:5px" id="total-label">0 / 0 cartes</div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  </div>
+</div>
+
+<div class="chap-tabs" id="chap-tabs"></div>
+
+<div class="main">
+  <div class="stats-bar" id="stats-bar"></div>
+  <div class="card-area" id="card-area">
+    <div class="card" id="card">
+      <div class="card-face card-front" id="card-front"></div>
+      <div class="card-face card-back" id="card-back"></div>
+    </div>
+  </div>
+  <div class="nav-row" id="nav-row">
+    <button class="btn btn-prev" id="btn-prev" onclick="navigate(-1)">← Préc.</button>
+    <span class="card-counter" id="card-counter"></span>
+    <button class="btn btn-flip" id="btn-flip" onclick="flipCard()">Retourner</button>
+    <button class="btn btn-next" id="btn-next" onclick="navigate(1)">Suiv. →</button>
+  </div>
+  <div class="verdict-row" id="verdict-row" style="display:none">
+    <button class="btn btn-ko" onclick="markCard(false)">✗ À revoir</button>
+    <button class="btn btn-ok" onclick="markCard(true)">✓ Appris !</button>
+  </div>
+  <div class="verdict-label" id="verdict-label"></div>
+</div>
+
+<script>
+// ─── DATA ─────────────────────────────────────────────────────────────────────
+const CHAPTERS = [
+  {
+    id:'intro', label:'Chap. Intro', color:'#D4600A',
+    title:'Chapitre introductif — La diversité des sources des normes de protection',
+    cards:[
+      { q:"Quel est l'objectif du chapitre introductif ?", a:"Identifier les principales sources du droit de la santé et de la sécurité au travail. Mettre en lumière la <strong>richesse et la diversité</strong> des normes de protection ainsi que les <strong>difficultés liées à leur appropriation</strong> par les parties prenantes de la politique de santé dans l'entreprise.", ref:"Chap. introductif" },
+      { q:"Quelles sont les 3 grandes catégories de sources du droit SST présentées dans le chapitre introductif ?", a:"<strong>Section 1</strong> — Les normes supranationales (OIT + sources européennes)<br><strong>Section 2</strong> — Les normes nationales (sources classiques + sources professionnelles)<br><strong>Section 3</strong> — Les sources de normalisation (ISO, CEN, AFNOR)" },
+      { q:"Qu'a posé la Constitution de l'OIT de 1919 comme principe fondateur ?", a:"« Les travailleurs doivent être <strong>protégés contre les maladies générales ou professionnelles et les accidents résultant du travail</strong>. »<br>La Déclaration 2022 (amendée) a consacré un milieu de travail sûr et salubre comme <strong>droit fondamental</strong>.", ref:"Constitution OIT 1919" },
+      { q:"Quelles sont les 3 conventions générales de l'OIT à connaître en SST ?", a:"• <strong>Conv. n°187</strong> (2006) : cadre promotionnel pour la SST<br>• <strong>Conv. n°155</strong> (1981) : politique nationale SST<br>• <strong>Conv. n°161</strong> (1985) : services de santé au travail", ref:"OIT" },
+      { q:"Qu'est-ce que la Directive-cadre 89/391/CEE et pourquoi est-elle fondamentale ?", h:"Quel est son objectif central ?", a:"C'est le <strong>texte fondamental du droit européen SST</strong>. Son objectif : instaurer une <strong>culture juridique de la prévention</strong> au travail.<br>Elle définit des <strong>principes généraux de prévention</strong> et fournit une <strong>méthodologie de la prévention</strong>.<br>Elle a engendré de nombreuses directives particulières (bruit, amiante, agents chimiques, travail de nuit…).", ref:"Directive 89/391/CEE du 12 juin 1989" },
+      { q:"Que dispose l'article 31 de la Charte des droits fondamentaux de l'UE ?", a:"« Tout travailleur a droit à des conditions de travail qui respectent sa <strong>santé</strong>, sa <strong>sécurité</strong> et sa <strong>dignité</strong>. »<br>Valeur juridique constitutionnelle dans l'UE depuis le <strong>Traité de Lisbonne (2009)</strong>.", ref:"Art. 31 Charte des droits fondamentaux UE" },
+      { q:"Quels sont les 5 ANI français en matière SST à retenir ?", h:"De 2008 à 2023…", a:"• <strong>2 juil. 2008</strong> : stress au travail<br>• <strong>26 mars 2010</strong> : harcèlement et violence au travail<br>• <strong>19 juin 2013</strong> : qualité de vie au travail<br>• <strong>9-10 déc. 2020</strong> : santé au travail<br>• <strong>15 mai 2023</strong> : AT/MP", ref:"ANI" },
+      { q:"Quels sont les 2 accords européens volontaires des partenaires sociaux en matière SST ?", a:"• Accord sur le <strong>stress au travail</strong> du 8 octobre 2004<br>• Accord sur le <strong>harcèlement et la violence</strong> au travail du 26 avril 2007", ref:"Partenaires sociaux européens" },
+      { q:"Quel est le contenu obligatoire du Règlement Intérieur en matière SST ?", a:"Le Code du travail fixe une liste <strong>impérative et limitative</strong>. Doivent figurer :<br><strong>1.</strong> Les règles de discipline, de santé et de sécurité + leurs sanctions<br><strong>2.</strong> Les dispositions relatives aux harcèlements (moral, sexuel) et aux agissements sexistes", ref:"Art. L. 1321-1 CT" },
+      { q:"Quelle est la différence entre les normes ISO et les normes CEN ?", h:"Application volontaire ou obligatoire ?", a:"<strong>ISO</strong> (créée en 1947) : organisation non gouvernementale internationale. Normes d'<strong>application volontaire</strong>. En SST : norme ISO 45000.<br><strong>CEN</strong> (européen) : normes de nature technique avec caractère <strong>obligatoire à compter de leur ratification</strong> par les États membres.<br><strong>AFNOR</strong> (France) : association d'utilité publique, coordonne la normalisation française et représente la France à l'ISO et au CEN.", ref:"Sources de normalisation" },
+      { q:"Quel est le risque pour un employeur qui adopte une norme ISO sans la respecter ?", a:"Cela peut constituer une <strong>circonstance aggravante</strong> devant le juge. Attention : le respect d'une norme technique <strong>n'exonère pas</strong> l'employeur de sa responsabilité.", ref:"Sources de normalisation" },
+    ]
+  },
+  {
+    id:'p1c1', label:'P1 — Chap. 1', color:'#2558A8',
+    title:'Partie 1 · Chap. 1 — Normes de protection et de prévention',
+    cards:[
+      { q:"Que prévoit l'article L. 4121-1 du Code du travail ?", a:"« L'employeur <strong>prend les mesures nécessaires</strong> pour assurer la sécurité et protéger la santé physique et mentale des travailleurs. »<br>C'est le fondement de l'obligation générale de sécurité de l'employeur.", ref:"Art. L. 4121-1 CT" },
+      { q:"Quels sont les 2 aspects (positif et négatif) de l'obligation de sécurité de l'employeur ?", a:"<strong>Aspect positif</strong> : prendre des mesures concrètes (information, formation, EPI, organisation).<br><strong>Aspect négatif</strong> : ne prendre aucune mesure ayant pour objet ou effet de <strong>compromettre la santé ou la sécurité</strong> des salariés." },
+      { q:"Comment a évolué l'intensité de l'obligation de sécurité de l'employeur ?", h:"3 étapes jurisprudentielles…", a:"<strong>Avant 2002</strong> : obligation de <strong>moyens</strong><br><strong>2002—2015</strong> : obligation de <strong>résultat</strong> (Cass. soc. 28 fév. 2002, arrêts amiante)<br><strong>2015 →</strong> : obligation de <strong>moyens renforcée</strong> (Cass. soc. 25 nov. 2015, arrêt Air France) : exonération si toutes les mesures prises<br><strong>Tendance actuelle</strong> (arr. 12 juin 2024) : glissement vers des « mesures <em>suffisantes</em> »", ref:"Cass. soc. 28/02/2002 et 25/11/2015" },
+      { q:"Que dit l'arrêt Air France (Cass. soc. 25 nov. 2015) sur l'obligation de sécurité ?", a:"L'employeur ne méconnaît pas son obligation de sécurité s'il justifie avoir pris <strong>toutes les mesures prévues</strong> par les articles L. 4121-1 et L. 4121-2 CT. Il ne suffit plus que le dommage soit réalisé pour condamner l'employeur.", ref:"Cass. soc. 25/11/2015, n°14-24.444" },
+      { q:"Quelles sont les deux priorités de la notion de prévention selon la Directive du 12 juin 1989 ?", a:"<strong>1.</strong> La prévention a pour priorité la <strong>suppression des risques</strong> et non simplement d'en réduire la probabilité.<br><strong>2.</strong> La prévention concerne <strong>tous les aspects de l'activité</strong> des salariés (pas seulement le secteur ou la structure).", ref:"Directive 89/391/CEE · Art. L. 4121-2 CT" },
+      { q:"Quels sont les 9 principes généraux de prévention de l'article L. 4121-2 CT ?", a:"1. Éviter les risques<br>2. Évaluer les risques non évitables<br>3. Combattre les risques à la source<br>4. Adapter le travail à l'homme<br>5. Tenir compte de l'évolution de la technique<br>6. Remplacer le dangereux par le moins dangereux<br>7. Planifier la prévention<br>8. <strong>Protections collectives (EPC) prioritaires sur les individuelles (EPI)</strong><br>9. Donner des instructions appropriées aux travailleurs", ref:"Art. L. 4121-2 CT" },
+      { q:"Quelles sont les 3 étapes de la démarche préventive ?", a:"<strong>Étape 1</strong> : Repérer et identifier les risques<br><strong>Étape 2</strong> : Éviter ou, à défaut, réduire le risque<br><strong>Étape 3</strong> : Mettre en place des protections (<strong>EPC en priorité sur EPI</strong>)", ref:"Art. L. 4121-2 CT" },
+      { q:"Quelle est la double obligation complémentaire au principe général de prévention ?", a:"<strong>Information</strong> des salariés : sur les risques, les mesures de protection, les premiers secours, les modalités d'accès au DUERP, le rôle du SPST et des représentants du personnel, les dispositions du RI.<br><strong>Formation</strong> à la sécurité : conditions de circulation, conditions d'exécution, conduite à tenir en cas d'AT.", ref:"Art. L. 4141-1 s. CT" },
+      { q:"Quels sont les 5 éléments que doit prendre en compte l'évaluation des risques (objet du DUERP) ?", a:"• Les <strong>procédés de fabrication</strong><br>• Les <strong>équipements de travail</strong><br>• Les <strong>substances chimiques</strong><br>• L'<strong>aménagement des lieux</strong><br>• La <strong>définition des postes</strong> de travail<br><em>+ impact différencié selon le sexe (art. L. 4121-3)</em>", ref:"Art. L. 4121-3 CT" },
+      { q:"Quelles sont les 3 exigences de forme du DUERP et qui peut y accéder ?", a:"Triple exigence : <strong>Cohérence · Commodité · Traçabilité</strong>.<br>Inventaire des risques par <strong>unité de travail</strong> (≠ lieu physique).<br>Accessible à : salariés, délégation du CSE, médecin du travail, inspecteur du travail.<br>Conservation des versions antérieures : <strong>40 ans</strong>.", ref:"Art. R. 4121-1 CT" },
+      { q:"Quand le DUERP doit-il être actualisé et quelles sont les sanctions en cas de défaut ?", a:"Actualisé lors de toute <strong>décision d'aménagement important</strong>, d'<strong>information supplémentaire</strong> sur un risque, et <strong>au moins une fois par an</strong>.<br>Sanctions : <strong>contravention 5e classe</strong> (défaut d'actualisation ou non-mise à disposition). Non-mise à disposition au CSE → <strong>délit d'entrave</strong>.<br><em>Le préjudice n'est pas présumé.</em>", ref:"Art. R. 4121-1 CT" },
+      { q:"Qu'est-ce que le PAPRIPACT et à qui s'impose-t-il ?", a:"<strong>Programme Annuel de Prévention des Risques Professionnels et d'Amélioration des Conditions de Travail</strong>.<br>Traduction opérationnelle de l'obligation de sécurité — passage du DUERP à l'action.<br>• <strong>≥ 50 salariés</strong> : document autonome obligatoire<br>• <strong>< 50 salariés</strong> : liste des actions consignée dans le DUERP<br>Contient : conditions d'exécution, coût, calendrier, indicateurs de résultat.", ref:"Art. L. 4121-3-1 CT" },
+    ]
+  },
+  {
+    id:'p1c2', label:'P1 — Chap. 2', color:'#0E6E6E',
+    title:'Partie 1 · Chap. 2 — Les acteurs de la santé au travail',
+    cards:[
+      { q:"Que prévoit l'article L. 4122-1 CT concernant l'obligation de sécurité du salarié ?", a:"Il incombe à chaque travailleur de prendre soin, en fonction de sa <strong>formation</strong> et selon ses <strong>possibilités</strong>, de sa santé et de sa sécurité ainsi que de celles des autres personnes concernées par ses actes ou omissions.<br>→ Obligation de <strong>moyens</strong>, limitée, et <strong>sans incidence sur le principe de responsabilité de l'employeur</strong>.", ref:"Art. L. 4122-1 CT" },
+      { q:"Quelle est la différence essentielle entre le droit de retrait et l'obligation d'alerte du salarié ?", a:"<strong>Retrait = droit</strong> : le salarié ne peut pas être sanctionné pour ne pas l'avoir exercé.<br><strong>Alerte = obligation</strong> : le salarié qui n'alerte pas peut faire l'objet d'une sanction disciplinaire, sans pour autant exonérer l'employeur.", ref:"Art. L. 4131-1 CT" },
+      { q:"Quelles sont les conditions du droit de retrait (art. L. 4131-1 CT) ?", h:"Quel est le critère central ?", a:"Le salarié doit avoir un <strong>motif raisonnable</strong> de penser que la situation présente un <strong>danger grave et imminent</strong> pour sa vie ou sa santé.<br>Il peut se retirer ET ne pas reprendre le travail tant que le danger persiste → <strong>sans sanction ni retenue de salaire</strong>.<br>Limite : le retrait ne doit pas créer pour autrui une nouvelle situation de danger grave et imminent.", ref:"Art. L. 4131-1 CT" },
+      { q:"Quelles sont les 2 alertes possibles du salarié et leurs formalités respectives ?", a:"<strong>Alerte danger grave et imminent</strong> (art. L. 4131-1) : prévenir l'employeur de tout danger grave et imminent et de toute défectuosité dans les systèmes de protection → <strong>aucune condition de forme imposée</strong>.<br><strong>Alerte risque grave pour la santé publique ou l'environnement</strong> (art. L. 4133-1) → <strong>écrit obligatoire</strong>, signé et daté, dans un registre spécial.", ref:"Art. L. 4131-1 et L. 4133-1 CT" },
+      { q:"Quelles sont les 3 missions du CSE en matière de santé et sécurité ?", a:"<strong>1.</strong> Analyser les risques professionnels et veiller au respect des prescriptions légales.<br><strong>2.</strong> Contribuer à la prévention et à la protection de la santé et de la sécurité.<br><strong>3.</strong> Contribuer à l'amélioration des conditions de travail.", ref:"Art. L. 2312-9 s. CT" },
+      { q:"Qu'est-ce que la CSSCT ? Quelle est son exception notable ?", a:"Commission Santé, Sécurité et Conditions de Travail — créée pour pallier la disparition du CHSCT.<br>Elle exerce par délégation tout ou partie des attributions SST du CSE, <strong>sauf le recours à l'expertise</strong> qui reste réservé au CSE plénier.<br>Obligatoire dès <strong>≥ 300 salariés</strong> (et dans les établissements nucléaires, SEVESO).", ref:"Art. L. 2315-36 CT" },
+      { q:"Dans quels 2 cas le CSE peut-il recourir à un expert en matière SST ?", a:"<strong>Cas 1</strong> : risque grave constaté dans l'entreprise (actuel et identifié, pas vague).<br><strong>Cas 2</strong> : projet important modifiant les conditions de santé, de sécurité ou les conditions de travail.<br>Financement : <strong>80% employeur / 20% CSE</strong>.", ref:"Art. L. 2315-94 CT" },
+      { q:"Quelles sont les 4 missions des SPST (art. L. 4622-2 CT) ?", a:"<strong>1.</strong> Conduire les actions de santé au travail (préserver la santé dans le parcours professionnel)<br><strong>2.</strong> Conseiller les employeurs, travailleurs et représentants du personnel<br><strong>3.</strong> Assurer la surveillance de l'état de santé des travailleurs en fonction des risques<br><strong>4.</strong> Assurer le suivi et la traçabilité des expositions professionnelles", ref:"Art. L. 4622-2 CT" },
+      { q:"Quels sont les principaux moyens d'action du médecin du travail ?", a:"• Droit de <strong>communication</strong> des informations obligatoires<br>• <strong>Libre accès aux lieux de travail</strong><br>• Élaboration de <strong>préconisations</strong> individuelles ou générales (refus de l'employeur doit être justifié)<br>• Établissement de la <strong>fiche d'entreprise</strong> et du rapport annuel (remis au CSE)<br>• <strong>Dossier médical</strong> individuel (secret médical absolu)<br>• L'<strong>IPRP</strong> peut compléter son action", ref:"Art. L. 4622-2 s. CT" },
+      { q:"Quelles sont les 3 prérogatives de l'inspecteur du travail en matière SST et quelles mesures peut-il prendre ?", a:"<strong>Droits</strong> : droit d'entrée (jour et nuit, sans avertissement) · droit de prélèvement · droit de communication et d'accès aux documents.<br><strong>Mesures</strong> :<br>1. Observations, mises en demeure, demandes de vérification<br>2. Procès-verbaux<br>3. Arrêt temporaire de travaux dangereux<br>4. Action en justice (référé, risque grave pour l'intégrité physique)", ref:"Art. L. 8112-1 CT" },
+      { q:"Quels sont les 4 organismes de prévention externes à l'entreprise à connaître ?", a:"• <strong>CNAM</strong> : gestion AT/MP, prévention, financement INRS. CARSAT : droit de visite, injonction, modulation de la cotisation AT/MP.<br>• <strong>ANACT</strong> : amélioration des conditions de travail (accompagnement, méthodes).<br>• <strong>INRS</strong> : recherche et expertise technique en AT/MP, guides pratiques.<br>• <strong>Autres</strong> : ANSES, IRSN, INERIS, organismes de branche.", ref:"CT · CSS" },
+    ]
+  },
+  {
+    id:'p2c1', label:'P2 — Chap. 1', color:'#5B3A8A',
+    title:'Partie 2 · Chap. 1 — Diversité des risques professionnels',
+    cards:[
+      { q:"Quels sont les 2 seuils sonores clés pour le bruit et que déclenchent-ils ?", a:"<strong>80 dB(A)/semaine</strong> (valeur déclenchant l'action) : signalisation, EPI mis à disposition, information des salariés.<br><strong>87 dB(A)/semaine</strong> (valeur limite d'exposition) : l'exposition à ce niveau est impossible.<br>Priorité aux <strong>mesures de protection collective</strong> (encoffrement, isolation) avant les EPI.", ref:"Art. R. 4431-1 CT" },
+      { q:"Comment sont classés les agents biologiques ? Quel groupe est le plus dangereux ?", a:"Classés en <strong>4 groupes</strong> en fonction de la gravité du risque infectieux :<br>Groupe 1 : pas de maladie chez l'homme.<br>Groupe 2 : maladie possible, propagation peu probable, traitement efficace.<br>Groupe 3 : maladie grave, propagation possible, traitement généralement disponible.<br><strong>Groupe 4 : maladie grave, propagation élevée, ni prophylaxie ni traitement.</strong>", ref:"Art. R. 4421-3 CT" },
+      { q:"Qu'est-ce qu'un agent CMR et quelles sont les 3 obligations spécifiques de l'employeur ?", a:"<strong>Cancérogène, Mutagène, Toxique pour la Reproduction</strong>.<br><strong>1.</strong> <strong>Substitution obligatoire</strong> si possible<br><strong>2.</strong> Si non substituable : mesure régulière de l'exposition + communication résultats au médecin du travail et aux IRP<br><strong>3.</strong> Déclaration à la CARSAT", ref:"Art. R. 4412-59 s. CT" },
+      { q:"Quelle est la limite réglementaire de charge en manutention manuelle ?", a:"Un travailleur ne peut porter habituellement des charges supérieures à <strong>55 kg</strong> (sous réserve d'aptitude médicale). Maximum absolu : <strong>105 kg</strong>.<br>Des limites particulières s'appliquent aux <strong>femmes</strong> et aux <strong>jeunes travailleurs</strong>.", ref:"Art. R. 4541-9 CT" },
+      { q:"Comment le Code du travail appréhende-t-il les risques psychosociaux ?", a:"Le CT <strong>ne les appréhende pas globalement</strong>. Aucune disposition ne vise expressément le stress ou la violence au travail.<br>Ils sont saisis :<br>• Via l'<strong>obligation générale de sécurité</strong> (art. L. 4121-1)<br>• Via les textes sur le <strong>harcèlement</strong><br>• Via la législation <strong>AT/MP</strong><br>• Par la <strong>jurisprudence</strong>", ref:"Partie 2 Chap. 1" },
+      { q:"Quels sont les 3 éléments constitutifs du harcèlement moral (art. L. 1152-1 CT) ?", a:"<strong>1.</strong> Des agissements <strong>répétés</strong> (pas de durée minimale ou maximale)<br><strong>2.</strong> Une dégradation des conditions de travail (<strong>objet ou effet</strong> — intentionnels ou non)<br><strong>3.</strong> Une incidence <strong>potentielle</strong> sur les droits, la dignité, la santé physique ou mentale, ou l'avenir professionnel", ref:"Art. L. 1152-1 CT" },
+      { q:"Qu'est-ce que le harcèlement moral institutionnel ? Quel arrêt le consacre ?", a:"Le HM institutionnel <strong>participe d'une stratégie de gestion de l'ensemble du personnel</strong> : pratiques managériales délibérées impliquant la désorganisation du lien social (management par la peur, le stress).<br>Il existe même si le management y participe <strong>involontairement</strong>.<br><strong>Cass. crim., 21 janv. 2025, n°22-87.145</strong> : une politique d'entreprise conduit, en connaissance de cause des dirigeants, à la dégradation des conditions de travail.", ref:"Cass. crim. 21/01/2025, n°22-87.145" },
+      { q:"Quelles sont les 2 formes distinctes du harcèlement sexuel (art. L. 1153-1 CT) ?", a:"<strong>Forme 1 — Répétition</strong> : propos ou comportements à connotation sexuelle ou sexiste <strong>répétés</strong> → atteinte à la dignité OU situation intimidante, hostile ou offensante.<br><strong>Forme 2 — Pression grave</strong> : <strong>acte unique</strong> — toute pression grave exercée dans le but réel ou apparent d'obtenir un acte de nature sexuelle (au profit de l'auteur ou d'un tiers).", ref:"Art. L. 1153-1 CT" },
+      { q:"Qu'est-ce que le harcèlement d'ambiance ?", a:"Le harcèlement sexuel (1re forme) est constitué :<br>• Lorsque les actes sont imposés à une même victime par <strong>plusieurs personnes de manière concertée</strong>, même si chacune n'a pas agi de façon répétée.<br>• Lorsque les actes sont imposés <strong>successivement par plusieurs personnes</strong> qui savent que cela constitue une répétition, même sans concertation.", ref:"Art. L. 1153-1 CT" },
+      { q:"Quelle est la règle sur la consommation d'alcool au travail et les tests d'alcoolémie ?", a:"<strong>Pas d'interdiction générale légale</strong> de consommer de l'alcool au travail.<br>L'employeur peut <strong>limiter ou interdire par RI</strong> (mesure justifiée et proportionnée).<br>Interdiction absolue : laisser pénétrer ou demeurer une personne <strong>en état d'ivresse</strong>.<br>Tests d'alcoolémie : possibles si prévus au <strong>RI</strong> + contre-expertise médicale possible + réservés aux <strong>postes à risque</strong>.", ref:"Art. R. 4228-20 CT" },
+      { q:"Qu'interdit la législation sur le tabac au travail et que reste-t-il permis ?", a:"<strong>Interdiction</strong> dans les lieux fermés et couverts : bureaux, locaux collectifs, transports collectifs, espaces non couverts accueillant des mineurs.<br><strong>Permis</strong> dans : locaux dédiés aux fumeurs (sous conditions) et lieux non couverts (parkings, espaces verts).<br>Sanctions pénales : consommateur <strong>ET</strong> employeur.", ref:"Art. L. 3512-8 CSP" },
+      { q:"Quelles sont les 3 conditions pour qu'un employeur puisse recourir à un test salivaire de dépistage de stupéfiants ?", a:"<strong>1.</strong> Figurer dans le <strong>règlement intérieur</strong> (avec possibilité de contre-expertise médicale)<br><strong>2.</strong> Être <strong>justifié et proportionné</strong> : réservé aux salariés affectés à des postes pour lesquels l'emprise de la drogue constitue un <strong>danger élevé</strong><br><strong>3.</strong> Respecter le <strong>secret sur le résultat</strong>", ref:"Art. L. 1321-2-1 CT" },
+    ]
+  },
+  {
+    id:'p2c2', label:'P2 — Chap. 2', color:'#8B1A10',
+    title:'Partie 2 · Chap. 2 — Les sanctions juridiques',
+    cards:[
+      { q:"Qui est responsable pénalement par principe pour les infractions à la législation SST ?", a:"Le <strong>chef d'entreprise</strong> par principe. Il est tenu de « veiller personnellement et constamment à la stricte application des prescriptions légales » (Cass. crim. 23 nov. 1950).<br>La <strong>personne morale</strong> peut également être mise en cause (infractions commises par ses organes/représentants pour son compte) → cumul possible.", ref:"Cass. crim. 23/11/1950" },
+      { q:"Quelles sont les 3 conditions de la délégation de pouvoir valide en droit pénal SST ?", a:"Le délégataire doit disposer de :<br><strong>1.</strong> La <strong>compétence</strong> nécessaire<br><strong>2.</strong> L'<strong>autorité</strong> nécessaire<br><strong>3.</strong> Les <strong>moyens</strong> nécessaires<br>→ Seule cause d'exonération de l'employeur pour les infractions au CT. La délégation doit être certaine, non équivoque, et ne peut être générale et permanente.", ref:"Jurisprudence" },
+      { q:"Quelles sont les infractions pénales applicables en matière SST (CT et Code pénal) ?", a:"<strong>CT</strong> (art. L. 4741-1 s.) : violation d'une règle générale ou particulière de sécurité → contraventions.<br><strong>Code pénal</strong> :<br>• Homicide involontaire (art. 221-6 CP)<br>• Blessures involontaires (art. 222-19 CP)<br>• Mise en danger d'autrui (art. 223-1 CP) : violation délibérée imposant un risque immédiat de mort ou blessure grave", ref:"Art. L. 4741-1 s. CT · CP" },
+      { q:"Comment fonctionne la réparation en cas d'AT/MP reconnu ? Quelle est l'exception ?", a:"Principe : réparation <strong>forfaitaire</strong> par la sécurité sociale (rente ou capital) → exclut l'action en RC de l'employeur.<br><strong>Exception — Faute inexcusable</strong> (art. L. 452-1 CSS) : l'employeur avait ou aurait dû avoir <strong>conscience du danger</strong> et n'a pas pris les mesures nécessaires → majoration de la rente + réparation de préjudices complémentaires + action récursoire CPAM.", ref:"Art. L. 452-1 CSS · Cass. soc. 28/02/2002" },
+      { q:"Quand y a-t-il présomption de faute inexcusable de l'employeur ?", a:"Lorsque le salarié avait <strong>alerté l'employeur du danger</strong> avant la réalisation du risque (art. L. 4131-4 CT).<br>→ Le salarié n'a plus à prouver que l'employeur avait conscience du risque.", ref:"Art. L. 4131-4 CT" },
+      { q:"Quel est le mécanisme de la preuve aménagée en matière de harcèlement (art. L. 1154-1 CT) ?", a:"Allègement <strong>exclusivement en matière civile</strong> (pas en pénal — présomption d'innocence).<br><strong>Salarié</strong> : présenter des éléments de fait laissant supposer l'existence d'un harcèlement.<br><strong>Employeur</strong> : prouver que ces agissements ne constituent pas un harcèlement et reposent sur des éléments objectifs.<br><strong>Juge</strong> : forme sa conviction, peut ordonner des mesures d'instruction.", ref:"Art. L. 1154-1 CT" },
+      { q:"Quelles sont les sanctions civiles et pénales en cas de harcèlement ?", a:"<strong>Pénal</strong> : 2 ans d'emprisonnement + 30 000 € d'amende.<br><strong>Civil</strong> : nullité de tout acte (licenciement, sanction…) + réparation de l'entier préjudice.<br>En cas de licenciement : droit à réintégration OU indemnité <strong>≥ 6 mois de salaire</strong>.<br><strong>Barème Macron inapplicable</strong> (art. L. 1235-3-1) → réparation intégrale.<br><strong>Name & Shame</strong> : atteinte à l'image de l'entreprise.", ref:"Art. L. 1235-3-1 CT" },
+      { q:"Quelle est la responsabilité civile du salarié ? Quelle exception existe ?", a:"<strong>Principe</strong> : l'employeur répond des dommages causés par ses salariés dans l'exercice de leurs fonctions (responsabilité du commettant). Le salarié n'indemnise pas la victime.<br><strong>Exception</strong> — <strong>faute lourde</strong> : permet d'engager la responsabilité pécuniaire du salarié.<br>Exonération de l'employeur : acte hors fonctions + sans autorisation + à des fins étrangères (3 conditions cumulatives)." },
+      { q:"Sur quel fondement repose la responsabilité civile du médecin du travail ? Quelles en sont les hypothèses ?", a:"Terrain <strong>délictuel</strong> uniquement (art. 1240 C. civ.) — pas de contrat entre le médecin du travail et le salarié-patient.<br>Hypothèses principales :<br>• Dommage subi hors du cadre AT/MP<br>• Ne pas avoir averti le salarié de son exposition à des risques particuliers → AT/MP en découle<br>+ <strong>Responsabilité disciplinaire</strong> devant le Conseil de l'Ordre des médecins.", ref:"Art. 1240 C. civ." },
+      { q:"Quels sont les 3 niveaux de responsabilité du médecin du travail ?", a:"<strong>1. Pénale</strong> : violation des missions ou interdictions légales, violation du secret médical, infraction de droit commun (homicide/blessures involontaires).<br><strong>2. Civile</strong> : responsabilité délictuelle (art. 1240 C. civ.) — pas de responsabilité contractuelle avec le salarié-patient.<br><strong>3. Disciplinaire</strong> : Conseil de l'Ordre des médecins → déontologie médicale (indépendance, confraternité…).", ref:"CT · C. civ. · Code de déontologie" },
+    ]
+  },
+  {
+    id:'p3c1', label:'P3 — Chap. 1', color:'#2A5C38',
+    title:'Partie 3 · Chap. 1 — Dispositifs tenant aux personnes',
+    cards:[
+      { q:"Quelle est la double logique du traitement de la pénibilité ?", a:"<strong>Prévention</strong> : réduire l'exposition des salariés aux facteurs de risques professionnels.<br><strong>Compensation</strong> : réparer les effets de l'exposition passée (via le C2P).<br>L'évaluation est le préalable nécessaire — l'employeur doit évaluer et <strong>déclarer annuellement</strong> l'exposition de chaque salarié.", ref:"Art. L. 4161-1 s. CT" },
+      { q:"Quels sont les 10 facteurs de risques professionnels liés à la pénibilité et leurs 3 catégories ?", h:"Art. L. 4161-1 CT…", a:"<strong>Contraintes physiques marquées</strong> : manutentions manuelles, postures pénibles, vibrations mécaniques.<br><strong>Environnement physique agressif</strong> : agents chimiques dangereux (CMR), milieu hyperbare, températures extrêmes, bruit.<br><strong>Rythmes de travail</strong> : travail de nuit, travail en équipes successives alternantes, travail répétitif.", ref:"Art. L. 4161-1 CT" },
+      { q:"Quelles sont les 2 conditions pour qu'une entreprise soit soumise à l'obligation de négocier un accord pénibilité ?", a:"<strong>1.</strong> Employer au moins <strong>50 salariés</strong><br><strong>2.</strong> Avoir au moins <strong>25% de salariés déclarés au titre du C2P</strong> OU une sinistralité AT/MP > <strong>0,25</strong><br>→ Obligation de négocier un accord. À défaut : établir un <strong>plan d'action</strong>.", ref:"Art. L. 4163-1 CT" },
+      { q:"Le C2P couvre-t-il les 10 facteurs de pénibilité ? Lesquels en sont exclus ?", a:"<strong>Non — seulement 6 facteurs</strong>.<br>Exclus du C2P : manutentions manuelles, postures pénibles, vibrations mécaniques, agents chimiques dangereux.<br>Inclus : travail de nuit, équipes alternantes, travail répétitif, milieu hyperbare, températures extrêmes, bruit.", ref:"Art. L. 4163-1 CT" },
+      { q:"Quels sont les 3 droits ouverts par les points du C2P ?", a:"<strong>1.</strong> Financer une <strong>formation professionnelle</strong> pour se réorienter<br><strong>2.</strong> Réduire son <strong>temps de travail</strong> sans perte de salaire<br><strong>3.</strong> Anticiper son départ à la <strong>retraite</strong><br>Maximum : <strong>100 points</strong> sur la vie professionnelle.", ref:"Art. L. 4163-7 CT" },
+      { q:"Comment se définit l'inaptitude du salarié et quelles sont les 2 conditions pour licencier pour inaptitude ?", a:"<strong>Définition</strong> : impossibilité pour le salarié d'exécuter sa prestation de travail en raison d'une incompatibilité entre son <strong>état de santé</strong> et son <strong>poste</strong>.<br><strong>Conditions pour licencier</strong> :<br><strong>1.</strong> Inaptitude préalablement <strong>constatée par le médecin du travail</strong> (sans ça = licenciement discriminatoire)<br><strong>2.</strong> Reclassement <strong>impossible ou refusé</strong> par le salarié<br>Les 2 doivent figurer dans la <strong>lettre de licenciement</strong>.", ref:"Art. L. 4624-4 CT" },
+      { q:"Quelle est la procédure de déclaration d'inaptitude par le médecin du travail ?", a:"Le médecin du travail doit procéder ou faire procéder à :<br>• Une <strong>étude du poste</strong><br>• Un <strong>échange avec le salarié</strong> et <strong>l'employeur</strong><br>→ <strong>1 seule visite suffit</strong> en principe (2nd examen médical possible sous 15 jours max, à la discrétion du médecin).<br>→ <strong>Conclusions écrites</strong> avec indications relatives au reclassement.", ref:"Art. L. 4624-4 + R. 4624-42 CT" },
+      { q:"Comment contester un avis d'inaptitude ?", a:"Recours devant le <strong>CPH en référé</strong> dans un délai de <strong>15 jours</strong> suivant la notification.<br>Le juge peut confier une mesure d'instruction au <strong>médecin inspecteur du travail</strong>.<br>La décision du CPH <strong>se substitue</strong> aux avis, propositions et indications contestés.<br>Procédure identique que l'inaptitude soit d'origine professionnelle ou non.", ref:"Art. L. 4624-7 CT" },
+      { q:"Quelle est l'étendue de l'obligation de reclassement ? Quand est-elle écartée ?", a:"L'employeur doit rechercher des postes de reclassement au sein de l'entreprise <strong>et des autres entreprises du groupe</strong> situées sur le territoire national.<br><strong>Écartée</strong> quand l'avis d'inaptitude mentionne expressément :<br>• <em>« Tout maintien dans l'emploi serait gravement préjudiciable à sa santé »</em><br>• <em>« L'état de santé fait obstacle à tout reclassement »</em><br>La recherche doit être <strong>réelle et loyale</strong>.", ref:"Art. L. 1226-2-1 et L. 1226-12 CT" },
+      { q:"Quelle est la sanction du manquement à l'obligation de reclassement en cas d'inaptitude ?", a:"Le licenciement est <strong>privé de cause réelle et sérieuse</strong>.", ref:"Jurisprudence constante" },
+    ]
+  },
+  {
+    id:'p3c2', label:'P3 — Chap. 2', color:'#2558A8',
+    title:'Partie 3 · Chap. 2 — Dispositifs tenant aux secteurs et opérations',
+    cards:[
+      { q:"Pourquoi le secteur du BTP est-il soumis à des règles spécifiques en matière SST ?", a:"En raison des <strong>risques spécifiques</strong> associés (chutes, coactivité de plusieurs entreprises sur un même chantier, manutentions…). Le BTP nécessite une <strong>coordination entre les multiples intervenants</strong> qui se succèdent ou coexistent sur le chantier.", ref:"Partie 3 Chap. 2 §1" },
+      { q:"Quels sont les 3 instruments spécifiques de coordination SST dans le BTP ?", a:"<strong>1. Coordonnateur SPS</strong> : désigné par le maître d'ouvrage dès la conception, pour les opérations multi-entreprises.<br><strong>2. PGCSPS</strong> (Plan Général de Coordination SST) : établi par le coordonnateur, remis aux entreprises avant les offres.<br><strong>3. PPSPS</strong> (Plan Particulier de Sécurité et Protection de la Santé) : établi par chaque entreprise intervenante avant le début des travaux.", ref:"Art. L. 4532-4 s. CT" },
+      { q:"Quelles sont les 3 catégories d'installations particulières soumises à un régime SST spécifique ?", a:"<strong>ICPE</strong> (Installations Classées pour la Protection de l'Environnement) : 3 régimes selon le risque (déclaration / enregistrement / autorisation préfectorale).<br><strong>Sites SEVESO III</strong> : risques d'accidents majeurs (PPRT + POI).<br><strong>INB</strong> (Installations Nucléaires de Base) : autorisation ASN, dosimétrie obligatoire, suivi individuel renforcé.", ref:"Partie 3 Chap. 2 §2" },
+      { q:"Quelles sont les obligations de l'employeur concernant les machines et équipements de travail ?", a:"• Utiliser uniquement des équipements <strong>conformes</strong> aux directives européennes (marquage <strong>CE</strong>).<br>• Les maintenir en <strong>état de conformité</strong>.<br>• <strong>Former</strong> les salariés à leur utilisation sûre.<br>• Procéder aux <strong>vérifications périodiques</strong> obligatoires.<br>• Notice d'instructions obligatoire en <strong>français</strong>.", ref:"Art. L. 4311-1 s. CT · Directive Machines 2006/42/CE" },
+      { q:"Dans quels 2 cas un plan de prévention est-il obligatoire pour une entreprise extérieure ?", a:"<strong>1.</strong> Les travaux représentent plus de <strong>400 heures</strong> sur 12 mois consécutifs.<br><strong>2.</strong> Les travaux figurent sur la <strong>liste des travaux dangereux</strong> fixée par arrêté — quelle que soit leur durée.", ref:"Art. R. 4512-7 CT" },
+      { q:"Que doit précéder l'établissement d'un plan de prévention et que doit-il contenir ?", a:"Précédé d'une <strong>inspection commune préalable</strong> des lieux et des conditions d'exécution.<br>Contient : liste des postes à risque, mesures de prévention pour chaque risque d'interférence, matériels et installations à risque, instructions à donner aux salariés.<br>Co-élaboré par EUT et EU, établi <strong>avant le début des travaux</strong>.", ref:"Art. R. 4512-8 CT" },
+      { q:"Quels sont les 5 dispositifs de protection spécifiques aux femmes enceintes ou allaitantes ?", a:"• <strong>Conditions de travail</strong> : aménagement du poste, réduction du temps de travail, suppression du travail de nuit si nécessaire.<br>• <strong>Travaux interdits</strong> : liste de travaux dangereux.<br>• <strong>Suivi de santé</strong> renforcé.<br>• <strong>Modification de l'emploi</strong> temporaire si maintien impossible (maintien de salaire).<br>• <strong>Aménagement d'horaires</strong> pour les consultations prénatales sans perte de salaire.", ref:"CT · CSP" },
+      { q:"Quels sont les 3 axes de protection spécifiques aux jeunes travailleurs (< 18 ans) ?", a:"<strong>1. Âges limites</strong> : fixation d'âges minimaux pour certains travaux.<br><strong>2. Travaux interdits</strong> : liste de travaux dangereux (interdits sauf dérogation accordée par l'inspecteur du travail).<br><strong>3. Adaptation des conditions de travail</strong> : temps de pause renforcé, durée du travail réduite, travail de nuit interdit sauf dérogation.", ref:"Art. L. 4153-1 s. CT" },
+    ]
+  }
+];
+
+// ─── STATE ──────────────────────────────────────────────────────────────────
+let currentChap = 0;
+let currentIdx  = 0;
+let isFlipped   = false;
+let results     = {}; // { chapId_cardIdx: true/false }
+
+function getKey(chapIdx, cardIdx) { return `${chapIdx}_${cardIdx}`; }
+
+// ─── INIT ───────────────────────────────────────────────────────────────────
+function init() {
+  buildTabs();
+  loadChapter(0);
+}
+
+function buildTabs() {
+  const el = document.getElementById('chap-tabs');
+  CHAPTERS.forEach((c, i) => {
+    const t = document.createElement('div');
+    t.className = 'chap-tab' + (i === 0 ? ' active' : '');
+    t.innerHTML = c.label + `<span class="tab-count">${c.cards.length}</span>`;
+    t.onclick = () => loadChapter(i);
+    el.appendChild(t);
+  });
+}
+
+function loadChapter(i) {
+  currentChap = i;
+  currentIdx  = 0;
+  isFlipped   = false;
+  document.querySelectorAll('.chap-tab').forEach((t,j) => t.classList.toggle('active', j===i));
+  updateAll();
+}
+
+function updateAll() {
+  updateStats();
+  renderCard();
+  updateNav();
+  updateGlobalProgress();
+}
+
+function updateStats() {
+  const chap = CHAPTERS[currentChap];
+  let ok = 0, ko = 0;
+  chap.cards.forEach((_,i) => {
+    const v = results[getKey(currentChap,i)];
+    if (v === true) ok++;
+    else if (v === false) ko++;
+  });
+  const rest = chap.cards.length - ok - ko;
+  document.getElementById('stats-bar').innerHTML = `
+    <span class="stat-pill sp-total">${chap.cards.length} cartes</span>
+    <span class="stat-pill sp-ok">✓ ${ok} appris</span>
+    <span class="stat-pill sp-ko">✗ ${ko} à revoir</span>
+    <span class="stat-pill sp-rest">⏳ ${rest} restantes</span>
+    <button class="btn-shuffle" onclick="shuffleChap()">🔀 Mélanger</button>
+    <button class="btn-shuffle" onclick="resetChap()" style="background:#888">↺ Réinitialiser</button>
+  `;
+}
+
+function renderCard() {
+  const chap = CHAPTERS[currentChap];
+  const card = chap.cards[currentIdx];
+  const el   = document.getElementById('card');
+
+  el.classList.toggle('flipped', isFlipped);
+
+  // front
+  const front = document.getElementById('card-front');
+  const verdict = results[getKey(currentChap, currentIdx)];
+  const verdictBadge = verdict === true
+    ? '<span style="color:var(--green);font-size:12px;float:right">✓ Appris</span>'
+    : verdict === false
+    ? '<span style="color:var(--red);font-size:12px;float:right">✗ À revoir</span>'
+    : '';
+
+  front.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+      <span class="chapter-tag" style="background:${chap.color}">${chap.label}</span>
+      ${verdictBadge}
+    </div>
+    <div class="question">${card.q}</div>
+    ${card.h ? `<div class="hint">💡 ${card.h}</div>` : ''}
+    <div class="flip-cue">Cliquer pour voir la réponse →</div>
+  `;
+  front.onclick = () => { isFlipped = true; renderCard(); document.getElementById('verdict-row').style.display='flex'; };
+
+  // back
+  const back = document.getElementById('card-back');
+  back.innerHTML = `
+    <div class="answer-label">Réponse</div>
+    <div class="answer">${card.a}</div>
+    ${card.ref ? `<div class="law-ref">📖 ${card.ref}</div>` : ''}
+  `;
+  back.onclick = () => { isFlipped = false; renderCard(); document.getElementById('verdict-row').style.display='none'; };
+
+  // verdict label
+  document.getElementById('verdict-label').textContent = isFlipped
+    ? 'Évalue ta réponse ↑' : '';
+  if (!isFlipped) document.getElementById('verdict-row').style.display = 'none';
+}
+
+function updateNav() {
+  const chap = CHAPTERS[currentChap];
+  document.getElementById('card-counter').textContent = `${currentIdx+1} / ${chap.cards.length}`;
+  document.getElementById('btn-prev').disabled = currentIdx === 0;
+  document.getElementById('btn-next').disabled = currentIdx === chap.cards.length - 1;
+}
+
+function updateGlobalProgress() {
+  let total = 0, done = 0;
+  CHAPTERS.forEach((c, ci) => {
+    c.cards.forEach((_,i) => {
+      total++;
+      if (results[getKey(ci,i)] !== undefined) done++;
+    });
+  });
+  document.getElementById('total-label').textContent = `${done} / ${total} cartes`;
+  document.getElementById('progress-fill').style.width = total ? (done/total*100)+'%' : '0%';
+}
+
+function flipCard() {
+  isFlipped = !isFlipped;
+  renderCard();
+  if (isFlipped) document.getElementById('verdict-row').style.display = 'flex';
+  else document.getElementById('verdict-row').style.display = 'none';
+}
+
+function navigate(dir) {
+  const chap = CHAPTERS[currentChap];
+  const newIdx = currentIdx + dir;
+  if (newIdx < 0 || newIdx >= chap.cards.length) return;
+  currentIdx = newIdx;
+  isFlipped  = false;
+  document.getElementById('verdict-row').style.display = 'none';
+  updateAll();
+}
+
+function markCard(ok) {
+  results[getKey(currentChap, currentIdx)] = ok;
+  // auto-advance
+  const chap = CHAPTERS[currentChap];
+  if (currentIdx < chap.cards.length - 1) {
+    currentIdx++;
+    isFlipped = false;
+    document.getElementById('verdict-row').style.display = 'none';
+  }
+  updateAll();
+}
+
+function shuffleChap() {
+  const chap = CHAPTERS[currentChap];
+  for (let i = chap.cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i+1));
+    [chap.cards[i], chap.cards[j]] = [chap.cards[j], chap.cards[i]];
+  }
+  currentIdx = 0; isFlipped = false;
+  document.getElementById('verdict-row').style.display = 'none';
+  updateAll();
+}
+
+function resetChap() {
+  const chap = CHAPTERS[currentChap];
+  chap.cards.forEach((_,i) => delete results[getKey(currentChap,i)]);
+  currentIdx = 0; isFlipped = false;
+  document.getElementById('verdict-row').style.display = 'none';
+  updateAll();
+}
+
+// keyboard nav
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') navigate(1);
+  else if (e.key === 'ArrowLeft') navigate(-1);
+  else if (e.key === ' ') { e.preventDefault(); flipCard(); }
+  else if (e.key === 'y' || e.key === 'o') markCard(true);
+  else if (e.key === 'n') markCard(false);
+});
+
+init();
+</script>
+</body>
+</html>
