@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiche — Partie 1, Chapitre 2 — Les acteurs de la santé au travail</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --orange:   #D4600A;
+  --navy:     #1B2F55;
+  --navy-lt:  #EEF2FA;
+  --blue:     #2558A8;
+  --blue-lt:  #DDEAF8;
+  --green:    #2A5C38;
+  --green-lt: #E6F2EB;
+  --gold:     #8A6200;
+  --gold-lt:  #FEF8E6;
+  --red-lt:   #FCEAE8;
+  --red-dk:   #8B1A10;
+  --purple:   #5B3A8A;
+  --purple-lt:#F0EBF9;
+  --teal:     #0E6E6E;
+  --teal-lt:  #E0F4F4;
+  --border:   #D8D5CF;
+  --text:     #1C1C1C;
+  --bg:       #FAFAF8;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 14.5px; line-height: 1.7;
+  color: var(--text); background: var(--bg);
+  padding-bottom: 60px;
+}
+
+/* ── Header ── */
+.page-header {
+  background: var(--navy); padding: 14px 48px;
+  display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+}
+.page-header span {
+  font-family: 'Source Serif 4', serif; font-size: 11px;
+  letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.5);
+}
+.fiche-title {
+  background: var(--orange); padding: 22px 48px 18px;
+  position: relative; overflow: hidden;
+}
+.fiche-title::before {
+  content:''; position:absolute; top:0; right:0; width:280px; height:100%;
+  background: repeating-linear-gradient(-45deg,transparent,transparent 6px,rgba(255,255,255,.05) 6px,rgba(255,255,255,.05) 7px);
+}
+.fiche-title .label {
+  font-family: 'JetBrains Mono', monospace; font-size:10px;
+  letter-spacing:.18em; color:rgba(255,255,255,.65); text-transform:uppercase; margin-bottom:5px;
+}
+.fiche-title h1 { font-family:'Playfair Display',serif; font-size:27px; font-weight:900; color:#fff; line-height:1.2; }
+.fiche-title .subtitle { font-style:italic; font-size:15px; color:rgba(255,255,255,.82); margin-top:4px; }
+
+/* ── Nav ── */
+.nav-pills {
+  background:#F0EDE8; border-bottom:1px solid var(--border);
+  padding:10px 48px; display:flex; gap:8px; flex-wrap:wrap;
+}
+.nav-pill {
+  font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.06em;
+  text-transform:uppercase; font-weight:600; padding:4px 10px; border-radius:20px;
+  background:#fff; border:1px solid var(--border); color:var(--navy);
+  text-decoration:none; transition:background .15s,border-color .15s;
+}
+.nav-pill:hover { background:var(--navy-lt); border-color:var(--blue); }
+
+/* ── Container ── */
+.container { max-width:900px; margin:0 auto; padding:0 32px; }
+
+/* ── Section header ── */
+.section-header {
+  color:#fff; padding:11px 20px; margin:36px 0 20px;
+  border-radius:4px; display:flex; align-items:center; gap:12px;
+}
+.section-header.s1 { background: var(--blue); }
+.section-header.s2 { background: var(--navy); }
+.section-header.s3 { background: var(--teal); }
+.section-header.s4 { background: #5B3A8A; }
+.section-header .num {
+  font-family:'JetBrains Mono',monospace; font-size:10px;
+  letter-spacing:.1em; background:rgba(255,255,255,.18);
+  padding:3px 8px; border-radius:3px;
+}
+.section-header h2 { font-family:'Playfair Display',serif; font-size:16px; font-weight:700; }
+
+/* ── Para / Sub headers ── */
+.para-header {
+  border-bottom:2px solid var(--blue); padding-bottom:5px;
+  margin:24px 0 14px; display:flex; align-items:baseline; gap:10px;
+}
+.para-header .num { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--blue); font-weight:600; }
+.para-header h3 { font-size:15px; font-weight:600; color:var(--blue); }
+.sub-header { font-size:13.5px; font-weight:600; color:var(--orange); margin:18px 0 8px; }
+
+/* ── Article block ── */
+.article-block {
+  background:var(--navy); border-radius:5px; padding:14px 18px; margin:12px 0 18px;
+}
+.article-block .art-ref {
+  font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.12em;
+  color:rgba(255,255,255,.6); margin-bottom:6px; text-transform:uppercase;
+}
+.article-block p { font-style:italic; color:#fff; font-size:13.5px; line-height:1.6; }
+
+/* ── Boxes ── */
+.box { border-radius:5px; padding:11px 16px; margin:10px 0; font-size:13px; line-height:1.65; }
+.box .box-tag {
+  font-family:'JetBrains Mono',monospace; font-size:9.5px;
+  letter-spacing:.12em; text-transform:uppercase; font-weight:700; margin-bottom:5px;
+}
+.box-juris  { background:var(--green-lt); border-left:3px solid var(--green); }
+.box-juris  .box-tag { color:var(--green); }
+.box-example{ background:var(--gold-lt);  border-left:3px solid #C49A00; }
+.box-example .box-tag { color:var(--gold); }
+.box-info   { background:var(--blue-lt);  border-left:3px solid var(--blue); }
+.box-info   .box-tag { color:var(--blue); }
+.box-warning{ background:var(--red-lt);   border-left:3px solid var(--red-dk); }
+.box-warning .box-tag { color:var(--red-dk); }
+.box-teal   { background:var(--teal-lt);  border-left:3px solid var(--teal); }
+.box-teal   .box-tag { color:var(--teal); }
+.box-purple { background:var(--purple-lt);border-left:3px solid var(--purple); }
+.box-purple .box-tag { color:var(--purple); }
+
+/* ── Tables ── */
+.fiche-table {
+  width:100%; border-collapse:collapse; margin:10px 0 20px; font-size:13px;
+}
+.fiche-table thead th {
+  background:var(--navy); color:#fff; padding:9px 12px; text-align:left;
+  font-family:'JetBrains Mono',monospace; font-size:10px;
+  letter-spacing:.08em; text-transform:uppercase; font-weight:600;
+}
+.fiche-table thead th:first-child { border-radius:4px 0 0 0; }
+.fiche-table thead th:last-child  { border-radius:0 4px 0 0; }
+.fiche-table tbody td {
+  padding:10px 12px; vertical-align:top;
+  border:1px solid var(--border); line-height:1.6;
+}
+.fiche-table tbody tr:nth-child(even) td { background:#FAFAF7; }
+.fiche-table tbody tr:hover td { background:var(--blue-lt); transition:background .15s; }
+.fiche-table .col-label {
+  background:var(--navy-lt) !important; font-weight:600;
+  color:var(--navy); font-size:12px; line-height:1.5; min-width:115px;
+}
+.fiche-table .hl-row td { background:var(--gold-lt) !important; }
+.fiche-table .hl-row .col-label { background:#EFE5C2 !important; }
+.fiche-table ul { padding-left:16px; margin:4px 0; }
+.fiche-table li { margin-bottom:3px; }
+.badge {
+  display:inline-block; font-family:'JetBrains Mono',monospace;
+  font-size:9px; padding:1px 5px; border-radius:2px;
+  letter-spacing:.05em; margin-bottom:3px;
+}
+.b-navy   { background:var(--navy);   color:#fff; }
+.b-orange { background:var(--orange); color:#fff; }
+.b-green  { background:var(--green);  color:#fff; }
+.b-teal   { background:var(--teal);   color:#fff; }
+.b-purple { background:var(--purple); color:#fff; }
+.b-red    { background:var(--red-dk); color:#fff; }
+
+/* ── Notion de danger — définitions ── */
+.def-grid {
+  display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin:12px 0 20px;
+}
+.def-card {
+  border-radius:5px; padding:13px 14px; font-size:12.5px;
+}
+.def-card .def-word {
+  font-family:'Playfair Display',serif; font-size:15px; font-weight:700;
+  margin-bottom:6px;
+}
+.def-card p { line-height:1.55; }
+.dc-danger  { background:#FFF0E0; border-top:3px solid var(--orange); }
+.dc-danger  .def-word { color:var(--orange); }
+.dc-grave   { background:var(--red-lt); border-top:3px solid var(--red-dk); }
+.dc-grave   .def-word { color:var(--red-dk); }
+.dc-immin   { background:var(--gold-lt); border-top:3px solid #C49A00; }
+.dc-immin   .def-word { color:var(--gold); }
+
+/* ── Alertes steps ── */
+.alert-steps { margin:10px 0 18px; }
+.alert-step {
+  display:flex; gap:12px; align-items:flex-start;
+  padding:9px 14px; border-bottom:1px solid var(--border);
+  font-size:12.5px; background:#fff;
+}
+.alert-step:first-child { border-radius:5px 5px 0 0; border:1px solid var(--border); }
+.alert-step:last-child  { border-radius:0 0 5px 5px; border:1px solid var(--border); border-top:none; }
+.alert-step:not(:first-child):not(:last-child) { border-left:1px solid var(--border); border-right:1px solid var(--border); }
+.step-arrow { color:var(--border); font-size:18px; align-self:center; padding:4px 6px; text-align:center; flex-shrink:0; }
+.step-num {
+  flex-shrink:0; font-family:'JetBrains Mono',monospace;
+  font-size:10px; font-weight:700; background:var(--navy); color:#fff;
+  width:22px; height:22px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center; margin-top:2px;
+}
+
+/* ── CSE moyens tableau effectif ── */
+.effectif-tabs {
+  display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:12px 0 20px;
+}
+.effectif-tab {
+  border-radius:5px; border:1px solid var(--border); overflow:hidden;
+}
+.effectif-tab .et-head {
+  padding:10px 14px; font-weight:700; font-size:13px; color:#fff;
+  font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.06em;
+}
+.et-11  .et-head { background:var(--blue); }
+.et-50  .et-head { background:var(--navy); }
+.effectif-tab .et-body { padding:10px 14px; font-size:12.5px; background:#fff; }
+.effectif-tab .et-body ul { padding-left:16px; }
+.effectif-tab .et-body li { margin-bottom:5px; line-height:1.5; }
+
+/* ── Médecin du travail moyens ── */
+.moyens-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:12px 0 20px;
+}
+.moyen-card {
+  background:#fff; border:1px solid var(--border); border-radius:5px;
+  padding:11px 14px; font-size:12.5px; display:flex; gap:10px; align-items:flex-start;
+}
+.moyen-icon {
+  flex-shrink:0; font-size:18px; margin-top:1px;
+}
+.moyen-card strong { color:var(--navy); display:block; margin-bottom:3px; font-size:13px; }
+.moyen-card p { line-height:1.5; color:#333; }
+
+/* ── Organismes ── */
+.orga-grid {
+  display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin:12px 0 20px;
+}
+.orga-card {
+  border-radius:5px; padding:12px 14px; font-size:12.5px;
+}
+.orga-card .orga-name {
+  font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700;
+  letter-spacing:.06em; margin-bottom:5px;
+}
+.orga-card p { line-height:1.55; }
+.oc-cnam  { background:var(--blue-lt);   border-left:3px solid var(--blue);   }
+.oc-cnam  .orga-name { color:var(--blue);   }
+.oc-anact { background:var(--green-lt);  border-left:3px solid var(--green);  }
+.oc-anact .orga-name { color:var(--green);  }
+.oc-inrs  { background:var(--gold-lt);   border-left:3px solid #C49A00;       }
+.oc-inrs  .orga-name { color:var(--gold);   }
+.oc-autre { background:var(--purple-lt); border-left:3px solid var(--purple); }
+.oc-autre .orga-name { color:var(--purple); }
+
+/* ── Inspection mesures ── */
+.mesures-list { list-style:none; padding:0; margin:10px 0 18px; }
+.mesures-list li {
+  display:flex; gap:10px; padding:9px 14px;
+  background:#fff; border:1px solid var(--border);
+  border-radius:4px; margin-bottom:5px; font-size:13px; line-height:1.55;
+}
+.mesures-list li .m-num {
+  flex-shrink:0; font-family:'JetBrains Mono',monospace;
+  font-size:10px; font-weight:700; background:var(--orange); color:#fff;
+  padding:2px 7px; border-radius:3px; margin-top:2px;
+}
+
+/* ── Synthèse ── */
+.synthese {
+  background:linear-gradient(135deg,#FEF8E6,#FFF3D0);
+  border:1.5px solid #D4B800; border-radius:8px; padding:20px 24px; margin:32px 0 0;
+}
+.synthese .synthese-title {
+  font-family:'Playfair Display',serif; font-size:14px; font-weight:700;
+  color:var(--gold); text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px;
+}
+.synthese p { font-size:13.5px; color:#3A3000; line-height:1.75; }
+.synthese p + p { margin-top:10px; }
+
+/* ── Para ── */
+.para { margin:8px 0; font-size:13.5px; }
+.para strong { color:var(--navy); }
+hr.divider { border:none; border-top:1px solid var(--border); margin:6px 0 16px; }
+
+/* ── Fade ── */
+@keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.container > * { animation:fadeUp .35s ease both; }
+.container > *:nth-child(1){animation-delay:.05s}
+.container > *:nth-child(2){animation-delay:.10s}
+.container > *:nth-child(3){animation-delay:.15s}
+.container > *:nth-child(4){animation-delay:.20s}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="page-header">
+  <span>Master 1 — AMU 2025-2026 — S. SERENO</span>
+  <span style="color:rgba(255,255,255,.2)">|</span>
+  <span>Partie 1 — Les normes générales de protection</span>
+  <span style="color:rgba(255,255,255,.2)">|</span>
+  <span>CM du 03/03/25 et 07/03/25</span>
+</div>
+
+<div class="fiche-title">
+  <div class="label">Partie 1 — Chapitre 2</div>
+  <h1>Les acteurs de la santé au travail</h1>
+  <div class="subtitle">Salariés · CSE / CSSCT · SPST · Médecin du travail · Inspection du travail · Organismes de prévention</div>
+</div>
+
+<div class="nav-pills">
+  <a class="nav-pill" href="#s1">§ Salariés</a>
+  <a class="nav-pill" href="#retrait">§ Droit de retrait</a>
+  <a class="nav-pill" href="#alertes">§ Alertes</a>
+  <a class="nav-pill" href="#s2">§ CSE / CSSCT</a>
+  <a class="nav-pill" href="#s3">§ SPST / Médecin</a>
+  <a class="nav-pill" href="#s4">§ Acteurs externes</a>
+</div>
+
+<div class="container">
+
+<!-- ════════════════════════════════════════════════════════
+     SECTION 1 — LES SALARIÉS
+════════════════════════════════════════════════════════ -->
+<div class="section-header s1" id="s1">
+  <span class="num">SECTION 1</span>
+  <h2>Les salariés</h2>
+</div>
+
+<!-- §1 Obligation sécurité -->
+<div class="para-header">
+  <span class="num">§1</span>
+  <h3>Une obligation de sécurité</h3>
+</div>
+
+<div class="article-block">
+  <div class="art-ref">Art. L. 4122-1 Code du travail</div>
+  <p>« Il incombe à chaque travailleur de prendre soin, en fonction de sa formation et selon ses possibilités, de sa santé et de sa sécurité ainsi que de celles des autres personnes concernées par ses actes ou ses omissions au travail. »<br>
+  <em style="font-size:12px;opacity:.8">Les dispositions du premier alinéa sont sans incidence sur le principe de la responsabilité de l'employeur.</em></p>
+</div>
+
+<table class="fiche-table">
+  <thead><tr><th style="width:20%">Caractère</th><th>Contenu</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="col-label"><span class="badge b-orange">MOYENS</span><br>Obligation limitée</td>
+      <td>L'obligation du salarié est une <strong>obligation de moyens</strong> (et non de résultat). Elle est appréciée en fonction de sa <strong>formation</strong> et de ses <strong>possibilités propres</strong> (qualification, capacités physiques, état psychique) et des <strong>moyens fournis par l'employeur</strong>.</td>
+    </tr>
+    <tr>
+      <td class="col-label"><span class="badge b-navy">PORTÉE</span><br>À l'égard de tous</td>
+      <td>Le salarié doit prendre soin de <strong>sa propre santé ET de celle des autres</strong> personnes concernées par ses actes ou omissions au travail.</td>
+    </tr>
+    <tr>
+      <td class="col-label"><span class="badge b-navy">LIEN</span><br>Conformément aux instructions</td>
+      <td>L'obligation s'exerce conformément aux <strong>instructions de l'employeur</strong> (et aux dispositions du RI le cas échéant). Les instructions précisent les conditions d'utilisation des équipements, moyens de protection, substances dangereuses.</td>
+    </tr>
+    <tr class="hl-row">
+      <td class="col-label"><span class="badge b-red">LIMITE CLEF</span><br>Sans effet sur la responsabilité employeur</td>
+      <td><strong>Même si le salarié manque à son obligation de sécurité, l'employeur reste responsable.</strong> Le manquement du salarié peut justifier une sanction disciplinaire (jusqu'au licenciement) — mais n'exonère pas l'employeur.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="box box-juris">
+  <div class="box-tag">⚖ Cass. soc., 29 mai 2024 — Gradation de la faute du salarié</div>
+  Un salarié de 28 ans d'ancienneté, sans antécédent disciplinaire, utilise une scie verticale sans habilitation. L'employeur le licencie. La Cour prend en compte : la carrière positive du salarié <em>et</em> le fait que <strong>l'employeur n'avait pas suffisamment sensibilisé le salarié aux risques</strong>. → Le juge apprécie globalement : fonctions du salarié, conditions de travail, circonstances, et comportement passé de l'employeur.
+</div>
+
+<div class="box box-info">
+  <div class="box-tag">Rattachement au travail</div>
+  La responsabilité du salarié ne peut être engagée que pour des <strong>agissements liés au travail</strong>. Il faut distinguer les actes qui se rattachent à l'activité professionnelle de ceux qui relèvent de la vie personnelle. <strong>L'exécution de l'obligation de sécurité ne doit entraîner aucune charge financière pour le salarié</strong> — les EPI sont à la charge de l'employeur (art. L. 4122-2).
+</div>
+
+<hr class="divider">
+
+<!-- §2 Participation — Retrait -->
+<div class="para-header">
+  <span class="num">§2</span>
+  <h3>La participation à la prévention : alertes et retrait</h3>
+</div>
+
+<div class="box box-info">
+  <div class="box-tag">Important — Distinction droit / obligation</div>
+  Le CT parle de « droit d'alerte et de droit de retrait » mais la réalité est différente : le <strong>retrait est un droit</strong> (le salarié ne peut pas être sanctionné pour ne pas avoir exercé son droit) ; les <strong>alertes sont des obligations</strong> (le salarié qui ne prévient pas s'expose à une sanction disciplinaire — sans pour autant exonérer l'employeur).
+</div>
+
+<div class="sub-header" id="retrait">A) Le droit de retrait — Art. L. 4131-1 CT</div>
+
+<div class="article-block">
+  <div class="art-ref">Art. L. 4131-1 CT — Droit de retrait</div>
+  <p>Chaque salarié a le droit de se retirer d'une situation de travail dont il a un <strong>motif raisonnable</strong> de penser qu'elle présente un <strong>danger grave et imminent</strong> pour sa vie ou sa santé, ET de ne pas reprendre son travail tant que le danger persiste, <strong>sans encourir aucune sanction disciplinaire ni retenue de salaire</strong>.</p>
+</div>
+
+<p class="para">Le retrait signifie que le salarié <strong>reste à disposition et joignable</strong>. Pas de formalisme imposé — mais le salarié doit anticiper la preuve (en pratique : l'alerte précède ou accompagne le retrait).</p>
+
+<p class="para" style="font-weight:600; color:var(--navy); margin-bottom:8px">Les 3 éléments constitutifs décortiqués par la jurisprudence :</p>
+
+<div class="def-grid">
+  <div class="def-card dc-danger">
+    <div class="def-word">Danger</div>
+    <p>Doit avoir un <strong>caractère anormal</strong> par rapport à l'activité habituelle. Le danger peut porter sur la <strong>santé mentale autant que physique</strong> (le CE est plus réticent sur le mental). À distinguer du simple inconfort ou de la pénibilité inhérente au poste.</p>
+  </div>
+  <div class="def-card dc-grave">
+    <div class="def-word">Gravité</div>
+    <p>La situation est susceptible d'<strong>altérer sérieusement la santé</strong> : risque mortel, incapacité permanente ou temporaire prolongée. La gravité porte sur l'<strong>importance du dommage potentiel</strong>.</p>
+  </div>
+  <div class="def-card dc-immin">
+    <div class="def-word">Imminence</div>
+    <p>La menace est <strong>susceptible de se réaliser à bref délai</strong>. L'imminence concerne l'<strong>exposition au danger</strong>, non l'altération de la santé elle-même.</p>
+  </div>
+</div>
+
+<div class="box box-purple">
+  <div class="box-tag">Le « motif raisonnable » — Clef du dispositif</div>
+  Le juge apprécie le <strong>motif raisonnable subjectivement</strong> : il prend en compte la perception du salarié, son état physique et psychique, ses connaissances. <strong>Le salarié dispose d'un droit à l'erreur</strong> — même s'il se trompe sur la réalité du danger, il est protégé s'il avait un motif raisonnable d'y croire. C'est au salarié de prouver l'existence de ce motif raisonnable.
+</div>
+
+<div class="box box-warning">
+  <div class="box-tag">⚠ Limite absolue</div>
+  Le salarié <strong>ne peut pas exercer son droit de retrait</strong> si ce retrait crée lui-même une <strong>nouvelle situation de danger grave et imminent pour autrui</strong>. C'est notamment le cas dans le domaine de la santé (soignants, pompiers…). <br><br>
+  <strong>Si les conditions ne sont pas réunies :</strong> retenue de salaire proportionnelle à la durée de l'arrêt + sanction disciplinaire possible.
+</div>
+
+<hr class="divider">
+
+<div class="sub-header" id="alertes">B) Les obligations d'alerte</div>
+
+<table class="fiche-table" style="margin-bottom:14px">
+  <thead><tr>
+    <th style="width:25%">Type d'alerte</th>
+    <th>Base légale</th>
+    <th>Contenu</th>
+    <th>Obligation formelle</th>
+  </tr></thead>
+  <tbody>
+    <tr>
+      <td class="col-label"><span class="badge b-orange">ALERTE 1</span><br>Danger grave et imminent</td>
+      <td>Art. L. 4131-1 CT</td>
+      <td>Alerter <strong>immédiatement l'employeur</strong> de toute situation de danger grave et imminent pour sa vie ou sa santé, <strong>et de toute défectuosité dans les systèmes de protection</strong>.</td>
+      <td><strong>Aucune condition de forme</strong> — l'employeur ne peut pas imposer une procédure particulière. Le salarié doit anticiper la preuve.</td>
+    </tr>
+    <tr>
+      <td class="col-label"><span class="badge b-green">ALERTE 2</span><br>Risque santé publique / environnement</td>
+      <td>Art. L. 4133-1 CT</td>
+      <td>Alerter l'employeur si les <strong>produits ou procédés utilisés font peser un risque grave sur la santé publique ou l'environnement</strong>. Depuis 2022 : le salarié peut recourir à des dispositifs de signalement ou de divulgation publique.</td>
+      <td><strong>Écrit obligatoire</strong> dans un registre spécial, <strong>signé et daté</strong>, avec mention des produits/procédés en cause et des conséquences potentielles.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="para"><strong>Suite donnée à l'alerte 1 :</strong> l'employeur doit prendre toutes les mesures nécessaires pour faire cesser la situation dangereuse. S'il est alerté et ne fait rien → <strong>faute inexcusable</strong>.</p>
+<p class="para"><strong>Suite donnée à l'alerte 2 :</strong> en absence de suite ou en cas de désaccord, le salarié peut saisir le <strong>préfet</strong> et le <strong>CSE doit être informé</strong>.</p>
+
+<div class="box box-teal">
+  <div class="box-tag">Statut de lanceur d'alerte</div>
+  En cas d'alerte, le salarié bénéficie d'un <strong>statut de lanceur d'alerte</strong> et d'une <strong>protection contre les représailles</strong>. Cette protection s'applique même s'il se trompe, <strong>dès lors qu'il est de bonne foi</strong>. Il bénéficie de l'assistance du <strong>Défenseur des droits</strong> (AAI).
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════
+     SECTION 2 — LE CSE
+════════════════════════════════════════════════════════ -->
+<div class="section-header s2" id="s2">
+  <span class="num">SECTION 2</span>
+  <h2>Le Comité social et économique (CSE) et la CSSCT</h2>
+</div>
+
+<div class="box box-info">
+  <div class="box-tag">Distinction DS / CSE</div>
+  Les <strong>délégués syndicaux</strong> représentent le syndicat mais peuvent intervenir pour défendre le personnel. Le <strong>CSE = représentant du personnel</strong> avec une mission spécifique de défense et protection de la santé et de la sécurité.
+</div>
+
+<div class="para-header">
+  <span class="num">§1</span>
+  <h3>Attributions du CSE en matière de santé</h3>
+</div>
+
+<table class="fiche-table">
+  <thead><tr><th style="width:10%">#</th><th>Mission</th></tr></thead>
+  <tbody>
+    <tr><td class="col-label" style="text-align:center;font-size:15px;font-weight:700">①</td><td><strong>Analyser les risques professionnels</strong> auxquels sont exposés les travailleurs et veiller au respect des prescriptions légales.</td></tr>
+    <tr><td class="col-label" style="text-align:center;font-size:15px;font-weight:700">②</td><td><strong>Contribuer à la prévention</strong> et à la protection de la santé et de la sécurité des travailleurs.</td></tr>
+    <tr><td class="col-label" style="text-align:center;font-size:15px;font-weight:700">③</td><td><strong>Contribuer à l'amélioration des conditions de travail.</strong></td></tr>
+  </tbody>
+</table>
+
+<div class="sub-header">La CSSCT — Commission santé, sécurité et conditions de travail</div>
+<p class="para">Créée pour pallier la <strong>disparition du CHSCT</strong>. Exerce par délégation tout ou partie des attributions SST, <strong>sauf le recours à l'expertise</strong> (réservé au CSE plénier).</p>
+
+<table class="fiche-table">
+  <thead><tr><th>Caractéristique</th><th>Règle</th></tr></thead>
+  <tbody>
+    <tr><td class="col-label">Obligation de création</td><td><strong>Obligatoire à partir de 300 salariés</strong>. Aussi obligatoire dans les entreprises à activité nucléaire et les entreprises classées SEVESO, quelle que soit la taille.</td></tr>
+    <tr><td class="col-label">Création imposée</td><td>L'<strong>inspecteur du travail peut imposer la CSSCT</strong> même sous 300 salariés, s'il l'estime justifié au regard des activités ou équipements.</td></tr>
+  </tbody>
+</table>
+
+<hr class="divider">
+
+<div class="para-header">
+  <span class="num">§2</span>
+  <h3>Moyens du CSE en matière de santé — selon l'effectif</h3>
+</div>
+
+<div class="effectif-tabs">
+  <div class="effectif-tab et-11">
+    <div class="et-head">De 11 à 49 salariés</div>
+    <div class="et-body">
+      <ul>
+        <li>Présenter à l'employeur les <strong>réclamations</strong> individuelles ou collectives sur l'application des règles SST</li>
+        <li>Représenter tous les travailleurs, y compris les <strong>intérimaires</strong></li>
+        <li>Saisir l'<strong>inspecteur du travail</strong> de toute plainte concernant les dispositions légales SST</li>
+        <li><strong>Alerte en cas d'atteinte à la santé physique ou mentale</strong> (art. L. 2312-59 CT) → enquête conjointe → mesures → saisine CPH si carence</li>
+        <li><strong>Alerte danger grave et imminent</strong> → constat écrit → enquête conjointe sous 24h → inspecteur du travail si désaccord</li>
+        <li><strong>Alerte risque grave santé publique / environnement</strong> → consignation registre → enquête → préfet si désaccord</li>
+      </ul>
+    </div>
+  </div>
+  <div class="effectif-tab et-50">
+    <div class="et-head">À partir de 50 salariés</div>
+    <div class="et-body">
+      <ul>
+        <li>Tout ce qui précède, <strong>plus</strong> :</li>
+        <li><strong>Participation à l'analyse des risques professionnels</strong></li>
+        <li>Préconisations sur prévention du <strong>harcèlement moral, sexuel et agissements sexistes</strong> → refus de l'employeur doit être <strong>justifié</strong></li>
+        <li>Préconisations autres SST → refus <strong>sans justification</strong> possible</li>
+        <li><strong>Inspections régulières</strong> en matière de santé et sécurité</li>
+        <li><strong>Enquêtes en cas d'AT/MP</strong></li>
+        <li><strong>Consultations obligatoires</strong> (annuelle : politique sociale ; ponctuelle : nouveaux dispositifs de contrôle, nouvelles technologies, aménagements importants…)</li>
+        <li>Recours à un <strong>expert</strong> dans certains cas</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sub-header">Le recours à l'expert (≥ 50 salariés)</div>
+<table class="fiche-table">
+  <thead><tr><th style="width:30%">Hypothèse</th><th>Conditions</th><th>Financement</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="col-label"><span class="badge b-red">CAS 1</span><br>Risque grave constaté</td>
+      <td>Gravité appréciée par rapport à l'importance des dommages prévisibles. Le risque doit être <strong>identifié et actuel</strong> (pas simplement supposé et flou — ex : un risque généralisé de stress vague ne suffit pas).</td>
+      <td rowspan="2" style="vertical-align:middle; text-align:center"><strong>80% employeur<br>20% CSE</strong><br><br>Le CSE peut aussi décider sur son propre budget.</td>
+    </tr>
+    <tr>
+      <td class="col-label"><span class="badge b-navy">CAS 2</span><br>Projet important modifiant les conditions SST</td>
+      <td>Débat sur la notion de « projet important ». Ex : <em>infirmière nommée à l'accueil des urgences au lieu d'une aide-soignante</em> → pas projet important. <em>Dispositif de dépistage salivaire des stupéfiants</em> → projet important.</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- ════════════════════════════════════════════════════════
+     SECTION 3 — SPST / MÉDECIN DU TRAVAIL
+════════════════════════════════════════════════════════ -->
+<div class="section-header s3" id="s3">
+  <span class="num">SECTION 3</span>
+  <h2>Les services de prévention et de santé au travail (SPST)</h2>
+</div>
+
+<p class="para">Services <strong>interdisciplinaires</strong> (les compétences dépassent le seul aspect médical). Selon la taille de l'entreprise : <strong>service interne</strong> ou <strong>service de santé interentreprises</strong> (externe). Les missions sont confiées aux médecins du travail qui les exercent <strong>en toute indépendance</strong> (art. L. 4622-4). Adaptables en contexte épidémique.</p>
+
+<div class="para-header">
+  <span class="num">§1</span>
+  <h3>Les 4 missions des SPST — Art. L. 4622-2 CT</h3>
+</div>
+
+<table class="fiche-table">
+  <thead><tr><th style="width:30%">Mission</th><th>Contenu</th></tr></thead>
+  <tbody>
+    <tr><td class="col-label"><span class="badge b-teal">MISSION 1</span><br>Conduire les actions de santé au travail</td><td>Préserver la santé des salariés dans leur <strong>parcours professionnel</strong>.</td></tr>
+    <tr><td class="col-label"><span class="badge b-teal">MISSION 2</span><br>Conseiller</td><td>Conseiller <strong>employeurs, travailleurs et représentants du personnel</strong> sur les règles et les mesures à prendre face aux risques. Rôle de conseil lors de l'évaluation des risques. Peut <strong>constater un risque et proposer des mesures</strong> (préconisations) → l'employeur doit en tenir compte ou <strong>justifier son refus</strong>.</td></tr>
+    <tr><td class="col-label"><span class="badge b-teal">MISSION 3</span><br>Assurer la surveillance de la santé</td><td>Surveillance de l'état de santé des salariés <strong>en fonction des risques auxquels ils sont exposés</strong>.</td></tr>
+    <tr><td class="col-label"><span class="badge b-teal">MISSION 4</span><br>Suivi et traçabilité</td><td>Suivi et traçabilité des <strong>expositions professionnelles</strong>.</td></tr>
+  </tbody>
+</table>
+
+<hr class="divider">
+
+<div class="para-header">
+  <span class="num">§2</span>
+  <h3>Les moyens du médecin du travail</h3>
+</div>
+
+<div class="moyens-grid">
+  <div class="moyen-card">
+    <div class="moyen-icon">📋</div>
+    <div><strong>Droit de communication</strong><p>Accès aux informations rendues obligatoires par le CT (composition des produits, documents obligatoires…). Doit être informé de tout arrêt de travail &lt; 30 jours suite à un AT.</p></div>
+  </div>
+  <div class="moyen-card">
+    <div class="moyen-icon">🚪</div>
+    <div><strong>Libre accès aux lieux de travail</strong><p>Visite sur sa propre initiative ou sur demande. Peut demander des mesures particulières (prélèvements, justificatifs de suivi des machines…).</p></div>
+  </div>
+  <div class="moyen-card">
+    <div class="moyen-icon">📝</div>
+    <div><strong>Élaboration de préconisations</strong><p>Mesures individuelles ou générales. Le refus de l'employeur doit être <strong>justifié</strong>. Transmises au CSE et à l'inspecteur du travail.</p></div>
+  </div>
+  <div class="moyen-card">
+    <div class="moyen-icon">📊</div>
+    <div><strong>Rapport annuel d'activité</strong><p>Synthétise les actions menées dans l'entreprise et dans le cadre du suivi individuel. Remis au <strong>CSE</strong>.</p></div>
+  </div>
+  <div class="moyen-card">
+    <div class="moyen-icon">🏭</div>
+    <div><strong>Fiche d'entreprise</strong><p>Recense les risques professionnels propres à l'entreprise et les effectifs exposés.</p></div>
+  </div>
+  <div class="moyen-card">
+    <div class="moyen-icon">📁</div>
+    <div><strong>Dossier médical individuel</strong><p>Propre à chaque salarié. Soumis au <strong>secret médical</strong> — s'impose au médecin et à l'employeur (ne peut pas produire ce dossier en justice). Le salarié peut produire les éléments le concernant.</p></div>
+  </div>
+  <div class="moyen-card">
+    <div class="moyen-icon">✅</div>
+    <div><strong>Attestation de suivi</strong><p>Établie à l'issue de chaque visite d'information et de prévention. Remise à l'employeur et à chaque salarié.</p></div>
+  </div>
+  <div class="moyen-card">
+    <div class="moyen-icon">👥</div>
+    <div><strong>L'IPRP</strong><p>Intervenant en prévention des risques professionnels (interne ou externe). Participe à l'évaluation du DUERP, formule des conseils, actions d'accompagnement. <strong>Garantie d'indépendance</strong> + protection contre les représailles.</p></div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════
+     SECTION 4 — ACTEURS EXTERNES
+════════════════════════════════════════════════════════ -->
+<div class="section-header s4" id="s4">
+  <span class="num">SECTION 4</span>
+  <h2>Les acteurs externes à l'entreprise</h2>
+</div>
+
+<div class="para-header">
+  <span class="num">§1</span>
+  <h3>L'inspection du travail — Art. L. 8112-1 CT</h3>
+</div>
+
+<p class="para">Mission générale : <strong>veiller au respect et à l'application du droit du travail</strong>. Participe aussi à la prévention des risques professionnels, à l'amélioration des conditions de travail et aux relations sociales.</p>
+
+<div class="sub-header">Prérogatives</div>
+<table class="fiche-table">
+  <thead><tr><th style="width:28%">Prérogative</th><th>Détail</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="col-label"><span class="badge b-purple">ACCÈS</span><br>Droit d'entrée</td>
+      <td>Dans les établissements, <strong>de jour et de nuit</strong>, en présence ou en l'absence de l'employeur. <strong>Sans information préalable</strong> de l'employeur (à la différence de l'URSSAF). S'étend aux locaux d'hébergement des travailleurs avec leur autorisation.</td>
+    </tr>
+    <tr>
+      <td class="col-label"><span class="badge b-purple">ANALYSE</span><br>Droit de prélèvement</td>
+      <td>Portant sur les matières mises en œuvre et les produits distribués ou utilisés.</td>
+    </tr>
+    <tr>
+      <td class="col-label"><span class="badge b-purple">DOCUMENTS</span><br>Droit de communication</td>
+      <td>Accès à tous les documents rendus obligatoires + tout document ou élément utile à ses constatations, quel que soit le support. Peut en faire des copies. <strong>Ne peut exiger que les documents obligatoires</strong>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="sub-header">Mesures après intervention</div>
+<ul class="mesures-list">
+  <li><div class="m-num">1</div><div><strong>Observations, mises en demeure, demandes de vérification</strong> — les mises en demeure écrites doivent être conservées 5 ans et communiquées au CSE et au médecin du travail.</div></li>
+  <li><div class="m-num">2</div><div><strong>Procès-verbal (PV)</strong> constatant les infractions — transmis au Procureur. En pratique, pour la <strong>majorité des PV les suites ne sont pas connues</strong>. Transaction pénale possible pour les infractions &lt; 1 an d'emprisonnement.</div></li>
+  <li><div class="m-num">3</div><div><strong>Arrêt temporaire de travaux dangereux</strong> — en cas de danger grave et imminent, d'exposition à un CMR, ou si un mineur est en situation de travail interdite.</div></li>
+  <li><div class="m-num">4</div><div><strong>Action en justice</strong> — saisie du juge des référés en cas de risque grave pour l'intégrité physique des salariés.</div></li>
+</ul>
+
+<hr class="divider">
+
+<div class="para-header">
+  <span class="num">§2</span>
+  <h3>Les organismes de prévention</h3>
+</div>
+
+<div class="orga-grid">
+  <div class="orga-card oc-cnam">
+    <div class="orga-name">A) CNAM — Caisse nationale d'assurance maladie</div>
+    <p>Établissement public administratif. Gère les branches maladie, maternité, invalidité, décès et <strong>AT/MP</strong>. Exerce une action sanitaire et sociale (désinsertion professionnelle, maintien dans l'emploi). Finance l'INRS.<br><br>
+    Les CARSAT disposent d'un <strong>droit de visite en entreprise</strong> et d'accès aux documents SST. Si l'employeur refuse une prévention renforcée demandée par la CARSAT → <strong>injonction</strong> puis <strong>majoration de la cotisation AT/MP</strong>. À l'inverse, l'employeur peut obtenir une <strong>réduction de son taux de cotisation</strong>.</p>
+  </div>
+  <div class="orga-card oc-anact">
+    <div class="orga-name">B) ANACT — Agence nationale pour l'amélioration des conditions de travail</div>
+    <p>Établissement public administratif, sous tutelle du ministère du travail. Mission : <strong>accompagner les entreprises et partenaires sociaux</strong> sur les questions d'organisation du travail.<br><br>
+    Moyens : expérimentations, développement de méthodes, veille et études sur les conditions de travail.</p>
+  </div>
+  <div class="orga-card oc-inrs">
+    <div class="orga-name">C) INRS — Institut national de recherche et de sécurité</div>
+    <p><strong>Expert technique et scientifique</strong> en matière d'AT/MP. Mission : identifier les risques liés aux activités professionnelles par secteur et en analyser les effets sur la santé et la sécurité.<br><br>
+    Produit des <strong>brochures, guides pratiques et outils d'évaluation des risques</strong>.</p>
+  </div>
+  <div class="orga-card oc-autre">
+    <div class="orga-name">D) Autres organismes selon les secteurs</div>
+    <p>Organismes spécialisés selon les activités ou risques particuliers :<br>
+    • <strong>ANSES</strong> (santé humaine, animale, végétale)<br>
+    • <strong>IRSN</strong> (rayonnements ionisants)<br>
+    • <strong>INERIS</strong> (risques industriels et environnementaux)<br>
+    • Organismes de branche (accompagnement sectoriel adapté)</p>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════
+     SYNTHÈSE
+════════════════════════════════════════════════════════ -->
+<div class="synthese">
+  <div class="synthese-title">💡 Idée directrice — Architecture des acteurs</div>
+  <p>La politique de santé et sécurité au travail repose sur un <strong>système d'acteurs imbriqués</strong>, à la fois internes et externes à l'entreprise, qui se complètent et s'articulent autour de l'employeur — qui reste le débiteur principal de l'obligation de sécurité.</p>
+  <p>Points clefs à retenir : le <strong>droit de retrait</strong> est un droit (pas une obligation) encadré par la notion de <strong>motif raisonnable</strong> et le <strong>droit à l'erreur du salarié</strong> ; les alertes sont des obligations sans formalisme imposé pour l'alerte 1, mais avec exigence d'un <strong>écrit obligatoire pour l'alerte 2</strong> ; le <strong>CSE voit ses prérogatives doubler à partir de 50 salariés</strong> ; le médecin du travail a une mission <strong>exclusivement préventive</strong> — il ne doit pas devenir le médecin traitant du salarié ; l'inspection du travail peut entrer <strong>sans prévenir</strong> de jour comme de nuit.</p>
+</div>
+
+</div><!-- /container -->
+</body>
+</html>
