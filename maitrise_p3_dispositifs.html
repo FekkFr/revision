@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiche — Partie 3 — Dispositifs spécifiques de protection</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --orange:    #D4600A;
+  --navy:      #1B2F55;
+  --navy-lt:   #EEF2FA;
+  --blue:      #2558A8;
+  --blue-lt:   #DDEAF8;
+  --green:     #2A5C38;
+  --green-lt:  #E6F2EB;
+  --teal:      #0E6E6E;
+  --teal-lt:   #E0F4F4;
+  --gold:      #8A6200;
+  --gold-lt:   #FEF8E6;
+  --red:       #8B1A10;
+  --red-lt:    #FCEAE8;
+  --purple:    #5B3A8A;
+  --purple-lt: #F0EBF9;
+  --border:    #D8D5CF;
+  --text:      #1C1C1C;
+  --bg:        #FAFAF8;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Source Serif 4',Georgia,serif; font-size:14px; line-height:1.7; color:var(--text); background:var(--bg); padding-bottom:60px; }
+
+/* ── Header ── */
+.page-header { background:var(--navy); padding:13px 44px; display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; }
+.page-header span { font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.48); }
+.fiche-title { background:linear-gradient(135deg,#1A4A2A 0%,#0D3020 100%); padding:22px 44px 18px; position:relative; overflow:hidden; }
+.fiche-title::after { content:''; position:absolute; top:0; right:0; width:320px; height:100%; background:repeating-linear-gradient(-45deg,transparent,transparent 6px,rgba(255,255,255,.04) 6px,rgba(255,255,255,.04) 7px); }
+.fiche-title .label { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.18em; color:rgba(255,255,255,.55); text-transform:uppercase; margin-bottom:5px; }
+.fiche-title h1 { font-family:'Playfair Display',serif; font-size:27px; font-weight:900; color:#fff; line-height:1.2; }
+.fiche-title .subtitle { font-style:italic; font-size:14px; color:rgba(255,255,255,.75); margin-top:4px; }
+
+/* ── Nav ── */
+.nav-pills { background:#F0EDE8; border-bottom:1px solid var(--border); padding:9px 44px; display:flex; gap:7px; flex-wrap:wrap; }
+.nav-pill { font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.05em; text-transform:uppercase; font-weight:600; padding:3px 9px; border-radius:20px; background:#fff; border:1px solid var(--border); color:var(--navy); text-decoration:none; transition:background .15s; }
+.nav-pill:hover { background:var(--navy-lt); border-color:var(--blue); }
+
+/* ── Container ── */
+.container { max-width:920px; margin:0 auto; padding:0 32px; }
+
+/* ── Chapitre banner ── */
+.chap-banner { padding:10px 44px; display:flex; align-items:center; gap:14px; }
+.chap-banner.c1 { background:#1A4A2A; }
+.chap-banner.c2 { background:#2E4E7A; }
+.chap-banner .chap-num { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.12em; background:rgba(255,255,255,.18); padding:3px 9px; border-radius:3px; color:#fff; }
+.chap-banner h2 { font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:#fff; }
+
+/* ── Section header ── */
+.section-header { padding:10px 18px; margin:30px 0 18px; border-radius:4px; display:flex; align-items:center; gap:12px; }
+.section-header .num { font-family:'JetBrains Mono',monospace; font-size:10px; background:rgba(255,255,255,.18); padding:3px 8px; border-radius:3px; color:#fff; }
+.section-header h3 { font-family:'Playfair Display',serif; font-size:15px; font-weight:700; color:#fff; }
+.sh-green  { background:var(--green); }
+.sh-blue   { background:var(--blue); }
+.sh-orange { background:#A04010; }
+.sh-teal   { background:var(--teal); }
+.sh-purple { background:var(--purple); }
+
+/* ── Para/sub headers ── */
+.para-header { border-bottom:2px solid var(--blue); padding-bottom:4px; margin:20px 0 12px; display:flex; align-items:baseline; gap:8px; }
+.para-header .num { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--blue); font-weight:600; }
+.para-header h4 { font-size:14.5px; font-weight:600; color:var(--blue); }
+.sub { font-size:13px; font-weight:600; color:var(--orange); margin:16px 0 7px; }
+
+/* ── Article block ── */
+.article-block { background:var(--navy); border-radius:4px; padding:12px 16px; margin:10px 0 14px; }
+.article-block .art-ref { font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.1em; color:rgba(255,255,255,.55); margin-bottom:5px; text-transform:uppercase; }
+.article-block p { font-style:italic; color:#fff; font-size:13px; line-height:1.6; }
+
+/* ── Boxes ── */
+.box { border-radius:4px; padding:10px 15px; margin:9px 0; font-size:12.5px; line-height:1.6; }
+.box .tag { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; font-weight:700; margin-bottom:4px; }
+.b-juris  { background:var(--green-lt);  border-left:3px solid var(--green);  } .b-juris .tag  { color:var(--green);  }
+.b-info   { background:var(--blue-lt);   border-left:3px solid var(--blue);   } .b-info  .tag  { color:var(--blue);   }
+.b-warn   { background:var(--red-lt);    border-left:3px solid var(--red);    } .b-warn  .tag  { color:var(--red);    }
+.b-gold   { background:var(--gold-lt);   border-left:3px solid #C49A00;       } .b-gold  .tag  { color:var(--gold);   }
+.b-orange { background:#FEF0E8;          border-left:3px solid var(--orange); } .b-orange .tag { color:var(--orange); }
+.b-teal   { background:var(--teal-lt);   border-left:3px solid var(--teal);   } .b-teal  .tag  { color:var(--teal);   }
+
+/* ── Tables ── */
+.t { width:100%; border-collapse:collapse; margin:8px 0 18px; font-size:12.5px; }
+.t thead th { background:var(--navy); color:#fff; padding:8px 11px; text-align:left; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.07em; text-transform:uppercase; font-weight:600; }
+.t thead th:first-child { border-radius:4px 0 0 0; } .t thead th:last-child { border-radius:0 4px 0 0; }
+.t tbody td { padding:9px 11px; vertical-align:top; border:1px solid var(--border); line-height:1.55; }
+.t tbody tr:nth-child(even) td { background:#FAFAF7; }
+.t tbody tr:hover td { background:var(--blue-lt); transition:background .15s; }
+.t .lbl { background:var(--navy-lt) !important; font-weight:600; color:var(--navy); font-size:11.5px; min-width:100px; }
+.t .hl td { background:var(--gold-lt) !important; } .t .hl .lbl { background:#EFE5C2 !important; }
+.t ul { padding-left:14px; margin:3px 0; } .t li { margin-bottom:2px; }
+.bdg { display:inline-block; font-family:'JetBrains Mono',monospace; font-size:8.5px; padding:1px 5px; border-radius:2px; letter-spacing:.04em; margin-bottom:3px; }
+.b-nv { background:var(--navy); color:#fff; }
+.b-or { background:var(--orange); color:#fff; }
+.b-rd { background:var(--red); color:#fff; }
+.b-gn { background:var(--green); color:#fff; }
+
+/* ── 10 facteurs pénibilité ── */
+.fac-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:7px; margin:10px 0 18px; }
+.fac-card { border-radius:5px; padding:12px 13px; font-size:12.5px; }
+.fac-card .fc-title { font-weight:700; font-size:13px; margin-bottom:6px; }
+.fc-phys { background:#E8EEF7; border-left:3px solid var(--blue);    } .fc-phys .fc-title { color:var(--blue);    }
+.fc-env  { background:var(--gold-lt); border-left:3px solid #C49A00; } .fc-env  .fc-title { color:var(--gold);    }
+.fc-ryth { background:var(--green-lt); border-left:3px solid var(--green); } .fc-ryth .fc-title { color:var(--green);   }
+.fac-card ul { padding-left:13px; } .fac-card li { margin-bottom:3px; line-height:1.5; }
+
+/* ── C2P 6 facteurs ── */
+.c2p-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin:10px 0 16px; }
+.c2p-card { background:#fff; border:1px solid var(--border); border-radius:5px; padding:10px 12px; font-size:12px; }
+.c2p-card .cc-name { font-weight:700; font-size:12.5px; color:var(--navy); margin-bottom:4px; }
+.c2p-card .cc-seuil { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--orange); margin-top:5px; }
+
+/* ── C2P droits ── */
+.c2p-droits { display:flex; gap:8px; margin:10px 0 16px; }
+.c2p-droit { flex:1; border-radius:5px; padding:12px 14px; font-size:12.5px; text-align:center; }
+.cd-1 { background:var(--blue-lt); border-top:3px solid var(--blue); }
+.cd-2 { background:var(--green-lt); border-top:3px solid var(--green); }
+.cd-3 { background:var(--gold-lt); border-top:3px solid #C49A00; }
+.c2p-droit .cd-icon { font-size:20px; margin-bottom:5px; }
+.c2p-droit .cd-title { font-weight:700; font-size:13px; margin-bottom:4px; color:var(--navy); }
+
+/* ── Inaptitude process ── */
+.inapt-flow { display:flex; gap:0; margin:12px 0 18px; align-items:stretch; }
+.inapt-step { flex:1; padding:13px 14px; font-size:12.5px; }
+.inapt-step:first-child { border-radius:5px 0 0 5px; }
+.inapt-step:last-child  { border-radius:0 5px 5px 0; }
+.inapt-step .is-num { font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; margin-bottom:5px; }
+.inapt-step .is-title { font-weight:700; font-size:13px; margin-bottom:4px; }
+.is-1 { background:var(--navy-lt); border-top:3px solid var(--navy); } .is-1 .is-num { color:var(--navy); }
+.is-2 { background:var(--blue-lt); border-top:3px solid var(--blue); } .is-2 .is-num { color:var(--blue); }
+.is-3 { background:var(--green-lt); border-top:3px solid var(--green); } .is-3 .is-num { color:var(--green); }
+.is-4 { background:var(--gold-lt); border-top:3px solid #C49A00; } .is-4 .is-num { color:var(--gold); }
+.inapt-arrow { align-self:center; color:var(--border); font-size:18px; padding:0 2px; flex-shrink:0; }
+
+/* ── Reclassement ── */
+.reclass-steps { display:flex; flex-direction:column; gap:4px; margin:10px 0 14px; }
+.rs-step { display:flex; gap:12px; align-items:flex-start; background:#fff; border:1px solid var(--border); border-radius:4px; padding:9px 14px; font-size:12.5px; }
+.rs-num { flex-shrink:0; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; background:var(--navy); color:#fff; padding:2px 8px; border-radius:3px; margin-top:2px; }
+
+/* ── Secteurs grid ── */
+.secteur-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:10px 0 18px; }
+.secteur-card { border-radius:5px; padding:14px 15px; font-size:12.5px; }
+.secteur-card .sc-title { font-weight:700; font-size:13.5px; margin-bottom:8px; display:flex; align-items:center; gap:6px; }
+.sc-btp  { background:#E8EEF7; border-left:4px solid var(--blue);    } .sc-btp  .sc-title { color:var(--blue);    }
+.sc-icpe { background:var(--red-lt); border-left:4px solid var(--red); }   .sc-icpe .sc-title { color:var(--red);    }
+.sc-mach { background:var(--gold-lt); border-left:4px solid #C49A00;  } .sc-mach .sc-title { color:var(--gold);    }
+.sc-eext { background:var(--teal-lt); border-left:4px solid var(--teal); } .sc-eext .sc-title { color:var(--teal);   }
+.secteur-card ul { padding-left:14px; } .secteur-card li { margin-bottom:4px; line-height:1.5; }
+
+/* ── BTP acteurs ── */
+.btp-actors { display:grid; grid-template-columns:1fr 1fr 1fr; gap:7px; margin:10px 0 16px; }
+.btp-actor { background:#fff; border:1px solid var(--border); border-radius:5px; padding:11px 13px; font-size:12px; }
+.btp-actor .ba-title { font-weight:700; font-size:12.5px; color:var(--navy); margin-bottom:5px; }
+.btp-actor .ba-ref { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--blue); margin-bottom:4px; }
+
+/* ── Personnes protégées ── */
+.pers-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:10px 0 18px; }
+.pers-card { border-radius:5px; padding:13px 15px; font-size:12.5px; }
+.pers-card .pc-title { font-weight:700; font-size:13px; margin-bottom:8px; display:flex; align-items:center; gap:7px; }
+.pc-femme  { background:#FBE8EF; border-left:4px solid #A0184A; } .pc-femme  .pc-title { color:#A0184A; }
+.pc-jeune  { background:var(--blue-lt); border-left:4px solid var(--blue); } .pc-jeune  .pc-title { color:var(--blue); }
+.pers-card ul { padding-left:14px; } .pers-card li { margin-bottom:4px; line-height:1.5; }
+
+/* ── Plan prévention table ── */
+.plan-table { width:100%; border-collapse:collapse; margin:8px 0 14px; font-size:12px; }
+.plan-table th { background:var(--navy); color:#fff; padding:7px 10px; text-align:left; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.06em; text-transform:uppercase; }
+.plan-table th:first-child { border-radius:4px 0 0 0; } .plan-table th:last-child { border-radius:0 4px 0 0; }
+.plan-table td { padding:8px 10px; border:1px solid var(--border); vertical-align:top; line-height:1.5; }
+.plan-table tr:nth-child(even) td { background:#FAFAF7; }
+.plan-table .lbl { background:var(--navy-lt) !important; font-weight:600; color:var(--navy); font-size:11.5px; }
+
+/* ── Synthèse ── */
+.synthese { background:linear-gradient(135deg,#FEF8E6,#FFF3D0); border:1.5px solid #D4B800; border-radius:8px; padding:18px 22px; margin:28px 0 0; }
+.synthese .st { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:.06em; margin-bottom:9px; }
+.synthese p { font-size:13px; color:#3A3000; line-height:1.75; } .synthese p+p { margin-top:8px; }
+
+.para { margin:7px 0; font-size:13px; } .para strong { color:var(--navy); }
+hr.div { border:none; border-top:1px solid var(--border); margin:5px 0 14px; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <span>Master 1 — AMU 2025-2026 — S. SERENO</span>
+  <span style="color:rgba(255,255,255,.2)">|</span>
+  <span>Partie 3 — Les dispositifs spécifiques de protection</span>
+</div>
+
+<div class="fiche-title">
+  <div class="label">Partie 3</div>
+  <h1>Les dispositifs spécifiques de protection</h1>
+  <div class="subtitle">Pénibilité · C2P · Inaptitude · Catégories protégées · BTP · ICPE · Machines · Entreprises extérieures</div>
+</div>
+
+<div class="nav-pills">
+  <a class="nav-pill" href="#penib">Pénibilité — 10 facteurs</a>
+  <a class="nav-pill" href="#c2p">C2P — 6 critères</a>
+  <a class="nav-pill" href="#inapt">Inaptitude</a>
+  <a class="nav-pill" href="#reclass">Reclassement</a>
+  <a class="nav-pill" href="#personnes">Catégories protégées</a>
+  <a class="nav-pill" href="#btp">BTP</a>
+  <a class="nav-pill" href="#icpe">Installations</a>
+  <a class="nav-pill" href="#machines">Machines</a>
+  <a class="nav-pill" href="#ext">Entreprise extérieure</a>
+</div>
+
+<div class="container">
+
+  <div class="box b-info" style="margin-top:22px">
+    <div class="tag">Logique de la Partie 3</div>
+    La politique de santé dans l'entreprise doit être adaptée aux spécificités de chaque situation. Deux axes : prendre en compte les <strong>configurations propres à certaines personnes</strong> (Chapitre 1) et les <strong>problématiques propres à certains secteurs et opérations</strong> (Chapitre 2). Double logique : <strong>prévention en amont</strong> (avant altération de la santé) ET <strong>protection en aval</strong> (après altération).
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     CHAPITRE 1 — DISPOSITIFS TENANT AUX PERSONNES
+═══════════════════════════════════════════════════ -->
+<div class="chap-banner c1">
+  <span class="chap-num">CHAPITRE 1</span>
+  <h2>Les dispositifs tenant aux personnes</h2>
+</div>
+
+<div class="container">
+
+<!-- SECTION 1 — PÉNIBILITÉ -->
+<div class="section-header sh-green" id="penib">
+  <span class="num">SECTION 1</span>
+  <h3>La prévention de la pénibilité</h3>
+</div>
+
+<p class="para">Double logique : <strong>prévention</strong> (réduire l'exposition) ET <strong>compensation</strong> (réparer les effets de l'exposition passée). L'évaluation est le préalable nécessaire à toute politique adaptée. L'employeur doit évaluer et <strong>déclarer annuellement</strong> l'exposition de chaque salarié.</p>
+
+<div class="para-header">
+  <span class="num">§1</span>
+  <h4>La prévention de 10 facteurs de risques professionnels — Art. L. 4161-1 CT</h4>
+</div>
+
+<p class="para">Travaux considérés comme particulièrement pénibles. Les 10 facteurs sont regroupés en 3 catégories :</p>
+
+<div class="fac-grid">
+  <div class="fac-card fc-phys">
+    <div class="fc-title">💪 Contraintes physiques marquées</div>
+    <ul>
+      <li>Manutentions manuelles de charges</li>
+      <li>Postures pénibles (positions forcées des articulations)</li>
+      <li>Vibrations mécaniques</li>
+    </ul>
+  </div>
+  <div class="fac-card fc-env">
+    <div class="fc-title">🏭 Environnement physique agressif</div>
+    <ul>
+      <li>Agents chimiques dangereux (dont CMR)</li>
+      <li>Activités en milieu hyperbare</li>
+      <li>Températures extrêmes</li>
+      <li>Bruit</li>
+    </ul>
+  </div>
+  <div class="fac-card fc-ryth">
+    <div class="fc-title">🌙 Rythmes de travail</div>
+    <ul>
+      <li>Travail de nuit</li>
+      <li>Travail en équipes successives alternantes</li>
+      <li>Travail répétitif (gestes à fréquence élevée)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sub">Obligation spécifique de prévention — Conditions d'application</div>
+<div class="box b-orange">
+  <div class="tag">2 conditions cumulatives pour déclencher l'obligation de négocier</div>
+  <strong>1.</strong> L'entreprise emploie au moins <strong>50 salariés</strong><br>
+  <strong>2.</strong> Au moins <strong>25 % des salariés</strong> sont déclarés au titre du C2P OU la sinistralité AT/MP est supérieure à <strong>0,25</strong> (seuil fixé par décret)<br><br>
+  → Obligation de <strong>négocier un accord</strong> en faveur de la prévention. À défaut d'accord : établir un <strong>plan d'action</strong>.
+</div>
+
+<hr class="div">
+
+<div class="para-header">
+  <span class="num">§2</span>
+  <h4>Le Compte Professionnel de Prévention (C2P) — réservé à 6 critères</h4>
+</div>
+
+<p class="para">Le C2P ne couvre que <strong>6 des 10 facteurs</strong> (les 4 facteurs liés aux contraintes physiques marquées et aux agents chimiques en sont exclus). Il permet d'accumuler des points convertibles en droits.</p>
+
+<div class="sub">Les 6 facteurs ouvrant droit au C2P (avec seuils d'exposition)</div>
+<div class="c2p-grid">
+  <div class="c2p-card">
+    <div class="cc-name">🌙 Travail de nuit</div>
+    <p>1 heure de travail entre minuit et 5h</p>
+    <div class="cc-seuil">Seuil : 100 nuits/an</div>
+  </div>
+  <div class="c2p-card">
+    <div class="cc-name">🔄 Équipes alternantes</div>
+    <p>1 heure entre minuit et 5h</p>
+    <div class="cc-seuil">Seuil : 30 nuits/an</div>
+  </div>
+  <div class="c2p-card">
+    <div class="cc-name">🔁 Travail répétitif</div>
+    <p>15 actions techniques/min (cycle ≤ 30 s) ou 30 actions/min (cycle variable)</p>
+    <div class="cc-seuil">Seuil : 900 h/an</div>
+  </div>
+  <div class="c2p-card">
+    <div class="cc-name">🤿 Milieu hyperbare</div>
+    <p>1 200 hectopascals</p>
+    <div class="cc-seuil">Seuil : 60 interventions/an</div>
+  </div>
+  <div class="c2p-card">
+    <div class="cc-name">🌡 Températures extrêmes</div>
+    <p>≤ 5°C ou ≥ 30°C</p>
+    <div class="cc-seuil">Seuil : 900 h/an</div>
+  </div>
+  <div class="c2p-card">
+    <div class="cc-name">🔊 Bruit</div>
+    <p>81 dB(A) pendant 8h ou 135 dB(C) de crête</p>
+    <div class="cc-seuil">Seuil : 600 h/an (ou 120 fois)</div>
+  </div>
+</div>
+
+<div class="box b-info">
+  <div class="tag">Cumul de points</div>
+  Le salarié cumule <strong>1 point par trimestre d'exposition</strong> à 1 facteur de risque. Si plusieurs facteurs simultanément, les points se multiplient. Le compte peut atteindre <strong>100 points maximum</strong> sur la vie professionnelle (80 points jusqu'à 30 ans, 20 points après).
+</div>
+
+<div class="sub">Les 3 droits ouverts par le C2P</div>
+<div class="c2p-droits">
+  <div class="c2p-droit cd-1">
+    <div class="cd-icon">🎓</div>
+    <div class="cd-title">Formation professionnelle</div>
+    <p>Financer une formation pour se réorienter vers un métier moins ou pas exposé</p>
+    <p style="margin-top:5px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue)">1 point = 375 € de formation</p>
+  </div>
+  <div class="c2p-droit cd-2">
+    <div class="cd-icon">⏱</div>
+    <div class="cd-title">Passage à temps partiel</div>
+    <p>Réduire son temps de travail sans perte de salaire</p>
+    <p style="margin-top:5px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green)">10 points = 1 trimestre à mi-temps</p>
+  </div>
+  <div class="c2p-droit cd-3">
+    <div class="cd-icon">🏖</div>
+    <div class="cd-title">Retraite anticipée</div>
+    <p>Anticiper son départ à la retraite (avant l'âge légal)</p>
+    <p style="margin-top:5px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold)">10 points = 1 trimestre de retraite</p>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- SECTION 2 — INAPTITUDE -->
+<div class="section-header sh-blue" id="inapt">
+  <span class="num">SECTION 2</span>
+  <h3>L'inaptitude du salarié</h3>
+</div>
+
+<div class="article-block">
+  <div class="art-ref">Art. L. 4624-4 CT — Définition</div>
+  <p>L'inaptitude se définit comme l'impossibilité pour le salarié d'exécuter sa prestation de travail en raison d'une incompatibilité entre son état de santé et le poste qu'il occupe. La différence de traitement fondée sur l'inaptitude constatée par le médecin du travail <strong>ne constitue pas une discrimination</strong> lorsqu'elle est objective, nécessaire et appropriée (art. L. 1133-3).</p>
+</div>
+
+<div class="box b-warn">
+  <div class="tag">⚠ 2 conditions cumulatives pour licencier pour inaptitude</div>
+  <strong>1.</strong> L'inaptitude doit avoir été <strong>préalablement constatée par le médecin du travail</strong> (sans constatation médicale = licenciement discriminatoire)<br>
+  <strong>2.</strong> Le reclassement doit être <strong>impossible ou refusé</strong> par le salarié<br><br>
+  La lettre de licenciement doit mentionner <strong>les deux conditions</strong>.
+</div>
+
+<div class="para-header">
+  <span class="num">§1A</span>
+  <h4>La déclaration d'inaptitude par le médecin du travail</h4>
+</div>
+
+<p class="para">L'appréciation de l'aptitude/inaptitude se réalise toujours en considération des <strong>fonctions exercées par le salarié</strong> (pas une appréciation abstraite).</p>
+
+<div class="sub">Procédure de constatation — Art. L. 4624-4 et R. 4624-42 CT</div>
+<div class="inapt-flow">
+  <div class="inapt-step is-1">
+    <div class="is-num">Préalable</div>
+    <div class="is-title">Étude du poste</div>
+    <p>Le médecin du travail procède (ou fait procéder) à une étude du poste de travail.</p>
+  </div>
+  <div class="inapt-arrow">→</div>
+  <div class="inapt-step is-2">
+    <div class="is-num">Échanges</div>
+    <div class="is-title">Échange tripartite</div>
+    <p>Échange avec le salarié ET avec l'employeur sur les conditions de travail.</p>
+  </div>
+  <div class="inapt-arrow">→</div>
+  <div class="inapt-step is-3">
+    <div class="is-num">1 visite</div>
+    <div class="is-title">Examen médical</div>
+    <p><strong>Une seule visite suffit</strong> en principe. Second examen possible à la discrétion du médecin (délai max. 15 jours).</p>
+  </div>
+  <div class="inapt-arrow">→</div>
+  <div class="inapt-step is-4">
+    <div class="is-num">Conclusions</div>
+    <div class="is-title">Avis d'inaptitude écrit</div>
+    <p>Conclusions écrites détaillant les indications relatives au reclassement du salarié.</p>
+  </div>
+</div>
+
+<div class="para-header">
+  <span class="num">§1B</span>
+  <h4>La contestation de l'avis d'inaptitude — Art. L. 4624-7 CT</h4>
+</div>
+
+<table class="t">
+  <thead><tr><th style="width:25%">Aspect</th><th>Règle</th></tr></thead>
+  <tbody>
+    <tr><td class="lbl">Qui peut contester ?</td><td>L'employeur <strong>ET</strong> le salarié peuvent contester l'avis d'aptitude ou d'inaptitude ainsi que les propositions du médecin du travail.</td></tr>
+    <tr><td class="lbl">Délai</td><td><strong>15 jours</strong> suivant la notification de l'avis litigieux.</td></tr>
+    <tr><td class="lbl">Juridiction</td><td>Recours devant le <strong>Conseil de prud'hommes (CPH) en référé</strong>.</td></tr>
+    <tr><td class="lbl">Instruction</td><td>Le juge peut confier une mesure d'instruction au <strong>médecin inspecteur du travail</strong>.</td></tr>
+    <tr class="hl"><td class="lbl">Effet de la décision</td><td>La décision du CPH <strong>se substitue</strong> aux avis, propositions, conclusions ou indications contestés. Procédure identique quelle que soit l'origine (professionnelle ou non) de l'inaptitude.</td></tr>
+  </tbody>
+</table>
+
+<hr class="div">
+
+<div class="section-header sh-orange" id="reclass">
+  <span class="num">§2</span>
+  <h3>L'obligation préalable de reclassement — Art. L. 1226-2-1 et L. 1226-12 CT</h3>
+</div>
+
+<p class="para">L'employeur peut procéder au licenciement <strong>uniquement après avoir recherché des solutions de reclassement</strong>. La recherche s'étend à l'ensemble des entreprises du groupe situées sur le territoire national et dont l'organisation, les activités ou les lieux d'exploitation permettent la permutation du personnel.</p>
+
+<div class="sub">Les étapes du reclassement</div>
+<div class="reclass-steps">
+  <div class="rs-step">
+    <div class="rs-num">1</div>
+    <div><strong>Consultation du CSE</strong> obligatoire avant toute proposition de reclassement.</div>
+  </div>
+  <div class="rs-step">
+    <div class="rs-num">2</div>
+    <div><strong>Recherche de postes</strong> adaptés aux capacités du salarié, compte tenu des conclusions et indications du médecin du travail, compatibles avec les préconisations médicales. La recherche doit être <strong>réelle et loyale</strong>.</div>
+  </div>
+  <div class="rs-step">
+    <div class="rs-num">3</div>
+    <div><strong>Proposition(s) au salarié</strong> — Le salarié peut refuser. Son refus permet à l'employeur d'initier la procédure de licenciement.</div>
+  </div>
+  <div class="rs-step">
+    <div class="rs-num">4</div>
+    <div>Si reclassement impossible ou refusé : <strong>licenciement pour inaptitude</strong> avec procédure habituelle (convocation, entretien préalable, lettre de licenciement).</div>
+  </div>
+</div>
+
+<div class="sub">La dispense de reclassement — Cas de dispense</div>
+<p class="para">L'obligation de reclassement est <strong>écartée</strong> lorsque l'avis d'inaptitude le mentionne expressément. Deux formulations (non limitatives) prévues par le CT :</p>
+<table class="t">
+  <thead><tr><th>Formulation dans l'avis</th><th>Effet</th></tr></thead>
+  <tbody>
+    <tr><td class="lbl">« Tout maintien du salarié dans l'emploi serait gravement préjudiciable à sa santé »</td><td>Dispense totale de rechercher un reclassement. L'employeur peut engager directement la procédure de licenciement.</td></tr>
+    <tr><td class="lbl">« L'état de santé du salarié fait obstacle à tout reclassement dans l'emploi »</td><td>Même effet. Ces deux formulations sont <strong>non limitatives</strong> — d'autres formulations équivalentes sont possibles.</td></tr>
+  </tbody>
+</table>
+<div class="box b-warn">
+  <div class="tag">⚠ Sanction du manquement</div>
+  En cas de manquement à l'obligation de reclassement, le licenciement est <strong>privé de cause réelle et sérieuse</strong> → indemnité au moins égale à 6 mois de salaire (art. L. 1235-3-1 applicable).
+</div>
+
+<hr class="div">
+
+<!-- SECTION 3 — CATÉGORIES PROTÉGÉES -->
+<div class="section-header sh-teal" id="personnes">
+  <span class="num">SECTION 3</span>
+  <h3>Dispositions protectrices propres à certaines catégories de travailleurs</h3>
+</div>
+
+<div class="pers-grid">
+  <div class="pers-card pc-femme">
+    <div class="pc-title">🤱 §1 — Les femmes enceintes ou allaitantes</div>
+    <ul>
+      <li><strong>Conditions de travail :</strong> aménagement du poste, réduction de la durée du travail, suppression du travail de nuit si nécessaire</li>
+      <li><strong>Travaux interdits :</strong> liste de travaux dangereux ou incompatibles (port de charges, exposition à certains agents chimiques, postures contraignantes)</li>
+      <li><strong>Suivi de l'état de santé :</strong> visites médicales renforcées</li>
+      <li><strong>Modification de l'emploi :</strong> affectation temporaire à un autre poste si le maintien est impossible, avec maintien de salaire</li>
+      <li><strong>Aménagement d'horaires :</strong> possibilité de quitter le travail pour les consultations prénatales sans perte de salaire</li>
+    </ul>
+  </div>
+  <div class="pers-card pc-jeune">
+    <div class="pc-title">🧑 §2 — Les jeunes travailleurs</div>
+    <p style="margin-bottom:7px"><em>Diversité des « jeunes » travailleurs selon leur âge, leur statut (apprentis, élèves, stagiaires) et leur contrat.</em></p>
+    <ul>
+      <li><strong>Âges limites :</strong> fixation d'âges minimaux pour certains travaux (en dessous desquels certains travaux sont interdits)</li>
+      <li><strong>Travaux interdits :</strong> liste de travaux particulièrement dangereux interdits aux moins de 18 ans (ou soumis à dérogation)</li>
+      <li><strong>Réglementation :</strong> certains travaux sont réglementés (durée limitée, encadrement renforcé, surveillance médicale)</li>
+      <li><strong>Adaptation des conditions de travail :</strong> temps de pause, durée maximale du travail réduite, travail de nuit interdit sauf dérogation</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<!-- ═══════════════════════════════════════════════════
+     CHAPITRE 2 — DISPOSITIFS TENANT AUX SECTEURS
+═══════════════════════════════════════════════════ -->
+<div class="chap-banner c2">
+  <span class="chap-num">CHAPITRE 2</span>
+  <h2>Les dispositifs tenant aux secteurs d'activité et aux opérations</h2>
+</div>
+
+<div class="container">
+
+<p class="para" style="margin-top:18px">En raison des risques spécifiques associés, les entreprises relevant de certains secteurs ou réalisant certaines opérations sont soumises à des <strong>obligations particulières</strong> en sus des règles générales de prévention.</p>
+
+<!-- SECTION 1 — SECTEURS -->
+<div class="section-header sh-blue" id="btp">
+  <span class="num">SECTION 1</span>
+  <h3>Normes spécifiques à certains secteurs d'activité</h3>
+</div>
+
+<div class="para-header">
+  <span class="num">§1</span>
+  <h4>Le bâtiment et le génie civil (BTP)</h4>
+</div>
+
+<p class="para">Secteur à risques élevés : chutes, manutentions, coactivité d'entreprises sur un même chantier. Régime propre visant à assurer la coordination entre les multiples intervenants.</p>
+
+<div class="sub">Les 3 instruments clés de la coordination en BTP</div>
+<div class="btp-actors">
+  <div class="btp-actor">
+    <div class="ba-title">Coordonnateur SPS</div>
+    <div class="ba-ref">Art. L. 4532-4 CT</div>
+    <p>Coordonnateur en matière de Sécurité et de Protection de la Santé. Désigné par le maître d'ouvrage dès la phase de conception pour les opérations où plusieurs entreprises interviennent. Mission : prévenir les risques liés à la coactivité et assurer la coordination.</p>
+  </div>
+  <div class="btp-actor">
+    <div class="ba-title">PGCSPS</div>
+    <div class="ba-ref">Plan Général de Coordination SST</div>
+    <p>Document établi par le coordonnateur SPS en phase conception, remis aux entreprises avant la remise des offres. Définit l'ensemble des mesures SST propres au chantier.</p>
+  </div>
+  <div class="btp-actor">
+    <div class="ba-title">PPSPS</div>
+    <div class="ba-ref">Plan Particulier de Sécurité et de Protection de la Santé</div>
+    <p>Établi par chaque entreprise intervenante avant le début des travaux. Adapte les mesures du PGCSPS aux risques propres à l'entreprise et à ses méthodes d'exécution.</p>
+  </div>
+</div>
+
+<div class="box b-info">
+  <div class="tag">Niveaux de chantier</div>
+  Les obligations varient selon la taille et le niveau de risque du chantier (3 niveaux en BTP). La coordination est obligatoire dès que <strong>plusieurs entreprises interviennent simultanément ou successivement</strong> sur un même chantier.
+</div>
+
+<hr class="div">
+
+<div class="para-header" id="icpe">
+  <span class="num">§2</span>
+  <h4>Les installations particulières — ICPE</h4>
+</div>
+
+<table class="t">
+  <thead><tr><th style="width:22%">Type</th><th>Description</th><th style="width:30%">Régime applicable</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="lbl"><span class="bdg b-rd">ICPE</span><br>Installations Classées pour la Protection de l'Environnement</td>
+      <td>Installations industrielles ou agricoles pouvant présenter des risques pour l'environnement, la santé ou la sécurité publique.</td>
+      <td>3 régimes selon le niveau de risque : <strong>déclaration</strong> / <strong>enregistrement</strong> / <strong>autorisation</strong> (préfectorale). Contrôles renforcés, obligations d'information des salariés, plans de prévention spécifiques.</td>
+    </tr>
+    <tr>
+      <td class="lbl"><span class="bdg b-rd">SEVESO</span><br>Sites à risques majeurs</td>
+      <td>Sites présentant des risques d'accidents majeurs (explosions, incendies, rejets toxiques).</td>
+      <td>Directive SEVESO III (transposée en droit français). Obligations renforcées : Plan de Prévention des Risques Technologiques (PPRT), Plan d'Opération Interne (POI), information du public et des salariés.</td>
+    </tr>
+    <tr>
+      <td class="lbl"><span class="bdg b-nv">INB</span><br>Installations Nucléaires de Base</td>
+      <td>Centrales nucléaires, centres de traitement de déchets radioactifs, laboratoires de recherche.</td>
+      <td>Régime spécifique : autorisation de l'ASN, valeurs limites d'exposition aux rayonnements ionisants, suivi individuel renforcé des travailleurs, dosimétrie obligatoire.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr class="div">
+
+<!-- SECTION 2 — OPÉRATIONS -->
+<div class="section-header sh-teal" id="machines">
+  <span class="num">SECTION 2</span>
+  <h3>Normes spécifiques à certaines opérations</h3>
+</div>
+
+<div class="para-header">
+  <span class="num">§1</span>
+  <h4>Les machines et équipements de travail — Art. L. 4311-1 s. CT</h4>
+</div>
+
+<table class="t">
+  <thead><tr><th style="width:25%">Obligation</th><th>Contenu</th></tr></thead>
+  <tbody>
+    <tr><td class="lbl">Conception sûre</td><td>Les machines doivent être conçues et fabriquées de manière à respecter les exigences essentielles de santé et de sécurité. Mise en conformité avant mise sur le marché.</td></tr>
+    <tr><td class="lbl">Marquage CE</td><td>Attestation de la conformité aux directives européennes applicable à la machine (Directive Machines 2006/42/CE). Obligation du fabricant ou importateur.</td></tr>
+    <tr><td class="lbl">Déclaration de conformité</td><td>Document établi par le fabricant attestant que la machine est conforme aux dispositions applicables.</td></tr>
+    <tr><td class="lbl">Notice d'instructions</td><td>Obligatoire, en français, remise avec chaque machine. Contient les conditions d'utilisation, de maintenance et de sécurité.</td></tr>
+    <tr class="hl"><td class="lbl">Obligation de l'employeur</td><td>Utiliser uniquement des équipements conformes, les maintenir en état de conformité, former les salariés à leur utilisation sûre, procéder aux vérifications périodiques obligatoires.</td></tr>
+  </tbody>
+</table>
+
+<hr class="div">
+
+<div class="para-header" id="ext">
+  <span class="num">§2</span>
+  <h4>L'intervention d'une entreprise extérieure — Plan de prévention</h4>
+</div>
+
+<p class="para">Lorsqu'une <strong>entreprise extérieure (EU)</strong> intervient dans les locaux d'une <strong>entreprise utilisatrice (EUT)</strong>, des risques d'interférence apparaissent. La coordination des mesures de prévention est obligatoire.</p>
+
+<div class="sub">Déclenchement de l'obligation de plan de prévention</div>
+<div class="box b-orange">
+  <div class="tag">Seuils d'obligation</div>
+  Le plan de prévention est obligatoire lorsque :
+  <ul style="margin-top:6px;padding-left:18px">
+    <li>Les travaux dépassent <strong>400 heures</strong> sur 12 mois (à prévoir ou effectuées)</li>
+    <li>OU les travaux figurent sur la <strong>liste des travaux dangereux</strong> fixée par arrêté (quelle que soit leur durée)</li>
+  </ul>
+</div>
+
+<table class="plan-table">
+  <thead><tr>
+    <th style="width:22%">Étape</th>
+    <th>Contenu</th>
+    <th style="width:25%">Responsabilités</th>
+  </tr></thead>
+  <tbody>
+    <tr>
+      <td class="lbl">1. Inspection commune préalable</td>
+      <td>Visite des lieux et examen des conditions d'exécution des travaux AVANT le début de l'intervention. Identification des risques d'interférence (coactivité, utilisation d'équipements communs…).</td>
+      <td>Employeurs de l'EUT et de l'EU (ou de chaque EU)</td>
+    </tr>
+    <tr>
+      <td class="lbl">2. Rédaction du plan de prévention</td>
+      <td>Document formalisant les mesures prises pour prévenir les risques résultant de l'interférence des activités. Contient : liste des postes à risque, mesures de prévention par risque, matériels et installations à risque, instructions à donner aux salariés.</td>
+      <td>Co-élaboré par EUT et EU. Doit être établi <strong>avant le début des travaux</strong>.</td>
+    </tr>
+    <tr>
+      <td class="lbl">3. Information et formation des salariés</td>
+      <td>Les salariés de l'EU doivent être informés des risques spécifiques à l'établissement de l'EUT et des mesures de prévention applicables.</td>
+      <td>EU (pour ses salariés), EUT (pour les risques propres à son établissement)</td>
+    </tr>
+    <tr>
+      <td class="lbl">4. Suivi et mise à jour</td>
+      <td>En cas de modification des conditions d'exécution, le plan doit être mis à jour. Inspections régulières de chantier par les responsables SST des deux entreprises.</td>
+      <td>EUT principalement</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="box b-juris">
+  <div class="tag">⚖ Responsabilité en cas d'accident</div>
+  En cas d'AT sur le salarié d'une EU, les deux employeurs peuvent voir leur responsabilité engagée : l'EU pour manquement à son obligation de sécurité envers son salarié, l'EUT pour manquement à ses obligations de coordination et d'information. La faute inexcusable peut être caractérisée à l'encontre de l'un ou l'autre.
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SYNTHÈSE
+═══════════════════════════════════════════════ -->
+<div class="synthese">
+  <div class="st">💡 Idée directrice — Partie 3</div>
+  <p>La Partie 3 repose sur une idée centrale : les normes générales ne suffisent pas. Il faut des dispositifs <strong>adaptés aux spécificités de chaque situation</strong> — selon les personnes (pénibilité, inaptitude, femmes enceintes, jeunes) et selon les secteurs/opérations (BTP, ICPE, machines, coactivité).</p>
+  <p>Points clefs à retenir absolument : <strong>10 facteurs de pénibilité</strong> mais le <strong>C2P ne couvre que 6</strong> d'entre eux (les contraintes physiques et les agents chimiques en sont exclus) ; l'inaptitude ne peut jamais être invoquée sans <strong>constatation préalable du médecin du travail</strong> + recherche de reclassement loyale (la dispense n'est possible que si l'avis la mentionne expressément) ; le <strong>plan de prévention</strong> dans le cadre de l'entreprise extérieure est le mécanisme central de protection face aux risques d'interférence ; en BTP, c'est la <strong>coordination SPS</strong> qui joue ce rôle.</p>
+</div>
+
+</div><!-- /container -->
+</body>
+</html>
