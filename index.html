@@ -89,6 +89,18 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--fond);min-heigh
 .odl-label{font-family:'Playfair Display',serif;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:#1B5C6B;margin-bottom:.25rem;}
 .odl-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;color:var(--noir);line-height:1.3;}
 .odl-arr{font-size:.8rem;color:#1B5C6B;font-weight:700;white-space:nowrap;border:1.5px solid #1B5C6B;border-radius:8px;padding:.4rem .9rem;font-family:'Source Serif 4',serif;}
+/* SECTION MAITRISE */
+.maitrise-section{margin-bottom:1.5rem;}
+.maitrise-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.7rem;margin-top:.8rem;}
+.maitrise-card{display:block;text-decoration:none;background:var(--carte);border:2px solid var(--bord);border-radius:10px;padding:1rem 1.1rem;position:relative;overflow:hidden;transition:all .2s;}
+.maitrise-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.mc-c0::before{background:#1B5C6B;}.mc-c1::before{background:#2A5C38;}.mc-c2::before{background:#1a3a6a;}.mc-c3::before{background:#8B1A10;}.mc-c4::before{background:#5B3A8A;}.mc-c5::before{background:#8A6200;}
+.maitrise-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.09);border-color:rgba(0,0,0,.15);}
+.mc-num{font-family:'Playfair Display',serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#1B5C6B;margin-bottom:.28rem;}
+.mc-c1 .mc-num{color:#2A5C38;}.mc-c2 .mc-num{color:#1a3a6a;}.mc-c3 .mc-num{color:#8B1A10;}.mc-c4 .mc-num{color:#5B3A8A;}.mc-c5 .mc-num{color:#8A6200;}
+.mc-title{font-family:'Playfair Display',serif;font-weight:700;font-size:.85rem;color:var(--noir);line-height:1.3;margin-bottom:.5rem;}
+.mc-open{display:inline-block;font-size:.64rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--doux);border:1px solid var(--bord);border-radius:5px;padding:.18rem .55rem;transition:all .18s;}
+.maitrise-card:hover .mc-open{color:#1B5C6B;border-color:#1B5C6B;}
 
 /* SELECT ALL + CTA */
 .sel-actions{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
@@ -305,17 +317,51 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--fond);min-heigh
       </div>
     </div>
 
-    <div class="other-decks">
-      <div class="other-deck-sep"><span>Autre cours</span></div>
+    <div class="maitrise-section">
+      <div class="other-deck-sep"><span>Maîtrise des risques sanitaires</span></div>
+
       <a class="other-deck-link" href="risques_sanitaires.html" target="_blank">
         <div class="odl-inner">
           <div>
-            <div class="odl-label">Flash Cards</div>
-            <div class="odl-title">Maîtrise des risques sanitaires</div>
+            <div class="odl-label">⚡ Flash Cards</div>
+            <div class="odl-title">Réviser — Maîtrise des risques sanitaires</div>
           </div>
           <div class="odl-arr">Ouvrir →</div>
         </div>
       </a>
+
+      <div class="maitrise-grid">
+        <a class="maitrise-card mc-c0" href="maitrise_chap_intro.html" target="_blank">
+          <div class="mc-num">Chap. introductif</div>
+          <div class="mc-title">Chapitre introductif</div>
+          <span class="mc-open">Fiche →</span>
+        </a>
+        <a class="maitrise-card mc-c1" href="maitrise_p1_chap1.html" target="_blank">
+          <div class="mc-num">Partie 1 · Chap. 1</div>
+          <div class="mc-title">Partie 1, Chapitre 1</div>
+          <span class="mc-open">Fiche →</span>
+        </a>
+        <a class="maitrise-card mc-c2" href="maitrise_p1_chap2.html" target="_blank">
+          <div class="mc-num">Partie 1 · Chap. 2</div>
+          <div class="mc-title">Les acteurs de la santé au travail</div>
+          <span class="mc-open">Fiche →</span>
+        </a>
+        <a class="maitrise-card mc-c3" href="maitrise_harcelements.html" target="_blank">
+          <div class="mc-num">Complément</div>
+          <div class="mc-title">Les harcèlements</div>
+          <span class="mc-open">Fiche →</span>
+        </a>
+        <a class="maitrise-card mc-c4" href="maitrise_p2_risques.html" target="_blank">
+          <div class="mc-num">Partie 2</div>
+          <div class="mc-title">Risques professionnels et sanctions</div>
+          <span class="mc-open">Fiche →</span>
+        </a>
+        <a class="maitrise-card mc-c5" href="maitrise_p3_dispositifs.html" target="_blank">
+          <div class="mc-num">Partie 3</div>
+          <div class="mc-title">Dispositifs spécifiques de protection</div>
+          <span class="mc-open">Fiche →</span>
+        </a>
+      </div>
     </div>
 
     <div class="sel-actions">
