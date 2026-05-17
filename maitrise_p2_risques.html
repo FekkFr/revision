@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiche — Partie 2 — Risques professionnels et sanctions</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --orange:    #D4600A;
+  --navy:      #1B2F55;
+  --navy-lt:   #EEF2FA;
+  --blue:      #2558A8;
+  --blue-lt:   #DDEAF8;
+  --green:     #2A5C38;
+  --green-lt:  #E6F2EB;
+  --gold:      #8A6200;
+  --gold-lt:   #FEF8E6;
+  --red:       #8B1A10;
+  --red-lt:    #FCEAE8;
+  --purple:    #5B3A8A;
+  --purple-lt: #F0EBF9;
+  --teal:      #0E6E6E;
+  --teal-lt:   #E0F4F4;
+  --border:    #D8D5CF;
+  --text:      #1C1C1C;
+  --bg:        #FAFAF8;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Source Serif 4', Georgia, serif; font-size: 14px; line-height: 1.7; color: var(--text); background: var(--bg); padding-bottom: 60px; }
+
+/* ── Header ── */
+.page-header { background: var(--navy); padding: 13px 44px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.page-header span { font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.48); }
+.fiche-title { background: var(--navy); padding: 20px 44px 16px; position: relative; overflow: hidden; }
+.fiche-title::after { content:''; position:absolute; top:0; right:0; width:300px; height:100%; background: repeating-linear-gradient(-45deg,transparent,transparent 6px,rgba(255,255,255,.04) 6px,rgba(255,255,255,.04) 7px); }
+.fiche-title .label { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.18em; color:rgba(255,255,255,.55); text-transform:uppercase; margin-bottom:4px; }
+.fiche-title h1 { font-family:'Playfair Display',serif; font-size:26px; font-weight:900; color:#fff; line-height:1.2; }
+.fiche-title .subtitle { font-style:italic; font-size:14px; color:rgba(255,255,255,.75); margin-top:4px; }
+
+/* ── Chapitre banner ── */
+.chap-banner { padding: 10px 44px; display: flex; align-items: center; gap: 14px; }
+.chap-banner.c1 { background: #2E4E7A; }
+.chap-banner.c2 { background: #6B2737; }
+.chap-banner .chap-num { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.12em; background:rgba(255,255,255,.18); padding:3px 9px; border-radius:3px; color:#fff; }
+.chap-banner h2 { font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:#fff; }
+
+/* ── Nav ── */
+.nav-pills { background:#F0EDE8; border-bottom:1px solid var(--border); padding:9px 44px; display:flex; gap:7px; flex-wrap:wrap; }
+.nav-pill { font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.05em; text-transform:uppercase; font-weight:600; padding:3px 9px; border-radius:20px; background:#fff; border:1px solid var(--border); color:var(--navy); text-decoration:none; transition:background .15s; }
+.nav-pill:hover { background:var(--navy-lt); border-color:var(--blue); }
+
+/* ── Container ── */
+.container { max-width:900px; margin:0 auto; padding:0 30px; }
+
+/* ── Section header ── */
+.section-header { padding:10px 18px; margin:30px 0 18px; border-radius:4px; display:flex; align-items:center; gap:12px; }
+.section-header .num { font-family:'JetBrains Mono',monospace; font-size:10px; background:rgba(255,255,255,.18); padding:3px 8px; border-radius:3px; color:#fff; }
+.section-header h3 { font-family:'Playfair Display',serif; font-size:15px; font-weight:700; color:#fff; }
+.sh-blue   { background: var(--blue); }
+.sh-teal   { background: var(--teal); }
+.sh-purple { background: var(--purple); }
+.sh-red    { background: #7A1A1A; }
+.sh-green  { background: var(--green); }
+.sh-gold   { background: #7A5A00; }
+
+/* ── Para / sub headers ── */
+.para-header { border-bottom:2px solid var(--blue); padding-bottom:4px; margin:20px 0 12px; display:flex; align-items:baseline; gap:8px; }
+.para-header .num { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--blue); font-weight:600; }
+.para-header h4 { font-size:14px; font-weight:600; color:var(--blue); }
+.sub { font-size:13px; font-weight:600; color:var(--orange); margin:14px 0 6px; }
+
+/* ── Article block ── */
+.article-block { background:var(--navy); border-radius:4px; padding:12px 16px; margin:10px 0 14px; }
+.article-block .art-ref { font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.1em; color:rgba(255,255,255,.55); margin-bottom:5px; text-transform:uppercase; }
+.article-block p { font-style:italic; color:#fff; font-size:13px; line-height:1.6; }
+
+/* ── Boxes ── */
+.box { border-radius:4px; padding:10px 15px; margin:9px 0; font-size:12.5px; line-height:1.6; }
+.box .tag { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; font-weight:700; margin-bottom:4px; }
+.b-juris   { background:var(--green-lt);  border-left:3px solid var(--green);  } .b-juris  .tag { color:var(--green);  }
+.b-example { background:var(--gold-lt);   border-left:3px solid #C49A00;       } .b-example .tag { color:var(--gold);   }
+.b-info    { background:var(--blue-lt);   border-left:3px solid var(--blue);   } .b-info   .tag { color:var(--blue);   }
+.b-warn    { background:var(--red-lt);    border-left:3px solid var(--red);    } .b-warn   .tag { color:var(--red);    }
+.b-purple  { background:var(--purple-lt); border-left:3px solid var(--purple); } .b-purple .tag { color:var(--purple); }
+.b-teal    { background:var(--teal-lt);   border-left:3px solid var(--teal);   } .b-teal   .tag { color:var(--teal);   }
+
+/* ── Tables ── */
+.t { width:100%; border-collapse:collapse; margin:8px 0 18px; font-size:12.5px; }
+.t thead th { background:var(--navy); color:#fff; padding:8px 11px; text-align:left; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.07em; text-transform:uppercase; font-weight:600; }
+.t thead th:first-child { border-radius:4px 0 0 0; } .t thead th:last-child { border-radius:0 4px 0 0; }
+.t tbody td { padding:9px 11px; vertical-align:top; border:1px solid var(--border); line-height:1.55; }
+.t tbody tr:nth-child(even) td { background:#FAFAF7; }
+.t tbody tr:hover td { background:var(--blue-lt); transition:background .15s; }
+.t .lbl { background:var(--navy-lt) !important; font-weight:600; color:var(--navy); font-size:11.5px; min-width:105px; }
+.t .hl td { background:var(--gold-lt) !important; } .t .hl .lbl { background:#EFE5C2 !important; }
+.t ul { padding-left:15px; margin:3px 0; } .t li { margin-bottom:2px; }
+.bdg { display:inline-block; font-family:'JetBrains Mono',monospace; font-size:8.5px; padding:1px 5px; border-radius:2px; letter-spacing:.04em; margin-bottom:3px; }
+.bdk-navy { background:var(--navy); color:#fff; }
+.bdk-or   { background:var(--orange); color:#fff; }
+.bdk-grn  { background:var(--green); color:#fff; }
+.bdk-red  { background:var(--red); color:#fff; }
+.bdk-ppl  { background:var(--purple); color:#fff; }
+
+/* ── Risques physiques grid ── */
+.phys-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:10px 0 18px; }
+.phys-card { border-radius:5px; padding:13px 14px; font-size:12.5px; }
+.phys-card .pc-title { font-weight:700; font-size:13px; margin-bottom:6px; display:flex; align-items:center; gap:6px; }
+.phys-card .pc-ref { font-family:'JetBrains Mono',monospace; font-size:9px; margin-bottom:6px; opacity:.7; }
+.phys-card ul { padding-left:15px; } .phys-card li { margin-bottom:3px; line-height:1.5; }
+.pc-bruit  { background:#E8EEF7; border-top:3px solid var(--blue); }   .pc-bruit  .pc-title { color:var(--blue); }
+.pc-bio    { background:var(--green-lt); border-top:3px solid var(--green); } .pc-bio .pc-title { color:var(--green); }
+.pc-chim   { background:var(--red-lt);  border-top:3px solid var(--red); }   .pc-chim  .pc-title { color:var(--red); }
+.pc-elec   { background:var(--gold-lt); border-top:3px solid #C49A00; }      .pc-elec  .pc-title { color:var(--gold); }
+.pc-manu   { background:var(--purple-lt); border-top:3px solid var(--purple); } .pc-manu .pc-title { color:var(--purple); }
+.pc-cmr    { background:#FDE8D8; border-top:3px solid var(--orange); }       .pc-cmr   .pc-title { color:var(--orange); }
+
+/* ── Tableaux agents biologiques ── */
+.bio-groups { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin:8px 0 14px; }
+.bg-card { border-radius:4px; padding:9px 10px; text-align:center; font-size:11.5px; }
+.bg-card .bg-num { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; margin-bottom:4px; }
+.bg-1 { background:#E8F5E9; border:1px solid #81C784; } .bg-1 .bg-num { color:#2E7D32; }
+.bg-2 { background:#FFF9C4; border:1px solid #F9A825; } .bg-2 .bg-num { color:#E65100; }
+.bg-3 { background:#FFE0B2; border:1px solid #FF8C00; } .bg-3 .bg-num { color:#BF360C; }
+.bg-4 { background:var(--red-lt); border:1px solid #EF5350; } .bg-4 .bg-num { color:var(--red); }
+
+/* ── RPS ── */
+.rps-def { background:var(--navy-lt); border-left:4px solid var(--navy); padding:12px 16px; border-radius:0 5px 5px 0; margin:10px 0 16px; font-size:12.5px; font-style:italic; }
+.rps-def strong { color:var(--navy); }
+
+/* ── Harcèlement 3 éléments ── */
+.harc-tri { display:flex; gap:6px; margin:10px 0 16px; align-items:stretch; }
+.harc-el { flex:1; border-radius:5px; padding:12px 13px; font-size:12px; text-align:center; }
+.harc-el .he-title { font-weight:700; font-size:13px; margin-bottom:5px; }
+.he-1 { background:#F5E8E8; border-top:3px solid #C0392B; } .he-1 .he-title { color:#C0392B; }
+.he-2 { background:#E8EFF8; border-top:3px solid var(--blue); } .he-2 .he-title { color:var(--blue); }
+.he-3 { background:#F0EBF9; border-top:3px solid var(--purple); } .he-3 .he-title { color:var(--purple); }
+.harc-plus { align-self:center; font-size:22px; color:var(--border); flex-shrink:0; }
+
+/* ── Tableau comparatif harcèlements ── */
+.harc-comp { width:100%; border-collapse:collapse; margin:10px 0 18px; font-size:11.5px; }
+.harc-comp th { background:var(--navy); color:#fff; padding:8px 10px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.07em; text-transform:uppercase; text-align:left; }
+.harc-comp th:first-child { border-radius:4px 0 0 0; } .harc-comp th:last-child { border-radius:0 4px 0 0; }
+.harc-comp td { padding:8px 10px; border:1px solid var(--border); vertical-align:top; line-height:1.5; }
+.harc-comp .row-hm { background:#FEF2F2; }
+.harc-comp .row-hs1 { background:#F9F0FF; }
+.harc-comp .row-hs2 { background:#EDF7F7; }
+.harc-comp .row-hd { background:#FFF8E6; }
+.harc-comp .row-sa { background:#F0F8EF; }
+.harc-comp .cat-lbl { font-weight:700; font-size:12px; }
+
+/* ── Preuve aménagée ── */
+.preuve-steps { display:flex; gap:0; margin:10px 0 14px; }
+.ps { flex:1; padding:11px 13px; font-size:12px; }
+.ps .ps-actor { font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; margin-bottom:4px; }
+.ps-sal { background:#FDE8D8; border-top:3px solid var(--orange); border-radius:5px 0 0 5px; } .ps-sal .ps-actor { color:var(--orange); }
+.ps-emp { background:var(--blue-lt); border-top:3px solid var(--blue); } .ps-emp .ps-actor { color:var(--blue); }
+.ps-jug { background:var(--green-lt); border-top:3px solid var(--green); border-radius:0 5px 5px 0; } .ps-jug .ps-actor { color:var(--green); }
+.ps-arr { align-self:center; color:var(--border); font-size:18px; padding:0 3px; flex-shrink:0; }
+
+/* ── Addictions grid ── */
+.add-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin:10px 0 18px; }
+.add-card { border-radius:5px; padding:13px 14px; font-size:12.5px; }
+.add-card .add-title { font-weight:700; font-size:14px; margin-bottom:8px; display:flex; align-items:center; gap:6px; }
+.add-card .add-ref { font-family:'JetBrains Mono',monospace; font-size:9px; opacity:.65; margin-bottom:6px; }
+.add-card ul { padding-left:14px; } .add-card li { margin-bottom:4px; line-height:1.5; }
+.add-card .add-ok { color:var(--green); font-weight:600; }
+.add-card .add-no { color:var(--red); font-weight:600; }
+.ad-alcool { background:#FEF3E8; border-left:3px solid var(--orange); }  .ad-alcool .add-title { color:var(--orange); }
+.ad-tabac  { background:var(--red-lt); border-left:3px solid var(--red); }  .ad-tabac .add-title { color:var(--red); }
+.ad-drogue { background:var(--purple-lt); border-left:3px solid var(--purple); } .ad-drogue .add-title { color:var(--purple); }
+
+/* ── Sanctions ── */
+.resp-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:10px 0 18px; }
+.resp-card { border-radius:5px; overflow:hidden; border:1px solid var(--border); }
+.resp-card .rc-head { padding:9px 13px; color:#fff; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; }
+.rc-penal .rc-head { background:#7A1A1A; }
+.rc-civil .rc-head { background:var(--navy); }
+.resp-card .rc-body { padding:11px 13px; background:#fff; font-size:12.5px; }
+.resp-card .rc-body ul { padding-left:14px; } .resp-card .rc-body li { margin-bottom:4px; line-height:1.5; }
+
+/* ── Faute inexcusable ── */
+.fi-box { background:var(--red-lt); border:1.5px solid var(--red); border-radius:5px; padding:13px 16px; margin:10px 0 14px; font-size:12.5px; }
+.fi-box .fi-title { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:var(--red); margin-bottom:6px; }
+
+/* ── Délégation ── */
+.deleg-conds { list-style:none; padding:0; margin:8px 0 14px; }
+.deleg-conds li { display:flex; gap:10px; padding:7px 12px; background:#fff; border:1px solid var(--border); border-radius:4px; margin-bottom:4px; font-size:12.5px; }
+.deleg-conds li .dc { flex-shrink:0; font-family:'JetBrains Mono',monospace; font-size:9.5px; font-weight:700; background:var(--navy); color:#fff; padding:2px 7px; border-radius:3px; margin-top:2px; }
+
+/* ── Synthèse ── */
+.synthese { background:linear-gradient(135deg,#FEF8E6,#FFF3D0); border:1.5px solid #D4B800; border-radius:8px; padding:18px 22px; margin:28px 0 0; }
+.synthese .st { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:.06em; margin-bottom:9px; }
+.synthese p { font-size:13px; color:#3A3000; line-height:1.75; } .synthese p+p { margin-top:8px; }
+
+.para { margin:7px 0; font-size:13px; } .para strong { color:var(--navy); }
+hr.div { border:none; border-top:1px solid var(--border); margin:5px 0 14px; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <span>Master 1 — AMU 2025-2026 — S. SERENO</span>
+  <span style="color:rgba(255,255,255,.2)">|</span>
+  <span>Partie 2 — Risques professionnels et leurs sanctions</span>
+</div>
+
+<div class="fiche-title">
+  <div class="label">Partie 2</div>
+  <h1>Les risques professionnels et leurs sanctions</h1>
+  <div class="subtitle">Risques physiques · RPS · Addictions · Responsabilités pénale et civile</div>
+</div>
+
+<div class="nav-pills">
+  <a class="nav-pill" href="#phys">Risques physiques</a>
+  <a class="nav-pill" href="#rps">RPS</a>
+  <a class="nav-pill" href="#harc-moral">Harcèlement moral</a>
+  <a class="nav-pill" href="#harc-sexuel">Harcèlement sexuel</a>
+  <a class="nav-pill" href="#regime">Régime juridique</a>
+  <a class="nav-pill" href="#addictions">Addictions</a>
+  <a class="nav-pill" href="#resp-emp">Resp. employeur</a>
+  <a class="nav-pill" href="#resp-sal">Resp. salarié</a>
+  <a class="nav-pill" href="#resp-med">Resp. médecin</a>
+</div>
+
+<div class="container">
+
+<!-- ═══════════════════════════════════════════════════
+     CHAPITRE 1 — DIVERSITÉ DES RISQUES
+═══════════════════════════════════════════════════ -->
+</div>
+<div class="chap-banner c1">
+  <span class="chap-num">CHAPITRE 1</span>
+  <h2>La diversité des risques professionnels</h2>
+</div>
+<div class="container">
+
+<!-- SECTION 1 — RISQUES PHYSIQUES -->
+<div class="section-header sh-blue" id="phys">
+  <span class="num">SECTION 1</span>
+  <h3>Les risques physiques</h3>
+</div>
+
+<p class="para">Grande diversité selon les fonctions et secteurs. <strong>Difficulté principale</strong> : coexistence de règles générales (art. L. 4121-1 s.) ET de règles particulières propres à chaque risque. Liste non exhaustive : bruit, risques biologiques/chimiques, risques électriques, manutention, risques thermiques, amiante, champs électromagnétiques, milieu hyperbare…</p>
+
+<div class="phys-grid">
+  <div class="phys-card pc-bruit">
+    <div class="pc-title">🔊 §1 — Le bruit</div>
+    <div class="pc-ref">Art. R. 4431-1 CT · Décret 2006-892</div>
+    <ul>
+      <li><strong>Valeurs déclenchant l'action :</strong> 80 dB(A) / semaine · 135 dB(C) de crête → EPI + signalisation</li>
+      <li><strong>Valeurs limites :</strong> 87 dB(A) / semaine · 140 dB(C) de crête → exposition impossible</li>
+      <li>Employeur : mesurer (en tenant compte des variations), agir sur la source, la propagation et la réception</li>
+      <li>Prévention collective prioritaire (encoffrement, isolation…) puis EPI (protège-oreilles)</li>
+    </ul>
+  </div>
+  <div class="phys-card pc-bio">
+    <div class="pc-title">🦠 §2A — Risques biologiques</div>
+    <div class="pc-ref">Art. R. 4421-1 à R. 4424-6 CT</div>
+    <p>Agents : microorganismes, cultures cellulaires, endoparasites susceptibles de causer infection, allergie, intoxication.</p>
+    <div class="bio-groups" style="margin-top:8px">
+      <div class="bg-card bg-1"><div class="bg-num">1</div>Non susceptible de provoquer une maladie chez l'homme</div>
+      <div class="bg-card bg-2"><div class="bg-num">2</div>Maladie possible, propagation peu probable, traitement efficace</div>
+      <div class="bg-card bg-3"><div class="bg-num">3</div>Maladie grave, propagation possible, traitement généralement efficace</div>
+      <div class="bg-card bg-4"><div class="bg-num">4</div>Maladie grave, propagation élevée, <strong>ni prophylaxie ni traitement</strong></div>
+    </div>
+    <p style="font-size:12px">Dispositions spécifiques par activité (soins, labo…) en sus des règles générales.</p>
+  </div>
+  <div class="phys-card pc-chim">
+    <div class="pc-title">☣ §2B — Risques chimiques</div>
+    <div class="pc-ref">Art. R. 4412-1 s. CT</div>
+    <ul>
+      <li>Agents chimiques dangereux (R. 4412-1 à -57)</li>
+      <li>Agents CMR (R. 4412-59 à -93)</li>
+      <li>Amiante (R. 4412-97 à -148)</li>
+      <li>Plomb, silice cristalline (R. 4412-154 à -160)</li>
+    </ul>
+    <p style="margin-top:6px;font-size:11.5px">Règles variables selon la <strong>nature de l'agent</strong> et sa <strong>dangerosité</strong>.</p>
+  </div>
+  <div class="phys-card pc-cmr">
+    <div class="pc-title">⚠ Focus CMR</div>
+    <div class="pc-ref">Cancérogènes · Mutagènes · Toxiques pour la reproduction</div>
+    <ul>
+      <li><strong>Obligation de substitution</strong> si possible (substituer par un agent moins dangereux)</li>
+      <li>Si non substituable : mesure régulière des expositions</li>
+      <li>Communication des résultats au médecin du travail et aux IRP</li>
+      <li>Déclaration à la CARSAT</li>
+      <li>Liste des agents CMR établie par voie réglementaire</li>
+    </ul>
+  </div>
+  <div class="phys-card pc-elec">
+    <div class="pc-title">⚡ §3 — Risques électriques</div>
+    <div class="pc-ref">Art. R. 4544-1 s. CT</div>
+    <ul>
+      <li>Habilitation électrique obligatoire pour toute intervention sur installations électriques</li>
+      <li>Employeur : évaluer les risques, former, habiliter, maintenir les installations conformes</li>
+      <li>Zonages de risques (zones de danger) clairement identifiés</li>
+    </ul>
+  </div>
+  <div class="phys-card pc-manu">
+    <div class="pc-title">💪 §4 — Manutention manuelle</div>
+    <div class="pc-ref">Art. R. 4541-1 s. CT · Arrêté 29 janv. 1993</div>
+    <ul>
+      <li>Principale conséquence : <strong>TMS</strong> (troubles musculo-squelettiques)</li>
+      <li>Toute opération de transport/soutien d'une charge nécessitant l'effort physique</li>
+      <li><strong>Limite habituelle : 55 kg</strong> (apte par médecin du travail) — max absolu : 105 kg</li>
+      <li>Limites particulières pour femmes et jeunes travailleurs</li>
+      <li>Évaluation : poids, posture, fréquence, distance, milieu de travail</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- SECTION 2 — RPS -->
+<div class="section-header sh-teal" id="rps">
+  <span class="num">SECTION 2</span>
+  <h3>Les risques psychosociaux (RPS)</h3>
+</div>
+
+<div class="rps-def">
+  <strong>Définition (Collège Gollac, 2014) :</strong> « Les risques pour la santé mentale, physique et sociale, engendrés par les conditions d'emploi et les facteurs organisationnels et relationnels susceptibles d'interagir avec le fonctionnement mental. »
+</div>
+
+<p class="para"><strong>Le CT n'appréhende pas les RPS de façon globale.</strong> Il les saisit indirectement : via l'obligation de sécurité (art. L. 4121-1), via le harcèlement, via les AT/MP. <strong>Aucune disposition ne vise expressément la violence ou le stress dans le CT.</strong> Ils sont appréhendés au regard de leurs conséquences. Les RPS résultent de la combinaison de : conditions d'emploi + facteurs organisationnels/relationnels + l'individu.</p>
+
+<p class="para"><strong>6 axes de facteurs de risque :</strong> l'intensité du travail · la souffrance éthique (conflits de valeurs) · l'insécurité de la situation de travail · le manque d'autonomie · les exigences émotionnelles · les mauvais rapports sociaux.</p>
+
+<div class="para-header">
+  <span class="num">§1</span>
+  <h4>La violence</h4>
+</div>
+<p class="para">Pas de texte spécifique dans le CT. Appréhendée via l'obligation de sécurité. L'<strong>ANI du 26 mars 2010</strong> distingue : <strong>violence interne</strong> (entre salariés ou avec la hiérarchie) et <strong>violence externe</strong> (de tiers envers les salariés). L'employeur doit évaluer ce risque dans le DUERP et prendre des mesures de prévention.</p>
+
+<div class="para-header">
+  <span class="num">§2</span>
+  <h4>Le stress</h4>
+</div>
+<p class="para">Pas de texte spécifique dans le CT. Régulé par l'<strong>ANI du 2 juillet 2008</strong>. Le stress est appréhendé au regard de ses conséquences sur la santé. L'employeur doit l'intégrer dans le DUERP. L'altération de la santé due au stress peut engager la responsabilité de l'employeur pour manquement à son obligation de sécurité.</p>
+
+<hr class="div">
+
+<div class="para-header" id="harc-moral">
+  <span class="num">§3A</span>
+  <h4>Le harcèlement moral</h4>
+</div>
+
+<div class="article-block">
+  <div class="art-ref">Art. L. 1152-1 CT · Art. 222-33-2 CP</div>
+  <p>« Aucun salarié ne doit subir les agissements répétés de harcèlement moral qui ont pour objet ou pour effet une dégradation de ses conditions de travail susceptible de porter atteinte à ses droits et à sa dignité, d'altérer sa santé physique ou mentale ou de compromettre son avenir professionnel. »</p>
+</div>
+
+<div class="sub">3 éléments constitutifs cumulatifs</div>
+<div class="harc-tri">
+  <div class="harc-el he-1">
+    <div class="he-title">① Agissements répétés</div>
+    <p>Pas de durée minimale. Un acte unique ne suffit pas (sauf pour le harcèlement sexuel 2e forme). La répétition peut être rapprochée dans le temps.</p>
+  </div>
+  <div class="harc-plus">+</div>
+  <div class="harc-el he-2">
+    <div class="he-title">② Dégradation des conditions de travail</div>
+    <p>Appréciée par son <strong>objet</strong> (intentionnel) OU son <strong>effet</strong> (même non voulu). Peu importe que l'auteur ait cherché à nuire.</p>
+  </div>
+  <div class="harc-plus">+</div>
+  <div class="harc-el he-3">
+    <div class="he-title">③ Incidence potentielle</div>
+    <p>Sur les droits, la dignité, la santé (physique ou mentale) OU l'avenir professionnel. Pas besoin que l'atteinte soit réalisée — la <em>potentialité</em> suffit.</p>
+  </div>
+</div>
+
+<div class="sub">Formes de harcèlement moral</div>
+<table class="t">
+  <thead><tr><th style="width:28%">Forme</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td class="lbl">Individuel (pervers)</td><td>Action d'un supérieur ou collègue contre un seul individu ciblé, souvent avec une intention de nuire.</td></tr>
+    <tr><td class="lbl">Stratégique</td><td>Méthode délibérée pour pousser un salarié à démissionner ou pour se débarrasser de lui.</td></tr>
+    <tr class="hl"><td class="lbl"><span class="bdg bdk-red">NOUVEAU</span><br>Institutionnel / Organisationnel</td><td>Participe d'une politique de gestion de l'<strong>ensemble</strong> du personnel. Pratiques managériales délibérées impliquant la désorganisation du lien social (management par la peur, le stress). Existe même si le management y participe involontairement.</td></tr>
+    <tr><td class="lbl">Vertical descendant / ascendant</td><td>Vient de la hiérarchie → salarié ou du salarié → hiérarchie.</td></tr>
+    <tr><td class="lbl">Horizontal / Mixte</td><td>Entre collègues, ou combinaison hiérarchie + collègues.</td></tr>
+  </tbody>
+</table>
+
+<div class="box b-juris">
+  <div class="tag">⚖ Cass. crim., 21 janv. 2025, n°22-87.145 — Harcèlement institutionnel</div>
+  Consécration du <strong>harcèlement moral institutionnel</strong> : une politique d'entreprise conduit, <em>en connaissance de cause des dirigeants</em>, à la dégradation des conditions de travail des salariés. → L'intentionnalité des dirigeants peut être <strong>volontaire ou involontaire</strong>.
+</div>
+
+<hr class="div">
+
+<div class="para-header" id="harc-sexuel">
+  <span class="num">§3B</span>
+  <h4>Le harcèlement sexuel</h4>
+</div>
+
+<div class="article-block">
+  <div class="art-ref">Art. L. 1153-1 CT · Art. 222-33 CP</div>
+  <p>Deux formes distinctes, à ne pas confondre.</p>
+</div>
+
+<table class="t">
+  <thead><tr><th style="width:20%">Forme</th><th style="width:25%">Actes requis</th><th>Résultat requis</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="lbl"><span class="bdg bdk-ppl">FORME 1</span><br>Répétition d'actes</td>
+      <td>Propos ou comportements à connotation <strong>sexuelle ou sexiste</strong>, <strong>répétés</strong></td>
+      <td>Atteinte à la dignité (caractère dégradant ou humiliant) OU création d'une situation intimidante, hostile ou offensante</td>
+    </tr>
+    <tr class="hl">
+      <td class="lbl"><span class="bdg bdk-red">FORME 2</span><br>Acte unique = pression grave</td>
+      <td>Toute forme de pression grave, <strong>même non répétée</strong></td>
+      <td>But réel ou apparent d'obtenir un acte de nature sexuelle (au profit de l'auteur ou d'un tiers)</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="box b-info">
+  <div class="tag">Harcèlement d'ambiance</div>
+  Le harcèlement sexuel (1re forme) peut être constitué <strong>même si chaque auteur n'a pas agi seul de façon répétée</strong>, en cas d'agissements concertés de plusieurs personnes. La répétition s'apprécie alors de façon collective.
+</div>
+
+<div class="box b-info">
+  <div class="tag">Agissements sexistes — Art. L. 1142-2-1 CT</div>
+  Tout agissement lié au <strong>sexe d'une personne</strong> ayant pour objet ou pour effet de porter atteinte à sa dignité ou de créer un environnement intimidant, hostile, dégradant, humiliant ou offensant. <strong>Un acte unique suffit.</strong> Distinct du harcèlement sexuel.
+</div>
+
+<hr class="div">
+
+<div class="para-header" id="regime">
+  <span class="num">§3C</span>
+  <h4>Le régime juridique commun du harcèlement</h4>
+</div>
+
+<div class="sub">Le tableau comparatif</div>
+<table class="harc-comp">
+  <thead><tr><th>Type</th><th>Répétition</th><th>Nature des actes</th><th>Résultat requis</th><th>Textes</th></tr></thead>
+  <tbody>
+    <tr class="row-hm"><td class="cat-lbl">Harcèlement moral</td><td>✅ Oui</td><td>Agissements dégradant les conditions de travail</td><td>Incidence <em>potentielle</em> (dignité OU santé OU avenir)</td><td>L. 1152-1 CT · 222-33-2 CP</td></tr>
+    <tr class="row-hs1"><td class="cat-lbl">Harcèlement sexuel (1°)</td><td>✅ Oui</td><td>Propos/comportements à connotation sexuelle</td><td>Atteinte à la dignité OU situation intimidante — <em>exigée</em></td><td>L. 1153-1 CT · 222-33 CP</td></tr>
+    <tr class="row-hs2"><td class="cat-lbl">Harcèlement sexuel (2°)</td><td>❌ Non — acte unique</td><td>Toute pression grave</td><td>But d'obtenir un acte sexuel</td><td>L. 1153-1 CT · 222-33 CP</td></tr>
+    <tr class="row-hd"><td class="cat-lbl">Harcèlement discriminatoire</td><td>❌ Non — acte unique</td><td>Agissement lié à un critère discriminatoire</td><td>Incidence potentielle (dignité ou environnement hostile)</td><td>Loi 2008-496</td></tr>
+    <tr class="row-sa"><td class="cat-lbl">Agissement sexiste</td><td>❌ Non — acte unique</td><td>Agissement lié au sexe</td><td>Incidence potentielle (dignité ou environnement hostile)</td><td>L. 1142-2-1 CT</td></tr>
+  </tbody>
+</table>
+
+<div class="sub">La preuve aménagée — Art. L. 1154-1 CT</div>
+<p class="para" style="margin-bottom:8px">Allègement en matière <strong>civile uniquement</strong> (et prud'homale). Exclusion de principe du pénal (présomption d'innocence).</p>
+<div class="preuve-steps">
+  <div class="ps ps-sal">
+    <div class="ps-actor">Salarié</div>
+    Présenter des éléments de fait <strong>laissant supposer</strong> l'existence d'un harcèlement ou d'une discrimination
+  </div>
+  <div class="ps-arr">→</div>
+  <div class="ps ps-emp">
+    <div class="ps-actor">Employeur</div>
+    Prouver que ces agissements ne sont pas constitutifs d'un harcèlement et que sa décision repose sur des <strong>éléments objectifs étrangers</strong> à tout harcèlement
+  </div>
+  <div class="ps-arr">→</div>
+  <div class="ps ps-jug">
+    <div class="ps-actor">Juge</div>
+    Forme sa conviction, après avoir ordonné si nécessaire des <strong>mesures d'instruction</strong>
+  </div>
+</div>
+
+<div class="sub">Obligations particulières de l'employeur</div>
+<table class="t">
+  <thead><tr><th style="width:25%">Obligation</th><th>Contenu</th></tr></thead>
+  <tbody>
+    <tr><td class="lbl">Information</td><td>Informer les salariés, stagiaires et candidats des dispositions relatives au harcèlement (affichage, RI, livret d'accueil).</td></tr>
+    <tr><td class="lbl">Référents</td><td>Désigner un <strong>référent harcèlement dans l'entreprise</strong> (≥ 250 salariés, chargé d'orienter, informer et accompagner) ET un <strong>référent au sein du CSE</strong> (≥ 11 salariés).</td></tr>
+    <tr><td class="lbl">Sanctions</td><td>Prendre des sanctions disciplinaires (pouvant aller jusqu'au licenciement pour faute grave) à l'encontre de l'auteur du harcèlement.</td></tr>
+    <tr><td class="lbl">Protection victime/témoin</td><td>Aucune mesure de représailles contre quiconque révèle, de bonne foi, des agissements. <strong>Le salarié ne peut subir aucune sanction</strong> même s'il ne prouve pas le harcèlement, dès lors qu'il est de bonne foi.</td></tr>
+  </tbody>
+</table>
+
+<div class="sub">Sanctions</div>
+<table class="t">
+  <thead><tr><th style="width:25%">Nature</th><th>Contenu</th></tr></thead>
+  <tbody>
+    <tr><td class="lbl">Pénale</td><td><strong>2 ans d'emprisonnement + 30 000 € d'amende</strong>. Peines aggravées selon circonstances (abus d'autorité, qualité de l'auteur).</td></tr>
+    <tr><td class="lbl">Civile (dommages)</td><td><strong>Nullité de tout acte</strong> (licenciement, mutation…) + réparation de <strong>l'entier préjudice</strong>. Le barème Macron (art. L. 1235-3) <strong>n'est PAS applicable</strong> (art. L. 1235-3-1) → réparation intégrale.</td></tr>
+    <tr><td class="lbl">Si licenciement</td><td>Droit à réintégration. Sans réintégration : indemnité <strong>≥ 6 mois de salaire</strong>. Retour des salaires perçus pendant la période d'éviction si réintégration.</td></tr>
+    <tr class="hl"><td class="lbl"><span class="bdg bdk-red">NOUVEAU</span><br>Name &amp; Shame</td><td>Atteinte à la réputation de l'entreprise : diffusion publique des condamnations. Constitue une <strong>sanction de la réputation</strong>.</td></tr>
+  </tbody>
+</table>
+
+<hr class="div">
+
+<!-- SECTION 3 — ADDICTIONS -->
+<div class="section-header sh-purple" id="addictions">
+  <span class="num">SECTION 3</span>
+  <h3>Les addictions (alcool · tabac · drogues)</h3>
+</div>
+
+<p class="para">Les addictions exposent les salariés et les tiers à des risques. L'employeur doit mettre en place une <strong>politique de prévention</strong> des risques liés à ces consommations.</p>
+
+<div class="add-grid">
+  <div class="add-card ad-alcool">
+    <div class="add-title">🍺 §1 — L'alcool</div>
+    <div class="add-ref">Art. R. 4228-20 CT</div>
+    <p class="add-ok" style="margin-bottom:6px">A) Mise à disposition</p>
+    <ul>
+      <li>Cas général : eau potable et fraîche obligatoire</li>
+      <li>Conditions particulières de travail (chaleur, effort…) : boisson non alcoolisée</li>
+    </ul>
+    <p class="add-ok" style="margin:8px 0 4px">B) Consommation</p>
+    <ul>
+      <li class="add-ok">Pas d'interdiction générale légale</li>
+      <li>Possibilité de limiter ou d'interdire par RI (justifié + proportionné)</li>
+      <li class="add-no">Interdiction absolue : laisser pénétrer une personne en état d'ivresse</li>
+    </ul>
+    <p style="margin-top:8px;font-size:12px"><strong>Test d'alcoolémie :</strong> possible si prévu au RI avec contre-expertise médicale, réservé aux postes à risque, résultat confidentiel.</p>
+  </div>
+  <div class="add-card ad-tabac">
+    <div class="add-title">🚬 §2 — Le tabac</div>
+    <div class="add-ref">Art. L. 3512-8 CSP</div>
+    <p class="add-no" style="margin-bottom:6px">Interdiction dans :</p>
+    <ul>
+      <li>Bureaux individuels</li>
+      <li>Locaux affectés à l'ensemble des travailleurs</li>
+      <li>Moyens de transport collectifs</li>
+      <li>Espaces non couverts accueillant des mineurs</li>
+    </ul>
+    <p class="add-ok" style="margin:8px 0 4px">Permis dans :</p>
+    <ul>
+      <li>Locaux dédiés aux fumeurs (sous conditions strictes)</li>
+      <li>Lieux non couverts (parkings à ciel ouvert, espaces verts)</li>
+    </ul>
+    <p style="margin-top:8px;font-size:12px"><strong>Sanctions :</strong> consommateur + employeur (s'il ne fait pas respecter l'interdiction).</p>
+  </div>
+  <div class="add-card ad-drogue">
+    <div class="add-title">💊 §3 — Les drogues</div>
+    <div class="add-ref">Art. L. 3421-1 CSP</div>
+    <p style="margin-bottom:6px">Comportement illicite en lui-même (CSP). L'introduction/consommation sur le lieu de travail constitue un risque professionnel → obligation de sécurité de l'employeur.</p>
+    <p style="font-weight:600;margin-bottom:4px">Test salivaire possible si :</p>
+    <ul>
+      <li><strong>1.</strong> Prévu au RI avec possibilité de contre-expertise médicale</li>
+      <li><strong>2.</strong> Justifié et proportionné → réservé aux postes à risque élevé (conducteurs, travail en hauteur, machines…)</li>
+      <li><strong>3.</strong> Secret sur le résultat obtenu</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<!-- ═══════════════════════════════════════════════════
+     CHAPITRE 2 — SANCTIONS JURIDIQUES
+═══════════════════════════════════════════════════ -->
+<div class="chap-banner c2">
+  <span class="chap-num">CHAPITRE 2</span>
+  <h2>Les sanctions juridiques</h2>
+</div>
+<div class="container">
+
+<!-- SECTION 1 — RESP. EMPLOYEUR -->
+<div class="section-header sh-red" id="resp-emp">
+  <span class="num">SECTION 1</span>
+  <h3>La responsabilité de l'employeur</h3>
+</div>
+
+<div class="para-header">
+  <span class="num">§1</span>
+  <h4>En matière pénale</h4>
+</div>
+
+<div class="sub">A) Les personnes responsables</div>
+<div class="resp-grid">
+  <div class="resp-card rc-penal">
+    <div class="rc-head">Personne physique (chef d'entreprise)</div>
+    <div class="rc-body">
+      <p>Responsable <strong>par principe</strong> des infractions en matière de législation sociale. Tenu de <em>« veiller personnellement et constamment à la stricte application des prescriptions légales »</em> (Cass. crim., 23 nov. 1950).</p>
+      <p style="margin-top:6px">Faute personnelle OU actes commis par ses préposés.</p>
+      <p style="margin-top:6px;font-weight:600">Causes d'exonération :</p>
+      <ul>
+        <li>Délégation de pouvoir valide</li>
+        <li>Faute exclusive de la victime ou d'un tiers</li>
+      </ul>
+    </div>
+  </div>
+  <div class="resp-card rc-civil">
+    <div class="rc-head">Personne morale</div>
+    <div class="rc-body">
+      <p>Responsable des infractions commises par ses organes ou représentants, pour son compte.</p>
+      <p style="margin-top:6px"><strong>Cumul possible :</strong> la responsabilité de la PM n'exclut pas la responsabilité personnelle du dirigeant.</p>
+      <p style="margin-top:6px"><strong>Limite :</strong> la disparition de la PM exclut la mise en jeu de sa responsabilité pénale.</p>
+    </div>
+  </div>
+</div>
+
+<div class="sub">Délégation de pouvoir — Conditions</div>
+<ul class="deleg-conds">
+  <li><div class="dc">1</div><div>Le délégataire dispose de la <strong>compétence</strong> nécessaire</div></li>
+  <li><div class="dc">2</div><div>Le délégataire dispose de l'<strong>autorité</strong> nécessaire</div></li>
+  <li><div class="dc">3</div><div>Le délégataire dispose des <strong>moyens</strong> nécessaires</div></li>
+</ul>
+<div class="box b-warn">
+  <div class="tag">⚠ Limite de la délégation</div>
+  La délégation doit être <strong>certaine et non équivoque</strong>. Elle ne peut pas être générale et permanente. La subdélégation est possible si expressément prévue par le délégant. <strong>En cas de délégation invalide, le chef d'entreprise reste responsable.</strong>
+</div>
+
+<div class="sub">B) Les manquements pénalement sanctionnés</div>
+<table class="t">
+  <thead><tr><th style="width:35%">Type d'infraction</th><th>Détail</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="lbl"><span class="bdg bdk-red">CT</span><br>Infractions Code du travail<br>Art. L. 4741-1 s.</td>
+      <td>
+        <ul>
+          <li>Violation d'une <strong>règle générale de sécurité</strong></li>
+          <li>Violation d'une <strong>règle particulière</strong> propre à certains risques spécifiques</li>
+          <li>Sanctions : contraventions à amendes (selon la gravité)</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td class="lbl"><span class="bdg bdk-navy">CP</span><br>Infractions droit commun</td>
+      <td>
+        <ul>
+          <li><strong>Homicide involontaire</strong> (art. 221-6 CP) — mort d'un salarié due à une faute</li>
+          <li><strong>Blessures involontaires</strong> (art. 222-19 CP) — ITT &gt; 3 mois</li>
+          <li><strong>Mise en danger d'autrui</strong> (art. 223-1 CP) — violation délibérée d'une obligation de prudence ou de sécurité imposant un risque immédiat de mort ou blessures</li>
+          <li>Harcèlement moral (art. 222-33-2 CP), harcèlement sexuel (art. 222-33 CP)</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<hr class="div">
+
+<div class="para-header">
+  <span class="num">§2</span>
+  <h4>En matière civile</h4>
+</div>
+
+<div class="sub">A) En cas d'AT/MP — Réparation forfaitaire + faute inexcusable</div>
+<p class="para">La reconnaissance du caractère professionnel d'un accident ou d'une maladie entraîne l'application de la législation sociale AT/MP → <strong>réparation forfaitaire des dommages corporels</strong> + exclusion de principe de l'action en responsabilité civile de l'employeur.</p>
+
+<div class="fi-box">
+  <div class="fi-title">⚠ La faute inexcusable de l'employeur — Exception</div>
+  <p><strong>Définition (Cass. soc., 28 févr. 2002, arrêts amiante) :</strong> l'employeur avait ou aurait dû avoir conscience du danger auquel était exposé le salarié, et n'a pas pris les mesures nécessaires pour l'en préserver.</p>
+  <p style="margin-top:8px"><strong>Effets :</strong></p>
+  <ul style="padding-left:18px;margin-top:4px;font-size:12.5px">
+    <li>Majoration de la rente (ou du capital) versée au salarié/ayants droit</li>
+    <li>Réparation de certains préjudices non couverts par la rente (souffrances, préjudice esthétique, moral, d'agrément…)</li>
+    <li>Action récursoire de la CPAM contre l'employeur</li>
+  </ul>
+  <p style="margin-top:8px"><strong>Présomption de faute inexcusable</strong> : si le salarié avait alerté l'employeur du danger (art. L. 4131-4 CT). Le salarié n'a plus à prouver que l'employeur avait conscience du risque.</p>
+</div>
+
+<div class="sub">B) En l'absence d'AT/MP — Manquement à l'obligation de sécurité</div>
+<p class="para">La responsabilité civile de l'employeur peut être engagée dès lors que le salarié subit un dommage du fait de la méconnaissance de son obligation de sécurité, <strong>même sans accident ou maladie professionnelle reconnus</strong>. Fondement : art. L. 4121-1 CT + art. 1240 C. civ.</p>
+
+<hr class="div">
+
+<!-- SECTION 2 — RESP. SALARIÉ -->
+<div class="section-header sh-green" id="resp-sal">
+  <span class="num">SECTION 2</span>
+  <h3>La responsabilité du salarié</h3>
+</div>
+
+<div class="resp-grid">
+  <div class="resp-card rc-penal">
+    <div class="rc-head">§1 — En matière pénale</div>
+    <div class="rc-body">
+      <p>Quand le salarié commet une infraction dans l'exercice de ses fonctions, il engage sa responsabilité pénale, <strong>même s'il a appliqué les instructions de l'employeur</strong>.</p>
+      <p style="margin-top:6px"><strong>CT :</strong> principe de responsabilité de l'employeur, sauf délégation de pouvoir valide → le délégataire est responsable.</p>
+      <p style="margin-top:6px"><strong>CP :</strong> toute personne physique ayant commis une faute constitutive d'une infraction engage sa responsabilité <strong>avec ou sans délégation</strong>.</p>
+    </div>
+  </div>
+  <div class="resp-card rc-civil">
+    <div class="rc-head">§2 — En matière civile</div>
+    <div class="rc-body">
+      <p><strong>Principe :</strong> responsabilité du commettant du fait de ses préposés → l'employeur répond des dommages causés par ses salariés dans l'exercice de leurs fonctions. Le salarié n'indemnise pas.</p>
+      <p style="margin-top:6px"><strong>Exception — Faute lourde :</strong> permet à l'employeur de mettre en jeu la responsabilité pécuniaire du salarié.</p>
+      <p style="margin-top:6px"><strong>Exonération de l'employeur</strong> possible si le salarié a agi :<br>① hors de ses fonctions ② sans autorisation ③ à des fins étrangères à ses attributions (les 3 conditions sont cumulatives).</p>
+    </div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- SECTION 3 — RESP. MÉDECIN DU TRAVAIL -->
+<div class="section-header sh-gold" id="resp-med">
+  <span class="num">SECTION 3</span>
+  <h3>La responsabilité du médecin du travail</h3>
+</div>
+
+<table class="t">
+  <thead><tr><th style="width:20%">Nature</th><th>Fondement</th><th>Hypothèses</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="lbl">§1 Pénale</td>
+      <td>Droit commun pénal + CT</td>
+      <td>
+        <ul>
+          <li>Violation des missions et modalités de fonctionnement du SPST (CT)</li>
+          <li>Violation d'interdictions légales particulières</li>
+          <li>Violation du secret médical</li>
+          <li>Commission d'une infraction de droit commun</li>
+          <li>→ Question d'une responsabilité pénale <strong>indirecte</strong> (pas de lien direct avec le patient)</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td class="lbl">§2 Civile</td>
+      <td>Art. 1240 C. civ.<br>(terrain délictuel)</td>
+      <td>
+        <ul>
+          <li>Pas de contrat liant le salarié-patient et le médecin du travail → responsabilité <strong>délictuelle uniquement</strong></li>
+          <li>Le salarié subit des dommages n'ayant pas un caractère professionnel</li>
+          <li>Le médecin du travail n'a pas averti le salarié de son exposition à des risques particuliers → AT/MP en découle</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td class="lbl">§3 Disciplinaire</td>
+      <td>Code de déontologie médicale</td>
+      <td>
+        <ul>
+          <li>Violation des règles déontologiques</li>
+          <li>→ Sanctions du <strong>Conseil de l'Ordre des médecins</strong> (avertissement, blâme, interdiction temporaire ou permanente d'exercer)</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SYNTHÈSE
+═══════════════════════════════════════════════════ -->
+<div class="synthese">
+  <div class="st">💡 Idée directrice — La double logique de la Partie 2</div>
+  <p>La Partie 2 repose sur un mouvement en deux temps : d'abord <strong>identifier les risques</strong> (physiques, psychosociaux, addictions), puis en tirer les <strong>conséquences juridiques</strong> (sanctions). La diversité des risques impose une pluralité de règles particulières qui s'ajoutent aux principes généraux — le juriste doit toujours combiner les deux niveaux.</p>
+  <p>Points clefs : les <strong>RPS ne sont pas directement saisis par le CT</strong> (sauf harcèlement) mais par voie prétorienne et conventionnelle ; le harcèlement moral repose sur <strong>3 éléments cumulatifs</strong> avec une logique <strong>objet ou effet</strong> (pas besoin d'intention de nuire) ; la <strong>preuve est aménagée en matière civile</strong> uniquement ; la <strong>faute inexcusable</strong> est l'exception qui permet une réparation intégrale en cas d'AT/MP ; la <strong>délégation de pouvoir</strong> est la seule cause d'exonération de la responsabilité pénale de l'employeur pour les infractions au CT.</p>
+</div>
+
+</div><!-- /container -->
+</body>
+</html>
