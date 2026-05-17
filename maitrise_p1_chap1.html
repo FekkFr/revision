@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiche — Partie 1, Chapitre 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --orange:   #D4600A;
+  --orange-lt:#FDF0E6;
+  --navy:     #1B2F55;
+  --navy-lt:  #EEF2FA;
+  --blue:     #2558A8;
+  --blue-lt:  #DDEAF8;
+  --green:    #2A5C38;
+  --green-lt: #E6F2EB;
+  --gold:     #8A6200;
+  --gold-lt:  #FEF8E6;
+  --red-lt:   #FCEAE8;
+  --red-dk:   #8B1A10;
+  --purple:   #5B3A8A;
+  --purple-lt:#F0EBF9;
+  --border:   #D8D5CF;
+  --text:     #1C1C1C;
+  --bg:       #FAFAF8;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
+  padding-bottom: 60px;
+}
+
+/* ── Header ── */
+.page-header {
+  background: var(--navy);
+  padding: 14px 48px;
+  display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+}
+.page-header span {
+  font-family: 'Source Serif 4', serif;
+  font-size: 11px; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(255,255,255,.5);
+}
+.page-header .sep { color: rgba(255,255,255,.2); }
+
+.fiche-title {
+  background: var(--orange);
+  padding: 22px 48px 18px;
+  position: relative; overflow: hidden;
+}
+.fiche-title::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 280px; height: 100%;
+  background: repeating-linear-gradient(-45deg,
+    transparent, transparent 6px,
+    rgba(255,255,255,.05) 6px, rgba(255,255,255,.05) 7px);
+}
+.fiche-title .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .18em;
+  color: rgba(255,255,255,.65); text-transform: uppercase; margin-bottom: 5px;
+}
+.fiche-title h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 27px; font-weight: 900; color: #fff; line-height: 1.2;
+}
+.fiche-title .subtitle {
+  font-style: italic; font-size: 15px;
+  color: rgba(255,255,255,.82); margin-top: 4px;
+}
+
+/* ── Nav pills ── */
+.nav-pills {
+  background: #F0EDE8;
+  border-bottom: 1px solid var(--border);
+  padding: 10px 48px;
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.nav-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .06em;
+  text-transform: uppercase; font-weight: 600;
+  padding: 4px 10px; border-radius: 20px;
+  background: #fff; border: 1px solid var(--border);
+  color: var(--navy); text-decoration: none;
+  transition: background .15s, border-color .15s;
+}
+.nav-pill:hover { background: var(--navy-lt); border-color: var(--blue); }
+
+/* ── Container ── */
+.container { max-width: 900px; margin: 0 auto; padding: 0 32px; }
+
+/* ── Section header ── */
+.section-header {
+  background: var(--navy);
+  color: #fff; padding: 11px 20px;
+  margin: 36px 0 20px; border-radius: 4px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-header .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .1em;
+  background: rgba(255,255,255,.15);
+  padding: 3px 8px; border-radius: 3px;
+}
+.section-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+}
+
+/* ── Para header ── */
+.para-header {
+  border-bottom: 2px solid var(--blue);
+  padding-bottom: 5px; margin: 24px 0 14px;
+  display: flex; align-items: baseline; gap: 10px;
+}
+.para-header .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--blue); font-weight: 600;
+}
+.para-header h3 {
+  font-size: 15px; font-weight: 600; color: var(--blue);
+}
+
+/* ── Sub header ── */
+.sub-header {
+  font-size: 13.5px; font-weight: 600;
+  color: var(--orange); margin: 18px 0 8px;
+}
+
+/* ── Article block ── */
+.article-block {
+  background: var(--navy);
+  border-radius: 5px; padding: 14px 18px;
+  margin: 12px 0 18px;
+}
+.article-block .art-ref {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .12em;
+  color: rgba(255,255,255,.6); margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.article-block p {
+  font-style: italic; color: #fff; font-size: 13.5px; line-height: 1.6;
+}
+
+/* ── Boxes ── */
+.box {
+  border-radius: 5px; padding: 11px 16px;
+  margin: 10px 0; font-size: 13px; line-height: 1.65;
+}
+.box .box-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px; letter-spacing: .12em;
+  text-transform: uppercase; font-weight: 700; margin-bottom: 5px;
+}
+.box-juris  { background: var(--green-lt);  border-left: 3px solid var(--green); }
+.box-juris  .box-tag { color: var(--green); }
+.box-example{ background: var(--gold-lt);   border-left: 3px solid #C49A00; }
+.box-example .box-tag { color: var(--gold); }
+.box-info   { background: var(--blue-lt);   border-left: 3px solid var(--blue); }
+.box-info   .box-tag { color: var(--blue); }
+.box-warning{ background: var(--red-lt);    border-left: 3px solid var(--red-dk); }
+.box-warning .box-tag { color: var(--red-dk); }
+.box-purple { background: var(--purple-lt); border-left: 3px solid var(--purple); }
+.box-purple .box-tag { color: var(--purple); }
+
+/* ── Table ── */
+.fiche-table {
+  width: 100%; border-collapse: collapse;
+  margin: 10px 0 20px; font-size: 13px;
+}
+.fiche-table thead th {
+  background: var(--navy); color: #fff;
+  padding: 9px 12px; text-align: left;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .08em;
+  text-transform: uppercase; font-weight: 600;
+}
+.fiche-table thead th:first-child { border-radius: 4px 0 0 0; }
+.fiche-table thead th:last-child  { border-radius: 0 4px 0 0; }
+.fiche-table tbody td {
+  padding: 10px 12px; vertical-align: top;
+  border: 1px solid var(--border); line-height: 1.6;
+}
+.fiche-table tbody tr:nth-child(even) td { background: #FAFAF7; }
+.fiche-table tbody tr:hover td { background: var(--blue-lt); transition: background .15s; }
+.fiche-table .col-label {
+  background: var(--navy-lt) !important;
+  font-weight: 600; color: var(--navy);
+  font-size: 12px; line-height: 1.5; min-width: 115px;
+}
+.badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; background: var(--navy); color: #fff;
+  padding: 1px 5px; border-radius: 2px;
+  letter-spacing: .05em; margin-bottom: 3px;
+}
+.badge-orange { background: var(--orange); }
+.badge-green  { background: var(--green); }
+.badge-gold   { background: var(--gold); }
+.fiche-table .highlight-row td { background: var(--gold-lt) !important; }
+.fiche-table .highlight-row .col-label { background: #EFE5C2 !important; }
+.fiche-table ul { padding-left: 16px; margin: 4px 0; }
+.fiche-table li { margin-bottom: 3px; }
+
+/* ── Evolution timeline ── */
+.timeline {
+  display: flex; gap: 0; margin: 16px 0 20px;
+  align-items: stretch;
+}
+.timeline-step {
+  flex: 1; padding: 14px 16px;
+  position: relative; font-size: 12.5px;
+}
+.timeline-step:first-child { border-radius: 5px 0 0 5px; }
+.timeline-step:last-child  { border-radius: 0 5px 5px 0; }
+.timeline-step .ts-era {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: .1em;
+  text-transform: uppercase; font-weight: 700; margin-bottom: 5px;
+}
+.timeline-step .ts-label {
+  font-size: 13px; font-weight: 700; margin-bottom: 4px;
+}
+.timeline-step p { line-height: 1.55; }
+.ts-1 { background: #E8EEF7; }
+.ts-1 .ts-era { color: var(--blue); }
+.ts-1 .ts-label { color: var(--navy); }
+.ts-2 { background: var(--red-lt); }
+.ts-2 .ts-era { color: var(--red-dk); }
+.ts-2 .ts-label { color: var(--red-dk); }
+.ts-3 { background: var(--green-lt); }
+.ts-3 .ts-era { color: var(--green); }
+.ts-3 .ts-label { color: var(--green); }
+.ts-4 { background: var(--gold-lt); }
+.ts-4 .ts-era { color: var(--gold); }
+.ts-4 .ts-label { color: var(--gold); }
+.timeline-arrow {
+  align-self: center; padding: 0 4px;
+  color: var(--border); font-size: 20px; flex-shrink: 0;
+}
+
+/* ── 9 principes grid ── */
+.principes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px; margin: 14px 0 20px;
+}
+.principe-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 10px 12px;
+  display: flex; gap: 10px; align-items: flex-start;
+  font-size: 12.5px; line-height: 1.5;
+}
+.principe-num {
+  flex-shrink: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 700;
+  background: var(--navy); color: #fff;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 1px;
+}
+
+/* ── 3 étapes ── */
+.etapes {
+  display: flex; gap: 8px; margin: 16px 0 20px; align-items: stretch;
+}
+.etape {
+  flex: 1; border-radius: 5px; padding: 14px 14px;
+  font-size: 12.5px; position: relative;
+}
+.etape .etape-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; margin-bottom: 6px;
+}
+.etape .etape-title { font-size: 13px; font-weight: 700; margin-bottom: 5px; }
+.etape p, .etape ul { line-height: 1.55; }
+.etape ul { padding-left: 14px; }
+.etape li { margin-bottom: 2px; }
+.et-1 { background: var(--navy-lt); border-top: 3px solid var(--navy); }
+.et-1 .etape-num, .et-1 .etape-title { color: var(--navy); }
+.et-2 { background: var(--blue-lt); border-top: 3px solid var(--blue); }
+.et-2 .etape-num, .et-2 .etape-title { color: var(--blue); }
+.et-3 { background: var(--green-lt); border-top: 3px solid var(--green); }
+.et-3 .etape-num, .et-3 .etape-title { color: var(--green); }
+
+/* ── Niveaux risque ── */
+.risk-levels {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 6px; margin: 10px 0 18px;
+}
+.risk-level {
+  border-radius: 4px; padding: 9px 10px;
+  font-size: 12px; text-align: center;
+}
+.risk-level .rl-name { font-weight: 700; font-size: 13px; margin-bottom: 3px; }
+.rl-1 { background: #E8F5E9; border: 1px solid #81C784; }
+.rl-1 .rl-name { color: #2E7D32; }
+.rl-2 { background: #FFF9C4; border: 1px solid #F9A825; }
+.rl-2 .rl-name { color: #E65100; }
+.rl-3 { background: #FFE0B2; border: 1px solid #FF8C00; }
+.rl-3 .rl-name { color: #BF360C; }
+.rl-4 { background: var(--red-lt); border: 1px solid #EF5350; }
+.rl-4 .rl-name { color: var(--red-dk); }
+
+/* ── DUERP rules ── */
+.duerp-rules {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px; margin: 12px 0 20px;
+}
+.duerp-card {
+  border-radius: 5px; padding: 12px 14px; font-size: 12.5px;
+}
+.duerp-card .dc-title {
+  font-weight: 700; font-size: 13px; margin-bottom: 6px;
+  display: flex; align-items: center; gap: 6px;
+}
+.duerp-card ul { padding-left: 14px; }
+.duerp-card li { margin-bottom: 3px; line-height: 1.5; }
+.dc-blue   { background: var(--blue-lt); border-top: 3px solid var(--blue); }
+.dc-blue   .dc-title { color: var(--blue); }
+.dc-green  { background: var(--green-lt); border-top: 3px solid var(--green); }
+.dc-green  .dc-title { color: var(--green); }
+.dc-red    { background: var(--red-lt); border-top: 3px solid var(--red-dk); }
+.dc-red    .dc-title { color: var(--red-dk); }
+
+/* ── PAPRIPACT ── */
+.papri-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px; margin: 12px 0;
+}
+.papri-card {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 5px; padding: 12px 14px; font-size: 12.5px;
+}
+.papri-card .pc-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--orange);
+  font-weight: 700; margin-bottom: 6px;
+}
+.papri-card ul { padding-left: 14px; }
+.papri-card li { margin-bottom: 3px; line-height: 1.5; }
+
+/* ── Para ── */
+.para { margin: 8px 0; font-size: 13.5px; }
+.para strong { color: var(--navy); }
+
+/* ── Divider ── */
+hr.divider { border: none; border-top: 1px solid var(--border); margin: 6px 0 16px; }
+
+/* ── Synthèse ── */
+.synthese {
+  background: linear-gradient(135deg, #FEF8E6, #FFF3D0);
+  border: 1.5px solid #D4B800;
+  border-radius: 8px; padding: 20px 24px; margin: 32px 0 0;
+}
+.synthese .synthese-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  color: var(--gold); text-transform: uppercase;
+  letter-spacing: .06em; margin-bottom: 10px;
+}
+.synthese p { font-size: 13.5px; color: #3A3000; line-height: 1.75; }
+
+/* ── Fade in ── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(10px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.container > * { animation: fadeUp .35s ease both; }
+.container > *:nth-child(1){ animation-delay:.05s }
+.container > *:nth-child(2){ animation-delay:.10s }
+.container > *:nth-child(3){ animation-delay:.15s }
+.container > *:nth-child(4){ animation-delay:.20s }
+.container > *:nth-child(5){ animation-delay:.25s }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="page-header">
+  <span>Master 1 Droit de la santé / Droit social — AMU 2025-2026 — S. SERENO</span>
+  <span class="sep">|</span>
+  <span>CM du 28/02/25 et 03/03/25</span>
+</div>
+
+<div class="fiche-title">
+  <div class="label">Partie 1 — Les normes générales de protection</div>
+  <h1>Chapitre 1 — Le contenu des normes de protection et de prévention</h1>
+  <div class="subtitle">Obligation de sécurité · Prévention · Évaluation des risques · DUERP · PAPRIPACT</div>
+</div>
+
+<!-- Nav pills -->
+<div class="nav-pills">
+  <a class="nav-pill" href="#s1">§ Obligation de sécurité</a>
+  <a class="nav-pill" href="#s1p2">§ Évolution (résultat → moyens)</a>
+  <a class="nav-pill" href="#s2">§ Principes de prévention</a>
+  <a class="nav-pill" href="#s2p2">§ 9 principes &amp; 3 étapes</a>
+  <a class="nav-pill" href="#s3">§ DUERP</a>
+  <a class="nav-pill" href="#s4">§ PAPRIPACT</a>
+</div>
+
+<div class="container">
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SECTION 1 — OBLIGATION DE SÉCURITÉ
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="section-header" id="s1">
+    <span class="num">SECTION 1</span>
+    <h2>L'obligation générale de sécurité de l'employeur</h2>
+  </div>
+
+  <div class="article-block">
+    <div class="art-ref">Art. L. 4121-1 Code du travail — Principe fondateur</div>
+    <p>« L'employeur doit prendre toutes les mesures nécessaires pour assurer la sécurité et protéger la santé physique et mentale des salariés. »</p>
+  </div>
+
+  <p class="para">Cette obligation est la <strong>conséquence directe de la subordination juridique</strong> : l'employeur détermine unilatéralement les conditions matérielles de travail (lieu, outils, rythme) → il doit en assumer les risques. Le salarié ne peut pas prendre lui-même les mesures de sécurité nécessaires.</p>
+
+  <!-- §1 Contenu -->
+  <div class="para-header" id="s1p1">
+    <span class="num">§1</span>
+    <h3>Le contenu de l'obligation de sécurité</h3>
+  </div>
+
+  <table class="fiche-table">
+    <thead><tr>
+      <th style="width:20%">Aspect</th>
+      <th>Contenu</th>
+      <th style="width:30%">Ce que ça implique concrètement</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="col-label"><span class="badge badge-orange">POSITIF</span><br>Obligation de <em>faire</em></td>
+        <td>Prendre des mesures concrètes pour protéger la santé des salariés. Ne pas rester inactif.</td>
+        <td>Actions d'information, de formation, mise en place d'une organisation particulière, fourniture d'EPI/EPC.</td>
+      </tr>
+      <tr>
+        <td class="col-label"><span class="badge">NÉGATIF</span><br>Obligation de <em>s'abstenir</em></td>
+        <td>Ne prendre aucune mesure qui aurait pour objet ou pour effet de <strong>compromettre la santé et la sécurité des salariés</strong>.</td>
+        <td>Vigilance lors des restructurations : une décision de gestion peut impacter la santé des salariés sans que cela soit voulu.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="para"><strong>Portée large :</strong> l'employeur doit veiller personnellement à la stricte application de la réglementation. Sa responsabilité est engagée pour les faits commis <strong>par lui-même</strong>, <strong>par ses salariés</strong> et <strong>par des tiers</strong> (usagers, clients, partenaires). Il doit non seulement édicter des règles mais aussi <strong>contrôler leur application</strong> et fournir les moyens de les respecter.</p>
+
+  <div class="box box-info">
+    <div class="box-tag">Charge de la preuve</div>
+    Il appartient à l'employeur de <strong>justifier qu'il a pris les mesures nécessaires</strong> pour assurer la sécurité. — <em>Arrêt fév. 2024 :</em> en cas de résiliation judiciaire invoquant un manquement à l'obligation de sécurité, c'est à l'employeur (et non au salarié) de prouver le respect de ladite obligation.
+  </div>
+
+  <div class="box box-example">
+    <div class="box-tag">Exemple — COVID-19</div>
+    Face à ce nouveau risque, le juge appréciait le manquement à l'obligation de sécurité en prenant en compte <strong>deux critères</strong> : les moyens disponibles à l'époque ET l'état des connaissances scientifiques. L'obligation de sécurité doit s'adapter à chaque situation de travail.
+  </div>
+
+  <hr class="divider">
+
+  <!-- §2 Évolution -->
+  <div class="para-header" id="s1p2">
+    <span class="num">§2</span>
+    <h3>L'évolution de l'intensité de l'obligation de sécurité</h3>
+  </div>
+
+  <p class="para">L'intensité de l'obligation de sécurité <strong>n'est pas définie précisément par le Code du travail</strong>. C'est la jurisprudence qui en a tracé les contours, avec une évolution remarquable en 3 temps.</p>
+
+  <div class="timeline">
+    <div class="timeline-step ts-1">
+      <div class="ts-era">Avant 2002</div>
+      <div class="ts-label">Obligation de moyens</div>
+      <p>Conception initiale : l'employeur doit prendre les mesures raisonnables. L'altération de la santé ne suffit pas à engager sa responsabilité.</p>
+    </div>
+    <div class="timeline-arrow">→</div>
+    <div class="timeline-step ts-2">
+      <div class="ts-era">2002 — 2015</div>
+      <div class="ts-label">Obligation de résultat</div>
+      <p>La seule réalisation du risque (altération de la santé) engage automatiquement la responsabilité de l'employeur. Condamnations quasi systématiques → effet contre-productif sur la prévention.</p>
+    </div>
+    <div class="timeline-arrow">→</div>
+    <div class="timeline-step ts-3">
+      <div class="ts-era">2015 — 2019</div>
+      <div class="ts-label">Obligation de moyens renforcée</div>
+      <p>L'employeur est exonéré s'il justifie avoir pris <em>toutes</em> les mesures nécessaires (art. L. 4121-1 et L. 4121-2). Le juge vérifie l'existence et l'efficacité des mesures.</p>
+    </div>
+    <div class="timeline-arrow">→</div>
+    <div class="timeline-step ts-4">
+      <div class="ts-era">Depuis 2019</div>
+      <div class="ts-label">Vers une obligation de moyens (simple ?)</div>
+      <p>Glissement progressif : de <em>toutes les mesures nécessaires</em> vers <em>les mesures nécessaires</em> puis <em>les mesures suffisantes</em> (arrêt 12 juin 2024).</p>
+    </div>
+  </div>
+
+  <div class="box box-juris">
+    <div class="box-tag">⚖ Jurisprudence fondatrice — Cass. soc., 28 févr. 2002, n°00-11.793 (arrêts amiante)</div>
+    <em>« En vertu du contrat de travail le liant à son salarié, l'employeur est tenu envers celui-ci d'une obligation de sécurité de résultat, notamment en ce qui concerne les maladies professionnelles contractées par ce salarié du fait des produits fabriqués ou utilisés par l'entreprise. »</em>
+    <br>→ Naissance de l'obligation de résultat. Automaticité de la condamnation.
+  </div>
+
+  <div class="box box-juris">
+    <div class="box-tag">⚖ Arrêt Air France — Cass. soc., 25 nov. 2015, n°14-24.444</div>
+    <em>« Ne méconnaît pas l'obligation légale lui imposant de prendre les mesures nécessaires pour assurer la sécurité et protéger la santé physique et mentale des travailleurs, l'employeur qui justifie avoir pris toutes les mesures prévues par les articles L. 4121-1 et L. 4121-2 du code du travail. »</em>
+    <br>→ Tournant majeur lié à la reconnaissance des RPS. Le juge ne peut plus se contenter de constater une altération de la santé.
+  </div>
+
+  <div class="box box-juris">
+    <div class="box-tag">⚖ Cass. soc., 12 juin 2024 — Évolution récente</div>
+    À propos d'une situation de harcèlement où l'employeur n'avait pas diligenté d'enquête : la Cour valide que l'employeur a pris des <strong>mesures suffisantes</strong>, sans exiger qu'il ait pris <em>toutes</em> les mesures nécessaires. Signal d'un glissement vers une obligation de moyens de plus en plus allégée.
+  </div>
+
+  <div class="box box-warning">
+    <div class="box-tag">⚠ Point de vigilance</div>
+    <strong>Deux hypothèses distinctes de manquement</strong> coexistent :
+    <ul style="margin-top:6px; padding-left:18px">
+      <li><strong>Défaut de prévention suffisante</strong> alors même qu'il n'y a pas encore d'altération de la santé</li>
+      <li><strong>Altération de la santé</strong> du salarié alors même que l'employeur a pris des mesures de prévention</li>
+    </ul>
+    Le manquement dans le 1er cas n'implique pas nécessairement qu'il y aura condamnation dans le 2nd.
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SECTION 2 — PRINCIPES GÉNÉRAUX DE PRÉVENTION
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="section-header" id="s2">
+    <span class="num">SECTION 2</span>
+    <h2>Les principes généraux de prévention</h2>
+  </div>
+
+  <!-- §1 Notion -->
+  <div class="para-header">
+    <span class="num">§1</span>
+    <h3>La notion de prévention</h3>
+  </div>
+
+  <div class="article-block">
+    <div class="art-ref">Directive-cadre 89/391/CEE — Définition</div>
+    <p>« Ensemble des dispositions prises ou prévues à tous les stades de l'activité de l'entreprise en vue d'éviter ou de diminuer les risques professionnels. »</p>
+  </div>
+
+  <p class="para">Deux enseignements essentiels :</p>
+  <table class="fiche-table">
+    <thead><tr><th style="width:5%">#</th><th>Principe</th><th>Implication pratique</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="col-label" style="text-align:center;font-size:16px;font-weight:700">①</td>
+        <td><strong>Priorité à la suppression du risque</strong>, pas seulement à en réduire la probabilité.</td>
+        <td>Si l'employeur pouvait supprimer le risque et ne l'a pas fait → responsabilité engagée. Il doit toujours faire la <em>meilleure prévention possible</em> en fonction des technologies disponibles. <strong>Il ne peut pas attendre qu'on lui impose les évolutions technologiques.</strong></td>
+      </tr>
+      <tr>
+        <td class="col-label" style="text-align:center;font-size:16px;font-weight:700">②</td>
+        <td><strong>La prévention concerne tous les aspects de l'activité</strong> de chaque salarié.</td>
+        <td>On ne s'intéresse pas seulement au secteur d'activité ou à la structure : la prévention doit être <strong>adaptée à l'activité concrète de chaque salarié</strong>.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="para">Le principe général de prévention est complété par une <strong>double obligation</strong> :</p>
+
+  <table class="fiche-table">
+    <thead><tr><th style="width:20%">Obligation</th><th>Contenu</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="col-label"><span class="badge badge-orange">INFORMATION</span></td>
+        <td>
+          <ul>
+            <li>Les risques professionnels de tout type</li>
+            <li>Les mesures de protection et de prévention</li>
+            <li>Les mesures de premiers secours et de lutte contre l'incendie</li>
+            <li>Les modalités d'accès au DUERP</li>
+            <li>Le rôle du service de santé au travail et des représentants du personnel</li>
+            <li>Les dispositions du règlement intérieur</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td class="col-label"><span class="badge badge-green">FORMATION</span></td>
+        <td>
+          <ul>
+            <li>Les conditions de circulation dans l'entreprise</li>
+            <li>Les conditions d'exécution du travail</li>
+            <li>La conduite à tenir en cas d'accident ou de sinistre</li>
+          </ul>
+          <strong>Ces formations générales ne dispensent pas</strong> l'employeur de son obligation d'organiser des formations particulières à la sécurité (ex : CDD, intérimaires, stagiaires).
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="divider">
+
+  <!-- §2 Méthode -->
+  <div class="para-header" id="s2p2">
+    <span class="num">§2</span>
+    <h3>La méthode de prévention</h3>
+  </div>
+
+  <p class="para">La prévention est très large et concerne tous les aspects du travail (équipements, relations sociales…). Elle s'articule en <strong>3 étapes</strong> qui s'appuient sur les <strong>9 principes</strong> de l'art. L. 4121-2 CT.</p>
+
+  <div class="etapes">
+    <div class="etape et-1">
+      <div class="etape-num">Étape 1</div>
+      <div class="etape-title">Repérer et identifier les risques</div>
+      <p>Reconnaître l'existence du risque dans l'entreprise.</p>
+      <ul style="margin-top:6px">
+        <li>Risque non reconnu + jamais réalisé → <em>non reproché</em></li>
+        <li>Risque non reconnu + déjà réalisé → <em>position difficile pour l'employeur</em></li>
+      </ul>
+    </div>
+    <div class="etape et-2">
+      <div class="etape-num">Étape 2</div>
+      <div class="etape-title">Éviter ou réduire le risque</div>
+      <p>Combattre le problème à la source. Si le risque ne peut être évité : l'évaluer (probabilité + gravité).</p>
+      <p style="margin-top:6px"><strong>L'employeur doit se tenir informé de l'évolution des techniques</strong> — il ne peut pas attendre qu'on lui impose les évolutions qui permettraient de supprimer un risque.</p>
+    </div>
+    <div class="etape et-3">
+      <div class="etape-num">Étape 3</div>
+      <div class="etape-title">Mettre en place des protections</div>
+      <p><strong>EPC en priorité sur EPI</strong> (moins contraignants pour les salariés, limitent les risques de négligence individuelle et s'avèrent plus économiques sur le long terme).</p>
+    </div>
+  </div>
+
+  <div class="sub-header">Les 9 principes généraux de prévention — Art. L. 4121-2 CT</div>
+  <div class="principes-grid">
+    <div class="principe-card"><div class="principe-num">1</div><div>Éviter les risques</div></div>
+    <div class="principe-card"><div class="principe-num">2</div><div>Évaluer les risques qui ne peuvent être évités</div></div>
+    <div class="principe-card"><div class="principe-num">3</div><div>Combattre les risques à la source</div></div>
+    <div class="principe-card"><div class="principe-num">4</div><div>Adapter le travail à l'homme</div></div>
+    <div class="principe-card"><div class="principe-num">5</div><div>Tenir compte de l'état d'évolution de la technique</div></div>
+    <div class="principe-card"><div class="principe-num">6</div><div>Remplacer ce qui est dangereux par ce qui l'est moins (ou pas)</div></div>
+    <div class="principe-card"><div class="principe-num">7</div><div>Planifier la prévention</div></div>
+    <div class="principe-card"><div class="principe-num">8</div><div>Prendre des mesures de protection <strong>collective</strong>, en priorité sur les mesures individuelles</div></div>
+    <div class="principe-card"><div class="principe-num">9</div><div>Donner des instructions appropriées aux travailleurs</div></div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SECTION 3 — OBLIGATION D'ÉVALUATION / DUERP
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="section-header" id="s3">
+    <span class="num">SECTION 3</span>
+    <h2>L'obligation préalable d'évaluation — Le DUERP</h2>
+  </div>
+
+  <p class="para">L'exigence de prévention est <strong>soumise à une obligation préalable d'évaluation des risques professionnels</strong>. L'instrument central : le <strong>Document Unique d'Évaluation des Risques Professionnels (DUERP)</strong>.</p>
+
+  <!-- §1 Objet -->
+  <div class="para-header">
+    <span class="num">§1</span>
+    <h3>L'objet de l'évaluation (art. L. 4121-3 CT)</h3>
+  </div>
+
+  <p class="para">L'évaluation doit tenir compte de :</p>
+  <table class="fiche-table">
+    <thead><tr><th>Éléments à prendre en compte</th><th>Précision</th></tr></thead>
+    <tbody>
+      <tr><td class="col-label">Procédés de fabrication</td><td>Toutes les méthodes de production utilisées dans l'établissement.</td></tr>
+      <tr><td class="col-label">Équipements de travail</td><td>Machines, outils, installations.</td></tr>
+      <tr><td class="col-label">Substances chimiques</td><td>Tout produit chimique utilisé ou fabriqué.</td></tr>
+      <tr><td class="col-label">Aménagement des lieux</td><td>Organisation physique de l'espace de travail.</td></tr>
+      <tr><td class="col-label">Définition des postes</td><td>Fiches de poste, description des tâches.</td></tr>
+      <tr class="highlight-row"><td class="col-label"><span class="badge badge-gold">NOUVEAU</span><br>Impact différencié selon le sexe</td><td>L'évaluation doit prendre en compte l'exposition différenciée en fonction du sexe des travailleurs (art. L. 4121-3).</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box box-warning">
+    <div class="box-tag">⚠ Pas de méthode imposée</div>
+    Les modalités de l'évaluation sont <strong>laissées au libre choix de l'employeur</strong>. Il n'existe pas de méthode « clé en main » fixée par voie réglementaire — ce qui est une <strong>difficulté réelle</strong> pour les employeurs. Des outils existent (INRS, ANACT, CNAM) mais ne sont pas obligatoires.
+  </div>
+
+  <div class="sub-header">Les 5 étapes de la démarche d'évaluation (Circ. DRT n°6 du 18 avr. 2002)</div>
+  <table class="fiche-table">
+    <thead><tr><th style="width:8%">Étape</th><th>Contenu</th></tr></thead>
+    <tbody>
+      <tr><td class="col-label" style="text-align:center">1</td><td><strong>Préparer la démarche</strong> — mobiliser les acteurs internes, définir les unités de travail.</td></tr>
+      <tr><td class="col-label" style="text-align:center">2</td><td>
+        <strong>Identifier et évaluer les risques</strong> :
+        <ul style="margin-top:5px">
+          <li><em>Étape 2a — Identification des dangers :</em> propriété ou capacité intrinsèque d'un équipement/substance/méthode de causer un dommage.</li>
+          <li><em>Étape 2b — Évaluation du risque :</em> s'interroger sur l'exposition effective au danger → déterminer probabilité et gravité.</li>
+        </ul>
+      </td></tr>
+      <tr><td class="col-label" style="text-align:center">3</td><td><strong>Élaborer un programme d'actions</strong>.</td></tr>
+      <tr><td class="col-label" style="text-align:center">4</td><td><strong>Mettre en œuvre les actions de prévention</strong>.</td></tr>
+      <tr><td class="col-label" style="text-align:center">5</td><td><strong>Réévaluer les risques</strong> — démarche continue.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-header">Les 4 niveaux de risque</div>
+  <div class="risk-levels">
+    <div class="risk-level rl-1">
+      <div class="rl-name">Réduit</div>
+      <div>Absence de risque pour la santé</div>
+    </div>
+    <div class="risk-level rl-2">
+      <div class="rl-name">Modéré</div>
+      <div>Probabilité faible d'induire un accident ou une maladie</div>
+    </div>
+    <div class="risk-level rl-3">
+      <div class="rl-name">Fort</div>
+      <div>Risque pour la santé + probabilité fréquente d'accident ou maladie</div>
+    </div>
+    <div class="risk-level rl-4">
+      <div class="rl-name">Critique</div>
+      <div>Risque pour la santé + forte probabilité de réalisation</div>
+    </div>
+  </div>
+
+  <div class="box box-info">
+    <div class="box-tag">Classification non figée</div>
+    Cette classification n'est qu'une proposition — un risque peut évoluer. L'employeur peut s'appuyer sur des <strong>ressources internes</strong> (analyse du CSE, rapport annuel du médecin du travail, registre hygiène et sécurité) et <strong>externes</strong> (fiches de données sécurité, données sectorielles, outils INRS/ANACT/CNAM).
+  </div>
+
+  <hr class="divider">
+
+  <!-- §2 DUERP -->
+  <div class="para-header">
+    <span class="num">§2</span>
+    <h3>La transcription de l'évaluation — Le DUERP</h3>
+  </div>
+
+  <p class="para">Les résultats doivent être transcrits sur <strong>un seul document</strong>, selon une triple exigence : <strong>Cohérence · Commodité · Traçabilité</strong>. Ce document comprend un inventaire des risques identifiés <strong>par unité de travail</strong>.</p>
+
+  <div class="box box-info">
+    <div class="box-tag">Notion d'unité de travail</div>
+    L'unité de travail est une <strong>situation de travail</strong> liée à l'organisation ET à la nature de l'entreprise. Elle <strong>ne se limite pas à un seul lieu</strong> et peut couvrir des lieux différents. L'intérêt : envisager toutes les expositions individuelles ET collectives.
+  </div>
+
+  <div class="duerp-rules">
+    <div class="duerp-card dc-blue">
+      <div class="dc-title">📅 Actualisation obligatoire</div>
+      <ul>
+        <li>Décision d'aménagement important</li>
+        <li>Information supplémentaire sur un risque</li>
+        <li><strong>Au moins une fois par an</strong></li>
+        <li>Survenance d'un AT/MP ou évolution des connaissances scientifiques</li>
+      </ul>
+      <p style="margin-top:8px;font-size:12px"><strong>Conservation des versions antérieures : 40 ans</strong></p>
+    </div>
+    <div class="duerp-card dc-green">
+      <div class="dc-title">👁 Accessibilité</div>
+      <ul>
+        <li>Salariés</li>
+        <li>Membres du CSE</li>
+        <li>Médecin du travail</li>
+        <li>Inspecteur du travail</li>
+      </ul>
+      <p style="margin-top:8px;font-size:12px">L'employeur n'est pas tenu de le remettre à l'embauche mais doit le <strong>mettre à disposition</strong>. Un affichage doit préciser les modalités d'accès.</p>
+    </div>
+    <div class="duerp-card dc-red">
+      <div class="dc-title">⚖ Sanctions</div>
+      <ul>
+        <li><strong>Pénales :</strong> défaut d'actualisation ou non-mise à disposition → contravention 5ème classe</li>
+        <li>Non-mise à disposition au CSE → délit d'entrave</li>
+        <li>Pièce essentielle en cas de poursuite pénale → permet au juge d'apprécier la connaissance du risque par l'employeur</li>
+      </ul>
+      <p style="margin-top:8px;font-size:12px"><strong>Attention :</strong> le préjudice n'est pas présumé — les salariés doivent le prouver.</p>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SECTION 4 — PAPRIPACT
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="section-header" id="s4">
+    <span class="num">SECTION 4</span>
+    <h2>La formalisation de la prévention — Le PAPRIPACT</h2>
+  </div>
+
+  <p class="para">Le <strong>Programme Annuel de Prévention des Risques Professionnels et d'Amélioration des Conditions de Travail (PAPRIPACT)</strong> est la <strong>traduction opérationnelle</strong> de l'obligation de sécurité. Il assure le passage du diagnostic (DUERP) à l'action.</p>
+
+  <div class="papri-grid">
+    <div class="papri-card">
+      <div class="pc-title">Objet</div>
+      <ul>
+        <li>Document de planification <strong>opposable</strong></li>
+        <li>Passage du diagnostic DUERP à l'action concrète</li>
+        <li>Traduction opérationnelle de l'obligation de sécurité</li>
+      </ul>
+    </div>
+    <div class="papri-card">
+      <div class="pc-title">Champ d'application</div>
+      <ul>
+        <li><strong>≥ 50 salariés</strong> : document autonome <strong>obligatoire</strong></li>
+        <li><strong>&lt; 50 salariés</strong> : liste des actions consignée directement dans le DUERP</li>
+      </ul>
+    </div>
+    <div class="papri-card">
+      <div class="pc-title">Contenu (pour chaque mesure)</div>
+      <ul>
+        <li>Conditions d'exécution et ressources</li>
+        <li>Estimation du coût</li>
+        <li>Calendrier de mise en œuvre</li>
+        <li>Indicateurs de résultat</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box box-warning">
+    <div class="box-tag">⚠ Point d'attention jurisprudentiel</div>
+    L'<strong>absence ou l'indigence du PAPRIPACT</strong> peut caractériser le <strong>manque de diligence</strong> de l'employeur et contribuer à établir un manquement à son obligation de sécurité.
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SYNTHÈSE
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="synthese">
+    <div class="synthese-title">💡 Idée directrice — Architecture du chapitre</div>
+    <p>Ce chapitre repose sur une <strong>logique en cascade</strong> : l'obligation générale de sécurité (art. L. 4121-1) impose de faire de la prévention → la prévention efficace suppose d'abord d'<strong>évaluer les risques</strong> → l'évaluation doit être transcrite dans le <strong>DUERP</strong> → le DUERP alimente le <strong>PAPRIPACT</strong> qui planifie les actions concrètes.</p>
+    <p style="margin-top:10px">L'intensité de l'obligation de sécurité a évolué de <strong>résultat (2002) → moyens renforcés (2015) → vers des moyens suffisants (2024)</strong>, signalant un glissement progressif favorable aux employeurs qui justifient de mesures de prévention sérieuses. Les <strong>9 principes de prévention</strong> et la règle de <strong>priorité EPC sur EPI</strong> sont des repères incontournables à connaître.</p>
+  </div>
+
+</div><!-- /container -->
+</body>
+</html>
