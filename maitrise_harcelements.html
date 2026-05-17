@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiche — Les harcèlements</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --orange:    #D4600A;
+  --navy:      #1B2F55;
+  --navy-lt:   #EEF2FA;
+  --blue:      #2558A8;
+  --blue-lt:   #DDEAF8;
+  --green:     #2A5C38;
+  --green-lt:  #E6F2EB;
+  --teal:      #0E6E6E;
+  --teal-lt:   #E0F4F4;
+  --gold:      #8A6200;
+  --gold-lt:   #FEF8E6;
+  --red:       #8B1A10;
+  --red-lt:    #FCEAE8;
+  --purple:    #5B3A8A;
+  --purple-lt: #F0EBF9;
+  --rose:      #A0184A;
+  --rose-lt:   #FBE8EF;
+  --border:    #D8D5CF;
+  --text:      #1C1C1C;
+  --bg:        #FAFAF8;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Source Serif 4', Georgia, serif; font-size: 14px; line-height: 1.7; color: var(--text); background: var(--bg); padding-bottom: 60px; }
+
+/* ── Header ── */
+.page-header { background: var(--navy); padding: 13px 44px; display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; }
+.page-header span { font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.48); }
+
+.fiche-title { background: linear-gradient(135deg, #7A1A2A 0%, #4A0A1A 100%); padding:22px 44px 18px; position:relative; overflow:hidden; }
+.fiche-title::after { content:''; position:absolute; top:0; right:0; width:320px; height:100%; background:repeating-linear-gradient(-45deg,transparent,transparent 6px,rgba(255,255,255,.04) 6px,rgba(255,255,255,.04) 7px); }
+.fiche-title .label { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.18em; color:rgba(255,255,255,.55); text-transform:uppercase; margin-bottom:5px; }
+.fiche-title h1 { font-family:'Playfair Display',serif; font-size:27px; font-weight:900; color:#fff; line-height:1.2; }
+.fiche-title .subtitle { font-style:italic; font-size:14px; color:rgba(255,255,255,.75); margin-top:4px; }
+
+/* ── Nav ── */
+.nav-pills { background:#F0EDE8; border-bottom:1px solid var(--border); padding:9px 44px; display:flex; gap:7px; flex-wrap:wrap; }
+.nav-pill { font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.05em; text-transform:uppercase; font-weight:600; padding:3px 9px; border-radius:20px; background:#fff; border:1px solid var(--border); color:var(--navy); text-decoration:none; transition:background .15s; }
+.nav-pill:hover { background:var(--navy-lt); border-color:var(--blue); }
+
+/* ── Container ── */
+.container { max-width:920px; margin:0 auto; padding:0 32px; }
+
+/* ── Bloc RPS intro ── */
+.rps-intro { background:var(--navy-lt); border-left:4px solid var(--navy); padding:14px 18px; border-radius:0 6px 6px 0; margin:24px 0 6px; font-size:13px; font-style:italic; }
+.rps-intro strong { color:var(--navy); font-style:normal; }
+
+/* ── Section headers ── */
+.section-header { padding:11px 20px; margin:32px 0 18px; border-radius:4px; display:flex; align-items:center; gap:12px; }
+.section-header .num { font-family:'JetBrains Mono',monospace; font-size:10px; background:rgba(255,255,255,.18); padding:3px 8px; border-radius:3px; color:#fff; }
+.section-header h2 { font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:#fff; }
+.sh-rps    { background: #3A3060; }
+.sh-hm     { background: #5A1A2A; }
+.sh-hs     { background: #7A3A10; }
+.sh-hd     { background: var(--teal); }
+.sh-regime { background: var(--navy); }
+
+/* ── Para header ── */
+.para-header { border-bottom:2px solid var(--blue); padding-bottom:4px; margin:20px 0 12px; display:flex; align-items:baseline; gap:8px; }
+.para-header .num { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--blue); font-weight:600; }
+.para-header h3 { font-size:14.5px; font-weight:600; color:var(--blue); }
+.sub { font-size:13px; font-weight:600; color:var(--orange); margin:16px 0 7px; }
+
+/* ── Article block ── */
+.article-block { background:var(--navy); border-radius:4px; padding:12px 16px; margin:10px 0 14px; }
+.article-block .art-ref { font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.1em; color:rgba(255,255,255,.55); margin-bottom:5px; text-transform:uppercase; }
+.article-block p { font-style:italic; color:#fff; font-size:13px; line-height:1.6; }
+
+/* ── Boxes ── */
+.box { border-radius:4px; padding:10px 15px; margin:9px 0; font-size:12.5px; line-height:1.6; }
+.box .tag { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; font-weight:700; margin-bottom:4px; }
+.b-juris  { background:var(--green-lt);  border-left:3px solid var(--green);  } .b-juris  .tag { color:var(--green);  }
+.b-info   { background:var(--blue-lt);   border-left:3px solid var(--blue);   } .b-info   .tag { color:var(--blue);   }
+.b-warn   { background:var(--red-lt);    border-left:3px solid var(--red);    } .b-warn   .tag { color:var(--red);    }
+.b-orange { background:#FEF0E8;          border-left:3px solid var(--orange); } .b-orange .tag { color:var(--orange); }
+.b-gold   { background:var(--gold-lt);   border-left:3px solid #C49A00;       } .b-gold   .tag { color:var(--gold);   }
+.b-purple { background:var(--purple-lt); border-left:3px solid var(--purple); } .b-purple .tag { color:var(--purple); }
+.b-teal   { background:var(--teal-lt);   border-left:3px solid var(--teal);   } .b-teal   .tag { color:var(--teal);   }
+
+/* ── Tables ── */
+.t { width:100%; border-collapse:collapse; margin:8px 0 18px; font-size:12.5px; }
+.t thead th { background:var(--navy); color:#fff; padding:8px 11px; text-align:left; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.07em; text-transform:uppercase; font-weight:600; }
+.t thead th:first-child { border-radius:4px 0 0 0; } .t thead th:last-child { border-radius:0 4px 0 0; }
+.t tbody td { padding:9px 11px; vertical-align:top; border:1px solid var(--border); line-height:1.55; }
+.t tbody tr:nth-child(even) td { background:#FAFAF7; }
+.t tbody tr:hover td { background:var(--blue-lt); transition:background .15s; }
+.t .lbl { background:var(--navy-lt) !important; font-weight:600; color:var(--navy); font-size:11.5px; min-width:100px; }
+.t .hl td { background:var(--gold-lt) !important; } .t .hl .lbl { background:#EFE5C2 !important; }
+.t ul { padding-left:14px; margin:3px 0; } .t li { margin-bottom:2px; }
+.bdg { display:inline-block; font-family:'JetBrains Mono',monospace; font-size:8.5px; padding:1px 5px; border-radius:2px; letter-spacing:.04em; margin-bottom:3px; }
+.b-nv { background:var(--navy); color:#fff; } .b-or { background:var(--orange); color:#fff; }
+.b-rd { background:var(--red); color:#fff; } .b-tl { background:var(--teal); color:#fff; }
+.b-pu { background:var(--purple); color:#fff; }
+
+/* ── RPS Facteurs grid ── */
+.rps-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin:10px 0 18px; }
+.rps-card { border-radius:4px; padding:10px 12px; font-size:12px; }
+.rps-card .rc-title { font-weight:700; font-size:12.5px; margin-bottom:5px; }
+.rps-card ul { padding-left:13px; } .rps-card li { margin-bottom:2px; line-height:1.45; }
+.rc-1 { background:#E8EEF7; border-top:2px solid var(--blue);   } .rc-1 .rc-title { color:var(--blue);   }
+.rc-2 { background:var(--rose-lt); border-top:2px solid var(--rose);   } .rc-2 .rc-title { color:var(--rose);   }
+.rc-3 { background:var(--gold-lt); border-top:2px solid #C49A00;       } .rc-3 .rc-title { color:var(--gold);   }
+.rc-4 { background:var(--green-lt); border-top:2px solid var(--green); } .rc-4 .rc-title { color:var(--green);  }
+.rc-5 { background:var(--purple-lt); border-top:2px solid var(--purple); } .rc-5 .rc-title { color:var(--purple); }
+.rc-6 { background:var(--red-lt); border-top:2px solid var(--red);     } .rc-6 .rc-title { color:var(--red);    }
+
+/* ── Violence grid ── */
+.violence-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:10px 0 16px; }
+.violence-card { border-radius:5px; padding:13px 15px; font-size:12.5px; }
+.violence-card .vc-title { font-weight:700; font-size:13px; margin-bottom:7px; }
+.vc-ext { background:#FEF0E8; border-left:3px solid var(--orange); } .vc-ext .vc-title { color:var(--orange); }
+.vc-int { background:var(--red-lt); border-left:3px solid var(--red); } .vc-int .vc-title { color:var(--red); }
+.violence-card ul { padding-left:14px; } .violence-card li { margin-bottom:3px; line-height:1.5; }
+
+/* ── Mécanisme harcèlement ── */
+.meca-steps { display:flex; flex-direction:column; gap:0; margin:10px 0 18px; }
+.meca-step { display:flex; gap:14px; align-items:flex-start; padding:10px 14px; background:#fff; border:1px solid var(--border); font-size:12.5px; }
+.meca-step:first-child { border-radius:5px 5px 0 0; }
+.meca-step:last-child  { border-radius:0 0 5px 5px; border-top:none; }
+.meca-step:not(:first-child) { border-top:none; }
+.ms-num { flex-shrink:0; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:#fff; margin-top:1px; flex-shrink:0; }
+.ms-1 { background:#C0392B; } .ms-2 { background:#E67E22; } .ms-3 { background:#8E44AD; }
+.ms-4 { background:#2980B9; } .ms-5 { background:#27AE60; } .ms-6 { background:var(--navy); }
+.ms-title { font-weight:700; font-size:13px; margin-bottom:3px; }
+
+/* ── 3 éléments HM ── */
+.tri-el { display:flex; gap:6px; margin:10px 0 14px; align-items:stretch; }
+.tri-el .te { flex:1; border-radius:5px; padding:12px 13px; font-size:12px; text-align:center; }
+.te .te-title { font-weight:700; font-size:13px; margin-bottom:6px; }
+.te-1 { background:#F5E8E8; border-top:3px solid #C0392B; } .te-1 .te-title { color:#C0392B; }
+.te-2 { background:#E8EFF8; border-top:3px solid var(--blue); } .te-2 .te-title { color:var(--blue); }
+.te-3 { background:#F0EBF9; border-top:3px solid var(--purple); } .te-3 .te-title { color:var(--purple); }
+.te-plus { align-self:center; color:var(--border); font-size:22px; flex-shrink:0; }
+
+/* ── Formes HM ── */
+.formes-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:7px; margin:10px 0 14px; }
+.forme-card { border-radius:4px; padding:12px 13px; font-size:12px; }
+.forme-card .f-title { font-weight:700; font-size:12.5px; margin-bottom:5px; }
+.fc-ind  { background:#FBE8EF; border-left:3px solid var(--rose); }   .fc-ind  .f-title { color:var(--rose);   }
+.fc-str  { background:#FEF0E8; border-left:3px solid var(--orange); } .fc-str  .f-title { color:var(--orange); }
+.fc-inst { background:var(--red-lt); border-left:3px solid var(--red); } .fc-inst .f-title { color:var(--red);    }
+.fc-tv   { background:#E8EEF7; border-left:3px solid var(--blue);   } .fc-tv   .f-title { color:var(--blue);   }
+.fc-ho   { background:var(--purple-lt); border-left:3px solid var(--purple); } .fc-ho .f-title { color:var(--purple); }
+.fc-mx   { background:var(--gold-lt); border-left:3px solid #C49A00; } .fc-mx  .f-title { color:var(--gold);   }
+
+/* ── HS formes ── */
+.hs-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:10px 0 14px; }
+.hs-card { border-radius:5px; padding:14px 15px; font-size:12.5px; }
+.hs-card .hs-title { font-weight:700; font-size:13px; margin-bottom:8px; }
+.hs-f1 { background:#FEF0E8; border-top:3px solid var(--orange); } .hs-f1 .hs-title { color:var(--orange); }
+.hs-f2 { background:var(--red-lt); border-top:3px solid var(--red); } .hs-f2 .hs-title { color:var(--red); }
+.hs-card ul { padding-left:14px; } .hs-card li { margin-bottom:4px; line-height:1.5; }
+
+/* ── Tableau comparatif ── */
+.comp-table { width:100%; border-collapse:collapse; margin:10px 0 16px; font-size:11.5px; }
+.comp-table th { padding:8px 9px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.06em; text-transform:uppercase; text-align:left; color:#fff; }
+.comp-table td { padding:8px 9px; border:1px solid var(--border); vertical-align:top; line-height:1.5; }
+.comp-table .cat { font-weight:700; font-size:12px; }
+.th-hm  { background:#5A1A2A; } .row-hm  { background:#FFF2F5; }
+.th-hs1 { background:#7A3A10; } .row-hs1 { background:#FFF6F0; }
+.th-hs2 { background:#A0184A; } .row-hs2 { background:#FBE8EF; }
+.th-hd  { background:var(--teal); } .row-hd  { background:var(--teal-lt); }
+.th-sa  { background:var(--green); } .row-sa  { background:var(--green-lt); }
+
+/* ── Conséquences ── */
+.conseq-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin:10px 0 16px; }
+.conseq-card { border-radius:5px; padding:12px 14px; font-size:12.5px; }
+.conseq-card .cc-title { font-weight:700; font-size:13px; margin-bottom:7px; display:flex; align-items:center; gap:6px; }
+.cc-psy  { background:#F0EBF9; border-top:3px solid var(--purple); } .cc-psy  .cc-title { color:var(--purple); }
+.cc-phys { background:var(--red-lt); border-top:3px solid var(--red); } .cc-phys .cc-title { color:var(--red); }
+.cc-cog  { background:var(--blue-lt); border-top:3px solid var(--blue); } .cc-cog  .cc-title { color:var(--blue); }
+.cc-eco  { background:var(--gold-lt); border-top:3px solid #C49A00; } .cc-eco  .cc-title { color:var(--gold); }
+.conseq-card ul { padding-left:14px; } .conseq-card li { margin-bottom:3px; line-height:1.5; }
+
+/* ── Chiffres clés ── */
+.stats-row { display:flex; gap:8px; margin:10px 0 16px; }
+.stat-box { flex:1; background:var(--navy); border-radius:5px; padding:12px 14px; text-align:center; color:#fff; }
+.stat-box .stat-num { font-family:'Playfair Display',serif; font-size:26px; font-weight:900; color:var(--orange); line-height:1; margin-bottom:4px; }
+.stat-box .stat-label { font-size:11.5px; color:rgba(255,255,255,.8); line-height:1.4; }
+
+/* ── Preuve ── */
+.preuve-steps { display:flex; gap:0; margin:10px 0 14px; }
+.ps { flex:1; padding:11px 13px; font-size:12px; }
+.ps .ps-actor { font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; margin-bottom:4px; }
+.ps-sal { background:#FDE8D8; border-top:3px solid var(--orange); border-radius:5px 0 0 5px; } .ps-sal .ps-actor { color:var(--orange); }
+.ps-emp { background:var(--blue-lt); border-top:3px solid var(--blue); } .ps-emp .ps-actor { color:var(--blue); }
+.ps-jug { background:var(--green-lt); border-top:3px solid var(--green); border-radius:0 5px 5px 0; } .ps-jug .ps-actor { color:var(--green); }
+.ps-arr { align-self:center; color:var(--border); font-size:18px; padding:0 3px; flex-shrink:0; }
+
+/* ── Preuves recueil ── */
+.preuves-grid { display:grid; grid-template-columns:repeat(3,1fr) repeat(2,1fr); gap:7px; margin:10px 0 16px; }
+.preuve-card { background:#fff; border:1px solid var(--border); border-radius:5px; padding:11px 13px; font-size:12px; }
+.preuve-card .pvc-title { font-weight:700; font-size:12.5px; margin-bottom:5px; color:var(--navy); display:flex; align-items:center; gap:5px; }
+
+/* ── Protection ── */
+.protect-steps { display:flex; flex-direction:column; gap:5px; margin:10px 0 14px; }
+.protect-step { background:#fff; border:1px solid var(--border); border-radius:4px; padding:9px 14px; font-size:12.5px; display:flex; gap:10px; align-items:flex-start; }
+.prot-tag { flex-shrink:0; font-family:'JetBrains Mono',monospace; font-size:9.5px; font-weight:700; padding:2px 8px; border-radius:3px; color:#fff; margin-top:2px; }
+.ptag-rev { background:var(--orange); }
+.ptag-prot { background:var(--blue); }
+.ptag-nul  { background:var(--red); }
+
+/* ── Sanctions ── */
+.sanction-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:10px 0 16px; }
+.sanction-card { border-radius:5px; overflow:hidden; border:1px solid var(--border); }
+.sanction-card .sc-head { padding:9px 14px; color:#fff; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; }
+.sc-pen .sc-head { background:#7A1A1A; }
+.sc-civ .sc-head { background:var(--navy); }
+.sanction-card .sc-body { padding:12px 14px; background:#fff; font-size:12.5px; }
+.sanction-card .sc-body ul { padding-left:14px; } .sanction-card .sc-body li { margin-bottom:4px; line-height:1.5; }
+
+/* ── Obligations employeur ── */
+.oblig-grid { display:grid; grid-template-columns:1fr 1fr; gap:7px; margin:10px 0 16px; }
+.oblig-card { border-radius:4px; padding:11px 13px; font-size:12.5px; }
+.oblig-card .oc-title { font-weight:700; font-size:13px; margin-bottom:5px; display:flex; align-items:center; gap:5px; }
+.oc-info  { background:var(--blue-lt); border-left:3px solid var(--blue); }   .oc-info  .oc-title { color:var(--blue); }
+.oc-ref   { background:var(--teal-lt); border-left:3px solid var(--teal); }   .oc-ref   .oc-title { color:var(--teal); }
+.oc-sanc  { background:var(--red-lt);  border-left:3px solid var(--red); }    .oc-sanc  .oc-title { color:var(--red); }
+.oc-enq   { background:var(--gold-lt); border-left:3px solid #C49A00; }       .oc-enq   .oc-title { color:var(--gold); }
+.oblig-card ul { padding-left:14px; } .oblig-card li { margin-bottom:3px; line-height:1.5; }
+
+/* ── Synthèse ── */
+.synthese { background:linear-gradient(135deg,#FEF8E6,#FFF3D0); border:1.5px solid #D4B800; border-radius:8px; padding:18px 22px; margin:28px 0 0; }
+.synthese .st { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:.06em; margin-bottom:9px; }
+.synthese p { font-size:13px; color:#3A3000; line-height:1.75; } .synthese p+p { margin-top:8px; }
+
+.para { margin:7px 0; font-size:13px; } .para strong { color:var(--navy); }
+hr.div { border:none; border-top:1px solid var(--border); margin:5px 0 14px; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <span>Master 1 — AMU 2025-2026 — S. SERENO</span>
+  <span style="color:rgba(255,255,255,.2)">|</span>
+  <span>Partie 2 — Document complémentaire</span>
+</div>
+
+<div class="fiche-title">
+  <div class="label">Fiche thématique — Complément harcèlements</div>
+  <h1>Les harcèlements au travail</h1>
+  <div class="subtitle">RPS · Violence · Mécanisme · HM · HS · HD · Preuve · Obligations · Sanctions</div>
+</div>
+
+<div class="nav-pills">
+  <a class="nav-pill" href="#rps">RPS & facteurs</a>
+  <a class="nav-pill" href="#violence">Violence</a>
+  <a class="nav-pill" href="#mecanisme">Mécanisme HM</a>
+  <a class="nav-pill" href="#hm">Harcèlement moral</a>
+  <a class="nav-pill" href="#hs">Harcèlement sexuel</a>
+  <a class="nav-pill" href="#hd">Harcèlement discriminatoire</a>
+  <a class="nav-pill" href="#synthese-comp">Tableau comparatif</a>
+  <a class="nav-pill" href="#consequences">Conséquences</a>
+  <a class="nav-pill" href="#preuve">Preuve</a>
+  <a class="nav-pill" href="#obligations">Obligations</a>
+  <a class="nav-pill" href="#sanctions">Sanctions</a>
+</div>
+
+<div class="container">
+
+<!-- ════════════════════════════════════════════
+     RPS & FACTEURS
+════════════════════════════════════════════ -->
+<div class="section-header sh-rps" id="rps">
+  <span class="num">INTRO</span>
+  <h2>Les risques psychosociaux (RPS) — Cadre général</h2>
+</div>
+
+<div class="rps-intro">
+  <strong>Définition Gollac (2014) :</strong> « Ce qui fait qu'un risque pour la santé au travail est psychosocial, ce n'est pas sa manifestation, mais son origine : les risques psychosociaux seront définis comme les risques pour la santé mentale, physique et sociale, engendrés par les conditions d'emploi et les facteurs organisationnels et relationnels susceptibles d'interagir avec le fonctionnement mental. »
+</div>
+
+<p class="para">Les RPS résultent de la <strong>combinaison de 3 éléments</strong> : conditions d'emploi + facteurs organisationnels et relationnels + l'individu. Le CT ne les appréhende pas globalement — ils sont saisis via l'obligation de sécurité, le harcèlement, les AT/MP.</p>
+
+<div class="sub">Les 6 axes de facteurs de risque (Gollac)</div>
+<div class="rps-grid">
+  <div class="rps-card rc-1">
+    <div class="rc-title">⏱ Intensité et temps de travail</div>
+    <ul>
+      <li>Contraintes de rythme</li>
+      <li>Objectifs irréalistes / flous</li>
+      <li>Ordres contradictoires</li>
+      <li>Interruptions fréquentes</li>
+      <li>Durée, travail de nuit, posté</li>
+      <li>Présentéisme</li>
+    </ul>
+  </div>
+  <div class="rps-card rc-2">
+    <div class="rc-title">😰 Exigences émotionnelles</div>
+    <ul>
+      <li>Relations au public (clients, patients)</li>
+      <li>Contact avec la souffrance</li>
+      <li>Devoir cacher ses émotions</li>
+      <li>Peur de l'accident ou de la violence</li>
+    </ul>
+  </div>
+  <div class="rps-card rc-3">
+    <div class="rc-title">🔓 Manque d'autonomie</div>
+    <ul>
+      <li>Autonomie dans la tâche</li>
+      <li>Prévisibilité du travail</li>
+      <li>Adéquation des moyens</li>
+      <li>Développement des compétences</li>
+      <li>Répétition / monotonie</li>
+    </ul>
+  </div>
+  <div class="rps-card rc-4">
+    <div class="rc-title">👥 Rapports sociaux au travail</div>
+    <ul>
+      <li>Qualité des relations</li>
+      <li>Soutien social et technique</li>
+      <li>Coopération</li>
+      <li>Reconnaissance</li>
+      <li>Justice organisationnelle</li>
+      <li>Violences internes et externes</li>
+    </ul>
+  </div>
+  <div class="rps-card rc-5">
+    <div class="rc-title">⚖ Conflits de valeurs</div>
+    <ul>
+      <li>Conflits éthiques</li>
+      <li>Qualité empêchée</li>
+      <li>Travail inutile ou contraire aux valeurs personnelles</li>
+    </ul>
+  </div>
+  <div class="rps-card rc-6">
+    <div class="rc-title">😟 Insécurité de la situation</div>
+    <ul>
+      <li>Sécurité de l'emploi</li>
+      <li>Soutenabilité du travail dans la durée</li>
+      <li>Changements mal gérés</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- ════════════════════════════════════════════
+     VIOLENCE
+════════════════════════════════════════════ -->
+<div class="section-header sh-rps" id="violence">
+  <span class="num">§1</span>
+  <h2>La violence au travail</h2>
+</div>
+
+<div class="box b-info">
+  <div class="tag">Définition OIT</div>
+  La violence au travail vise toute action, tout incident ou tout comportement qui s'écarte d'une attitude raisonnable, par lesquels une personne est <strong>attaquée, menacée, lésée ou blessée</strong> dans le cadre ou du fait direct de son travail. Physique ou psychologique. Concerne tous les salariés, quel que soit leur niveau hiérarchique.
+</div>
+
+<div class="violence-grid">
+  <div class="violence-card vc-ext">
+    <div class="vc-title">🌐 Violence externe ou sociale</div>
+    <p>Exercée <strong>par des personnes extérieures</strong> (clients, usagers, patients, prestataires…)</p>
+    <ul style="margin-top:8px">
+      <li>Insultes, incivilités</li>
+      <li>Menaces, intimidations</li>
+      <li>Agressions physiques ou psychologiques</li>
+      <li>Met en péril la santé, la sécurité ou le bien-être</li>
+    </ul>
+  </div>
+  <div class="violence-card vc-int">
+    <div class="vc-title">🏢 Violence interne ou organisationnelle</div>
+    <p>Exercée <strong>par des membres de l'entreprise</strong> (collègues, hiérarchie, subordonnés)</p>
+    <ul style="margin-top:8px">
+      <li><strong>Visible :</strong> agressions verbales ou physiques, séquestration, suicide</li>
+      <li><strong>Invisible :</strong> menaces, brimades, intimidation, diffamation, ostracisme</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- ════════════════════════════════════════════
+     MÉCANISME DU HARCÈLEMENT
+════════════════════════════════════════════ -->
+<div class="section-header sh-hm" id="mecanisme">
+  <span class="num">FOCUS</span>
+  <h2>Mécanisme d'installation du harcèlement</h2>
+</div>
+
+<p class="para">Le harcèlement ne s'installe pas brutalement. Il suit un processus progressif en 6 étapes :</p>
+
+<div class="meca-steps">
+  <div class="meca-step">
+    <div class="ms-num ms-1">1</div>
+    <div><div class="ms-title">Se rendre insoupçonnable</div>Jovial, sympathique au départ — l'auteur crée les conditions du manque de crédibilité de la future victime. Les collègues ne le croiront pas capable de harcèlement.</div>
+  </div>
+  <div class="meca-step">
+    <div class="ms-num ms-2">2</div>
+    <div><div class="ms-title">Établir la confiance</div>Louanges, climat amical, confidences, lieux « décontractés » — la victime est mise en confiance, ce qui la rend plus vulnérable.</div>
+  </div>
+  <div class="meca-step">
+    <div class="ms-num ms-3">3</div>
+    <div><div class="ms-title">Déstabiliser</div>Alternance aléatoire entre éloge et dénigrement, en public et en privé. La victime ne comprend plus ce qu'on attend d'elle et doute d'elle-même.</div>
+  </div>
+  <div class="meca-step">
+    <div class="ms-num ms-4">4</div>
+    <div><div class="ms-title">Isoler la victime</div>Isolement physique (rendez-vous individuels, changement de bureau) et social (humiliations, diffamation auprès des collègues). La victime perd son réseau de soutien.</div>
+  </div>
+  <div class="meca-step">
+    <div class="ms-num ms-5">5</div>
+    <div><div class="ms-title">Intimider et menacer</div>Chantage, représailles sur l'avenir professionnel en cas de refus ou de dénonciation. La victime est empêchée de se défendre.</div>
+  </div>
+  <div class="meca-step">
+    <div class="ms-num ms-6">6</div>
+    <div><div class="ms-title">Transférer la faute</div>Coalition avec des témoins, victimisation de l'agresseur, culpabilisation de la victime — l'auteur se présente lui-même comme la victime. La vérité est inversée.</div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- ════════════════════════════════════════════
+     HARCÈLEMENT MORAL
+════════════════════════════════════════════ -->
+<div class="section-header sh-hm" id="hm">
+  <span class="num">§3A</span>
+  <h2>Le harcèlement moral — Art. L. 1152-1 CT</h2>
+</div>
+
+<div class="article-block">
+  <div class="art-ref">Art. L. 1152-1 CT · Art. 222-33-2 CP</div>
+  <p>« Aucun salarié ne doit subir les agissements répétés de harcèlement moral qui ont pour objet ou pour effet une dégradation de ses conditions de travail susceptible de porter atteinte à ses droits et à sa dignité, d'altérer sa santé physique ou mentale ou de compromettre son avenir professionnel. »</p>
+</div>
+
+<p class="para" style="margin-bottom:8px">Définition doctrinale (M.F. HIRIGOYEN) : <em>« conduites abusives (gestes, paroles, comportements, attitudes) qui portent atteinte, par leur répétition ou leur systématisation, à la dignité ou à l'intégrité psychique ou physique d'une personne, mettant en péril l'emploi de celle-ci ou dégradant le climat de travail. »</em></p>
+
+<div class="sub">Les 3 éléments constitutifs cumulatifs</div>
+<div class="tri-el">
+  <div class="te te-1">
+    <div class="te-title">① Agissements répétés</div>
+    <p>Exclusion d'un fait isolé. <strong>Pas de durée minimale ou maximale</strong> imposée. La répétition peut être rapprochée dans le temps. Des actes très nombreux concentrés sur peu de jours peuvent suffire.</p>
+  </div>
+  <div class="te-plus">+</div>
+  <div class="te te-2">
+    <div class="te-title">② Dégradation des conditions de travail</div>
+    <p>Appréciée par son <strong>objet</strong> (intention — même sans preuve de mauvaise foi) <strong>OU</strong> son <strong>effet</strong> (résultat — même non voulu). La preuve de l'intention est facultative.</p>
+  </div>
+  <div class="te-plus">+</div>
+  <div class="te te-3">
+    <div class="te-title">③ Incidence potentielle sur le salarié</div>
+    <p>Sur les droits, la <strong>dignité</strong>, la <strong>santé</strong> (physique ou mentale) <strong>OU</strong> l'<strong>avenir professionnel</strong>. La potentialité suffit — l'atteinte n'a pas à être réalisée.</p>
+  </div>
+</div>
+
+<div class="sub">Les formes de harcèlement moral</div>
+<div class="formes-grid">
+  <div class="forme-card fc-ind">
+    <div class="f-title">HM individuel (pervers)</div>
+    <p>But « gratuit » de destruction d'autrui et/ou de valorisation de son propre pouvoir. Souvent le fait d'un seul individu contre une seule cible.</p>
+  </div>
+  <div class="forme-card fc-str">
+    <div class="f-title">HM stratégique</div>
+    <p>Organisé à l'encontre d'un ou plusieurs salariés précisément visés, destiné à contourner les procédures légales de licenciement. Vise à exclure ceux dont l'âge, la santé ou le niveau de formation ne correspond plus aux besoins.</p>
+  </div>
+  <div class="forme-card fc-inst">
+    <div class="f-title">🔴 HM institutionnel / organisationnel</div>
+    <p>Stratégie de gestion de l'<strong>ensemble du personnel</strong>. Violence non épisodique mais structurelle. Pratiques managériales délibérées (management par la peur, le stress). Existe même si le management y participe <strong>involontairement</strong>.</p>
+  </div>
+  <div class="forme-card fc-tv">
+    <div class="f-title">HM vertical (descendant / ascendant)</div>
+    <p>Descendant : de la hiérarchie vers le subordonné (le plus fréquent). Ascendant : du subordonné vers le supérieur (rare mais reconnu).</p>
+  </div>
+  <div class="forme-card fc-ho">
+    <div class="f-title">HM horizontal</div>
+    <p>Entre collègues de même niveau hiérarchique.</p>
+  </div>
+  <div class="forme-card fc-mx">
+    <div class="f-title">HM mixte</div>
+    <p>Combinaison de plusieurs sources : hiérarchie + collègues agissant simultanément ou successivement contre la même victime.</p>
+  </div>
+</div>
+
+<div class="box b-juris">
+  <div class="tag">⚖ Cass. crim., 21 janv. 2025, n°22-87.145 — Consécration du HM institutionnel</div>
+  Le harcèlement moral institutionnel intervient lorsqu'une politique d'entreprise conduit, <strong>en connaissance de cause des dirigeants</strong>, à la dégradation des conditions de travail des salariés. Il y a harcèlement institutionnel non seulement lorsque le management est <strong>volontairement</strong> impliqué dans le processus de harcèlement, mais aussi lorsqu'il ne l'est <strong>qu'involontairement</strong>.
+</div>
+
+<hr class="div">
+
+<!-- ════════════════════════════════════════════
+     HARCÈLEMENT SEXUEL
+════════════════════════════════════════════ -->
+<div class="section-header sh-hs" id="hs">
+  <span class="num">§3B</span>
+  <h2>Le harcèlement sexuel — Art. L. 1153-1 CT</h2>
+</div>
+
+<div class="hs-grid">
+  <div class="hs-card hs-f1">
+    <div class="hs-title">1ère forme — Répétition d'actes</div>
+    <p style="font-weight:600;margin-bottom:6px">Propos ou comportements à connotation sexuelle ou sexiste répétés :</p>
+    <ul>
+      <li>Verbaux, écrits, non verbaux</li>
+      <li>Contacts physiques non constitutifs d'agression sexuelle</li>
+      <li><strong>Intentionnels ou non</strong></li>
+      <li>Pas de durée minimale ou maximale</li>
+    </ul>
+    <p style="margin-top:8px;font-weight:600">Incidence exigée :</p>
+    <ul>
+      <li>Atteinte à la dignité (caractère dégradant ou humiliant)</li>
+      <li>OU création d'une situation intimidante, hostile ou offensante</li>
+    </ul>
+  </div>
+  <div class="hs-card hs-f2">
+    <div class="hs-title">2ème forme — Pression grave (acte unique)</div>
+    <ul>
+      <li><strong>Un fait isolé suffit</strong></li>
+      <li>Un acte de <strong>pression grave</strong> (chantage sexuel, abus d'autorité avec menaces)</li>
+      <li>But <strong>réel ou apparent</strong> — l'intention exprimée suffit, le but peut être d'humilier, de pousser à démissionner</li>
+      <li>D'obtenir un acte de <strong>nature sexuelle</strong> (toute demande à finalité sexuelle : relation, caresses, baisers…)</li>
+      <li>Au profit de <strong>l'auteur ou d'un tiers</strong></li>
+    </ul>
+  </div>
+</div>
+
+<div class="box b-orange">
+  <div class="tag">Agissements sexistes — Art. L. 1142-2-1 CT</div>
+  Tout agissement lié au <strong>sexe d'une personne</strong> ayant pour objet ou pour effet de porter atteinte à sa dignité ou de créer un environnement intimidant, hostile, dégradant, humiliant ou offensant. <strong>Un acte unique suffit</strong> — distinct du harcèlement sexuel.
+</div>
+
+<div class="box b-info">
+  <div class="tag">Harcèlement d'ambiance — 2 cas</div>
+  Le HS (1re forme) est également constitué :
+  <ul style="margin-top:6px;padding-left:18px">
+    <li>Lorsque des propos/comportements sont imposés à une même victime par <strong>plusieurs personnes de manière concertée</strong> ou à l'instigation de l'une d'elles, même si chacune n'a pas agi de façon répétée</li>
+    <li>Lorsque des propos/comportements sont imposés <strong>successivement par plusieurs personnes qui savent</strong> que cela caractérise une répétition, même sans concertation</li>
+  </ul>
+</div>
+
+<hr class="div">
+
+<!-- ════════════════════════════════════════════
+     HARCÈLEMENT DISCRIMINATOIRE
+════════════════════════════════════════════ -->
+<div class="section-header sh-hd" id="hd">
+  <span class="num">§3C</span>
+  <h2>Le harcèlement discriminatoire — Loi 2008-496</h2>
+</div>
+
+<div class="article-block">
+  <div class="art-ref">Art. 1er Loi n°2008-496 du 27 mai 2008 (principe de non-discrimination)</div>
+  <p>La discrimination inclut tout agissement lié à un <strong>motif discriminatoire</strong> subi par une personne ayant pour objet ou pour effet de porter atteinte à sa dignité ou de créer un environnement intimidant, hostile, dégradant, humiliant ou offensant.</p>
+</div>
+
+<p class="para"><strong>Un acte unique suffit</strong> — pas de répétition requise. Portée large : toute caractéristique protégée par la loi peut être le fondement d'un harcèlement discriminatoire (origine, sexe, âge, handicap, orientation sexuelle, convictions religieuses, opinions politiques, situation de famille…).</p>
+
+<hr class="div">
+
+<!-- ════════════════════════════════════════════
+     TABLEAU COMPARATIF
+════════════════════════════════════════════ -->
+<div class="section-header sh-regime" id="synthese-comp">
+  <span class="num">SYNTHÈSE</span>
+  <h2>Tableau comparatif des 5 régimes</h2>
+</div>
+
+<p class="para"><strong>Point clé :</strong> la coexistence de plusieurs textes mobilisables dans une même situation constitue une source de difficultés pour les victimes (manque de lisibilité, choix de la voie la plus adaptée).</p>
+
+<table class="comp-table">
+  <thead>
+    <tr>
+      <th class="th-hm" style="width:16%">Harcèlement moral</th>
+      <th class="th-hs1" style="width:18%">Harcèlement sexuel (1°)</th>
+      <th class="th-hs2" style="width:18%">Harcèlement sexuel (2°)</th>
+      <th class="th-hd" style="width:18%">Harcèlement discriminatoire</th>
+      <th class="th-sa" style="width:18%">Acte sexiste</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="row-hm"><div class="cat">Répétition d'actes</div></td>
+      <td class="row-hs1"><div class="cat">Répétition d'actes</div></td>
+      <td class="row-hs2"><div class="cat" style="color:var(--red)">Un acte unique</div></td>
+      <td class="row-hd"><div class="cat" style="color:var(--teal)">Un acte unique</div></td>
+      <td class="row-sa"><div class="cat" style="color:var(--green)">Un acte unique</div></td>
+    </tr>
+    <tr>
+      <td class="row-hm">Actes dégradant les conditions de travail</td>
+      <td class="row-hs1">Propos / comportements à connotation sexuelle</td>
+      <td class="row-hs2">Toute forme de pression grave</td>
+      <td class="row-hd">Tout agissement lié à un critère discriminatoire</td>
+      <td class="row-sa">Tout agissement lié au sexe</td>
+    </tr>
+    <tr>
+      <td class="row-hm">Incidence <em>potentielle</em> → dignité <strong>OU</strong> santé <strong>OU</strong> avenir</td>
+      <td class="row-hs1">Incidence <em>exigée</em> → Atteinte à la dignité <strong>OU</strong> situation intimidante</td>
+      <td class="row-hs2">But d'obtenir un acte de nature sexuelle</td>
+      <td class="row-hd">Incidence <em>potentielle</em> → dignité <strong>OU</strong> environnement hostile</td>
+      <td class="row-sa">Incidence <em>potentielle</em> → dignité <strong>OU</strong> environnement hostile</td>
+    </tr>
+    <tr>
+      <td class="row-hm" style="font-size:11px;font-style:italic">art. 222-33-2 CP<br>art. L. 1152-1 CT</td>
+      <td class="row-hs1" style="font-size:11px;font-style:italic">art. 222-33 CP<br>art. L. 1153-1 CT</td>
+      <td class="row-hs2" style="font-size:11px;font-style:italic">art. 222-33 CP<br>art. L. 1153-1 CT</td>
+      <td class="row-hd" style="font-size:11px;font-style:italic">art. 1er Loi n°2008-496</td>
+      <td class="row-sa" style="font-size:11px;font-style:italic">art. L. 1142-2-1 CT</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr class="div">
+
+<!-- ════════════════════════════════════════════
+     CONSÉQUENCES
+════════════════════════════════════════════ -->
+<div class="section-header sh-hm" id="consequences">
+  <span class="num">FOCUS</span>
+  <h2>Les conséquences du harcèlement sur la victime</h2>
+</div>
+
+<div class="stats-row">
+  <div class="stat-box"><div class="stat-num">28%</div><div class="stat-label">des victimes bloquées dans leur carrière</div></div>
+  <div class="stat-box"><div class="stat-num">14%</div><div class="stat-label">ont vu leur contrat non renouvelé</div></div>
+  <div class="stat-box"><div class="stat-num">10%</div><div class="stat-label">ont été licenciées</div></div>
+  <div class="stat-box"><div class="stat-num">9%</div><div class="stat-label">ont dû démissionner</div></div>
+</div>
+<p class="para" style="font-size:11.5px;font-style:italic;margin-bottom:12px">Source : Ifop / Le Défenseur des droits, 2014</p>
+
+<div class="conseq-grid">
+  <div class="conseq-card cc-psy">
+    <div class="cc-title">🧠 Troubles psychologiques</div>
+    <ul>
+      <li>Crainte de ne pas être cru(e)</li>
+      <li>Peur d'être accusé(e) de provocation</li>
+      <li>Sentiment d'impuissance</li>
+      <li>Honte et humiliation</li>
+      <li>Culpabilité / colère / frustration</li>
+      <li>Auto ou hétéro-agressivité</li>
+      <li>Perte de confiance et d'estime de soi</li>
+      <li>Dépression / stress / angoisse</li>
+    </ul>
+  </div>
+  <div class="conseq-card cc-phys">
+    <div class="cc-title">💊 Troubles physiques et comportements</div>
+    <ul>
+      <li>Troubles du sommeil, cauchemars</li>
+      <li>Maux de ventre, de tête, nausées</li>
+      <li>Réactions cutanées</li>
+      <li>Fatigue chronique</li>
+      <li>Suffocations, malaises</li>
+      <li>Addictions</li>
+      <li>Isolement social</li>
+      <li>Conduites alimentaires perturbées</li>
+    </ul>
+  </div>
+  <div class="conseq-card cc-cog">
+    <div class="cc-title">🔬 Troubles cognitifs</div>
+    <ul>
+      <li>Difficulté à se concentrer</li>
+      <li>Problèmes de mémoire</li>
+      <li>Difficulté de raisonnement</li>
+    </ul>
+  </div>
+  <div class="conseq-card cc-eco">
+    <div class="cc-title">💼 Impacts économiques</div>
+    <ul>
+      <li>Diminution de la qualité du travail ou des études</li>
+      <li>Perte d'emploi / avantages sociaux</li>
+      <li>Mauvaise référence / recommandation</li>
+      <li>Dossier professionnel ou scolaire altéré</li>
+      <li>Évaluation injuste</li>
+      <li>Sabotage du travail</li>
+      <li>Refus d'augmentation ou promotion</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- ════════════════════════════════════════════
+     LA PREUVE
+════════════════════════════════════════════ -->
+<div class="section-header sh-regime" id="preuve">
+  <span class="num">PREUVE</span>
+  <h2>La preuve du harcèlement — Aménagement probatoire</h2>
+</div>
+
+<div class="box b-warn">
+  <div class="tag">⚠ Domaine de l'aménagement probatoire</div>
+  La loi prévoit un allègement de la charge de la preuve <strong>exclusivement en matière civile</strong> (et prud'homale). <strong>Exclusion de principe de la matière pénale</strong> (présomption d'innocence).
+</div>
+
+<div class="sub">L'aménagement probatoire — Art. L. 1154-1 CT</div>
+<div class="preuve-steps">
+  <div class="ps ps-sal">
+    <div class="ps-actor">Étape 1 — Salarié</div>
+    Présenter des <strong>éléments de fait laissant supposer</strong> l'existence d'une discrimination ou d'un harcèlement
+  </div>
+  <div class="ps-arr">→</div>
+  <div class="ps ps-emp">
+    <div class="ps-actor">Étape 2 — Employeur</div>
+    Établir que sa décision est justifiée par des <strong>éléments objectifs étrangers</strong> à toute discrimination ou harcèlement
+  </div>
+  <div class="ps-arr">→</div>
+  <div class="ps ps-jug">
+    <div class="ps-actor">Étape 3 — Juge</div>
+    Forme sa conviction, après avoir ordonné si nécessaire des <strong>mesures d'instruction</strong>
+  </div>
+</div>
+
+<div class="sub">Le recueil des éléments de preuve — 5 types</div>
+<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin:10px 0 16px">
+  <div class="preuve-card">
+    <div class="pvc-title">📅 Récit chronologique</div>
+    <p style="font-size:11.5px">Dates, lieux, témoins, paroles, gestes, attitudes — à compléter au fur et à mesure des événements</p>
+  </div>
+  <div class="preuve-card">
+    <div class="pvc-title">🔄 Démarches engagées</div>
+    <p style="font-size:11.5px">Résultats, suites (promesses, pressions, représailles), témoignages complémentaires</p>
+  </div>
+  <div class="preuve-card">
+    <div class="pvc-title">👥 Témoignages</div>
+    <p style="font-size:11.5px">Recueillis auprès de victimes directes et de témoins directs de la situation</p>
+  </div>
+  <div class="preuve-card">
+    <div class="pvc-title">💾 Traces matérielles</div>
+    <p style="font-size:11.5px">Objets, écrits, mails, SMS, photos, enregistrements — valent comme éléments de preuve</p>
+  </div>
+  <div class="preuve-card">
+    <div class="pvc-title">🏥 Certificats médicaux</div>
+    <p style="font-size:11.5px">Attestant de l'atteinte à l'intégrité physique ou morale de la victime</p>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- ════════════════════════════════════════════
+     OBLIGATIONS EMPLOYEUR
+════════════════════════════════════════════ -->
+<div class="section-header sh-regime" id="obligations">
+  <span class="num">OBLIGS</span>
+  <h2>Les obligations particulières de l'employeur</h2>
+</div>
+
+<div class="oblig-grid">
+  <div class="oblig-card oc-info">
+    <div class="oc-title">📢 Information obligatoire</div>
+    <ul>
+      <li>Informer les salariés, <strong>stagiaires</strong> et <strong>candidats</strong> des dispositions relatives aux harcèlements</li>
+      <li>Par voie d'affichage (lieu de travail + locaux ou porte d'entrée)</li>
+      <li>Intégration dans le RI (rappel des interdictions + interdiction de sanctionner victime/témoin)</li>
+    </ul>
+  </div>
+  <div class="oblig-card oc-ref">
+    <div class="oc-title">🧑‍💼 Désignation de référents</div>
+    <ul>
+      <li><strong>Référent harcèlement en entreprise</strong> (≥ 250 salariés) : chargé d'orienter, informer et accompagner les salariés</li>
+      <li><strong>Référent au sein du CSE</strong> (≥ 11 salariés) : membre de la délégation du personnel</li>
+    </ul>
+  </div>
+  <div class="oblig-card oc-enq">
+    <div class="oc-title">🔍 Obligation d'enquête</div>
+    <ul>
+      <li>Dès qu'un signalement est reçu, l'employeur doit diligenter une <strong>enquête interne</strong></li>
+      <li>L'absence d'enquête peut constituer un manquement à l'obligation de sécurité même si les faits ne sont pas avérés</li>
+      <li>L'enquête doit être menée avec <strong>impartialité</strong> et dans le <strong>respect de la confidentialité</strong></li>
+    </ul>
+  </div>
+  <div class="oblig-card oc-sanc">
+    <div class="oc-title">⚖ Sanction de l'auteur</div>
+    <ul>
+      <li>Prendre des <strong>sanctions disciplinaires</strong> proportionnées (avertissement → licenciement pour faute grave)</li>
+      <li>Le licenciement de l'auteur est possible même en l'absence de condamnation pénale</li>
+      <li>L'inaction de l'employeur face à un harceleur connu engage sa responsabilité</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sub">La protection de la victime et des témoins — Art. L. 1153-2 et -4 CT · Art. 225-1-1 CP</div>
+
+<div class="protect-steps">
+  <div class="protect-step">
+    <div class="prot-tag ptag-rev">Révélation</div>
+    <div>La révélation peut prendre différentes formes : auprès d'un supérieur hiérarchique, des RH, du CSE, ou par l'engagement d'une action en justice. <strong>La bonne foi est la seule condition exigée.</strong></div>
+  </div>
+  <div class="protect-step">
+    <div class="prot-tag ptag-prot">Protection</div>
+    <div>Couvre toute décision défavorable prise en réaction à la révélation : recrutement, rémunération, formation, évaluation, notation, discipline, promotion, affectation, mutation. La protection vaut pour la <strong>victime ET les témoins</strong>.</div>
+  </div>
+  <div class="protect-step">
+    <div class="prot-tag ptag-nul">Nullité</div>
+    <div>Les représailles (sanctions, licenciement, mesures défavorables) sont <strong>frappées de nullité</strong>. L'employeur ne peut pas invoquer d'autre motif pour couvrir une mesure de représailles.</div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- ════════════════════════════════════════════
+     SANCTIONS
+════════════════════════════════════════════ -->
+<div class="section-header sh-hm" id="sanctions">
+  <span class="num">SANCTIONS</span>
+  <h2>Sanctions pénales et réparation civile</h2>
+</div>
+
+<div class="sanction-row">
+  <div class="sanction-card sc-pen">
+    <div class="sc-head">Sanction pénale</div>
+    <div class="sc-body">
+      <p style="font-size:14px;font-weight:700;margin-bottom:6px">2 ans d'emprisonnement + 30 000 € d'amende</p>
+      <p>Peines aggravées en cas d'abus d'autorité ou d'autres circonstances aggravantes.</p>
+    </div>
+  </div>
+  <div class="sanction-card sc-civ">
+    <div class="sc-head">Réparation civile</div>
+    <div class="sc-body">
+      <ul>
+        <li><strong>Nullité de tout acte</strong> consécutif au harcèlement (licenciement, sanction, mutation…)</li>
+        <li><strong>Réparation de l'entier préjudice</strong> (préjudice moral, matériel, de carrière…)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="box b-warn">
+  <div class="tag">⚠ Barème Macron inapplicable</div>
+  En cas de harcèlement ou de discrimination, <strong>le barème Macron (art. L. 1235-3 CT) n'est PAS applicable</strong> (art. L. 1235-3-1 CT) → la réparation du préjudice est intégrale, sans plancher ni plafond.
+</div>
+
+<table class="t" style="margin-top:10px">
+  <thead><tr><th style="width:28%">Cas</th><th>Règle</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="lbl">Licenciement consécutif au harcèlement</td>
+      <td>Droit à <strong>réintégration</strong>. En cas de réintégration : indemnité correspondant au maximum aux salaires dont le salarié a été privé pendant la période d'éviction.</td>
+    </tr>
+    <tr>
+      <td class="lbl">Sans réintégration</td>
+      <td>Indemnité <strong>≥ 6 mois de salaire</strong> (brut). Pas de maximum légal fixé — le juge apprécie au cas par cas.</td>
+    </tr>
+    <tr class="hl">
+      <td class="lbl"><span class="bdg b-rd">NOUVEAU</span><br>Name &amp; Shame</td>
+      <td><strong>Sanction de la réputation :</strong> atteinte à l'image de l'entreprise par la diffusion publique des condamnations. Pratique croissante et redoutée par les employeurs.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ════════════════════════════════════════════
+     SYNTHÈSE
+════════════════════════════════════════════ -->
+<div class="synthese">
+  <div class="st">💡 Ce qu'il faut absolument retenir</div>
+  <p>Le harcèlement recouvre des réalités très diverses : <strong>5 régimes distincts</strong> coexistent (HM, HS1°, HS2°, HD, actes sexistes), chacun avec ses propres conditions — maîtriser le tableau comparatif est indispensable. Le critère le plus discriminant est la <strong>répétition</strong> : requise pour le HM et le HS1°, absente pour les 3 autres.</p>
+  <p>Le <strong>mécanisme en 6 étapes</strong> (insoupçonnable → confiance → déstabilisation → isolement → intimidation → transfert de faute) permet de comprendre pourquoi les victimes tardent souvent à réagir. Les <strong>conséquences sont considérables</strong> : psychologiques, physiques, cognitives et économiques. La <strong>preuve est aménagée au civil</strong> uniquement — le salarié n'a qu'à présenter des éléments de fait laissant supposer. L'employeur doit enquêter dès un signalement, sanctionner l'auteur, et protéger victime et témoins sous peine de nullité des représailles et réparation intégrale du préjudice, <strong>sans plafonnement Macron</strong>.</p>
+</div>
+
+</div><!-- /container -->
+</body>
+</html>
