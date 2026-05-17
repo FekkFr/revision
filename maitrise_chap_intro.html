@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiche — Chapitre Introductif</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --orange:    #D4600A;
+  --orange-lt: #FDF0E6;
+  --navy:      #1B2F55;
+  --navy-lt:   #EEF2FA;
+  --blue:      #2558A8;
+  --blue-lt:   #DDEAF8;
+  --green:     #2A5C38;
+  --green-lt:  #E6F2EB;
+  --gold:      #8A6200;
+  --gold-lt:   #FEF8E6;
+  --red-lt:    #FCEAE8;
+  --red-dk:    #8B1A10;
+  --gray:      #5A5A5A;
+  --gray-lt:   #F4F4F2;
+  --border:    #D8D5CF;
+  --text:      #1C1C1C;
+  --bg:        #FAFAF8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
+  padding: 0 0 60px;
+}
+
+/* ── Header ── */
+.page-header {
+  background: var(--navy);
+  padding: 18px 48px 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+.page-header .course {
+  font-family: 'Source Serif 4', serif;
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+}
+.page-header .sep { color: rgba(255,255,255,.25); font-size: 11px; }
+
+.fiche-title {
+  background: var(--orange);
+  padding: 24px 48px 20px;
+  position: relative;
+  overflow: hidden;
+}
+.fiche-title::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 260px; height: 100%;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent, transparent 6px,
+    rgba(255,255,255,.06) 6px, rgba(255,255,255,.06) 7px
+  );
+}
+.fiche-title .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .18em;
+  color: rgba(255,255,255,.7);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.fiche-title h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.2;
+}
+.fiche-title .subtitle {
+  font-family: 'Source Serif 4', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: rgba(255,255,255,.85);
+  margin-top: 4px;
+}
+
+/* ── Body container ── */
+.container { max-width: 900px; margin: 0 auto; padding: 0 32px; }
+
+/* ── Objectif ── */
+.objectif {
+  background: var(--blue-lt);
+  border-left: 4px solid var(--blue);
+  padding: 14px 20px;
+  margin: 28px 0 6px;
+  border-radius: 0 6px 6px 0;
+}
+.objectif .tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--blue);
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.objectif p { font-size: 13.5px; color: #2A3A5A; }
+
+/* ── Context historique ── */
+.context-bar {
+  background: var(--gray-lt);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 13px 18px;
+  margin: 16px 0;
+  font-size: 13px;
+}
+.context-bar strong { color: var(--navy); }
+
+/* ── Section headers ── */
+.section-header {
+  background: var(--navy);
+  color: #fff;
+  padding: 11px 20px;
+  margin: 36px 0 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-header .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .1em;
+  background: rgba(255,255,255,.15);
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+.section-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* ── Para header ── */
+.para-header {
+  border-bottom: 2px solid var(--blue);
+  padding-bottom: 5px;
+  margin: 24px 0 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.para-header .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--blue);
+  font-weight: 600;
+}
+.para-header h3 {
+  font-family: 'Source Serif 4', serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+/* ── Sub header ── */
+.sub-header {
+  font-family: 'Source Serif 4', serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--orange);
+  margin: 18px 0 8px;
+  padding-left: 2px;
+}
+
+/* ── Table ── */
+.fiche-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0 20px;
+  font-size: 13px;
+}
+.fiche-table thead tr th {
+  background: var(--navy);
+  color: #fff;
+  padding: 9px 12px;
+  text-align: left;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.fiche-table thead tr th:first-child { border-radius: 4px 0 0 0; }
+.fiche-table thead tr th:last-child  { border-radius: 0 4px 0 0; }
+.fiche-table tbody tr td {
+  padding: 10px 12px;
+  vertical-align: top;
+  border: 1px solid var(--border);
+  line-height: 1.6;
+}
+.fiche-table tbody tr:nth-child(even) td { background: #FAFAF7; }
+.fiche-table tbody tr:hover td { background: var(--blue-lt); transition: background .15s; }
+.fiche-table .col-label {
+  background: var(--navy-lt) !important;
+  font-weight: 600;
+  color: var(--navy);
+  white-space: pre-line;
+  font-size: 12px;
+  line-height: 1.5;
+  min-width: 120px;
+}
+.fiche-table .col-label .badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  background: var(--navy);
+  color: #fff;
+  padding: 1px 5px;
+  border-radius: 2px;
+  letter-spacing: .05em;
+  margin-bottom: 3px;
+}
+.fiche-table .highlight-row td { background: var(--gold-lt) !important; }
+.fiche-table .highlight-row .col-label { background: #F0E8CC !important; }
+.fiche-table ul { padding-left: 16px; margin: 4px 0; }
+.fiche-table li { margin-bottom: 3px; }
+
+/* ── Callout boxes ── */
+.box {
+  border-radius: 5px;
+  padding: 11px 16px;
+  margin: 12px 0;
+  font-size: 13px;
+  line-height: 1.65;
+}
+.box .box-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.box-juris {
+  background: var(--green-lt);
+  border-left: 3px solid var(--green);
+}
+.box-juris .box-tag { color: var(--green); }
+.box-example {
+  background: var(--gold-lt);
+  border-left: 3px solid #C49A00;
+}
+.box-example .box-tag { color: var(--gold); }
+.box-info {
+  background: var(--blue-lt);
+  border-left: 3px solid var(--blue);
+}
+.box-info .box-tag { color: var(--blue); }
+.box-warning {
+  background: var(--red-lt);
+  border-left: 3px solid var(--red-dk);
+}
+.box-warning .box-tag { color: var(--red-dk); }
+
+/* ── Normal para ── */
+.para { margin: 8px 0; font-size: 13.5px; }
+.para.indent { padding-left: 18px; }
+.para strong { color: var(--navy); }
+
+/* ── Mecanism list ── */
+.mech-list { list-style: none; padding: 0; margin: 8px 0 14px; }
+.mech-list li {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 7px 12px; margin-bottom: 4px;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 4px; font-size: 13px;
+}
+.mech-list li .mech-num {
+  flex-shrink: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 600;
+  background: var(--navy); color: #fff;
+  padding: 2px 6px; border-radius: 3px;
+  margin-top: 2px;
+}
+
+/* ── Synthèse ── */
+.synthese {
+  background: linear-gradient(135deg, #FEF8E6 0%, #FFF3D0 100%);
+  border: 1.5px solid #D4B800;
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 32px 0 0;
+}
+.synthese .synthese-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.synthese p { font-size: 13.5px; color: #3A3000; line-height: 1.75; }
+
+/* ── Divider ── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 6px 0 16px;
+}
+
+/* ── Print ── */
+@media print {
+  body { font-size: 12px; }
+  .fiche-table tbody tr:hover td { background: transparent; }
+  .section-header { break-before: avoid; }
+}
+
+/* ── Fade in animation ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.container > * { animation: fadeUp .4s ease both; }
+.container > *:nth-child(1) { animation-delay: .05s }
+.container > *:nth-child(2) { animation-delay: .10s }
+.container > *:nth-child(3) { animation-delay: .15s }
+.container > *:nth-child(4) { animation-delay: .20s }
+.container > *:nth-child(5) { animation-delay: .25s }
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══════════════════════════════════════════════════════ -->
+<div class="page-header">
+  <span class="course">Master 1 Droit de la santé / Droit social — AMU 2025-2026 — S. SERENO</span>
+  <span class="sep">|</span>
+  <span class="course">CM du 24/01/25 et 31/01/25</span>
+</div>
+
+<div class="fiche-title">
+  <div class="label">Fiche de révision</div>
+  <h1>Chapitre Introductif</h1>
+  <div class="subtitle">La diversité des sources des normes de protection</div>
+</div>
+
+<!-- ══ BODY ════════════════════════════════════════════════════════ -->
+<div class="container">
+
+  <!-- Objectif -->
+  <div class="objectif" style="margin-top:28px">
+    <div class="tag">🎯 Objectif du chapitre</div>
+    <p>Identifier les principales sources du droit de la santé et de la sécurité au travail (SST). Mettre en lumière leur richesse, leur diversité et les difficultés d'appropriation par les acteurs de l'entreprise. <strong>Logique de prévalence du Code</strong> : les règles du CT s'appliquent à tous les établissements, indépendamment de la taille ou du secteur. Aucune dérogation vers le bas n'est permise en matière SST.</p>
+  </div>
+
+  <!-- Contexte histo -->
+  <div class="context-bar">
+    <strong>Contexte historique :</strong> Premiers textes en <strong>1841</strong> (limitation du travail des enfants). Slogan années 70 : <em>« ne pas perdre sa vie à la gagner »</em>. Le droit SST s'enrichit en permanence : certains risques diminuent, d'autres apparaissent (RPS, IA…). <strong>L'employeur doit se tenir informé de l'évolution des connaissances scientifiques et technologiques</strong> pour adapter ses mesures de prévention.
+  </div>
+
+  <div class="box box-example">
+    <div class="box-tag">Exemple — COVID-19</div>
+    Nouveau risque impossible à anticiper. L'employeur a dû s'adapter en temps réel selon les connaissances scientifiques disponibles (EPI, protocoles, télétravail). Pour apprécier le manquement à l'obligation de sécurité, le juge prenait en compte <strong>les moyens disponibles</strong> et <strong>l'état des connaissances</strong> à l'époque.
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 1                                                      -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section-header">
+    <span class="num">SECTION 1</span>
+    <h2>Les normes supranationales</h2>
+  </div>
+
+  <!-- §1 OIT -->
+  <div class="para-header">
+    <span class="num">§1</span>
+    <h3>Les sources internationales — L'OIT</h3>
+  </div>
+
+  <p class="para">L'<strong>Organisation internationale du travail (OIT)</strong> est une émanation de l'ONU créée en <strong>1919</strong>. Structure tripartite : États + employeurs + salariés. La protection de la santé et sécurité des travailleurs est dans son ADN. Plus de <strong>2 millions de décès professionnels par an</strong> dans le monde.</p>
+
+  <div class="sub-header">A) Les normes contraignantes</div>
+
+  <table class="fiche-table">
+    <thead><tr>
+      <th style="width:22%">Source</th>
+      <th>Contenu & portée</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="col-label"><span class="badge">FONDATEUR</span><br>Constitution OIT, 1919<br>+ Déclaration 2022</td>
+        <td>Principe fondateur : <em>« les travailleurs doivent être protégés contre les maladies générales ou professionnelles et les accidents résultant du travail »</em>.<br>
+        Déclaration 2022 (amendée) : consacre <strong>un milieu de travail sûr et salubre</strong> comme droit fondamental au travail.</td>
+      </tr>
+      <tr>
+        <td class="col-label"><span class="badge">3 CLÉS</span><br>Convention n°155<br>(1981)</td>
+        <td>Politique nationale de SST cohérente. Obligations des employeurs et travailleurs. <strong>Exige une révision périodique</strong> des règles et procédures de sécurité.</td>
+      </tr>
+      <tr>
+        <td class="col-label">Convention n°161<br>(1985)</td>
+        <td>Conditions pour la <strong>mise en place des services de santé au travail</strong>.</td>
+      </tr>
+      <tr>
+        <td class="col-label">Convention n°187<br>(2006)</td>
+        <td>Cadre promotionnel SST. <strong>Encourage une culture de prévention</strong> (logique proactive, pas sanction).</td>
+      </tr>
+      <tr>
+        <td class="col-label">Conventions<br>thématiques</td>
+        <td>
+          <ul>
+            <li>Risques spécifiques : radiations (n°115), amiante (n°162), produits chimiques (n°170)</li>
+            <li>Secteurs : commerce, bureaux, construction, agriculture, transports…</li>
+            <li>Situations de travail particulières</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="sub-header">B) La soft law de l'OIT</div>
+  <p class="para"><strong>Recommandations</strong> : pas de force contraignante, mais les juges s'en appuient. Chaque convention a une recommandation équivalente qui la complète.</p>
+  <p class="para"><strong>Instruments promotionnels</strong> : orientations, modèles et indicateurs mis à disposition des États et des entreprises.</p>
+
+  <div class="box box-info">
+    <div class="box-tag">À noter</div>
+    Peu de traités et de dispositions hors OIT ont une logique contraignante en matière SST. La <strong>Déclaration de Séoul</strong> (29 juin 2008) est une source de référence internationale non contraignante.
+  </div>
+
+  <hr class="divider">
+
+  <!-- §2 Europe -->
+  <div class="para-header">
+    <span class="num">§2</span>
+    <h3>Les sources européennes</h3>
+  </div>
+
+  <p class="para">Deux systèmes : <strong>Conseil de l'Europe</strong> et <strong>UE</strong>. C'est le droit de l'UE qui occupe une place centrale dans la construction du droit français de la santé au travail.</p>
+  <p class="para">Double logique de l'UE : <strong>poser des garanties minimales</strong> (socle commun) + <strong>rapprocher les législations nationales</strong>.</p>
+
+  <table class="fiche-table">
+    <thead><tr>
+      <th style="width:22%">Source</th>
+      <th>Contenu & portée</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="col-label"><span class="badge">CONSTITUTIONNEL</span><br>Charte des droits<br>fondamentaux UE<br>Art. 31</td>
+        <td><em>« Tout travailleur a droit à des conditions de travail qui respectent sa santé, sa sécurité et sa dignité. »</em><br>
+        Valeur juridique depuis le Traité de Lisbonne (2009).<br>
+        <strong>Remarque du prof :</strong> le droit français cloisonne et ne fait pas encore le lien entre dignité, santé et sécurité. L'UE va plus loin en les associant.</td>
+      </tr>
+      <tr class="highlight-row">
+        <td class="col-label"><span class="badge">⭐ FONDAMENTAL</span><br>Directive-cadre<br>89/391/CEE<br>12 juin 1989</td>
+        <td>
+          Objectif : <strong>instaurer une culture juridique de la prévention au travail</strong>. S'appuie sur deux éléments :
+          <ul>
+            <li><strong>Des principes généraux de prévention</strong></li>
+            <li><strong>Une méthode de prévention</strong> (évaluation → mesures)</li>
+          </ul>
+          Si l'employeur ne respecte pas ces principes ou cette méthode = <strong>manquement caractérisé</strong>.<br>
+          Complétée par de nombreuses <strong>directives particulières</strong> (amiante, bruit, agents chimiques, travail de nuit, travail sur écran…).
+        </td>
+      </tr>
+      <tr>
+        <td class="col-label">Agence européenne<br>pour la SST</td>
+        <td>Produit de l'information et des études en matière de SST. Travaille actuellement sur <strong>les enjeux de l'IA au travail</strong> en parallèle de l'AI Act.</td>
+      </tr>
+      <tr>
+        <td class="col-label">Charte sociale<br>européenne<br>(Conseil de l'Europe)<br>Art. 3</td>
+        <td><em>« Droit à la sécurité et à l'hygiène dans le travail. »</em> Portée plus limitée car instrument du Conseil de l'Europe (non UE).</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 2                                                      -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section-header">
+    <span class="num">SECTION 2</span>
+    <h2>Les normes nationales</h2>
+  </div>
+
+  <!-- §1 Sources classiques -->
+  <div class="para-header">
+    <span class="num">§1</span>
+    <h3>Les sources classiques</h3>
+  </div>
+
+  <table class="fiche-table">
+    <thead><tr>
+      <th style="width:22%">Rang</th>
+      <th>Source & contenu</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="col-label"><span class="badge">CONSTITUTIONNEL</span><br>Préambule 1946<br>Al. 11</td>
+        <td><em>« La Nation garantit à tous la protection de la santé, la sécurité matérielle, le repos et les loisirs. »</em><br>
+        Le Conseil constitutionnel en déduit une <strong>exigence constitutionnelle relative au droit à la santé</strong> dans la sphère personnelle ET professionnelle.</td>
+      </tr>
+      <tr>
+        <td class="col-label"><span class="badge">LÉGISLATIF</span><br>Code du travail<br>Partie 4<br>Art. L. 4111-1 s.</td>
+        <td>8 Livres dédiés à la SST :
+          <ul>
+            <li>L. I : Dispositions générales</li>
+            <li>L. II : Lieux de travail</li>
+            <li>L. III : Équipements de travail et moyens de protection</li>
+            <li>L. IV : Prévention de certains risques d'exposition</li>
+            <li>L. V : Activités et opérations à risque</li>
+            <li>L. VI : Institutions et organismes de prévention</li>
+            <li>L. VII : Contrôle</li>
+            <li>L. VIII : Outre-mer</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td class="col-label"><span class="badge">RÉGLEMENTAIRE</span><br>Décrets & arrêtés</td>
+        <td>Règles techniques très précises (seuils, normes spécifiques). Nature réglementaire. Très nombreuses et variables selon les risques.</td>
+      </tr>
+      <tr>
+        <td class="col-label"><span class="badge">PRÉTORIENNE</span><br>Jurisprudence</td>
+        <td>Rôle <strong>central</strong> dans la construction et l'évolution du droit SST, notamment lors de l'émergence de nouveaux risques.<br>
+        Ex : harcèlement moral (2000s), RPS, COVID-19.<br>
+        <strong>La Cour de cassation a progressivement construit et fait évoluer l'obligation de sécurité de l'employeur.</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="divider">
+
+  <!-- §2 Sources professionnelles -->
+  <div class="para-header">
+    <span class="num">§2</span>
+    <h3>Les sources professionnelles</h3>
+  </div>
+
+  <div class="sub-header">A) Les normes négociées</div>
+  <p class="para">Les partenaires sociaux sont à l'origine de nombreuses évolutions en matière SST, sur des aspects que la loi n'encadre pas encore (ex : stress non prévu dans le CT).</p>
+
+  <table class="fiche-table">
+    <thead><tr>
+      <th style="width:22%">Accord</th>
+      <th>Objet & portée</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="col-label">ANI 2 juil. 2008</td>
+        <td><strong>Stress au travail</strong> — non prévu dans le CT. Premier cadrage des obligations de l'employeur face au stress.</td>
+      </tr>
+      <tr>
+        <td class="col-label">ANI 26 mars 2010</td>
+        <td><strong>Harcèlement et violence au travail</strong>.</td>
+      </tr>
+      <tr>
+        <td class="col-label">ANI 19 juin 2013</td>
+        <td><strong>Qualité de vie au travail (QVT)</strong>.</td>
+      </tr>
+      <tr class="highlight-row">
+        <td class="col-label"><span class="badge">IMPACT LÉGISLATIF</span><br>ANI 9-10 déc. 2020</td>
+        <td><strong>Santé au travail</strong> — a conduit à une modification du Code du travail en <strong>2022</strong>. Exemple type de l'impulsion des partenaires sociaux sur le législateur.</td>
+      </tr>
+      <tr>
+        <td class="col-label">ANI 15 mai 2023</td>
+        <td><strong>Accidents du travail et maladies professionnelles (AT/MP)</strong>.</td>
+      </tr>
+      <tr>
+        <td class="col-label">Accords européens<br>(partenaires sociaux<br>européens)</td>
+        <td>
+          <ul>
+            <li>Accord sur le stress au travail — 8 oct. 2004</li>
+            <li>Accord sur le harcèlement et la violence — 26 avr. 2007</li>
+          </ul>
+          Accords volontaires transposés en France par ANI.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="para">Les <strong>conventions collectives et accords de branche</strong> comportent souvent des règles de protection générales et spécifiques selon les secteurs et les métiers. Possibilité par voie conventionnelle de <strong>limiter la capacité de licencier</strong> en cas de problème de santé (ex : garanties d'emploi dans le secteur du transport).</p>
+
+  <div class="box box-info">
+    <div class="box-tag">Télétravail</div>
+    Le CT ne prévoit rien sur l'évaluation des risques spécifiques au télétravail. Les modalités sont fixées par <strong>accord d'entreprise</strong>, à défaut par une <strong>charte de l'employeur</strong>, ou par <strong>accord entre les parties</strong>.
+  </div>
+
+  <hr class="divider">
+
+  <div class="sub-header">B) Le règlement intérieur (RI)</div>
+  <p class="para"><strong>Obligatoire dès 50 salariés.</strong> Contenu obligatoire fixé de façon limitative et impérative par l'art. L. 1321-1 CT.</p>
+
+  <table class="fiche-table">
+    <thead><tr>
+      <th style="width:22%">Contenu obligatoire</th>
+      <th>Détail</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="col-label">Règles de discipline,<br>santé & sécurité<br>+ leurs sanctions</td>
+        <td>
+          Mesures d'application de la réglementation SST. Doit prévoir notamment :
+          <ul>
+            <li>Les EPI et équipements de protection</li>
+            <li>Le temps de travail</li>
+            <li>Les modalités d'introduction d'alcool</li>
+            <li>L'interdiction de fumer</li>
+            <li>Les contrôles d'alcoolémie / de stupéfiants</li>
+          </ul>
+          <strong>Important :</strong> pas besoin de recopier le CT. L'employeur choisit les dispositions pertinentes selon les risques propres à son entreprise et peut les <strong>préciser et adapter</strong>. Il ne doit jamais prévoir de règles discriminatoires.
+        </td>
+      </tr>
+      <tr>
+        <td class="col-label">Dispositions relatives<br>au harcèlement<br>moral, sexuel &<br>agissements sexistes</td>
+        <td>Il faut <strong>recopier les textes</strong> : rappeler l'interdiction de ces pratiques, l'interdiction de sanctionner un salarié qui en témoigne, et l'interdiction de sanctionner une victime. Souvent intégré sous forme d'annexe.</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 3                                                      -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section-header">
+    <span class="num">SECTION 3</span>
+    <h2>Les sources de normalisation</h2>
+  </div>
+
+  <p class="para">Lignes directrices liées à l'emploi de certains matériaux, produits, processus ou services. <strong>À distinguer des normes juridiques</strong> : elles précisent les obligations légales avec des règles de l'art.</p>
+
+  <div class="box box-warning">
+    <div class="box-tag">⚠ Attention — Piège fréquent</div>
+    Le respect d'une norme technique <strong>n'exonère pas l'employeur de sa responsabilité</strong>. De plus, si un employeur se prévaut d'une normalisation (ex : certification ISO) sans la respecter en pratique, cela peut constituer une <strong>circonstance aggravante</strong> devant le juge.
+  </div>
+
+  <table class="fiche-table" style="margin-top:14px">
+    <thead><tr>
+      <th style="width:12%">Niveau</th>
+      <th style="width:22%">Organisme</th>
+      <th>Caractéristiques</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="col-label">Inter&shy;national</td>
+        <td style="font-weight:600; color: var(--navy)">ISO<br><span style="font-weight:400;font-size:12px">(Organisation inter&shy;nationale de normalisation, 1947)</span></td>
+        <td>
+          ONG regroupant les organismes nationaux (dont l'AFNOR). Composée de groupes techniques travaillant sur des sujets déterminés.<br>
+          Normes ISO : <strong>application volontaire</strong>.<br>
+          En SST : <strong>normes ISO 45000 et suivantes</strong>.<br>
+          <strong>Intérêt pour l'entreprise :</strong> améliorer sa gestion, se différencier, dépasser les normes légales (certification). Mais attention au piège ci-dessus.
+        </td>
+      </tr>
+      <tr>
+        <td class="col-label">Européen</td>
+        <td style="font-weight:600; color: var(--navy)">CEN<br><span style="font-weight:400;font-size:12px">(Comité européen de normalisation)</span></td>
+        <td>
+          Composé des organismes nationaux des États membres de l'UE (dont l'AFNOR).<br>
+          Normes CEN de nature technique : <strong>obligatoires après ratification</strong>, intégrées en droit national (normes NF EN).<br>
+          <strong>Mais valeur juridique variable pour les employeurs.</strong> Elles peuvent devenir contraignantes par 4 mécanismes :
+          <ul style="margin-top:8px">
+            <li><strong>Voie législative / réglementaire :</strong> le ministre du travail les rend obligatoires par arrêté (fréquent en incendie et EPI)</li>
+            <li><strong>Système de renvois successifs :</strong> textes réglementaires qui renvoient à ces normes (renvois en cascade)</li>
+            <li><strong>Logique contractuelle :</strong> accord collectif de branche ou engagement unilatéral de l'employeur</li>
+            <li><strong>Usage d'entreprise :</strong> l'employeur se soumet volontairement à la norme</li>
+          </ul>
+          Ces normes servent aussi de <strong>référentiels pour les juges</strong> pour apprécier le comportement d'un chef d'entreprise dans son secteur.
+        </td>
+      </tr>
+      <tr>
+        <td class="col-label">National</td>
+        <td style="font-weight:600; color: var(--navy)">AFNOR<br><span style="font-weight:400;font-size:12px">(Association française de normalisation)</span></td>
+        <td>
+          Association d'utilité publique.<br>
+          Anime et coordonne le système français de normalisation.<br>
+          Représente la France au sein de l'ISO et du CEN.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- SYNTHÈSE                                                       -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="synthese">
+    <div class="synthese-title">💡 Idée directrice — À retenir absolument</div>
+    <p>Le droit SST est un droit <strong>pluriel, multicouche et en constante évolution</strong>. Sa complexité tient à l'empilement de normes supranationales (OIT, UE), nationales (Constitution, Code du travail, jurisprudence) et professionnelles (ANI, conventions collectives, RI), auxquelles s'ajoutent des normes techniques de normalisation (ISO, CEN, AFNOR).</p>
+    <p style="margin-top:10px">La <strong>logique de prévalence du code</strong> est absolue : aucune dérogation vers le bas n'est possible en matière de santé et de sécurité. La jurisprudence joue un rôle moteur, notamment pour saisir les risques émergents. L'employeur <strong>ne peut pas attendre qu'un texte lui impose les évolutions</strong> : il doit se tenir informé et adapter ses mesures de prévention.</p>
+  </div>
+
+</div><!-- /container -->
+</body>
+</html>
