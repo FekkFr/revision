@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<title>Tableau Examen — Droit des victimes</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', sans-serif; background: #f8f8fc; margin: 0; padding: 16px; color: #1a1a2e; font-size: 11.5px; }
+  h1 { text-align: center; color: #4c3bcf; font-size: 18px; margin: 0 0 4px; }
+  .subtitle { text-align: center; font-size: 11px; color: #666; margin-bottom: 18px; }
+  
+  /* Sections du plan */
+  .partie { background: linear-gradient(90deg, #4c3bcf, #7b68ee); color: white; padding: 9px 16px; border-radius: 8px; font-size: 13px; font-weight: 800; margin: 22px 0 6px; letter-spacing: 0.3px; }
+  .chapitre { background: #e8e4fb; color: #4c3bcf; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 700; margin: 12px 0 4px; }
+  .section { background: #f0eeff; color: #5b4fcf; padding: 5px 12px; border-radius: 5px; font-size: 11px; font-weight: 700; margin: 8px 0 4px; border-left: 4px solid #7b68ee; }
+
+  table { width: 100%; border-collapse: collapse; margin-bottom: 6px; }
+  th { background: #f4f2ff; color: #4c3bcf; padding: 7px 8px; text-align: left; font-size: 10.5px; font-weight: 700; border-bottom: 2px solid #c8bfee; }
+  td { padding: 7px 9px; border-bottom: 1px solid #ebebf5; vertical-align: top; line-height: 1.55; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f9f8ff; }
+
+  /* Badges */
+  .art  { display:inline-block; background:#dbeafe; color:#1d4ed8; border-radius:4px; padding:1px 6px; font-weight:700; font-size:10px; margin:1px 2px 1px 0; white-space:nowrap; }
+  .jp   { display:inline-block; background:#fee2e2; color:#b91c1c; border-radius:4px; padding:1px 6px; font-weight:700; font-size:10px; margin:1px 2px 1px 0; white-space:nowrap; }
+  .loi  { display:inline-block; background:#dcfce7; color:#166534; border-radius:4px; padding:1px 6px; font-weight:700; font-size:10px; margin:1px 2px 1px 0; white-space:nowrap; }
+  .cedh { display:inline-block; background:#fef3c7; color:#92400e; border-radius:4px; padding:1px 6px; font-weight:700; font-size:10px; margin:1px 2px 1px 0; white-space:nowrap; }
+
+  /* Blocs apport / exemple */
+  .apport { background:#fff7ed; border-left:3px solid #f97316; padding:4px 8px; border-radius:4px; margin-top:4px; font-size:10.5px; }
+  .ex     { background:#f0fdf4; border-left:3px solid #22c55e; padding:4px 8px; border-radius:4px; margin-top:4px; font-size:10.5px; }
+
+  .ok  { color:#16a34a; font-weight:700; }
+  .nok { color:#dc2626; font-weight:700; }
+
+  .warn { background:#fef9c3; border-left:4px solid #eab308; padding:9px 14px; border-radius:6px; font-size:11px; margin:16px 0 8px; line-height:1.6; }
+</style>
+</head>
+<body>
+
+<h1>📋 Tableau Révision Examen — Droit des victimes</h1>
+<p class="subtitle">Organisé selon le plan du cours · Article → JP exacte (jour/mois/année) → Ce qu'elle change → Exemple</p>
+
+<!-- ============================================================ -->
+<div class="partie">INTRODUCTION — Définitions &amp; Evolution historique</div>
+
+<table>
+  <tr><th width="20%">Thème</th><th width="25%">Texte / Source</th><th width="22%">JP / Date exacte</th><th>Apport + Exemple concret</th></tr>
+
+  <tr>
+    <td><strong>Définition juridique internationale</strong></td>
+    <td><span class="loi">Décl. ONU 29 nov. 1985</span><br/>Principes fondamentaux de justice</td>
+    <td>—</td>
+    <td>
+      <div class="apport">⚡ Victime = personne ayant subi un préjudice (physique, mental, moral, matériel). L'auteur peut être non poursuivi, non reconnu, non coupable. Inclut la famille proche et les tiers intervenus pour aider.</div>
+      <div class="ex">🟢 Ex : famille d'une victime directe décédée → considérée victime même si l'auteur n'est pas encore identifié</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Définition interne — garantie procédurale</strong></td>
+    <td><span class="art">Art. L2 CPP</span><br/><span class="art">Art. 2 CPP</span></td>
+    <td>—</td>
+    <td>
+      <div class="apport">⚡ La procédure pénale garantit les droits des victimes à tous les stades, y compris l'exécution des peines. L'art. 2 fonde l'action civile en réparation du dommage directement causé par l'infraction.</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Présomption de victimité</strong></td>
+    <td><span class="art">Futur art. L1400-1 CPP</span></td>
+    <td>—</td>
+    <td>
+      <div class="apport">⚡ Nouveauté majeure : est victime toute personne qui déclare OU paraît avoir été lésée, sans attendre une décision judiciaire définitive. Crée une présomption de victimité.</div>
+      <div class="ex">🟢 Ex : une personne déposant plainte pour agression est présumée victime dès ce stade, même sans condamnation de l'auteur</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Victimisation secondaire</strong></td>
+    <td><span class="loi">Rec. CE 2006, art. 1.3</span></td>
+    <td><span class="cedh">CEDH 24 avr. 2025 L. et autres c/ France</span><br/><span class="cedh">CEDH 4 sept. 2025 E.A. c/ France</span><br/>Affaire Depardieu 13 mai 2025</td>
+    <td>
+      <div class="apport">⚡ Apport : consacre juridiquement la notion — la victime déjà lésée l'est une 2ème fois par la réponse des institutions (auditions répétées, mise en doute de la parole, propos sexistes, examens médico-légaux difficiles)</div>
+      <div class="ex">🟢 Ex 1 : mineurs victimes d'infractions sexuelles soumis à des auditions traumatisantes. Ex 2 : contrat sadomasochiste — la victime remise en question lors de l'audience</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Droit de l'UE — normes minimales</strong></td>
+    <td><span class="loi">Directive 25 oct. 2012</span><br/>Transposée par <span class="loi">Loi 17 août 2015</span> → Art. 10-2 CPP</td>
+    <td>—</td>
+    <td>
+      <div class="apport">⚡ Établit des normes minimales sur les droits, le soutien et la protection des victimes dans toute l'UE. Crée une sous-section dédiée au droit des victimes dans le CPP.</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Art. 6§1 CEDH applicable à la PC</strong></td>
+    <td><span class="art">Art. 6§1 CEDH</span></td>
+    <td><span class="cedh">CEDH Perez c/ France 12 fév. 2004</span></td>
+    <td>
+      <div class="apport">⚡ Apport : reconnaît l'application de l'art. 6§1 (procès équitable) à la partie civile au titre du volet CIVIL — mais PAS au titre du volet pénal (art. 6§3)</div>
+      <div class="ex">🟢 Ex : une victime de violences peut invoquer le délai raisonnable de l'art. 6§1 pour sa demande de DI, mais pas les droits de l'accusé de l'art. 6§3</div>
+    </td>
+  </tr>
+</table>
+
+
+<!-- ============================================================ -->
+<div class="partie">PARTIE 1 — Les droits liés à l'état de victime</div>
+
+<div class="chapitre">Chapitre 1 — Les droits de la victime plaignante</div>
+
+<div class="section">A. Le droit à l'information</div>
+<table>
+  <tr><th width="20%">Thème</th><th width="25%">Texte / Source</th><th width="22%">JP / Date exacte</th><th>Apport + Exemple concret</th></tr>
+
+  <tr>
+    <td><strong>Information sur les droits par les OPJ/APJ</strong></td>
+    <td><span class="art">Art. 10-2 CPP</span><br/><span class="art">Art. 80-3 CPP</span> (instruction)<br/><span class="art">Art. 15-3 CPP</span> (obligation recevoir plainte)</td>
+    <td>—</td>
+    <td>
+      <div class="apport">⚡ Les OPJ/APJ sont tenus de recevoir les plaintes ET d'informer la victime sur : droit à réparation, CPC, avocat, aide juridictionnelle, associations d'aide, CIVI, interprète, accompagnant.</div>
+      <div class="ex">🟢 Ex : victime d'agression qui se présente à la police → les agents DOIVENT lui remettre la liste de ses droits et lui délivrer un récépissé mentionnant les délais de prescription</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Information sur l'état de la procédure</strong></td>
+    <td><span class="art">Art. 40-2 CPP</span> (parquet)<br/>Bureau d'aide aux victimes (BAVI)</td>
+    <td>—</td>
+    <td>
+      <div class="apport">⚡ Le procureur informe la victime des suites données à sa plainte. En cas de classement sans suite, il doit préciser les raisons juridiques ou d'opportunité. Le BAVI renseigne sur le déroulement de la procédure.</div>
+      <div class="ex">🟢 Ex : procureur classe sans suite une plainte pour vol → il doit expliquer à la victime pourquoi (insuffisance de preuves, auteur inconnu…)</div>
+    </td>
+  </tr>
+</table>
+
+<div class="section">B. Le droit à l'aide et à l'accompagnement</div>
+<table>
+  <tr><th width="20%">Thème</th><th width="25%">Texte / Source</th><th width="22%">JP / Date exacte</th><th>Apport + Exemple concret</th></tr>
+
+  <tr>
+    <td><strong>Droit à l'accompagnement (stricto sensu)</strong></td>
+    <td><span class="art">Art. 10-4 CPP</span><br/>Circulaire 13 oct. 2025</td>
+    <td>—</td>
+    <td>
+      <div class="apport">⚡ À tous les stades de l'enquête, la victime peut être accompagnée par son représentant légal ou toute personne majeure de son choix (y compris avocat), sauf décision contraire motivée. La circulaire de 2025 demande que ce droit soit systématiquement garanti.</div>
+      <div class="ex">🟢 Ex : Association "Handi'chiens" — assistance judiciaire par un chien lors du procès Joël Le Scouarnec pour soutenir émotionnellement les victimes</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Droit à l'interprète</strong></td>
+    <td><span class="art">Art. 10-3 CPP</span> (PC)<br/><span class="art">Art. D594-11 et D594-12 CPP</span> (non-PC)</td>
+    <td>—</td>
+    <td>
+      <div class="apport">⚡ La PC a droit à la traduction des pièces indispensables : classements sans suite, ordonnances de non-lieu, décisions de condamnation/relaxe/acquittement. Pour les victimes non-PC : seulement le récépissé de plainte, à leur demande.</div>
+    </td>
+  </tr>
+</table>
+
+<div class="section">C. Le droit à l'évaluation et à la protection</div>
+<table>
+  <tr><th width="20%">Thème</th><th width="25%">Texte / Source</th><th width="22%">JP / Date exacte</th><th>Apport + Exemple concret</th></tr>
+
+  <tr>
+    <td><strong>Évaluation personnalisée</strong></td>
+    <td><span class="art">Art. 10-5 CPP</span><br/><span class="art">Art. D1-3 et s. CPP</span></td>
+    <td>—</td>
+    <td>
+      <div class="apport">⚡ Dès que possible, évaluation par l'OPJ sur : circonstances de l'infraction (motif discriminatoire ?), vulnérabilité de la victime, risque d'intimidation/représailles, situation d'emprise. Si violences sexuelles ou de genre : enquêteur formé spécialement.</div>
+      <div class="ex">🟢 Ex : victime de violences conjugales → évaluation approfondie avec critères spécifiques (arme utilisée, menaces de mort, harcèlement, intensité des violences)</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Protection — mesures générales</strong></td>
+    <td><span class="art">Art. 308 CPP</span> (enregistrement cour d'assises)<br/><span class="art">Art. 9 et 16 C.civ</span> (vie privée/dignité dans médias)</td>
+    <td><span class="jp">Cass. 1ère civ. 20 déc. 2000</span> (Préfet Erignac)<br/><span class="jp">Ch.civ. 20 fév. 2001</span> (attentats de Paris)</td>
+    <td>
+      <div class="apport">⚡ Cass. 20 déc. 2000 : publication d'une photo du corps du préfet assassiné = atteinte à la dignité justifiant une limitation de la liberté d'expression. Cass. 20 fév. 2001 : photo d'attentat licite si elle ne permet pas l'identification et est dépourvue de sensationnel.</div>
+      <div class="ex">🟢 Ex 1 : Paris Match publie la photo du corps du préfet Erignac → condamné au titre de l'art. 9 CC. Ex 2 : photo de victime d'attentat non identifiable et non indécente → publication licite</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Protection des mineurs victimes</strong></td>
+    <td><span class="art">Art. 706-47 CPP</span> (liste infractions)<br/><span class="art">Art. 706-50 CPP</span> (adm. ad hoc)<br/><span class="art">Art. 706-51-1 CPP</span> (avocat obligatoire)<br/><span class="art">Art. 706-53 CPP</span> (présence psy)<br/><span class="art">Art. 706-46 CPP</span> (expertise)</td>
+    <td><span class="jp">Cass. 12 déc. 2000</span> (adm. ad hoc évince RL)<br/><span class="jp">Cass. crim. 11 oct. 2022</span> (inceste non automatique)<br/><span class="jp">Ch.crim. 12 sept. 2007</span> (contradictoire enregistrement)<br/><span class="jp">Ch.crim. 24 mai 2016</span> (nullité absence enregistrement)</td>
+    <td>
+      <div class="apport">⚡ Cass. 11 oct. 2022 : la désignation d'un adm. ad hoc n'est plus automatique en matière d'inceste — le magistrat doit motiver l'insuffisance des représentants légaux.<br/>Ch.crim. 12 sept. 2007 : enregistrement joint au dossier + consultable par les avocats = contradictoire respecté même si non visionné à l'audience.<br/>Ch.crim. 24 mai 2016 : l'absence d'enregistrement peut être soulevée par le prévenu s'il démontre un grief.</div>
+      <div class="ex">🟢 Ex 1 : faits incestueux — parents encore capables de protéger l'enfant → adm. ad hoc refusé si pas de motivation suffisante. Ex 2 : enfant se retourne vers sa mère lors de l'audition → enregistrement valable si joint au dossier</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Protection violences conjugales — TGD</strong></td>
+    <td><span class="art">Art. 41-3-1 CPP</span> (téléphone grave danger)<br/><span class="art">Art. 138-3 CPP</span> (DEMA)</td>
+    <td>—</td>
+    <td>
+      <div class="apport">⚡ TGD : attribué par le procureur pour 6 mois renouvelables, géolocalise la victime lors de l'alerte. Conditions : absence de cohabitation + soit interdiction judiciaire déjà prononcée, soit danger avéré et imminent. DEMA : porté par la victime ET l'auteur — consentement des deux requis.</div>
+      <div class="ex">🟢 Ex : femme victime de violences conjugales dont l'auteur est en fuite → procureur peut attribuer le TGD sans attendre une condamnation</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Ordonnance de protection + OPI</strong></td>
+    <td><span class="art">Art. 515-9 et s. C.civ</span><br/><span class="loi">Loi 13 juin 2024</span> (durée 12 mois + OPI)</td>
+    <td><span class="cedh">CEDH OPUZ c/ Turquie 9 juin 2009</span><br/><span class="cedh">CEDH Butaraga c/ Roumanie 11 fév. 2020</span></td>
+    <td>
+      <div class="apport">⚡ CEDH OPUZ 2009 : oblige les États à protéger les personnes contre les violences domestiques — la passivité judiciaire peut être qualifiée de discrimination fondée sur le sexe. CEDH Butaraga 2020 : étend les VD aux violences psychologiques, cyberviolences, cybersurveillance. Loi 2024 : durée de l'OP portée de 6 à 12 mois, création de l'OPI (juge statue immédiatement).</div>
+      <div class="ex">🟢 Ex OPUZ : mari violent tue la belle-mère après plusieurs alertes ignorées → Turquie condamnée pour manquement à l'obligation de protection</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Retrait autorité parentale</strong></td>
+    <td><span class="art">Art. 378 C.civ</span> (remanié par <span class="loi">Loi Santiago 18 mars 2024</span>)<br/><span class="art">Art. 378-2 C.civ</span> (suspension provisoire de plein droit)</td>
+    <td><span class="jp">Ch.crim. Cass. 14 jan. 2026</span> (violences éducatives)</td>
+    <td>
+      <div class="apport">⚡ Loi Santiago 2024 : si crime sur l'autre parent ou l'enfant → retrait automatique sauf décision motivée contraire. Cass. 14 jan. 2026 : les violences parentales ne peuvent pas être justifiées par le droit de correction — affirmation que ce droit n'existe plus.</div>
+      <div class="ex">🟢 Ex : parent condamné pour crime contre l'autre parent → juge pénal doit prononcer le retrait de l'AP ou motiver expressément pourquoi il ne le fait pas</div>
+    </td>
+  </tr>
+</table>
+
+
+<!-- ============================================================ -->
+<div class="chapitre">Chapitre 2 — Les droits de la victime combattante</div>
+
+<div class="section">A. La victime solitaire — Droit de demander réparation à l'État (CIVI)</div>
+<table>
+  <tr><th width="20%">Thème</th><th width="25%">Texte / Source</th><th width="22%">JP / Date exacte</th><th>Apport + Exemple concret</th></tr>
+
+  <tr>
+    <td><strong>Fondement et domaine</strong></td>
+    <td><span class="art">Art. 706-3 CPP</span><br/><span class="art">Art. 706-14 CPP</span> (atteintes aux biens)<br/><span class="art">Art. 706-15 CPP</span> (info à la PC)<br/><span class="loi">Loi 3 jan. 1977</span></td>
+    <td>—</td>
+    <td>
+      <div class="apport">⚡ Réparation intégrale pour atteintes à la personne. Indépendante du dépôt de plainte. Conditions : nationalité française OU faits commis en France. Régime subsidiaire (exclut victimes amiante qui ont leur propre fonds, victimes d'AT sous conditions).</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Acte autorisé par la loi — exclut CIVI</strong></td>
+    <td><span class="art">Art. 706-3 CPP</span> + <span class="art">Art. 122-4 CP</span></td>
+    <td><span class="jp">Cass. 2ème civ. 26 mars 2015</span></td>
+    <td>
+      <div class="apport">⚡ Apport : quand l'acte est autorisé par l'ordre ou l'autorisation de la loi (art. 122-4 CP), il ne présente pas le caractère matériel d'une infraction → pas d'indemnisation CIVI possible.</div>
+      <div class="ex">🟢 Ex : gendarme fait usage de son arme de service contre une personne placée en GAV → victime saisit CIVI → refus car l'acte est légalement autorisé</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Minorité de l'auteur</strong></td>
+    <td><span class="art">Art. 706-3 CPP</span></td>
+    <td><span class="jp">Cass. 2ème civ. 13 juin 2019</span></td>
+    <td>
+      <div class="apport">⚡ Apport : un enfant très jeune ne peut pas commettre de maladresse ou d'imprudence au sens pénal compte tenu de son âge → pas de caractère matériel d'infraction → pas d'indemnisation.</div>
+      <div class="ex">🟢 Ex : enfant de 4 ans pousse son camarade de 3 ans pour lui prendre une voiturette → traumatisme crânien → CIVI refuse l'indemnisation : l'âge exclut toute imprudence pénale</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Infraction non caractérisée en ses deux éléments</strong></td>
+    <td><span class="art">Art. 706-3 CPP</span></td>
+    <td><span class="jp">Cass. 2ème civ. 23 jan. 2003</span></td>
+    <td>
+      <div class="apport">⚡ Apport : il faut l'élément matériel ET l'élément intentionnel. Si l'infraction n'est pas constituée en ses deux éléments → pas d'indemnisation CIVI.</div>
+      <div class="ex">🟢 Ex : explosion au gaz causée par une plaque de cuisson défectueuse — pas de faute intentionnelle → CIVI ne peut pas indemniser</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Primauté du juge pénal sur la CIVI</strong></td>
+    <td><span class="art">Art. 706-3 CPP</span></td>
+    <td><span class="jp">Cass. 5 juil. 2018</span> (JP avant CIVI)<br/><span class="jp">Cass. 17 jan. 2019</span> (JP après CIVI)</td>
+    <td>
+      <div class="apport">⚡ Apport : peu importe l'ordre chronologique, le juge pénal a toujours le dernier mot sur la CIVI. JP avant CIVI → autorité de la chose jugée s'impose. JP après CIVI → le JP prime et la CIVI doit s'aligner.</div>
+      <div class="ex">🟢 Ex : CIVI indemnise la victime → puis le juge pénal relaxe → la décision pénale prime, la CIVI doit en tenir compte</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Conditions indemnisation violences conjugales</strong></td>
+    <td><span class="art">Art. 706-3 CPP</span><br/><span class="loi">Loi 20 nov. 2023</span> (Cas 3 : violences intrafamiliales)</td>
+    <td>—</td>
+    <td>
+      <div class="apport">⚡ 3 cas : (1) mort/incapacité permanente/ITT ≥ 1 mois ; (2) infractions graves listées (agressions sexuelles) → indemnisation intégrale quelle que soit l'ITT ; (3) ajouté par loi 2023 : faits par conjoint/ex avec ITT > 8 jours ou violences habituelles sur mineur de 15 ans → indemnisation plafonnée à 5 000 €.</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Procédure CIVI</strong></td>
+    <td><span class="art">Art. 706-3 CPP</span><br/>Délai 3 ans + offre en 2 mois<br/><span class="loi">Loi 16 juil. 1992</span> (appel)</td>
+    <td>—</td>
+    <td>
+      <div class="apport">⚡ 3 temps : (1) offre du fonds en 2 mois — victime accepte ou refuse ; (2) audience en chambre du conseil si refus ; (3) appel possible depuis loi 1992 — délai 1 mois, quel que soit le montant. Loi 20 nov. 2023 : si victime mineure, délai de forclusion à compter de la majorité.</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>IVAT — victimes d'actes de terrorisme</strong></td>
+    <td><span class="loi">Loi 23 mars 2019</span><br/>JIVAT (juge spécifique)</td>
+    <td><span class="jp">Cass. crim. 15 fév. 2022</span><br/><span class="jp">Cass. crim. nov. 2022</span></td>
+    <td>
+      <div class="apport">⚡ Cass. 15 fév. 2022 : la personne non directement visée mais exposée aux risques terroristes doit être considérée comme victime d'acte de terrorisme. Nov. 2022 : exige une exposition directe aux risques (pas seulement subjective).</div>
+      <div class="ex">🟢 Ex : personne présente dans une rue lors d'un attentat sans être directement ciblée → si exposition directe au risque → qualifiée de VAT et peut être indemnisée</div>
+    </td>
+  </tr>
+</table>
+
+<div class="section">B. La victime solidaire — Les groupements</div>
+<table>
+  <tr><th width="20%">Thème</th><th width="25%">Texte / Source</th><th width="22%">JP / Date exacte</th><th>Apport + Exemple concret</th></tr>
+
+  <tr>
+    <td><strong>Syndicats professionnels</strong></td>
+    <td><span class="art">Art. L2132-3 C.trav.</span></td>
+    <td><span class="jp">Ch. réunies Cass. 5 avr. 1913</span></td>
+    <td>
+      <div class="apport">⚡ Cass. 1913 : premier groupement admis à se CPC — lien requis entre l'intérêt défendu par le syndicat et les faits déférés au magistrat.</div>
+      <div class="ex">🟢 Ex : syndicat de médecins se CPC pour exercice illégal de la médecine → admis car atteinte à l'intérêt collectif de la profession</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Associations — principe et conditions</strong></td>
+    <td>Habilitation législative (+40 catégories)<br/><span class="art">Art. 2-3 CPP</span> (enfance martyrisée)</td>
+    <td><span class="jp">Cass. 18 oct. 1913</span> (refus initial associations)<br/><span class="jp">Cass. crim. 15 oct. 2025</span></td>
+    <td>
+      <div class="apport">⚡ Cass. 18 oct. 1913 : les associations refusées initialement car ne représentent que leurs membres. Depuis : habilitation législative requise. Cass. 15 oct. 2025 : une association de lutte contre les violences familiales peut obtenir réparation SANS justifier d'un préjudice propre ni d'une action concrète — l'objet statutaire suffit.</div>
+      <div class="ex">🟢 Ex : asso de défense de l'enfance martyrisée se CPC pour agressions sexuelles sur mineur → admise sans prouver son propre préjudice dès lors que l'infraction est dans son objet statutaire</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Personnes morales de droit public — principe irrecevabilité</strong></td>
+    <td><span class="art">Art. 2 CPP</span></td>
+    <td><span class="jp">Cass. 10 mars 2004</span> (État/corruption)<br/><span class="jp">Cass. 14 mars 2007</span> (Ville de Cannes)<br/><span class="jp">Cass. crim. 15 nov. 2023</span> (blanchiment — 2 décisions)</td>
+    <td>
+      <div class="apport">⚡ Principe : irrecevable car intérêt public se confond avec intérêt général défendu par le MP. Exception probité : Cass. 2004 → État indemnisé pour préjudice moral lié au discrédit sur la fonction publique causé par des agents corrompus. Cass. 2007 → étendu aux collectivités (Cannes). Cass. 15 nov. 2023 : préjudice MATÉRIEL admis (frais d'enquête anormaux pour blanchiment à l'étranger) mais préjudice MORAL refusé (se confond avec intérêt général couvert par le MP).</div>
+      <div class="ex">🟢 Ex matériel : État identifie des comptes bancaires à l'étranger via entraide administrative → frais anormaux → indemnisé. Ex moral : État invoque l'atteinte à sa réputation par le blanchiment → refusé car c'est le rôle du MP</div>
+    </td>
+  </tr>
+</table>
+
+
+<!-- ============================================================ -->
+<div class="partie">PARTIE 2 — Les droits liés au statut de partie civile</div>
+
+<div class="chapitre">Chapitre 1 — L'accès au statut de partie civile</div>
+
+<div class="section">A. Conditions d'accès — qualité et préjudice</div>
+<table>
+  <tr><th width="20%">Thème</th><th width="25%">Texte / Source</th><th width="22%">JP / Date exacte</th><th>Apport + Exemple concret</th></tr>
+
+  <tr>
+    <td><strong>Capacité à agir — mineurs</strong></td>
+    <td><span class="art">Art. 706-50 CPP</span> (adm. ad hoc)<br/><span class="art">Art. 413-6 CC</span> (mineur émancipé)<br/><span class="art">Art. 435 CC</span> (sauvegarde justice)</td>
+    <td><span class="jp">Cass. crim. 15 juin 2000</span> (adm. ad hoc pour mineur vivant uniquement)<br/><span class="jp">Cass. 12 déc. 2000</span> (adm. ad hoc évince RL)</td>
+    <td>
+      <div class="apport">⚡ Cass. 15 juin 2000 : la désignation d'un adm. ad hoc ne peut intervenir qu'en faveur d'un mineur VIVANT. Cass. 12 déc. 2000 : la désignation d'un adm. ad hoc fait obstacle à ce que le RL intervienne aussi — un mineur ne peut pas avoir deux représentants simultanément.</div>
+      <div class="ex">🟢 Ex : mineur victime d'abus par son père → adm. ad hoc désigné → la mère (RL) ne peut plus agir au nom du mineur dans la même procédure</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>PM étrangère</strong></td>
+    <td><span class="art">Art. 2 CPP</span></td>
+    <td><span class="jp">Cass. crim. 8 déc. 2009</span><br/><span class="cedh">CEDH 15 jan. 2009 Ligue du monde islamique c/ France</span></td>
+    <td>
+      <div class="apport">⚡ Cass. 8 déc. 2009 : toute PM étrangère peut se CPC sans établissement en France ni déclaration en préfecture. CEDH 15 jan. 2009 : la France condamnée pour avoir refusé la CPC d'une association étrangère non déclarée — violation de l'art. 6§1.</div>
+      <div class="ex">🟢 Ex : organisation islamique internationale non établie en France → peut se CPC pour des faits commis sur le territoire français</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Préjudice personnel et direct — nouveau propriétaire</strong></td>
+    <td><span class="art">Art. 2 CPP</span></td>
+    <td><span class="jp">Cass. crim. 11 fév. 2025</span></td>
+    <td>
+      <div class="apport">⚡ Apport : le préjudice doit exister AU MOMENT de l'infraction. Acquérir un bien postérieurement à l'infraction = préjudice seulement indirect → CPC irrecevable.</div>
+      <div class="ex">🟢 Ex : acheteur d'un immeuble après un incendie criminel → ne peut pas se CPC ni demander DI — pas propriétaire au moment des faits</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Préjudice des proches — victime par ricochet</strong></td>
+    <td><span class="art">Art. 2 et 3 CPP</span></td>
+    <td><span class="jp">Ch.crim. 23 mai 1991</span><br/><span class="jp">Cass. ass.pl. 9 mai 2008</span></td>
+    <td>
+      <div class="apport">⚡ Ch.crim. 23 mai 1991 : les proches d'une victime de violences volontaires peuvent se CPC pour le dommage causé par le spectacle de l'état physique ou psychique de la victime. Ass.pl. 9 mai 2008 : les héritiers peuvent exercer l'action civile en réparation si la victime directe avait personnellement souffert — mais la voie civile seule est ouverte pour l'héritière si elle n'était pas elle-même victime.</div>
+      <div class="ex">🟢 Ex : conjoint qui assiste aux séquelles graves de son épouse victime de coups → peut se CPC pour son propre préjudice moral</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Lien d'indivisibilité — infractions d'intérêt général</strong></td>
+    <td><span class="art">Art. 2 CPP</span></td>
+    <td><span class="jp">Affaire Karachi 4 avr. 2012</span><br/><span class="jp">Cass. 20 avr. 2022</span></td>
+    <td>
+      <div class="apport">⚡ Cass. 20 avr. 2022 : lorsqu'une information judiciaire est ouverte pour une atteinte volontaire à la vie, les PC peuvent mettre en mouvement l'action publique pour toutes les infractions liées par un lien d'INDIVISIBILITÉ — même celles qui ne causent pas de préjudice personnel direct.</div>
+      <div class="ex">🟢 Ex : victimes d'attentat se CPC pour homicide → peuvent aussi agir pour financement du terrorisme si lien indivisible (les faits ne se comprennent pas l'un sans l'autre)</div>
+    </td>
+  </tr>
+</table>
+
+<div class="section">B. La CPC devant le juge d'instruction</div>
+<table>
+  <tr><th width="20%">Thème</th><th width="25%">Texte / Source</th><th width="22%">JP / Date exacte</th><th>Apport + Exemple concret</th></tr>
+
+  <tr>
+    <td><strong>Voie de l'action</strong></td>
+    <td><span class="art">Art. 85 CPP</span> (plainte simple préalable)<br/><span class="art">Art. 86 CPP</span> (communication au parquet)<br/><span class="art">Art. 88 CPP</span> (consignation)</td>
+    <td><span class="cedh">CEDH 28 oct. 1998 Ait-Mouhoub c/ France</span><br/><span class="jp">Cass. crim. 5 sept. 2018</span> (motivation amende civile)<br/><span class="jp">Cass. 22 sept. 2015</span> (cumul amende+dénonciation)<br/><span class="jp">Cass. crim. 26 fév. 2002</span> (amende non obligatoire)</td>
+    <td>
+      <div class="apport">⚡ CEDH 1998 : consignation excessive = violation art. 6§1. Cass. 5 sept. 2018 : le JI doit motiver l'amende civile en tenant compte des ressources et charges du plaignant. Cass. 22 sept. 2015 : amende civile ET condamnation pour dénonciation calomnieuse peuvent se cumuler (intérêts distincts). Cass. 26 fév. 2002 : le JI n'est pas obligé de prononcer une amende civile en cas de non-lieu si la plainte n'était ni abusive ni dilatoire.</div>
+      <div class="ex">🟢 Ex : plaignant sans ressources → consignation disproportionnée → France condamnée par CEDH. Ex 2 : amende civile prononcée sans regarder les revenus du plaignant → cassation</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Voie de l'intervention</strong></td>
+    <td><span class="art">Art. 87 CPP</span></td>
+    <td><span class="jp">Cass. crim. 8 fév. 2022</span></td>
+    <td>
+      <div class="apport">⚡ Cass. 8 fév. 2022 : l'interdiction faite au JI d'examiner une contestation de CPC après l'avis de fin d'information ne s'applique pas quand la chambre d'instruction est saisie d'un appel de non-lieu (pas de caractère dilatoire dans ce cas).</div>
+      <div class="ex">🟢 Ex : PC se constitue tardivement après l'avis de fin d'information → normalement tardif → mais si c'est dans le cadre d'un appel de non-lieu, la chambre peut l'examiner</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Exception d'irrecevabilité — évolution JP</strong></td>
+    <td><span class="art">Art. 87 CPP</span><br/><span class="art">Art. 197 al.3 CPP</span><br/><span class="art">Art. préliminaire CPP</span></td>
+    <td><span class="jp">Cass. crim. 3 juin 2014</span> (1ère avancée)<br/><span class="jp">Cass. crim. 26 jan. 2021</span> (2ème avancée)<br/><span class="jp">Cass. crim. 30 mars 2020</span> (limite)</td>
+    <td>
+      <div class="apport">⚡ 3 juin 2014 : JI ne peut déclarer CPC irrecevable sans que la PC ait pu présenter ses observations — droit créé par JP, non prévu dans le texte. 26 jan. 2021 : la PC doit recevoir les réquisitions du procureur (et du PG en appel) avant toute décision. 30 mars 2020 : malgré ces avancées, les pièces du dossier restent inaccessibles → secret de l'instruction prime.</div>
+      <div class="ex">🟢 Ex progression : JI déclare CPC irrecevable d'office sans prévenir la PC → cassation (2014). PC ne reçoit pas les réquisitions du proc → violation du contradictoire (2021). PC veut les PV d'enquête → refusé (2020)</div>
+    </td>
+  </tr>
+</table>
+
+<div class="section">C. La CPC devant le tribunal correctionnel</div>
+<table>
+  <tr><th width="20%">Thème</th><th width="25%">Texte / Source</th><th width="22%">JP / Date exacte</th><th>Apport + Exemple concret</th></tr>
+
+  <tr>
+    <td><strong>Voie d'action — citation directe</strong></td>
+    <td><span class="art">Art. 388 CPP</span><br/><span class="art">Art. 423 CPP</span> (irrecevabilité)</td>
+    <td>—</td>
+    <td>
+      <div class="apport">⚡ La citation directe saisit le tribunal quelles que soient les réquisitions du MP — le juge est obligé de statuer. Le juge peut d'office ou à la demande du MP/parties déclarer la CPC irrecevable.</div>
+      <div class="ex">🟢 Ex : victime cite directement l'auteur d'une escroquerie devant le TC → le TC doit juger l'affaire même si le parquet n'avait pas voulu poursuivre</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>CPC irrecevable pour la 1ère fois en appel</strong></td>
+    <td><span class="art">Art. 497 CPP</span></td>
+    <td>—</td>
+    <td>
+      <div class="apport">⚡ Règle d'ordre public du double degré de juridiction : la CPC ne peut pas être formée pour la première fois en appel — elle doit avoir été présentée devant les juges du premier degré.</div>
+    </td>
+  </tr>
+</table>
+
+
+<!-- ============================================================ -->
+<div class="chapitre">Chapitre 2 — L'exercice des droits de la partie civile</div>
+
+<div class="section">A. La garantie des droits — niveau européen et interne</div>
+<table>
+  <tr><th width="20%">Thème</th><th width="25%">Texte / Source</th><th width="22%">JP / Date exacte</th><th>Apport + Exemple concret</th></tr>
+
+  <tr>
+    <td><strong>Art. 6§1 applicable — volet civil seulement</strong></td>
+    <td><span class="art">Art. 6§1 CEDH</span></td>
+    <td><span class="cedh">CEDH Tomas c/ France 27 août 1992</span><br/><span class="cedh">CEDH Acquaviva c/ France 21 nov. 1995</span><br/><span class="cedh">CEDH Perez c/ France 12 fév. 2004</span><br/><span class="cedh">CEDH Frangy c/ France 1er fév. 2005</span></td>
+    <td>
+      <div class="apport">⚡ Tomas 1992 : art. 6§1 applicable à la PC au titre du volet CIVIL (pas pénal). Perez 2004 : peu importe que la PC ne formule pas de demande en réparation si l'issue de la procédure est déterminante pour ses intérêts civils. Frangy 2005 : les droits de l'art. 6§3 (droits de l'accusé) ne s'appliquent PAS à la PC.</div>
+      <div class="ex">🟢 Ex : victime de violences policières invoque le délai raisonnable → art. 6§1 applicable car sa demande de DI a un caractère civil. Mais elle ne peut pas réclamer les droits de l'accusé (art. 6§3)</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>QPC art. 575 — levée tutelle du MP</strong></td>
+    <td><span class="art">Art. 567 CPP</span> (remplace art. 575 abrogé)</td>
+    <td><span class="jp">CC 23 juil. 2010</span> (QPC art. 575 CPP)</td>
+    <td>
+      <div class="apport">⚡ Apport majeur : art. 575 déclaré inconstitutionnel car prive la PC de faire censurer par la Cour de cassation les violations de loi de la chambre d'instruction sur la qualification, la constitution de l'infraction et la régularité de procédure. Depuis : art. 567 — seule condition : un grief.</div>
+      <div class="ex">🟢 Ex : chambre d'instruction retient une qualification erronée défavorable à la PC → avant 2010 bloquée si MP inactif → depuis : PC se pourvoit seule en cassation</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>QPC art. 497 — limitation aux intérêts civils constitutionnelle</strong></td>
+    <td><span class="art">Art. 497 CPP</span></td>
+    <td><span class="jp">CC 31 jan. 2014</span> (QPC art. 497)<br/><span class="jp">Cass. crim. 9 mars 2011</span> (pas de réouverture d'instruction)</td>
+    <td>
+      <div class="apport">⚡ CC 31 jan. 2014 : la limitation de l'appel aux intérêts civils est conforme à la Constitution — la PC peut quand même réclamer réparation en appel même après relaxe → pas sans recours. Cass. 9 mars 2011 : la PC NE PEUT PAS demander la réouverture de l'instruction pour charge nouvelle — réservé au parquet uniquement.</div>
+      <div class="ex">🟢 Ex : prévenu relaxé → PC fait appel sur ses intérêts civils → la CA peut lui accorder des DI sans remettre en cause la relaxe. Mais PC ne peut pas demander au JI de rouvrir le dossier s'il y a une charge nouvelle.</div>
+    </td>
+  </tr>
+</table>
+
+<div class="section">B. Les droits garantis — accès au dossier, actes, preuves</div>
+<table>
+  <tr><th width="20%">Thème</th><th width="25%">Texte / Source</th><th width="22%">JP / Date exacte</th><th>Apport + Exemple concret</th></tr>
+
+  <tr>
+    <td><strong>Accès au dossier et copies</strong></td>
+    <td><span class="art">Art. 114 CPP</span><br/><span class="loi">Loi 20 nov. 2023</span> (demande sans attendre convocation)</td>
+    <td><span class="jp">CC 17 mars 2023</span> (QPC art. 114 al.6)</td>
+    <td>
+      <div class="apport">⚡ Depuis loi 2023 : la PC peut demander des copies dès qu'elle s'est constituée, sans attendre d'être convoquée par le JI. CC 2023 : les parties conservent la possibilité de communiquer aux tiers des informations sur le déroulement de l'instruction dans le cadre des droits de la défense.</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Demande d'actes</strong></td>
+    <td><span class="art">Art. 82-1 CPP</span> (demande actes)<br/><span class="art">Art. 81 CPP</span> (initiative JI)<br/><span class="art">Art. 81-1 CPP</span> (personnalité victime)<br/><span class="art">Art. 156 CPP</span> (expertise)</td>
+    <td><span class="jp">Ch.crim. 15 fév. 2011</span> (MEE ≠ acte utile)</td>
+    <td>
+      <div class="apport">⚡ Ch.crim. 15 fév. 2011 : la mise en examen d'une personne N'EST PAS un acte utile à la manifestation de la vérité que la PC peut demander au titre de l'art. 82-1.</div>
+      <div class="ex">🟢 Ex : PC demande au JI de mettre en examen un suspect → le JI peut refuser car ce n'est pas un "acte utile à la manifestation de la vérité" au sens de l'art. 82-1</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Droit à la preuve</strong></td>
+    <td><span class="art">Art. 427 CPP</span></td>
+    <td><span class="jp">Ch.crim. 10 juil. 2023</span></td>
+    <td>
+      <div class="apport">⚡ Ch.crim. 10 juil. 2023 : une preuve obtenue de façon déloyale ou illicite est admissible à condition d'être discutée contradictoirement devant le juge. Le manquement à l'art. 114 al.6 n'est pas grave si le contradictoire est respecté.</div>
+      <div class="ex">🟢 Ex : PC produit une preuve obtenue sans l'autorisation prévue à l'art. 114 al.6 → admissible si débattue contradictoirement à l'audience</div>
+    </td>
+  </tr>
+</table>
+
+<div class="section">C. Les voies de recours</div>
+<table>
+  <tr><th width="20%">Thème</th><th width="25%">Texte / Source</th><th width="22%">JP / Date exacte</th><th>Apport + Exemple concret</th></tr>
+
+  <tr>
+    <td><strong>Appel phase instruction</strong></td>
+    <td><span class="art">Art. 186 CPP</span> (ordonnances JI)<br/><span class="art">Art. 186-3 CPP</span> (correctionnalisation)</td>
+    <td><span class="jp">Ch.crim. 20 nov. 2013</span> (TPE)<br/><span class="jp">Cass. crim. 5 jan. 2022</span> (délit connexe)</td>
+    <td>
+      <div class="apport">⚡ Art. 186-3 : PC peut contester la correctionnalisation (renvoi au TC alors que faits = crime). Ch.crim. 20 nov. 2013 : étendu au renvoi devant le TPE. Cass. 5 jan. 2022 : le droit d'appel de l'art. 186-3 S'ÉTEINT si le délit connexe est renvoyé devant la cour d'assises — l'art. 186-3 ne sert qu'à éviter un renvoi au TC.</div>
+      <div class="ex">🟢 Ex : altercation mortelle — A aux assises pour assassinat, B aux assises pour délit connexe → PC ne peut pas contester : B est devant une juridiction criminelle</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Forclusion — art. 469 al.4 CPP</strong></td>
+    <td><span class="art">Art. 469 al.4 CPP</span></td>
+    <td>—</td>
+    <td>
+      <div class="apport">⚡ Si la PC était constituée ET assistée d'un avocat au moment du renvoi devant le TC et n'a pas utilisé l'art. 186-3 → elle ne peut plus contester la compétence du TC par la suite. Exception : si le délit est non intentionnel et que les débats révèlent qu'il est en réalité intentionnel → le TC peut se déclarer incompétent.</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Pourvoi cassation instruction</strong></td>
+    <td><span class="art">Art. 567 CPP</span></td>
+    <td><span class="jp">Cass. crim. 26 juin 2018</span> (annulation MEE)</td>
+    <td>
+      <div class="apport">⚡ Cass. 26 juin 2018 : annulation des MEE prononcée d'office sans débat contradictoire fait GRIEF à la PC → pourvoi en cassation recevable.</div>
+      <div class="ex">🟢 Ex : chambre d'instruction annule plusieurs MEE sans inviter les parties à s'exprimer → PC perd des mis en cause → grief établi → pourvoi admis</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Appel fond — intérêts civils seulement</strong></td>
+    <td><span class="art">Art. 497 CPP</span><br/><span class="art">Art. 507-508 CPP</span> (avant-dire droit)</td>
+    <td><span class="jp">Cass. crim. 19 nov. 2024</span></td>
+    <td>
+      <div class="apport">⚡ Cass. 19 nov. 2024 : la CA reste saisie d'un appel avant-dire droit même si le jugement au fond est rendu entre-temps — elle doit statuer sur l'exception (ex : incompétence) et en tirer les conséquences sur l'action civile ET publique.</div>
+      <div class="ex">🟢 Ex : PC fait appel du rejet d'une exception d'incompétence → requête refusée en procédure accélérée → jugement au fond rendu → CA doit quand même se prononcer sur l'incompétence</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Pourvoi cassation fond + requalification</strong></td>
+    <td><span class="art">Art. 567 CPP</span></td>
+    <td><span class="jp">Cass. crim. 8 déc. 2021</span></td>
+    <td>
+      <div class="apport">⚡ Apport : une requalification qui réduit le droit à réparation de la PC constitue un grief → pourvoi en cassation recevable même si la requalification ne porte que sur la durée de l'ITT.</div>
+      <div class="ex">🟢 Ex : harcèlement moral avec ITT 8 jours requalifié en harcèlement moral sans ITT → réparation réduite → grief → PC peut se pourvoir en cassation</div>
+    </td>
+  </tr>
+</table>
+
+<div class="section">D. Le droit à la réparation — choix de la voie et conséquences</div>
+<table>
+  <tr><th width="20%">Thème</th><th width="25%">Texte / Source</th><th width="22%">JP / Date exacte</th><th>Apport + Exemple concret</th></tr>
+
+  <tr>
+    <td><strong>Principe electa una via</strong></td>
+    <td><span class="art">Art. 4 CPP</span> + <span class="art">Art. 5 CPP</span></td>
+    <td>—</td>
+    <td>
+      <div class="apport">⚡ Une voie ayant été choisie, impossible d'en emprunter une autre. Exception si la juridiction civile saisie en premier est incompétente, ou si le MP engage l'action publique avant tout jugement au fond civil. Diffamation : voie pénale OBLIGATOIRE. HCJ/CJR : voie pénale INTERDITE → uniquement juge civil.</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Autorité de la chose jugée au pénal sur le civil</strong></td>
+    <td><span class="art">Art. 4 al.2 CPP</span><br/><span class="art">Art. 1355 CC</span></td>
+    <td><span class="jp">Cass. ch.civ. 24 oct. 2012</span> (testament/insanité)<br/><span class="jp">Cass. crim. 19 juin 2007</span> (clés de voiture/vol)</td>
+    <td>
+      <div class="apport">⚡ Cass. 24 oct. 2012 : l'autorité s'étend à l'existence du fait, la qualification, la culpabilité ET aux motifs qui constituent le soutien nécessaire de la décision pénale. Cass. 19 juin 2007 : condamnation pour vol exclut que le juge civil dise que la victime avait "consenti" à la soustraction.</div>
+      <div class="ex">🟢 Ex testament : condamnation pour abus de faiblesse pendant la rédaction → juge civil ne peut pas dire que la testatrice était saine d'esprit au même moment. Ex voiture : vol établi → pas de consentement possible</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Pénal tient le civil en l'état — portée restreinte</strong></td>
+    <td><span class="art">Art. 4 al.3 CPP</span><br/><span class="loi">Loi 5 mars 2016</span> (restriction)</td>
+    <td><span class="jp">Cass. ch.civ. 31 oct. 2012</span> (batteries contrefaites)</td>
+    <td>
+      <div class="apport">⚡ Loi 2016 : le principe est limité à la seule action en réparation du dommage causé par l'infraction. Les AUTRES actions civiles (contractuelles, commerciales…) ne sont plus bloquées même si la décision pénale peut les influencer. Cass. 31 oct. 2012 (avant loi 2016) illustre déjà cette logique.</div>
+      <div class="ex">🟢 Ex : entreprise poursuivie pénalement pour contrefaçon de batteries → l'action civile contractuelle en remplacement des batteries n'est pas suspendue → juge civil peut statuer</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Dissociation des fautes non-intentionnelles</strong></td>
+    <td><span class="art">Art. 4-1 CPP</span><br/><span class="loi">Loi 10 juil. 2000</span><br/><span class="art">Art. 1241 CC</span> + <span class="art">Art. L.452-1 CSS</span></td>
+    <td><span class="jp">Cass. 2ème civ. 15 mars 2012</span></td>
+    <td>
+      <div class="apport">⚡ Cass. 15 mars 2012 : la relaxe au pénal pour homicide involontaire (pas de faute qualifiée) n'empêche pas la sécurité sociale de rechercher la faute inexcusable de l'employeur — ces deux fautes s'apprécient de façon totalement distincte.</div>
+      <div class="ex">🟢 Ex : employeur relaxé d'homicide involontaire (pas de faute caractérisée) → la caisse de SS peut quand même retenir sa faute inexcusable si manquement à une obligation légale de sécurité</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>En cas de relaxe — faute civile</strong></td>
+    <td><span class="art">Art. 464 CPP</span> + <span class="art">Art. 497 CPP</span></td>
+    <td><span class="jp">Cass. crim. 5 fév. 2014</span> (faute civile admise)<br/><span class="jp">Cass. crim. 11 mars 2014</span> (limite — hors prévisions texte)<br/><span class="jp">Cass. crim. 3 nov. 2020</span> (droit de réponse)<br/><span class="cedh">CEDH 12 avr. 2012 Lagardère c/ France</span></td>
+    <td>
+      <div class="apport">⚡ Cass. 5 fév. 2014 : relaxe ≠ absence de réparation. Faute civile démontrée "à partir et dans la limite des faits de la poursuite" suffit → DI de 176 873 €. Cass. 11 mars 2014 : la faute civile doit entrer dans les prévisions du texte pénal invoqué — si l'infraction n'est pas du tout constituée, pas de faute civile. Cass. 3 nov. 2020 : relaxe pour diffamation mais droit de réponse obligatoire = faute civile dans les faits. CEDH Lagardère 2012 : impossible de statuer pour la 1ère fois sur la culpabilité d'un prévenu décédé → violation présomption d'innocence.</div>
+      <div class="ex">🟢 Ex 1 (5 fév. 2014) : relaxe abus de confiance par défaut d'intention → CA retient faute civile (salariés utilisés sans autorisation réelle) → 176 873 €. Ex 2 (11 mars 2014) : non-dénonciation d'innocence pour GAV (hors prévisions art. 434-11) → pas de faute civile. Ex 3 (3 nov. 2020) : relaxe diffamation → droit de réponse imposé malgré tout</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Relaxe matière non-intentionnelle — art. 470-1</strong></td>
+    <td><span class="art">Art. 470-1 CPP</span></td>
+    <td><span class="jp">AP 14 avr. 2023</span></td>
+    <td>
+      <div class="apport">⚡ AP 14 avr. 2023 (arrêt de principe) : distingue 2 hypothèses. (1) Si PC n'a PAS invoqué l'art. 470-1 pour le cas de relaxe → peut soumettre sa demande au juge civil sans que l'autorité de la chose jugée lui soit opposée. (2) Si elle l'a invoqué → doit concentrer tous ses arguments devant le pénal. Décision critiquée car fragilise le principe de concentration des moyens.</div>
+      <div class="ex">🟢 Ex : pompier tué dans un accident — conducteur relaxé d'homicide involontaire — famille n'avait pas invoqué art. 470-1 en appel → AP lui permet d'aller au civil pour obtenir réparation malgré l'autorité de la chose jugée</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>En cas de condamnation</strong></td>
+    <td><span class="art">Art. 464 CPP</span><br/><span class="loi">Loi 15 juin 2000</span> (renvoi audience ultérieure)</td>
+    <td>—</td>
+    <td>
+      <div class="apport">⚡ Tribunal statue sur l'action civile après condamnation. Peut ordonner versement provisoire des DI. Depuis loi 2000 : renvoi de droit à une audience ultérieure si PC le demande pour rassembler ses justificatifs de préjudice — MP n'est pas obligatoire à cette audience.</div>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Phase d'exécution des peines</strong></td>
+    <td><span class="art">Art. 707 CPP</span><br/><span class="loi">Loi 15 août 2014 (Taubira)</span></td>
+    <td>—</td>
+    <td>
+      <div class="apport">⚡ Loi Taubira 2014 : art. 707 liste les droits résiduels de la victime au stade de l'exécution (où elle n'est plus partie civile) : droit d'être informée de la fin de peine si elle le souhaite + droit à la prise en compte de la nécessité de garantir sa sûreté. C'est l'autorité judiciaire qui garantit ces droits.</div>
+    </td>
+  </tr>
+</table>
+
+<div class="warn">
+  ⚠️ <strong>Méthode pour l'examen :</strong><br/>
+  1️⃣ <strong>Poser l'article</strong> (avec son numéro exact)<br/>
+  2️⃣ <strong>Citer la JP</strong> avec le <strong>jour / mois / année</strong> (ex : Cass. crim. 5 fév. 2014, PAS juste "2014")<br/>
+  3️⃣ <strong>Expliquer ce qu'elle change</strong> par rapport au droit antérieur ou au texte — ne pas recopier le cours<br/>
+  4️⃣ <strong>Illustrer avec l'exemple concret</strong> des faits de l'espèce<br/><br/>
+  ⚡ Pour une QPC : mentionner d'abord le texte contesté, puis la décision du CC ou de la Cass, puis l'apport.<br/>
+  ⚡ Pour une décision CEDH : mentionner l'article de la Convention invoqué, puis la violation retenue ou non.
+</div>
+
+</body>
+</html>
