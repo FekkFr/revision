@@ -101,6 +101,11 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--fond);min-heigh
 .mc-title{font-family:'Playfair Display',serif;font-weight:700;font-size:.85rem;color:var(--noir);line-height:1.3;margin-bottom:.5rem;}
 .mc-open{display:inline-block;font-size:.64rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--doux);border:1px solid var(--bord);border-radius:5px;padding:.18rem .55rem;transition:all .18s;}
 .maitrise-card:hover .mc-open{color:#1B5C6B;border-color:#1B5C6B;}
+/* DROIT DES VICTIMES */
+.dv-link::before{background:linear-gradient(90deg,#4c3bcf,#7b68ee) !important;}
+.dv-link:hover{border-color:#4c3bcf !important;}
+.dv-link .odl-label{color:#4c3bcf !important;}
+.dv-link .odl-arr{color:#4c3bcf !important;border-color:#4c3bcf !important;}
 
 /* SELECT ALL + CTA */
 .sel-actions{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
@@ -362,6 +367,19 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--fond);min-heigh
           <span class="mc-open">Fiche →</span>
         </a>
       </div>
+    </div>
+
+    <div class="maitrise-section" style="margin-top:1.2rem;">
+      <div class="other-deck-sep"><span>Droit des victimes</span></div>
+      <a class="other-deck-link dv-link" href="droit_victimes_tableau.html" target="_blank">
+        <div class="odl-inner">
+          <div>
+            <div class="odl-label">📋 Tableau de révision</div>
+            <div class="odl-title">Droit des victimes — Examen final</div>
+          </div>
+          <div class="odl-arr">Ouvrir →</div>
+        </div>
+      </a>
     </div>
 
     <div class="sel-actions">
